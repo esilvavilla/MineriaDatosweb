@@ -1,1 +1,1 @@
-# Fundamentos en Computación
+# Minería de datos
