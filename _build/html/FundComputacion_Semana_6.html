@@ -1,0 +1,1469 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Semana 6: Listas y Tuplas &#8212; Fundamentación en Computación</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'FundComputacion_Semana_6';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Semana 7: Conjuntos y Diccionarios" href="FundComputacion_Semana_7.html" />
+    <link rel="prev" title="Semana 5: Condicionales y Ciclos (For y While)" href="FundComputacion_Semana_5.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/UdeA.png" class="logo__image only-light" alt="Fundamentación en Computación - Home"/>
+    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Fundamentación en Computación - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Fundamentación en Computación
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="FundComputacion_Semana_1.html">Semana 1: La computación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FundComputacion_Semana_2.html">Semana 2: El computador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FundComputacion_Semana_3.html">Semana 3: Diagramas de flujo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FundComputacion_Semana_4.html">Semana 4: Máquinas de Turing y Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FundComputacion_Semana_5.html">Semana 5: Condicionales y Ciclos (<code class="docutils literal notranslate"><span class="pre">For</span></code> y <code class="docutils literal notranslate"><span class="pre">While</span></code>)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Semana 6: Listas y Tuplas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FundComputacion_Semana_7.html">Semana 7: Conjuntos y Diccionarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FundComputacion_Semana_8.html">Semana 8: escritura y lectura de acrhivos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FundComputacion_Semana_9.html">Semana 9: Funciones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FundComputacion_Semana_10.html">Semana 10: Arreglos de NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FundComputacion_Semana_11.html">Semana 11: Graficación con Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FundComputacion_Semana_12.html">Semana 12: Pandas 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FundComputacion_Semana_13.html">Semana 13: Análisis exploratorio de datos con PANDAS y NUMPY</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FFundComputacion_Semana_6.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/FundComputacion_Semana_6.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Semana 6: Listas y Tuplas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">6.1. Listas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexado">Indexado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizando-listas">Organizando listas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conocer-el-indice-de-un-elemento-dentro-de-la-lista">Conocer el índice de un elemento dentro de la lista</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reasignacion-de-valores">Reasignación de valores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-funciones">Otras funciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operador-in">Operador <code class="docutils literal notranslate"><span class="pre">in</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-listas">Operaciones con listas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-dentro-listas">Listas dentro listas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuplas">6.2. Tuplas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-tuplas">Operaciones con Tuplas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">6.3. Ejercicios</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="semana-6-listas-y-tuplas">
+<h1>Semana 6: Listas y Tuplas<a class="headerlink" href="#semana-6-listas-y-tuplas" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;9vUkxV9OLS0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="400"
+            height="300"
+            src="https://www.youtube.com/embed/9vUkxV9OLS0"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<section id="listas">
+<h2>6.1. Listas<a class="headerlink" href="#listas" title="Link to this heading">#</a></h2>
+<p>Una lista en Python es una estructura de datos formada por una secuencia ordenada de objetos. Los elementos de una lista pueden accederse mediante su índice, siendo 0 el índice del primer elemento. Su caracteristica principal es el uso de corchetes cuadrados ([  ]).</p>
+<p><a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html">Referencia de Python sobre Listas</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Se define una lista asignando a una variable valores dentro de corchetes</span>
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#Lista vacia</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Con la función type podemos ver que las listas son un nuvo tipo de dato-estructura</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Print nos permite ver los valores asignados a la lista</span>
+<span class="c1">#En este caso muestra solo los corchetes, pues está vacía</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Se puede definir una lista con valores de diversos tipos: enteros, de punto</span>
+<span class="c1"># flotante y cadenas de caracteres.</span>
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="s2">&quot;ocho&quot;</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mf">10.45</span><span class="p">]</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Las listas pueden almacenar incluso otras listas.</span>
+<span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">2.7</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s2">&quot;Hola&quot;</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2.7, 3, 4, &#39;Hola&#39;, [1, 2, 3]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Con el módulo append se puede agregar un elemento a la lista. Se agrega al final.</span>
+<span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="c1">#Agregar elemento al final de la lista</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2.7, 3, 4, &#39;Hola&#39;, [1, 2, 3], 7]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Se puede agregar con append incluso una nueva lista.</span>
+<span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2.7, 3, 4, &#39;Hola&#39;, [1, 2, 3], 7, [12, 1, 0]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#append recibe un solo argumento, por lo que entregar tres valores arroja error.</span>
+<span class="c1">#lista.append(12,1,0)</span>
+<span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2.7, 3, 4, &#39;Hola&#39;, [1, 2, 3], 7, [12, 1, 0]]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="indexado">
+<h3>Indexado<a class="headerlink" href="#indexado" title="Link to this heading">#</a></h3>
+<p>Para acceder a los valores almacenados en una lista, es posible sabiendo que una vez dentro de la estructura, se les asigna por defecto un índice que va desde el cero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">lista</span><span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hola 2.7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># También se puede acceder a un valor usando índices negativos, iniciando</span>
+<span class="c1"># en el último, cuyo índice es -1</span>
+<span class="n">lista</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Es posible acceder a varios valores simultáneamente.</span>
+<span class="c1">#Para ello, se especifica un intervalo de índices [a,b). Incluye el valor a, pero no</span>
+<span class="c1"># el b. Así que realmente serían los índices desde el a hasta el b-1</span>
+<span class="c1"># La sintaxis es esoecificarlo dentro de corchetes, separado con dos puntos: [a:b]</span>
+
+<span class="n">lista</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.7, 3, 4, &#39;Hola&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Si no se especifica el índice final, toma todos los índices hasta el final.</span>
+<span class="n">lista</span><span class="p">[</span><span class="mi">6</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7, [12, 1, 0]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># También podemos definir el tamaño del paso usando la sintaxis.</span>
+<span class="c1"># [inicio:final:paso](el valor por defecto del paso es 1)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.7, [1, 2, 3]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Si no se especficia ni el inicio ni el final, toma todos los índices</span>
+<span class="c1"># de acuerdo al paso que se le entregó.</span>
+<span class="n">lista</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 3, &#39;Hola&#39;, 7]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para acceder a una lista definida dentro de otra, se usa una sintaxis de doble corchete, uno por cada lista. Lista[][]. Donde el primer corchete es para la lista externa, y el segundo para la interna. Funciona con el indexado positivo y negativo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Ver los elementos de una lista dentro de otra lista</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># ¿Cómo sería usando la otra forma del indexado?</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="organizando-listas">
+<h3>Organizando listas<a class="headerlink" href="#organizando-listas" title="Link to this heading">#</a></h3>
+<p>Es posible organizar los valores contenidos dentro de las listas en orden ascendente o descendente. Es importante que los valores dentro de la lista sean del mismo tipo, es decir, comparables entre sí.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#lista.sort() #Método para ordenar elementos de la lista</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Por ejemplo, si se tiene que los valores dentro de la lista son cadenas de caracteres, la organización será en orden alfabético. Cabe resaltar que al ser python un lenguaje escrito en inglés, hay caracteres que no reconoce y por tanto no organiza. por ejemplo palabras con tildes o la letra ñ.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Sort organiza los valores dentro de la lista, sin necesidad de tener que</span>
+<span class="c1"># definir otra o cambiarle el nombre</span>
+<span class="n">lista1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;barrio&#39;</span><span class="p">,</span><span class="s1">&#39;zapato&#39;</span><span class="p">,</span><span class="s1">&#39;window&#39;</span><span class="p">,</span><span class="s1">&#39;ñoño&#39;</span><span class="p">,</span><span class="s1">&#39;árbol&#39;</span><span class="p">]</span>
+<span class="n">lista1</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">lista1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;barrio&#39;, &#39;window&#39;, &#39;zapato&#39;, &#39;árbol&#39;, &#39;ñoño&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Si todos los valores son numéricos, los organiza por defecto en orden</span>
+<span class="c1"># ascendente, es decir, de menor a mayor.</span>
+
+<span class="n">lista2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3659</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">lista2</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">lista2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-10, 1, 20, 127, 200, 3659]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Si a sort se le entrega el argumento reverse=True, revierte el orden por defecto.</span>
+<span class="c1"># es decir, entregará los valores organizados de mayor a menor.</span>
+
+<span class="n">lista3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3659</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">lista3</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">lista3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3659, 200, 127, 20, 1, -10]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conocer-el-indice-de-un-elemento-dentro-de-la-lista">
+<h3>Conocer el índice de un elemento dentro de la lista<a class="headerlink" href="#conocer-el-indice-de-un-elemento-dentro-de-la-lista" title="Link to this heading">#</a></h3>
+<p>Es posible conocer el índice de un valor contenido en una lista, usando el módulo .index.</p>
+<p>Este entrega el índice en el que se encuentra un valor en la estructura.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Si quiero conocer en qué posición está el elemento &#39;Hola&#39;</span>
+<span class="n">lista</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;Hola&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hola&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reasignacion-de-valores">
+<h3>Reasignación de valores<a class="headerlink" href="#reasignacion-de-valores" title="Link to this heading">#</a></h3>
+<p>Las listas pueden ser modificadas, incluso se pueden cambiar valores con los que se definieron.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Los valores dentro de una lista pueden ser asignados y reasignados</span>
+<span class="n">lista</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2.7, 3, 4, 5, [1, 2, 3], 7, [12, 1, 0]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Se pueden reasignar varios valores al tiempo.</span>
+<span class="n">lista</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 4, 5, [1, 2, 3], 7, [12, 1, 0]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="otras-funciones">
+<h3>Otras funciones<a class="headerlink" href="#otras-funciones" title="Link to this heading">#</a></h3>
+<p>Es posible manipular listas de diversas formas. A continuación algunas más.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Con las funciones &#39;list&#39; y &#39;range&#39; se puede crear una lista</span>
+<span class="c1"># con valores entre un valor a, hasta un valor b, con un espaciado c</span>
+<span class="n">lista</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>   <span class="c1">#a=1, b=20, c=1</span>
+<span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Invierte el orden de la lista</span>
+<span class="n">lista</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[19, 17, 15, 13, 11, 9, 7, 5, 3, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Nota:</strong> Los string son inmutables, al aplicar un método sobre este no cambia el string. A diferencia de los string, las listas son mutables y cada método que se aplique sobre esta modifica la lista.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Elimina elementos de la lista especificando su índice, no el valor del elemento.</span>
+<span class="n">lista</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[19, 17, 15, 11, 9, 7, 5, 3, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Se puede insertar un nuevo elemento en la lista, especificando el elemento y el</span>
+<span class="c1"># índice</span>
+<span class="n">lista</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)</span>    <span class="c1">#Inserta el 50000 para que tenga el índice 5</span>
+<span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[19, 17, 15, 11, 9, 50000, 7, 5, 3, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Permite eliminar un elemento de la lista, siempre elimina el primero que se encuentre</span>
+<span class="c1"># Acá a diferencia de &#39;pop&#39;, elimina el el elemento por su valor, no por su índice</span>
+<span class="n">lista</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">50000</span><span class="p">)</span>
+<span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[19, 17, 15, 11, 9, 7, 5, 3, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Podemos determinar cuántas veces está un elemento dado en una lista</span>
+<span class="n">lista</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;Daniel&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># La función &#39;len&#39; nos permite conocer la cantidad de elementos de una lista.</span>
+<span class="c1"># si alguno de esos elementos es otra lista, cuenta toda esa lista interna como</span>
+<span class="c1"># un solo elemento.</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="operador-in">
+<h3>Operador <code class="docutils literal notranslate"><span class="pre">in</span></code><a class="headerlink" href="#operador-in" title="Link to this heading">#</a></h3>
+<p>Sirve para verificar si un elemento está dentro de una lista, string, tupla, etc…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Juan&#39;</span> <span class="ow">in</span> <span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39; Daniel&#39;</span> <span class="ow">in</span> <span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lista</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+18
+16
+12
+10
+8
+6
+4
+2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="operaciones-con-listas">
+<h3>Operaciones con listas<a class="headerlink" href="#operaciones-con-listas" title="Link to this heading">#</a></h3>
+<p>Las operaciones con las listas son similares a las operaciones realizadas con los strings. En este caso la operación de adición <strong>(+)</strong> concatena los elementos de las listas. Igualmente, la operación del producto <strong>(*)</strong> multiplica la lista la cantidad de veces por la que se multiplique.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span> <span class="o">+</span> <span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[19, 17, 15, 11, 9, 7, 5, 3, 1, 19, 17, 15, 11, 9, 7, 5, 3, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span><span class="o">*</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[19,
+ 17,
+ 15,
+ 11,
+ 9,
+ 7,
+ 5,
+ 3,
+ 1,
+ 19,
+ 17,
+ 15,
+ 11,
+ 9,
+ 7,
+ 5,
+ 3,
+ 1,
+ 19,
+ 17,
+ 15,
+ 11,
+ 9,
+ 7,
+ 5,
+ 3,
+ 1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">lista1</span> <span class="o">=</span> <span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">lista</span><span class="p">,</span> <span class="n">lista1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([0, 2, 3, 4, 5], [0, 2, 3, 4, 5])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La realizar la igualdad de dos listas, por ejemplo,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lista1</span> <span class="o">=</span> <span class="n">lista</span>
+</pre></div>
+</div>
+<p>No se realiza una copia de la lista como tal, lo que hace python es crear una conexión entre la dirección de memoria en las dos variables. Por lo tanto, al realizar un cambio en una de las listas también se realiza el cambio en la otra lista.</p>
+<p>Para asignar una nueva lista a la variable lista1 se debe de realizar una copia de la lista mediante el método <strong>.copy()</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista2</span> <span class="o">=</span> <span class="n">lista</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">lista</span><span class="p">,</span> <span class="n">lista1</span><span class="p">,</span> <span class="n">lista2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([0, 1, 3, 4, 5], [0, 1, 3, 4, 5], [0, 1, 3, 4, 5])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">lista</span><span class="p">,</span> <span class="n">lista1</span><span class="p">,</span> <span class="n">lista2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([1, 1, 3, 4, 5], [1, 1, 3, 4, 5], [0, 1, 3, 4, 5])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="listas-dentro-listas">
+<h3>Listas dentro listas<a class="headerlink" href="#listas-dentro-listas" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span>
+<span class="n">lista1</span> <span class="o">=</span> <span class="n">lista</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span><span class="p">,</span> <span class="n">lista1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">lista</span><span class="p">,</span> <span class="n">lista1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([[0, 2, 3], [4, 5, 6], [7, 8, 9]], [[0, 2, 3], [4, 5, 6], [7, 8, 9]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Ejercicio:</strong></p>
+<ol class="arabic simple">
+<li><p>Cree una lista de 4 entradas, donde cada una de ellas sea una lista de 3 entradas.</p></li>
+<li><p>Acceda a 4 valores de esa lista. Que dicho valor no sea una de las listas interiores, que sea el valor individual.</p></li>
+<li><p>Reasigne los elementos de la lista con valores, que dichos elementos no sean más listas.</p></li>
+<li><p>Ordene de mayor a menor dichos elementos.</p></li>
+<li><p>Ordene de menor a mayor dichos elementos.</p></li>
+<li><p>Elimine dos elementos de la lista.</p></li>
+<li><p>Imprima la lista resultante</p></li>
+</ol>
+</section>
+</section>
+<section id="tuplas">
+<h2>6.2. Tuplas<a class="headerlink" href="#tuplas" title="Link to this heading">#</a></h2>
+<p>Las tuplas en Python o tuples son muy similares a las listas, pero con dos diferencias. Son inmutables, lo que significa que no pueden ser modificadas una vez declaradas, y en vez de inicializarse con corchetes se hace con (). Dependiendo de lo que queramos hacer, las tuplas pueden ser más rápidas.</p>
+<p><a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences">Referencia sobre tuplas de Python</a></p>
+<p>Se declara una tupla como sigue</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tupla</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tupla</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>También se puede hacer sin necesidad de los paréntesis</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tupla</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tupla</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">tupla</span><span class="p">]</span>
+<span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, (1, 2, 3)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tupla</span> <span class="o">=</span> <span class="n">lista</span><span class="p">,</span> <span class="n">lista</span>
+<span class="n">tupla</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([1, (1, 2, 3)], [1, (1, 2, 3)])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se accede a sus valores con la misma indexación usada para las listas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tupla</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, (1, 2, 3)]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="operaciones-con-tuplas">
+<h3>Operaciones con Tuplas<a class="headerlink" href="#operaciones-con-tuplas" title="Link to this heading">#</a></h3>
+<p>Las tuplas son tipos inmutables, lo que significa que una vez asignado su valor, no puede ser modificado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tupla</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1">#tupla[0] = 5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al igual que las listas, las tuplas también pueden ser anidadas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tupla</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tupla</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tupla</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2, (&#39;a&#39;, &#39;b&#39;), 3)
+a
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es posible convertir una lista en una tupla. ¿Será posible en el sentido contrario?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">tupla</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">tupla</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tupla</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;tuple&#39;&gt;
+(1, 2, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al igual que con las listas, se puede iterar sobre las tuplas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tupla</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una de sus mayores utilidades es que se puede asignar el valor de una tupla de $n$ elementos, a $n$ variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">tupla</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 2 3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ejercicios">
+<h2>6.3. Ejercicios<a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Escriba un programa que comience leyendo del usuario las edades de todos los invitados de un grupo, con una edad introducida en cada línea. El usuario introducirá una línea en blanco para indicar que no hay más invitados en el grupo. A continuación, el programa debe mostrar el costo de la entrada para el grupo con un mensaje apropiado. El costo debe mostrarse con dos decimales.</p></li>
+<li><p>Escriba un programa que calcula función exponencial a partir de la siguiente serie:</p></li>
+</ol>
+<p>$$
+e^x=\sum_{n=0}^N \frac{x^n}{n!}
+$$</p>
+<ol class="arabic simple" start="3">
+<li><p>Escriba un programa que calcula función $\operatorname{sin}$ a partir de la siguiente serie:
+$
+\sin(x)=\sum_{n=0}^N(-1)^n\frac{x^{2n+1}}{(2n+1)!}
+$</p></li>
+<li><p>Escriba un programa que calcula función cos a partir de la siguiente serie:
+$
+\cos(x)=\sum_{n=0}^N(-1)^n\frac{x^{2n}}{(2n)!}
+$</p></li>
+<li><p>Un proyectil lanzado verticalmente con una velocidad inicial $v_o$ tendrá una posición $y$ y velocidad $v$, en el tiempo $t$, dadas por:</p></li>
+</ol>
+<p>$$
+y = y_o + v_o t - \frac{1}{2}gt^2$$
+$$v = v_o -gt$$</p>
+<p>donde $y_o$ es la altura inicial y $g=9.8 \text{m}/\text{s}^2$ es la aceleración de la gravedad.</p>
+<p>Escriba un programa en el cual el usuario ingrese la altura inicial $y_o$ y la velocidad inicial $v_o$ y calcule la posición y la velocidad desde el momento inicial hasta el momento en que cae al suelo, cada $0.1\ \text{s}$.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="FundComputacion_Semana_5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Semana 5: Condicionales y Ciclos (<code class="docutils literal notranslate"><span class="pre">For</span></code> y <code class="docutils literal notranslate"><span class="pre">While</span></code>)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="FundComputacion_Semana_7.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Semana 7: Conjuntos y Diccionarios</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">6.1. Listas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexado">Indexado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizando-listas">Organizando listas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conocer-el-indice-de-un-elemento-dentro-de-la-lista">Conocer el índice de un elemento dentro de la lista</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reasignacion-de-valores">Reasignación de valores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-funciones">Otras funciones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operador-in">Operador <code class="docutils literal notranslate"><span class="pre">in</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-listas">Operaciones con listas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas-dentro-listas">Listas dentro listas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuplas">6.2. Tuplas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-con-tuplas">Operaciones con Tuplas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios">6.3. Ejercicios</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Fabio Cardona Jaramillo, Esteban Silva Villa, Juan Vásquez Betancur, David Suárez Roldán
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
