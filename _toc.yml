@@ -4,8 +4,7 @@
 format: jb-book
 root: intro
 chapters:
-- file: Clase_01_intro
+- file: /Users/esteban/Library/CloudStorage/GoogleDrive-esteban.silva.villa@gmail.com/Mi unidad/Drive - UdeA/Clases semestrales/Minería de Datos/MineriaDatosweb/Clase_01_Intro
 - file: Clase_02_bash
-
 
 
