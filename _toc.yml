@@ -4,6 +4,6 @@
 format: jb-book
 root: intro
 chapters:
-- file: Clase_01_Intro
-- file: Clase_02_Bash
+- file: Clase_01_INTROyCLI
+
 
