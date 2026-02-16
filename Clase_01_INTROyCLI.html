@@ -63,6 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_01_INTROyCLI';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Minería de datos para el pregrado de Astronomía UdeA" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -113,8 +114,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -168,7 +167,10 @@
                 </a>
             </li>
         </ul>
-        
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 1: La Consola de Comandos (Bash)</a></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -465,7 +467,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/esteban/Library/CloudStorage/GoogleDrive-esteban.silva.villa@gmail.com/Mi unidad/Drive - UdeA/Clases semestrales/Minería de Datos/MineriaDatosweb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 58336
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 58344
 -rw-r--r--@ 1 esteban  staff   6.9K Feb 16 11:48 Clase_01_INTROyCLI.ipynb
 -rw-r--r--@ 1 esteban  staff   8.0M Feb 12 10:48 Gemini_Generated_Image_jn26fqjn26fqjn26.png
 -rw-r--r--@ 1 esteban  staff   7.1M Feb 16 09:56 Gemini_Generated_Image_rqg30trqg30trqg3.png
@@ -474,13 +476,13 @@
 -rw-r--r--@ 1 esteban  staff   1.0M Feb 28  2025 UdeA.png
 drwxr-xr-x@ 5 esteban  staff   160B Feb 11 18:45 <span class=" -Color -Color-Blue">_build</span>
 -rw-r--r--@ 1 esteban  staff   1.2K Feb 11 19:27 _config.yml
--rw-r--r--@ 1 esteban  staff   164B Feb 12 08:42 _toc.yml
--rw-r--r--@ 1 esteban  staff   128B Feb 12 08:42 <span class=" -Color -Color-Black -Color-Black-BGWhite">catalogo_pequeno.csv</span>
+-rw-r--r--@ 1 esteban  staff   147B Feb 16 11:51 _toc.yml
+-rw-r--r--@ 1 esteban  staff   128B Feb 16 11:49 catalogo_pequeno.csv
 drwxr-xr-x@ 2 esteban  staff    64B Feb 11 19:05 <span class=" -Color -Color-Blue">datos_astronomia</span>
--rw-r--r--@ 1 esteban  staff   1.1K Feb 11 18:09 <span class=" -Color -Color-Black -Color-Black-BGWhite">intro.md</span>
+-rw-r--r--@ 1 esteban  staff   1.1K Feb 11 18:09 intro.md
 -rw-r--r--@ 1 esteban  staff   2.0K Feb 16 10:52 ran_gen_data.sh
 -rw-r--r--@ 1 esteban  staff    30B Feb 28  2025 <span class=" -Color -Color-Black -Color-Black-BGWhite">requirements.txt</span>
--rw-r--r--@ 1 esteban  staff   4.0M Feb 16 10:52 server_data_large.csv
+-rw-r--r--@ 1 esteban  staff   4.0M Feb 16 11:49 server_data_large.csv
 </pre></div>
 </div>
 </div>
@@ -525,10 +527,10 @@ drwxr-xr-x@ 2 esteban  staff    64B Feb 11 19:05 <span class=" -Color -Color-Blu
 📝 Líneas totales:   100001
 🔍 Primeras 5 líneas:
 ID,Tipo,Mag,Prob,RA,DEC
-1,Supernova,13.47,35,11:15:58,-05:17:14
-2,Variable_Star,21.55,35,06:06:45,+52:15:49
-3,Supernova,17.10,58,03:36:29,+82:35:42
-4,Ruido,12.39,35,12:23:30,+64:53:45
+1,Ruido,18.79,81,05:03:38,+24:44:04
+2,Supernova,14.14,73,06:27:39,-05:44:13
+3,Ruido,15.94,15,20:54:00,+55:53:25
+4,Variable_Star,19.93,32,09:27:59,-56:42:03
 </pre></div>
 </div>
 </div>
@@ -540,16 +542,16 @@ ID,Tipo,Mag,Prob,RA,DEC
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99963 13.63
-99975 12.63
-99976 13.13
-99977 14.03
-99978 14.47
-99981 14.49
-99986 14.56
-99992 12.05
-99995 12.23
-100000 12.65
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99966 13.40
+99968 14.18
+99977 13.27
+99981 14.70
+99984 13.68
+99991 14.84
+99992 14.48
+99998 12.88
+99999 12.31
+100000 12.88
 </pre></div>
 </div>
 </div>
@@ -657,6 +659,15 @@ ID,Tipo,Mag,Prob,RA,DEC
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Minería de datos para el pregrado de Astronomía UdeA</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
