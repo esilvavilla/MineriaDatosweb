@@ -1,0 +1,11 @@
+# PLAN DE OBSERVACION - TELESCOPIO 1m
+# FECHA: 2026-02-19
+# OBSERVADOR: ESTUDIANTE 1
+# ------------------------------------
+Vega      0.03  Visible
+Arcturus -0.05  Visible
+Sirius   -1.46  Visible
+Canopus  -0.74  Oculto
+Rigel     0.13  Visible
+Procyon   0.34  Oculto
+Betelgeuse 0.50 Nubes
