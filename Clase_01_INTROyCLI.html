@@ -497,8 +497,8 @@ https://events.asiaa.sinica.edu.tw/school/20170904/talk/djorgovski1.pdf</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/esteban/Library/CloudStorage/GoogleDrive-esteban.silva.villa@gmail.com/Mi unidad/Drive - UdeA/Clases semestrales/Minería de Datos/MineriaDatosweb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 63112
--rw-r--r--@ 1 esteban  staff    16K Feb 23 13:47 Clase_01_INTROyCLI.ipynb
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 63120
+-rw-r--r--@ 1 esteban  staff    16K Feb 23 13:53 Clase_01_INTROyCLI.ipynb
 -rw-r--r--@ 1 esteban  staff   8.0M Feb 12 10:48 Gemini_Generated_Image_jn26fqjn26fqjn26.png
 -rw-r--r--@ 1 esteban  staff   7.1M Feb 16 09:56 Gemini_Generated_Image_rqg30trqg30trqg3.png
 -rw-r--r--@ 1 esteban  staff   8.4M Feb 12 10:43 Gemini_Generated_Image_wdexo8wdexo8wdex.png
@@ -507,7 +507,7 @@ https://events.asiaa.sinica.edu.tw/school/20170904/talk/djorgovski1.pdf</p>
 drwxr-xr-x@ 5 esteban  staff   160B Feb 11 18:45 <span class=" -Color -Color-Blue">_build</span>
 -rw-r--r--@ 1 esteban  staff   1.2K Feb 11 19:27 _config.yml
 -rw-r--r--@ 1 esteban  staff   147B Feb 16 11:51 _toc.yml
--rw-r--r--@ 1 esteban  staff   128B Feb 19 15:48 catalogo_pequeno.csv
+-rw-r--r--@ 1 esteban  staff   128B Feb 23 13:47 catalogo_pequeno.csv
 -rw-r--r--@ 1 esteban  staff   2.3M Feb 19 09:00 datos_astro.png
 drwxr-xr-x@ 2 esteban  staff    64B Feb 11 19:05 <span class=" -Color -Color-Blue">datos_astronomia</span>
 drwxr-xr-x@ 6 esteban  staff   192B Feb 19 15:40 <span class=" -Color -Color-Blue">imagenes</span>
@@ -516,7 +516,7 @@ drwxr-xr-x@ 6 esteban  staff   192B Feb 19 15:40 <span class=" -Color -Color-Blu
 -rw-r--r--@ 1 esteban  staff   288B Feb 18 14:53 observacion_jueves.txt
 -rw-r--r--@ 1 esteban  staff   2.0K Feb 16 10:52 ran_gen_data.sh
 -rw-r--r--@ 1 esteban  staff    30B Feb 28  2025 <span class=" -Color -Color-Black -Color-Black-BGWhite">requirements.txt</span>
--rw-r--r--@ 1 esteban  staff   4.0M Feb 19 15:48 server_data_large.csv
+-rw-r--r--@ 1 esteban  staff   4.0M Feb 23 14:54 server_data_large.csv
 </pre></div>
 </div>
 </div>
@@ -561,10 +561,10 @@ drwxr-xr-x@ 6 esteban  staff   192B Feb 19 15:40 <span class=" -Color -Color-Blu
 📝 Líneas totales:   100001
 🔍 Primeras 5 líneas:
 ID,Tipo,Mag,Prob,RA,DEC
-1,Variable_Star,15.21,66,08:51:48,+51:11:01
-2,Ruido,21.89,25,16:43:55,+55:40:38
-3,Quasar,15.93,93,05:29:02,+03:41:41
-4,Quasar,18.29,5,02:07:22,+47:29:13
+1,Supernova,16.81,26,06:06:21,-40:45:04
+2,Supernova,15.01,78,07:42:16,+32:44:16
+3,Supernova,13.68,41,11:08:29,+36:36:51
+4,Quasar,18.07,93,10:56:24,+37:11:30
 </pre></div>
 </div>
 </div>
@@ -576,16 +576,16 @@ ID,Tipo,Mag,Prob,RA,DEC
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99958 12.74
-99959 12.99
-99960 13.99
-99962 12.48
-99966 14.53
-99967 13.22
-99973 12.95
-99974 13.93
-99982 13.90
-99993 12.42
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99967 12.52
+99970 14.01
+99980 12.54
+99983 13.07
+99987 12.98
+99989 12.05
+99991 13.50
+99992 12.85
+99994 13.86
+99998 13.12
 </pre></div>
 </div>
 </div>
@@ -790,7 +790,28 @@ Es tu turno de iniciar operaciones en el observatorio. Antes de abrir la cúpula
 </section>
 <section id="problema-4">
 <h3>Problema 4<a class="headerlink" href="#problema-4" title="Link to this heading">#</a></h3>
-<p>Copiar y pegar el siguiente texto en una consola de comandos:</p>
+<p>La siguiente es una base de datos pública para acceder durante el ejercicio de clase:</p>
+<p>https://raw.githubusercontent.com/mwaskom/seaborn-data/master/planets.csv</p>
+<p>Deben construir una pipeline que</p>
+<ol class="arabic simple">
+<li><p>Descargue los datos: Usar wget para traer el archivo planets.csv.</p></li>
+<li><p>Análisis y Presentación:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Cortar la primera columna.</p></li>
+<li><p>Eliminar la palabra del encabezado.</p></li>
+<li><p>Ordenar alfabéticamente para agrupar.</p></li>
+<li><p>Contar las apariciones.</p></li>
+<li><p>Ordenar numéricamente de mayor a menor.</p></li>
+<li><p>Mostrar solo los primeros 5 resultados.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código bash aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 </section>
