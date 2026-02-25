@@ -1,0 +1,906 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Clase 2: Introducción a herramientas de control de versiones Git y Github &#8212; Minería de datos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_02_GIT-HUB';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
+    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Minería de datos para el pregrado de Astronomía UdeA
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Clase_01_INTROyCLI.html">Clase 1: La Consola de Comandos (Bash)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FClase_02_GIT-HUB.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Clase_02_GIT-HUB.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clase 2: Introducción a herramientas de control de versiones Git y Github</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clase 2: Introducción a herramientas de control de versiones Git y Github</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-hoy">Objetivos de hoy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-por-que-necesitamos-git">1. Introducción: ¿Por qué necesitamos Git?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-vs-github-aclarando-la-confusion">Git vs. GitHub: Aclarando la confusión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-3-zonas-de-git-el-modelo-mental">Las 3 “Zonas” de Git (El Modelo Mental)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-caja-de-herramientas-comandos-esenciales">2. La Caja de Herramientas: Comandos Esenciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-de-creacion-y-estado">Comandos de Creación y Estado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-de-guardado-el-flujo-diario">Comandos de Guardado (El Flujo Diario)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-de-sincronizacion-conectando-con-github">Comandos de Sincronización (Conectando con GitHub)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-flujo-de-trabajo-workflows"><strong>Ejemplo de Flujo de Trabajo (Workflows)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet">Cheatsheet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios"><strong>Ejercicios</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-el-diario-de-observacion-git-local">Ejercicio 1: “El Diario de Observación” (Git Local)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-el-escudo-contra-agujeros-negros-el-gitignore">Ejercicio 2: “El Escudo contra Agujeros Negros” (El .gitignore)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-lanzamiento-orbital-conectando-con-github">Ejercicio 3: “Lanzamiento Orbital” (Conectando con GitHub)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-clonando-el-observatorio-virtual-git-clone">Ejercicio 4: “Clonando el Observatorio Virtual” (Git Clone)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-en-parejas-simulando-un-sistema-binario-en-github">Práctica en Parejas: Simulando un Sistema Binario en GitHub</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-el-observatorio-compartido-creacion-y-clonacion">Paso 1: El Observatorio Compartido (Creación y Clonación)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-universos-paralelos-creacion-de-ramas-branches">Paso 2: Universos Paralelos (Creación de Ramas / Branches)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-generacion-de-datos-escribiendo-codigo-python">Paso 3: Generación de Datos (Escribiendo Código Python)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-subiendo-a-la-nube-el-comando-push">Paso 4: Subiendo a la Nube (El comando Push)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-revision-de-pares-crear-pull-requests">Paso 5: Revisión de Pares (Crear Pull Requests)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-6-la-fusion-merge-pull-request">Paso 6: La Fusión (Merge Pull Request)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-7-sincronizacion-final-cerrando-el-ciclo-local">Paso 7: Sincronización Final (Cerrando el ciclo local)</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="clase-2-introduccion-a-herramientas-de-control-de-versiones-git-y-github">
+<h1>Clase 2: Introducción a herramientas de control de versiones Git y Github<a class="headerlink" href="#clase-2-introduccion-a-herramientas-de-control-de-versiones-git-y-github" title="Link to this heading">#</a></h1>
+<section id="objetivos-de-hoy">
+<h2>Objetivos de hoy<a class="headerlink" href="#objetivos-de-hoy" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Entender qué son las herramientas de control de versiones.</p></li>
+<li><p>Familiarizarse con Git y Github.</p></li>
+<li><p>Implementar scripts de bash para el manejo de versiones.</p></li>
+</ol>
+</section>
+<section id="introduccion-por-que-necesitamos-git">
+<h2>1. Introducción: ¿Por qué necesitamos Git?<a class="headerlink" href="#introduccion-por-que-necesitamos-git" title="Link to this heading">#</a></h2>
+<p>Todo científico ha vivido esta pesadilla en su computadora:
+<code class="docutils literal notranslate"><span class="pre">analisis_espectros.py</span></code>
+<code class="docutils literal notranslate"><span class="pre">analisis_espectros_final.py</span></code>
+<code class="docutils literal notranslate"><span class="pre">analisis_espectros_final_de_verdad.py</span></code>
+<code class="docutils literal notranslate"><span class="pre">analisis_espectros_final_v2_corregido_por_el_tutor.py</span></code></p>
+<p>Este método de guardar versiones es propenso a errores, hace imposible saber qué cambió exactamente entre la versión 1 y la 4, y arruina la colaboración. La solución estándar en la industria y la academia es <strong>Git</strong>.</p>
+<section id="git-vs-github-aclarando-la-confusion">
+<h3>Git vs. GitHub: Aclarando la confusión<a class="headerlink" href="#git-vs-github-aclarando-la-confusion" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Git:</strong> Es el <em>motor</em>. Es un programa de línea de comandos (como los que vimos la semana pasada) que vive localmente en tu computadora. Rastrea los cambios en tus archivos a lo largo del tiempo.</p></li>
+<li><p><strong>GitHub:</strong> Es la <em>nube</em>. Es una plataforma web de Microsoft que aloja repositorios de Git. Es el “Google Drive” del código. Permite respaldar tu trabajo y colaborar con astrofísicos en todo el mundo.</p></li>
+</ul>
+<iframe
+  src="https://drive.google.com/file/d/1hyl7Oh94clGhCoY_67izweokxCLs84zd/preview"
+  width="640" height="480" allow="autoplay"
+></iframe>
+Imagen tomada de: https://bytebytego.com/guides/git-vs-github/</section>
+<section id="las-3-zonas-de-git-el-modelo-mental">
+<h3>Las 3 “Zonas” de Git (El Modelo Mental)<a class="headerlink" href="#las-3-zonas-de-git-el-modelo-mental" title="Link to this heading">#</a></h3>
+<p>Para usar Git sin frustrarse, debes entender que tus archivos pasan por tres estados:</p>
+<ol class="arabic simple">
+<li><p><strong>Directorio de Trabajo (Working Directory):</strong> Tu carpeta actual. Donde editas tu código.</p></li>
+<li><p><strong>Área de Preparación (Staging Area):</strong> Una “sala de espera”. Aquí pones los archivos modificados que quieres empaquetar en tu próxima versión.</p></li>
+<li><p><strong>Repositorio Local (.git):</strong> El historial permanente. Cuando guardas algo aquí, Git le toma una “fotografía” (snapshot) que vivirá para siempre.</p></li>
+</ol>
+</section>
+</section>
+<section id="la-caja-de-herramientas-comandos-esenciales">
+<h2>2. La Caja de Herramientas: Comandos Esenciales<a class="headerlink" href="#la-caja-de-herramientas-comandos-esenciales" title="Link to this heading">#</a></h2>
+<p>Antes de empezar, debemos presentarnos ante Git por única vez en nuestra computadora:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;Tu Nombre&quot;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;tu_correo@universidad.edu&quot;</span>
+</pre></div>
+</div>
+<section id="comandos-de-creacion-y-estado">
+<h3>Comandos de Creación y Estado<a class="headerlink" href="#comandos-de-creacion-y-estado" title="Link to this heading">#</a></h3>
+<p><strong>git init</strong>: Convierte una carpeta normal en un repositorio de Git. Crea una carpeta oculta .git.</p>
+<p><strong>git clone [URL]</strong>: Descarga un repositorio completo desde GitHub a tu computadora.</p>
+<p><strong>git status</strong>: Tu mejor amigo. Te dice en qué estado están tus archivos (modificados, en staging, o guardados). ¡Úsalo todo el tiempo!</p>
+</section>
+<section id="comandos-de-guardado-el-flujo-diario">
+<h3>Comandos de Guardado (El Flujo Diario)<a class="headerlink" href="#comandos-de-guardado-el-flujo-diario" title="Link to this heading">#</a></h3>
+<p><strong>git add [archivo]</strong>: Mueve un archivo modificado al Área de Preparación (Staging). Si usas git add ., preparas todos los archivos modificados.</p>
+<p><strong>git commit -m “Mensaje descriptivo”</strong>: Toma la “fotografía” de los archivos en staging y la guarda en el historial con un mensaje que explica qué cambiaste y por qué.</p>
+</section>
+<section id="comandos-de-sincronizacion-conectando-con-github">
+<h3>Comandos de Sincronización (Conectando con GitHub)<a class="headerlink" href="#comandos-de-sincronizacion-conectando-con-github" title="Link to this heading">#</a></h3>
+<p><strong>git push</strong>: “Empuja” tus commits locales hacia el repositorio en GitHub (Nube).</p>
+<p><strong>git pull</strong>: “Jala” los cambios más recientes de GitHub hacia tu computadora local.</p>
+</section>
+</section>
+<section id="ejemplo-de-flujo-de-trabajo-workflows">
+<h2><strong>Ejemplo de Flujo de Trabajo (Workflows)</strong><a class="headerlink" href="#ejemplo-de-flujo-de-trabajo-workflows" title="Link to this heading">#</a></h2>
+<p>A continuación, veremos tres escenarios reales que vivirás como astrónomo y cómo resolverlos usando la consola.</p>
+<ol class="arabic simple">
+<li><p><em><strong>El Investigador Solitario (Local)</strong></em></p></li>
+</ol>
+<p>Escenario: Estás empezando un nuevo proyecto para analizar la curva de luz de una estrella variable. Quieres tener control de versiones localmente, sin internet.</p>
+<p>Paso a paso en la terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Creas la carpeta de tu proyecto y entras en ella</span>
+<span class="n">mkdir</span> <span class="n">curva_luz_proyecto</span>
+<span class="n">cd</span> <span class="n">curva_luz_proyecto</span>
+
+<span class="c1"># 2. Inicializas Git (enciendes el motor)</span>
+<span class="n">git</span> <span class="n">init</span>
+
+<span class="c1"># 3. Creas tu primer script de Python</span>
+<span class="n">echo</span> <span class="s2">&quot;print(&#39;Iniciando analisis de curva de luz&#39;)&quot;</span> <span class="o">&gt;</span> <span class="n">analisis</span><span class="o">.</span><span class="n">py</span>
+
+<span class="c1"># 4. Verificas el estado. Git te dirá que &#39;analisis.py&#39; no está rastreado (untracked)</span>
+<span class="n">git</span> <span class="n">status</span>
+
+<span class="c1"># 5. Lo agregas al área de preparación (Staging)</span>
+<span class="n">git</span> <span class="n">add</span> <span class="n">analisis</span><span class="o">.</span><span class="n">py</span>
+
+<span class="c1"># 6. Haces el commit (TOMAS LA FOTOGRAFÍA)</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Commit inicial: creo el script base para curvas de luz&quot;</span>
+
+<span class="c1"># 7. Si modificas el archivo, repites el ciclo: add -&gt; commit</span>
+<span class="n">echo</span> <span class="s2">&quot;import numpy as np&quot;</span> <span class="o">&gt;&gt;</span> <span class="n">analisis</span><span class="o">.</span><span class="n">py</span>
+<span class="n">git</span> <span class="n">add</span> <span class="n">analisis</span><span class="o">.</span><span class="n">py</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Añado la libreria numpy para calculos matematicos&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><em><strong>El Respaldo Científico (Local hacia la Nube)</strong></em></p></li>
+</ol>
+<p>Llevas un mes trabajando en tu proyecto local (paso anterior). Si tu computadora se daña, pierdes tu tesis. Necesitas subir esto a GitHub.</p>
+<p>Paso a paso:</p>
+<p>Vas a la página web de GitHub, inicias sesión y haces clic en “New Repository”. Lo llamas curva_luz_proyecto. No le agregas ningún archivo extra.</p>
+<p>GitHub te dará un enlace (URL) que termina en .git.</p>
+<p>Vuelves a tu terminal y vinculas tu carpeta local con ese enlace en la nube:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Le decimos a Git dónde está el repositorio remoto y lo llamamos &quot;origin&quot;</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="p">[</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">TU_USUARIO</span><span class="o">/</span><span class="n">curva_luz_proyecto</span><span class="o">.</span><span class="n">git</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">TU_USUARIO</span><span class="o">/</span><span class="n">curva_luz_proyecto</span><span class="o">.</span><span class="n">git</span><span class="p">)</span>
+
+<span class="c1"># 2. Renombramos nuestra rama principal a &quot;main&quot; (estándar actual)</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">M</span> <span class="n">main</span>
+
+<span class="c1"># 3. Empujamos todo nuestro historial local hacia GitHub</span>
+<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">main</span>
+<span class="n">A</span> <span class="n">partir</span> <span class="n">de</span> <span class="n">ahora</span><span class="p">,</span> <span class="n">cada</span> <span class="n">vez</span> <span class="n">que</span> <span class="n">hagas</span> <span class="n">un</span> <span class="n">git</span> <span class="n">commit</span> <span class="n">local</span><span class="p">,</span> <span class="n">solo</span> <span class="n">tendrás</span> <span class="n">que</span> <span class="n">escribir</span> <span class="n">git</span> <span class="n">push</span> <span class="n">para</span> <span class="n">respaldarlo</span> <span class="n">en</span> <span class="n">la</span> <span class="n">nube</span><span class="o">.</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><em><strong>El Estudiante Colaborativo</strong></em></p></li>
+</ol>
+<p>El profesor de Minería de Datos ha subido un repositorio con los datos del catálogo de Gaia y un código incompleto. Tienes que descargarlo, hacer tu tarea y actualizar tu versión local si el profesor hace cambios.</p>
+<p>Paso a paso en la terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Clonas (descargas) el repositorio completo del profesor a tu computadora</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="p">[</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ProfesorAstro</span><span class="o">/</span><span class="n">clase_gaia_dr3</span><span class="o">.</span><span class="n">git</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ProfesorAstro</span><span class="o">/</span><span class="n">clase_gaia_dr3</span><span class="o">.</span><span class="n">git</span><span class="p">)</span>
+
+<span class="c1"># 2. Entras a la carpeta que se acaba de descargar</span>
+<span class="n">cd</span> <span class="n">clase_gaia_dr3</span>
+
+<span class="c1"># 3. Empiezas a trabajar, editas el archivo de la tarea y lo guardas</span>
+<span class="n">git</span> <span class="n">add</span> <span class="n">tarea_estrellas</span><span class="o">.</span><span class="n">py</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Completo el filtrado de estrellas por paralaje&quot;</span>
+
+<span class="c1"># 4. Antes de seguir, quieres asegurarte de que el profesor no haya</span>
+<span class="c1"># modificado las instrucciones en la nube mientras tú trabajabas.</span>
+<span class="c1"># Actualizas tu carpeta local con cualquier cambio remoto:</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">main</span>
+</pre></div>
+</div>
+<p><strong>Nota</strong>: El ciclo de vida del trabajo diario en equipo es siempre: git pull (al empezar el día) -&gt; editar código -&gt; git add -&gt; git commit -&gt; git push (al terminar el día).</p>
+</section>
+<section id="cheatsheet">
+<h2>Cheatsheet<a class="headerlink" href="#cheatsheet" title="Link to this heading">#</a></h2>
+<p>Muchas veces se encontrarán con que es difícil poder conocer todos los comandos que se necesitan para realizar alguna de las actividades que se desea construir.</p>
+<p>Existen lo que se conoce como <code class="docutils literal notranslate"><span class="pre">cheatsheet</span></code> o como <code class="docutils literal notranslate"><span class="pre">hojas</span> <span class="pre">de</span> <span class="pre">trampa</span></code>. Son generalmente un resumen de las cosas más importantes que se deben conocer respecto a una herramienta específica.</p>
+<iframe
+  src="https://drive.google.com/file/d/1ImK1qzvA8CA1I29wET1K3giMrSotILPg/preview"
+  width="640" height="480" allow="autoplay"
+></iframe>
+Imagen tomada de: [Link](https://www.facebook.com/photo?fbid=1847862406104515&set=gm.24983018308035159&idorvanity=138216772941990)</section>
+<section id="ejercicios">
+<h2><strong>Ejercicios</strong><a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h2>
+<p>En astronomía, el código es tan importante como el telescopio. Estos ejercicios están diseñados para simular el flujo de trabajo real que utilizarán durante sus proyectos mensuales y, eventualmente, en su vida profesional.</p>
+<p>Abran su terminal y asegúrense de haber configurado su usuario y correo antes de empezar (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.name</span> <span class="pre">&quot;Nombre&quot;</span></code>, etc.).</p>
+<hr class="docutils" />
+<section id="ejercicio-1-el-diario-de-observacion-git-local">
+<h3>Ejercicio 1: “El Diario de Observación” (Git Local)<a class="headerlink" href="#ejercicio-1-el-diario-de-observacion-git-local" title="Link to this heading">#</a></h3>
+<p>Vas a iniciar un nuevo proyecto para clasificar espectros estelares. Necesitas crear un espacio seguro en tu computadora donde Git rastree todos tus avances, evitando que pierdas tu trabajo si cometes un error en el código.</p>
+<ol class="arabic simple">
+<li><p>Crea una nueva carpeta llamada <code class="docutils literal notranslate"><span class="pre">proyecto_espectros</span></code> y entra en ella.</p></li>
+<li><p>Inicializa un repositorio de Git vacío.</p></li>
+<li><p>Crea un archivo de texto llamado <code class="docutils literal notranslate"><span class="pre">README.md</span></code> (un estándar en ciencia de datos) y escribe una breve descripción del proyecto dentro de él.</p></li>
+<li><p>Añade el archivo al Área de Preparación (Staging).</p></li>
+<li><p>Toma la “fotografía” (haz un commit) con un mensaje claro.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código bash aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-2-el-escudo-contra-agujeros-negros-el-gitignore">
+<h3>Ejercicio 2: “El Escudo contra Agujeros Negros” (El .gitignore)<a class="headerlink" href="#ejercicio-2-el-escudo-contra-agujeros-negros-el-gitignore" title="Link to this heading">#</a></h3>
+<p>GitHub tiene un límite estricto: no puedes subir archivos mayores a <strong>100 MB</strong>. En astronomía, un solo archivo de imagen .fits o un catálogo .csv puede pesar Gigabytes. Si intentas hacer commit de esos datos y subirlos, bloquearás tu repositorio. Debemos enseñarle a Git a ignorar los datos pesados y rastrear solo el código.</p>
+<p>Siguiendo dentro de tu carpeta proyecto_espectros:</p>
+<ol class="arabic simple">
+<li><p>Crea una carpeta llamada datos/ (aquí irían tus catálogos pesados).</p></li>
+<li><p>Crea un archivo especial llamado <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>.</p></li>
+<li><p>Escribe dentro del <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> una regla para que Git ignore la carpeta datos/ y cualquier archivo que termine en .fits.</p></li>
+<li><p>Haz un commit guardando tu nuevo “escudo protector” (<code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>).</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código bash aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-3-lanzamiento-orbital-conectando-con-github">
+<h3>Ejercicio 3: “Lanzamiento Orbital” (Conectando con GitHub)<a class="headerlink" href="#ejercicio-3-lanzamiento-orbital-conectando-con-github" title="Link to this heading">#</a></h3>
+<p>Tu entorno local está configurado y protegido. Ahora necesitas respaldar este código en la nube (GitHub) para poder trabajar desde la computadora del laboratorio de la universidad sin llevar una memoria USB.</p>
+<p>Ve a tu cuenta de GitHub en el navegador y crea un repositorio nuevo y vacío llamado proyecto_espectros. No marques la opción de añadir un README (porque ya creamos uno localmente).</p>
+<ol class="arabic simple">
+<li><p>Copia la URL que te proporciona GitHub (termina en .git).</p></li>
+<li><p>En tu terminal, conecta tu repositorio local con el remoto (origin).</p></li>
+<li><p>Asegúrate de estar en la rama main.</p></li>
+<li><p>Empuja (push) tu historial a la nube.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código bash aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio-4-clonando-el-observatorio-virtual-git-clone">
+<h3>Ejercicio 4: “Clonando el Observatorio Virtual” (Git Clone)<a class="headerlink" href="#ejercicio-4-clonando-el-observatorio-virtual-git-clone" title="Link to this heading">#</a></h3>
+<p>Has encontrado un repositorio público en GitHub de un investigador que creó herramientas útiles para leer archivos de la misión Kepler. Quieres descargar ese código a tu computadora para probarlo.</p>
+<ol class="arabic simple">
+<li><p>Sal de tu carpeta actual para no crear un repositorio dentro de otro (muy importante).</p></li>
+<li><p>Usa <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> para descargar un repositorio de prueba. Usaremos uno público de ejemplo: <a class="github reference external" href="https://github.com/mwaskom/seaborn-data.git">mwaskom/seaborn-data.git</a>.</p></li>
+<li><p>Entra a la nueva carpeta clonada y usa <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> para ver el historial de commits que hizo el autor original.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código bash aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="practica-en-parejas-simulando-un-sistema-binario-en-github">
+<h1>Práctica en Parejas: Simulando un Sistema Binario en GitHub<a class="headerlink" href="#practica-en-parejas-simulando-un-sistema-binario-en-github" title="Link to this heading">#</a></h1>
+<p><strong>Objetivo:</strong> Simular un entorno real de investigación colaborativa. Aprenderán a clonar un repositorio compartido, aislar su trabajo en “Ramas” (Branches), solicitar revisiones (Pull Requests) y fusionar el código sin destruir el trabajo de su colega.</p>
+<p><strong>Instrucciones Previas:</strong> Hagan parejas. Decidan quién será el <strong>Astrónomo A (Investigador Principal)</strong> y quién será el <strong>Astrónomo B (Co-Investigador)</strong>.
+En este proyecto, van a simular datos para un nuevo sistema planetario. El Astrónomo A simulará los datos de la estrella, y el Astrónomo B simulará los datos de los exoplanetas.</p>
+<hr class="docutils" />
+<section id="paso-1-el-observatorio-compartido-creacion-y-clonacion">
+<h2>Paso 1: El Observatorio Compartido (Creación y Clonación)<a class="headerlink" href="#paso-1-el-observatorio-compartido-creacion-y-clonacion" title="Link to this heading">#</a></h2>
+<p>Para poder colaborar, necesitamos un punto central en internet al que ambos tengan acceso de escritura.</p>
+<p><strong>Acciones de los Investigadores:</strong></p>
+<ul class="simple">
+<li><p><strong>Astrónomo A:</strong> 1. Ve a GitHub y crea un nuevo repositorio llamado <code class="docutils literal notranslate"><span class="pre">simulacion_sistema_binario</span></code>.
+2. Marca la casilla <strong>“Add a README file”</strong> (muy importante para poder clonarlo inmediatamente).
+3. Ve a la pestaña <em>Settings</em> &gt; <em>Collaborators</em> &gt; <em>Add people</em>. Busca el usuario de GitHub del Astrónomo B y envíale la invitación.
+4. Abre tu terminal y clona el repositorio en tu computadora: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">[URL_DEL_REPO]</span></code>. Entra a la carpeta (<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">simulacion_sistema_binario</span></code>).</p></li>
+<li><p><strong>Astrónomo B:</strong> 1. Revisa tu correo electrónico o tus notificaciones en GitHub y acepta la invitación.
+2. Abre tu terminal y clona el mismo repositorio: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">[URL_DEL_REPO]</span></code>. Entra a la carpeta.</p></li>
+</ul>
+<blockquote>
+<div><p>☁️ <strong>¿Qué está pasando en la nube (GitHub)?</strong>
+GitHub ha reservado un espacio en sus servidores. Ha creado la línea de tiempo principal llamada <code class="docutils literal notranslate"><span class="pre">main</span></code>. Al aceptar la invitación, GitHub actualiza sus permisos de seguridad, permitiendo que tanto la computadora de A como la de B puedan enviar (push) código a esta carpeta central.</p>
+</div></blockquote>
+<hr class="docutils" />
+</section>
+<section id="paso-2-universos-paralelos-creacion-de-ramas-branches">
+<h2>Paso 2: Universos Paralelos (Creación de Ramas / Branches)<a class="headerlink" href="#paso-2-universos-paralelos-creacion-de-ramas-branches" title="Link to this heading">#</a></h2>
+<p>Nunca, <strong>nunca</strong> trabajamos directamente sobre la rama <code class="docutils literal notranslate"><span class="pre">main</span></code> (la versión oficial) cuando estamos colaborando. Si ambos editan <code class="docutils literal notranslate"><span class="pre">main</span></code> al mismo tiempo, el código colapsará. Para evitarlo, cada uno creará un “universo paralelo” (una copia exacta del código) donde experimentará sin afectar al otro.</p>
+<p><strong>Acciones de los Investigadores:</strong></p>
+<ul class="simple">
+<li><p><strong>Astrónomo A:</strong> En tu terminal, crea y muévete a una nueva rama:
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">modelo_estrella</span></code></p></li>
+<li><p><strong>Astrónomo B:</strong> En tu terminal, crea y muévete a tu propia rama:
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">modelo_planeta</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>☁️ <strong>¿Qué está pasando en la nube?</strong>
+<strong>¡Absolutamente nada!</strong> Las ramas (<code class="docutils literal notranslate"><span class="pre">branches</span></code>) que acaban de crear existen <em>únicamente</em> en la memoria local de sus computadoras. GitHub todavía no tiene idea de que ustedes están trabajando en universos paralelos. Esto les permite trabajar sin necesidad de internet temporalmente.</p>
+</div></blockquote>
+<hr class="docutils" />
+</section>
+<section id="paso-3-generacion-de-datos-escribiendo-codigo-python">
+<h2>Paso 3: Generación de Datos (Escribiendo Código Python)<a class="headerlink" href="#paso-3-generacion-de-datos-escribiendo-codigo-python" title="Link to this heading">#</a></h2>
+<p>Es hora de hacer ciencia. Cada uno escribirá un pequeño script en Python que genere números aleatorios y los guarde. Como están en ramas distintas, pueden trabajar simultáneamente.</p>
+<p><strong>Acciones de los Investigadores:</strong></p>
+<ul>
+<li><p><strong>Astrónomo A:</strong> Crea un archivo llamado <code class="docutils literal notranslate"><span class="pre">estrella.py</span></code>. Escribe este código, guárdalo, añádelo a Git y haz el commit:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># estrella.py</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">temperaturas</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Temperaturas estelares simuladas (K):&quot;</span><span class="p">,</span> <span class="n">temperaturas</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>En la terminal:</em> <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">estrella.py</span></code> y luego <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Añado</span> <span class="pre">simulación</span> <span class="pre">de</span> <span class="pre">temperaturas</span> <span class="pre">estelares&quot;</span></code>.</p>
+</li>
+<li><p><strong>Astrónomo B:</strong> Crea un archivo llamado <code class="docutils literal notranslate"><span class="pre">planetas.py</span></code>. Escribe este código, guárdalo, añádelo a Git y haz el commit:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># planetas.py</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">periodos</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">365</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Periodos orbitales simulados (días):&quot;</span><span class="p">,</span> <span class="n">periodos</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>En la terminal:</em> <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">planetas.py</span></code> y luego <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Añado</span> <span class="pre">simulación</span> <span class="pre">de</span> <span class="pre">órbitas</span> <span class="pre">planetarias&quot;</span></code>.</p>
+</li>
+</ul>
+<blockquote>
+<div><p>☁️ <strong>¿Qué está pasando en la nube?</strong>
+Sigue sin pasar nada. Sus “fotografías” (commits) están seguras en el directorio <code class="docutils literal notranslate"><span class="pre">.git</span></code> de sus propias computadoras.</p>
+</div></blockquote>
+<hr class="docutils" />
+</section>
+<section id="paso-4-subiendo-a-la-nube-el-comando-push">
+<h2>Paso 4: Subiendo a la Nube (El comando Push)<a class="headerlink" href="#paso-4-subiendo-a-la-nube-el-comando-push" title="Link to this heading">#</a></h2>
+<p>Ahora debemos enviar nuestras ramas locales al servidor de GitHub para que el resto del equipo pueda verlas.</p>
+<p><strong>Acciones de los Investigadores:</strong></p>
+<ul class="simple">
+<li><p><strong>Astrónomo A:</strong> Empuja tu rama al servidor remoto (<code class="docutils literal notranslate"><span class="pre">origin</span></code>):
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">modelo_estrella</span></code></p></li>
+<li><p><strong>Astrónomo B:</strong> Empuja tu rama al servidor:
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">modelo_planeta</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>☁️ <strong>¿Qué está pasando en la nube?</strong>
+GitHub acaba de recibir dos paquetes de datos. Ahora, el repositorio central tiene 3 ramas disponibles: <code class="docutils literal notranslate"><span class="pre">main</span></code> (que solo tiene el README), <code class="docutils literal notranslate"><span class="pre">modelo_estrella</span></code> (que tiene el README y <code class="docutils literal notranslate"><span class="pre">estrella.py</span></code>) y <code class="docutils literal notranslate"><span class="pre">modelo_planeta</span></code> (que tiene el README y <code class="docutils literal notranslate"><span class="pre">planetas.py</span></code>). Las líneas de tiempo aún están separadas.</p>
+</div></blockquote>
+<hr class="docutils" />
+</section>
+<section id="paso-5-revision-de-pares-crear-pull-requests">
+<h2>Paso 5: Revisión de Pares (Crear Pull Requests)<a class="headerlink" href="#paso-5-revision-de-pares-crear-pull-requests" title="Link to this heading">#</a></h2>
+<p>Un <strong>Pull Request (PR)</strong> no es un comando de la terminal; es una función de la página web de GitHub. Es una solicitud formal que dice: <em>“Hola equipo, he terminado mi rama. Por favor, revisen mi código y, si está bien, intégrenlo a la rama oficial <code class="docutils literal notranslate"><span class="pre">main</span></code>”</em>.</p>
+<p><strong>Acciones de los Investigadores:</strong></p>
+<ul class="simple">
+<li><p><strong>Ambos:</strong> Abran el repositorio en GitHub desde sus navegadores web.</p></li>
+<li><p>Verán un botón verde brillante que dice <strong>“Compare &amp; pull request”</strong> junto al nombre de sus ramas recién subidas. Hagan clic en él.</p></li>
+<li><p>Dejen un comentario amigable explicando qué hace su código (ej. “Simulación de masas lista para revisión”).</p></li>
+<li><p>Hagan clic en <strong>“Create pull request”</strong>.</p></li>
+</ul>
+<blockquote>
+<div><p>☁️ <strong>¿Qué está pasando en la nube?</strong>
+GitHub escanea automáticamente los códigos de la rama nueva y los compara con la rama <code class="docutils literal notranslate"><span class="pre">main</span></code>. Comprueba si hay <strong>Conflictos</strong> (por ejemplo, si ambos hubieran editado la misma línea del mismo archivo). Como A y B crearon archivos diferentes, GitHub indicará en verde: <em>“This branch has no conflicts with the base branch”</em>.</p>
+</div></blockquote>
+<hr class="docutils" />
+</section>
+<section id="paso-6-la-fusion-merge-pull-request">
+<h2>Paso 6: La Fusión (Merge Pull Request)<a class="headerlink" href="#paso-6-la-fusion-merge-pull-request" title="Link to this heading">#</a></h2>
+<p>Es hora de unir el trabajo de ambos en la rama oficial. En ciencia, los investigadores revisan el trabajo del otro.</p>
+<p><strong>Acciones de los Investigadores:</strong></p>
+<ul class="simple">
+<li><p><strong>Astrónomo A:</strong> Entra al Pull Request del <strong>Astrónomo B</strong>. Revisa su código (<code class="docutils literal notranslate"><span class="pre">planetas.py</span></code>). Si todo está bien, haz clic en el botón verde <strong>“Merge pull request”</strong> y luego en “Confirm merge”.</p></li>
+<li><p><strong>Astrónomo B:</strong> Entra al Pull Request del <strong>Astrónomo A</strong>. Haz lo mismo: revisa, aprueba haciendo clic en <strong>“Merge pull request”</strong> y confirma.</p></li>
+</ul>
+<blockquote>
+<div><p>☁️ <strong>¿Qué está pasando en la nube?</strong>
+¡Éxito colaborativo! GitHub ha tomado los archivos de los universos paralelos y los ha pegado en la línea de tiempo oficial (<code class="docutils literal notranslate"><span class="pre">main</span></code>). La rama <code class="docutils literal notranslate"><span class="pre">main</span></code> en la nube ahora contiene el <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, el archivo <code class="docutils literal notranslate"><span class="pre">estrella.py</span></code> y el archivo <code class="docutils literal notranslate"><span class="pre">planetas.py</span></code>. Todo el ecosistema de su proyecto está unificado.</p>
+</div></blockquote>
+<hr class="docutils" />
+</section>
+<section id="paso-7-sincronizacion-final-cerrando-el-ciclo-local">
+<h2>Paso 7: Sincronización Final (Cerrando el ciclo local)<a class="headerlink" href="#paso-7-sincronizacion-final-cerrando-el-ciclo-local" title="Link to this heading">#</a></h2>
+<p>La nube está actualizada y tiene el proyecto completo, pero ¡las computadoras locales de ustedes están desactualizadas! La computadora de A no tiene los planetas, y la de B no tiene la estrella. Hay que traer el código fusionado de vuelta a casa.</p>
+<p><strong>Acciones de los Investigadores:</strong></p>
+<ul class="simple">
+<li><p><strong>Ambos:</strong> En sus terminales, deben volver a su rama principal local:
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">main</span></code></p></li>
+<li><p><strong>Ambos:</strong> Descarguen la última versión unificada desde la nube a sus computadoras:
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span> <span class="pre">origin</span> <span class="pre">main</span></code></p></li>
+<li><p>Comprueben los archivos en su carpeta con el comando <code class="docutils literal notranslate"><span class="pre">ls</span></code> (mac/linux) o abriendo su explorador de archivos.</p></li>
+</ul>
+<blockquote>
+<div><p>☁️ <strong>¿Qué está pasando en la nube?</strong>
+GitHub empaqueta la versión final de la rama <code class="docutils literal notranslate"><span class="pre">main</span></code> (que ya contiene ambos scripts) y la transmite de bajada (<code class="docutils literal notranslate"><span class="pre">pull</span></code>) a sus computadoras.
+¡Felicidades! Ambos investigadores tienen ahora un directorio idéntico con el proyecto unificado y han completado un ciclo de desarrollo profesional en equipo.</p>
+</div></blockquote>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clase 2: Introducción a herramientas de control de versiones Git y Github</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-de-hoy">Objetivos de hoy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-por-que-necesitamos-git">1. Introducción: ¿Por qué necesitamos Git?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-vs-github-aclarando-la-confusion">Git vs. GitHub: Aclarando la confusión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#las-3-zonas-de-git-el-modelo-mental">Las 3 “Zonas” de Git (El Modelo Mental)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-caja-de-herramientas-comandos-esenciales">2. La Caja de Herramientas: Comandos Esenciales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-de-creacion-y-estado">Comandos de Creación y Estado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-de-guardado-el-flujo-diario">Comandos de Guardado (El Flujo Diario)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-de-sincronizacion-conectando-con-github">Comandos de Sincronización (Conectando con GitHub)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-flujo-de-trabajo-workflows"><strong>Ejemplo de Flujo de Trabajo (Workflows)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet">Cheatsheet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios"><strong>Ejercicios</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-el-diario-de-observacion-git-local">Ejercicio 1: “El Diario de Observación” (Git Local)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-el-escudo-contra-agujeros-negros-el-gitignore">Ejercicio 2: “El Escudo contra Agujeros Negros” (El .gitignore)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-lanzamiento-orbital-conectando-con-github">Ejercicio 3: “Lanzamiento Orbital” (Conectando con GitHub)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-clonando-el-observatorio-virtual-git-clone">Ejercicio 4: “Clonando el Observatorio Virtual” (Git Clone)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-en-parejas-simulando-un-sistema-binario-en-github">Práctica en Parejas: Simulando un Sistema Binario en GitHub</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-el-observatorio-compartido-creacion-y-clonacion">Paso 1: El Observatorio Compartido (Creación y Clonación)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-2-universos-paralelos-creacion-de-ramas-branches">Paso 2: Universos Paralelos (Creación de Ramas / Branches)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-generacion-de-datos-escribiendo-codigo-python">Paso 3: Generación de Datos (Escribiendo Código Python)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-subiendo-a-la-nube-el-comando-push">Paso 4: Subiendo a la Nube (El comando Push)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-revision-de-pares-crear-pull-requests">Paso 5: Revisión de Pares (Crear Pull Requests)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-6-la-fusion-merge-pull-request">Paso 6: La Fusión (Merge Pull Request)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-7-sincronizacion-final-cerrando-el-ciclo-local">Paso 7: Sincronización Final (Cerrando el ciclo local)</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Esteban Silva Villa y Germán Chaparro Molano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
