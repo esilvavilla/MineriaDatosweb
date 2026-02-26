@@ -5,5 +5,5 @@ format: jb-book
 root: intro
 chapters:
 - file: Clase_01_INTROyCLI
-
+- file: Clase_02_GIT-HUB
 
