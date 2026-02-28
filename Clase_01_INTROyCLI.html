@@ -63,6 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_01_INTROyCLI';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Clase 2: Introducción a herramientas de control de versiones Git y Github" href="Clase_02_GIT-HUB.html" />
     <link rel="prev" title="Minería de datos para el pregrado de Astronomía UdeA" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -169,6 +170,8 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 1: La Consola de Comandos (Bash)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_02_GIT-HUB.html">Clase 2: Introducción a herramientas de control de versiones Git y Github</a></li>
+
 </ul>
 
     </div>
@@ -490,25 +493,24 @@ https://events.asiaa.sinica.edu.tw/school/20170904/talk/djorgovski1.pdf</p>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 76712
--rw-r--r--@  1 esteban  staff    19K Feb 26 09:55 Clase_01_INTROyCLI.ipynb
--rw-r--r--@  1 esteban  staff    22K Feb 25 16:12 Clase_02_GIT-HUB.ipynb
--rw-------@  1 esteban  staff    19K Feb 26 09:50 <span class=" -Color -Color-Black -Color-Black-BGWhite">Copy of Clase_01_INTROyCLI.ipynb</span>
+-rw-r--r--@  1 esteban  staff    19K Feb 26 10:44 Clase_01_INTROyCLI.ipynb
+-rw-r--r--@  1 esteban  staff    22K Feb 26 10:41 Clase_02_GIT-HUB.ipynb
 -rw-r--r--@  1 esteban  staff   6.2K May 29  2025 Fireball_And_Bolide_Reports_rows.csv
 -rw-r--r--@  1 esteban  staff    20B Feb 11 18:11 README.md
 -rw-r--r--@  1 esteban  staff   1.0M Feb 28  2025 UdeA.png
 drwxr-xr-x@  5 esteban  staff   160B Feb 11 18:45 <span class=" -Color -Color-Blue">_build</span>
 -rw-r--r--@  1 esteban  staff   1.2K Feb 11 19:27 _config.yml
--rw-r--r--@  1 esteban  staff   147B Feb 16 11:51 _toc.yml
--rw-r--r--@  1 esteban  staff   128B Feb 25 16:29 catalogo_pequeno.csv
+-rw-r--r--@  1 esteban  staff   171B Feb 26 10:22 _toc.yml
+-rw-r--r--@  1 esteban  staff   128B Feb 26 10:09 catalogo_pequeno.csv
 drwxr-xr-x@  2 esteban  staff    64B Feb 11 19:05 <span class=" -Color -Color-Blue">datos_astronomia</span>
 -rwx------@  1 esteban  staff    32M Feb 24 08:53 <span class=" -Color -Color-Red">hyg_v38.csv</span>
-drwxr-xr-x@ 11 esteban  staff   352B Feb 25 08:21 <span class=" -Color -Color-Blue">imagenes</span>
+drwxr-xr-x@ 12 esteban  staff   384B Feb 26 10:18 <span class=" -Color -Color-Blue">imagenes</span>
 -rw-r--r--@  1 esteban  staff   1.1K Feb 11 18:09 intro.md
 -rw-r--r--@  1 esteban  staff   282B Feb 18 14:31 objetos_messier.csv
 -rw-r--r--@  1 esteban  staff   288B Feb 18 14:53 observacion_jueves.txt
 -rw-r--r--@  1 esteban  staff   2.0K Feb 16 10:52 ran_gen_data.sh
 -rw-r--r--@  1 esteban  staff    30B Feb 28  2025 <span class=" -Color -Color-Black -Color-Black-BGWhite">requirements.txt</span>
--rw-r--r--@  1 esteban  staff   4.0M Feb 25 16:29 server_data_large.csv
+-rw-r--r--@  1 esteban  staff   4.0M Feb 26 10:09 server_data_large.csv
 </pre></div>
 </div>
 </div>
@@ -553,10 +555,10 @@ drwxr-xr-x@ 11 esteban  staff   352B Feb 25 08:21 <span class=" -Color -Color-Bl
 📝 Líneas totales:   100001
 🔍 Primeras 5 líneas:
 ID,Tipo,Mag,Prob,RA,DEC
-1,Ruido,21.90,69,13:06:29,+78:52:22
-2,Variable_Star,14.30,4,00:11:16,+26:23:21
-3,Supernova,19.56,71,05:05:35,+02:53:53
-4,GRB,13.30,98,01:47:57,+45:20:04
+1,Variable_Star,15.35,35,19:51:15,+22:44:10
+2,GRB,14.69,43,13:54:55,+17:01:12
+3,Supernova,12.54,68,14:37:35,-06:40:53
+4,Supernova,13.30,16,21:32:29,-45:20:21
 </pre></div>
 </div>
 </div>
@@ -568,16 +570,16 @@ ID,Tipo,Mag,Prob,RA,DEC
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99977 12.82
-99979 13.75
-99980 13.61
-99981 12.47
-99985 13.34
-99988 12.04
-99991 14.27
-99992 12.24
-99993 14.99
-99998 13.41
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99964 14.39
+99971 14.28
+99973 12.36
+99975 14.54
+99980 13.02
+99981 13.66
+99982 13.08
+99986 13.63
+99990 13.74
+99998 13.87
 </pre></div>
 </div>
 </div>
@@ -904,6 +906,15 @@ Es tu turno de iniciar operaciones en el observatorio. Antes de abrir la cúpula
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Minería de datos para el pregrado de Astronomía UdeA</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="Clase_02_GIT-HUB.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Clase 2: Introducción a herramientas de control de versiones Git y Github</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
