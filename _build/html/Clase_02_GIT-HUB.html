@@ -393,6 +393,22 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-7-sincronizacion-final-cerrando-el-ciclo-local">Paso 7: Sincronización Final (Cerrando el ciclo local)</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercio-de-clase-para-consola-de-comandos-y-herramientas-de-git-y-github-parte-i-trabajo-individual">Ejercio de clase para consola de comandos y herramientas de git y Github. Parte I: Trabajo Individual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-el-pipeline-reproducible">Ejercicio 1: “El Pipeline Reproducible”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-documentacion-y-despliegue-en-la-nube">Ejercicio 2: “Documentación y Despliegue en la Nube”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parte-ii-trabajo-en-parejas">Parte II: Trabajo en Parejas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-colaboracion-en-el-script-de-procesamiento">Ejercicio 3: “Colaboración en el Script de Procesamiento”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-revision-cientifica-y-fusion-pull-request">Ejercicio 4: “Revisión Científica y Fusión (Pull Request)”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-avanzado-la-caza-de-jupiteres-frios-y-calientes">Ejercicio Avanzado: “La Caza de Júpiteres Fríos y Calientes”</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-1-entorno-seguro-y-obtencion-de-datos">Fase 1: Entorno Seguro y Obtención de Datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-2-mineria-matematica-con-awk-el-pipeline-principal">Fase 2: Minería Matemática con awk (El Pipeline Principal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-3-la-hipotesis-alternativa-branches-y-pull-requests">Fase 3: La Hipótesis Alternativa (Branches y Pull Requests)</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -642,8 +658,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 2. Abre tu terminal y clona el mismo repositorio: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">[URL_DEL_REPO]</span></code>. Entra a la carpeta.</p></li>
 </ul>
 <blockquote>
-<div><p>☁️ <strong>¿Qué está pasando en la nube (GitHub)?</strong>
-GitHub ha reservado un espacio en sus servidores. Ha creado la línea de tiempo principal llamada <code class="docutils literal notranslate"><span class="pre">main</span></code>. Al aceptar la invitación, GitHub actualiza sus permisos de seguridad, permitiendo que tanto la computadora de A como la de B puedan enviar (push) código a esta carpeta central.</p>
+<div><p>GitHub ha reservado un espacio en sus servidores. Ha creado la línea de tiempo principal llamada <code class="docutils literal notranslate"><span class="pre">main</span></code>. Al aceptar la invitación, GitHub actualiza sus permisos de seguridad, permitiendo que tanto la computadora de A como la de B puedan enviar (push) código a esta carpeta central.</p>
 </div></blockquote>
 </section>
 <hr class="docutils" />
@@ -658,8 +673,7 @@ GitHub ha reservado un espacio en sus servidores. Ha creado la línea de tiempo 
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">modelo_planeta</span></code></p></li>
 </ul>
 <blockquote>
-<div><p>☁️ <strong>¿Qué está pasando en la nube?</strong>
-<strong>¡Absolutamente nada!</strong> Las ramas (<code class="docutils literal notranslate"><span class="pre">branches</span></code>) que acaban de crear existen <em>únicamente</em> en la memoria local de sus computadoras. GitHub todavía no tiene idea de que ustedes están trabajando en universos paralelos. Esto les permite trabajar sin necesidad de internet temporalmente.</p>
+<div><p>Las ramas (<code class="docutils literal notranslate"><span class="pre">branches</span></code>) que acaban de crear existen <em>únicamente</em> en la memoria local de sus computadoras. GitHub todavía no tiene idea de que ustedes están trabajando en universos paralelos. Esto les permite trabajar sin necesidad de internet temporalmente.</p>
 </div></blockquote>
 </section>
 <hr class="docutils" />
@@ -688,8 +702,7 @@ GitHub ha reservado un espacio en sus servidores. Ha creado la línea de tiempo 
 </li>
 </ul>
 <blockquote>
-<div><p>☁️ <strong>¿Qué está pasando en la nube?</strong>
-Sigue sin pasar nada. Sus “fotografías” (commits) están seguras en el directorio <code class="docutils literal notranslate"><span class="pre">.git</span></code> de sus propias computadoras.</p>
+<div><p>Sus “fotografías” (commits) están seguras en el directorio <code class="docutils literal notranslate"><span class="pre">.git</span></code> de sus propias computadoras.</p>
 </div></blockquote>
 </section>
 <hr class="docutils" />
@@ -704,8 +717,7 @@ Sigue sin pasar nada. Sus “fotografías” (commits) están seguras en el dire
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">modelo_planeta</span></code></p></li>
 </ul>
 <blockquote>
-<div><p>☁️ <strong>¿Qué está pasando en la nube?</strong>
-GitHub acaba de recibir dos paquetes de datos. Ahora, el repositorio central tiene 3 ramas disponibles: <code class="docutils literal notranslate"><span class="pre">main</span></code> (que solo tiene el README), <code class="docutils literal notranslate"><span class="pre">modelo_estrella</span></code> (que tiene el README y <code class="docutils literal notranslate"><span class="pre">estrella.py</span></code>) y <code class="docutils literal notranslate"><span class="pre">modelo_planeta</span></code> (que tiene el README y <code class="docutils literal notranslate"><span class="pre">planetas.py</span></code>). Las líneas de tiempo aún están separadas.</p>
+<div><p>Ahora, el repositorio central tiene 3 ramas disponibles: <code class="docutils literal notranslate"><span class="pre">main</span></code> (que solo tiene el README), <code class="docutils literal notranslate"><span class="pre">modelo_estrella</span></code> (que tiene el README y <code class="docutils literal notranslate"><span class="pre">estrella.py</span></code>) y <code class="docutils literal notranslate"><span class="pre">modelo_planeta</span></code> (que tiene el README y <code class="docutils literal notranslate"><span class="pre">planetas.py</span></code>). Las líneas de tiempo aún están separadas.</p>
 </div></blockquote>
 </section>
 <hr class="docutils" />
@@ -720,8 +732,7 @@ GitHub acaba de recibir dos paquetes de datos. Ahora, el repositorio central tie
 <li><p>Hagan clic en <strong>“Create pull request”</strong>.</p></li>
 </ul>
 <blockquote>
-<div><p>☁️ <strong>¿Qué está pasando en la nube?</strong>
-GitHub escanea automáticamente los códigos de la rama nueva y los compara con la rama <code class="docutils literal notranslate"><span class="pre">main</span></code>. Comprueba si hay <strong>Conflictos</strong> (por ejemplo, si ambos hubieran editado la misma línea del mismo archivo). Como A y B crearon archivos diferentes, GitHub indicará en verde: <em>“This branch has no conflicts with the base branch”</em>.</p>
+<div><p>GitHub escanea automáticamente los códigos de la rama nueva y los compara con la rama <code class="docutils literal notranslate"><span class="pre">main</span></code>. Comprueba si hay <strong>Conflictos</strong> (por ejemplo, si ambos hubieran editado la misma línea del mismo archivo). Como A y B crearon archivos diferentes, GitHub indicará en verde: <em>“This branch has no conflicts with the base branch”</em>.</p>
 </div></blockquote>
 </section>
 <hr class="docutils" />
@@ -734,8 +745,7 @@ GitHub escanea automáticamente los códigos de la rama nueva y los compara con 
 <li><p><strong>Astrónomo B:</strong> Entra al Pull Request del <strong>Astrónomo A</strong>. Haz lo mismo: revisa, aprueba haciendo clic en <strong>“Merge pull request”</strong> y confirma.</p></li>
 </ul>
 <blockquote>
-<div><p>☁️ <strong>¿Qué está pasando en la nube?</strong>
-¡Éxito colaborativo! GitHub ha tomado los archivos de los universos paralelos y los ha pegado en la línea de tiempo oficial (<code class="docutils literal notranslate"><span class="pre">main</span></code>). La rama <code class="docutils literal notranslate"><span class="pre">main</span></code> en la nube ahora contiene el <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, el archivo <code class="docutils literal notranslate"><span class="pre">estrella.py</span></code> y el archivo <code class="docutils literal notranslate"><span class="pre">planetas.py</span></code>. Todo el ecosistema de su proyecto está unificado.</p>
+<div><p>¡Éxito colaborativo! GitHub ha tomado los archivos de los universos paralelos y los ha pegado en la línea de tiempo oficial (<code class="docutils literal notranslate"><span class="pre">main</span></code>). La rama <code class="docutils literal notranslate"><span class="pre">main</span></code> en la nube ahora contiene el <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, el archivo <code class="docutils literal notranslate"><span class="pre">estrella.py</span></code> y el archivo <code class="docutils literal notranslate"><span class="pre">planetas.py</span></code>. Todo el ecosistema de su proyecto está unificado.</p>
 </div></blockquote>
 </section>
 <hr class="docutils" />
@@ -751,9 +761,116 @@ GitHub escanea automáticamente los códigos de la rama nueva y los compara con 
 <li><p>Comprueben los archivos en su carpeta con el comando <code class="docutils literal notranslate"><span class="pre">ls</span></code> (mac/linux) o abriendo su explorador de archivos.</p></li>
 </ul>
 <blockquote>
-<div><p>☁️ <strong>¿Qué está pasando en la nube?</strong>
-GitHub empaqueta la versión final de la rama <code class="docutils literal notranslate"><span class="pre">main</span></code> (que ya contiene ambos scripts) y la transmite de bajada (<code class="docutils literal notranslate"><span class="pre">pull</span></code>) a sus computadoras.
+<div><p>GitHub empaqueta la versión final de la rama <code class="docutils literal notranslate"><span class="pre">main</span></code> (que ya contiene ambos scripts) y la transmite de bajada (<code class="docutils literal notranslate"><span class="pre">pull</span></code>) a sus computadoras.
 ¡Felicidades! Ambos investigadores tienen ahora un directorio idéntico con el proyecto unificado y han completado un ciclo de desarrollo profesional en equipo.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="ejercio-de-clase-para-consola-de-comandos-y-herramientas-de-git-y-github-parte-i-trabajo-individual">
+<h2>Ejercio de clase para consola de comandos y herramientas de git y Github. Parte I: Trabajo Individual<a class="headerlink" href="#ejercio-de-clase-para-consola-de-comandos-y-herramientas-de-git-y-github-parte-i-trabajo-individual" title="Link to this heading">#</a></h2>
+<section id="ejercicio-1-el-pipeline-reproducible">
+<h3>Ejercicio 1: “El Pipeline Reproducible”<a class="headerlink" href="#ejercicio-1-el-pipeline-reproducible" title="Link to this heading">#</a></h3>
+<p>Has encontrado un catálogo en línea con datos de supernovas históricas. Quieres crear un entorno de trabajo local, descargar los datos, filtrarlos por tipo (ej. Tipo Ia, usadas para medir distancias cosmológicas) y guardar el resultado. Todo esto debe quedar registrado en Git, <strong>pero sin subir el catálogo pesado original</strong>.</p>
+<ol class="arabic simple">
+<li><p>Abre tu terminal, crea una carpeta llamada <code class="docutils literal notranslate"><span class="pre">proyecto_supernovas</span></code> y entra en ella.</p></li>
+<li><p>Inicializa un repositorio Git.</p></li>
+<li><p>Crea un archivo <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> y configura que ignore cualquier archivo <code class="docutils literal notranslate"><span class="pre">.csv</span></code> original (ej. <code class="docutils literal notranslate"><span class="pre">datos_crudos.csv</span></code>). Haz un commit inicial guardando este <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>.</p></li>
+<li><p>Usa <code class="docutils literal notranslate"><span class="pre">wget</span></code> para descargar un catálogo (usaremos un enlace de prueba) y guárdalo como <code class="docutils literal notranslate"><span class="pre">datos_crudos.csv</span></code>. Usa este link para descargar los datos: <a class="reference external" href="https://github.com/astronexus/HYG-Database/blob/main/hyg/CURRENT/hygdata_v41.csv">Link</a></p></li>
+<li><p>Usa una tubería (<code class="docutils literal notranslate"><span class="pre">|</span></code>) con <code class="docutils literal notranslate"><span class="pre">grep</span></code> para buscar supernovas tipo “Ia” en <code class="docutils literal notranslate"><span class="pre">datos_crudos.csv</span></code>, corta (<code class="docutils literal notranslate"><span class="pre">cut</span></code>) la columna del nombre de la galaxia anfitriona, ordénalos alfabéticamente (<code class="docutils literal notranslate"><span class="pre">sort</span></code>) y guarda el resultado en un archivo nuevo llamado <code class="docutils literal notranslate"><span class="pre">candidatas_Ia.txt</span></code>.</p></li>
+<li><p>Haz un commit que incluya únicamente el archivo procesado <code class="docutils literal notranslate"><span class="pre">candidatas_Ia.txt</span></code>.</p></li>
+</ol>
+</section>
+<section id="ejercicio-2-documentacion-y-despliegue-en-la-nube">
+<h3>Ejercicio 2: “Documentación y Despliegue en la Nube”<a class="headerlink" href="#ejercicio-2-documentacion-y-despliegue-en-la-nube" title="Link to this heading">#</a></h3>
+<p>Tu análisis local fue un éxito. Ahora necesitas respaldarlo en GitHub para que tu supervisor pueda ver los resultados, pero él necesita entender qué comandos usaste para generar el archivo candidatas_Ia.txt.</p>
+<ol class="arabic simple">
+<li><p>Crea un archivo llamado <code class="docutils literal notranslate"><span class="pre">README.md</span></code> usando el comando echo desde la terminal. Debe contener un título y una breve explicación de que usaste grep, cut y sort para filtrar el catálogo.</p></li>
+<li><p>Añade y haz commit del README.md.</p></li>
+<li><p>Ve a GitHub en tu navegador y crea un repositorio vacío llamado proyecto_supernovas.</p></li>
+<li><p>Vincula tu repositorio local con el remoto en GitHub.</p></li>
+<li><p>Sube tu trabajo a la nube.</p></li>
+</ol>
+</section>
+</section>
+<section id="parte-ii-trabajo-en-parejas">
+<h2>Parte II: Trabajo en Parejas<a class="headerlink" href="#parte-ii-trabajo-en-parejas" title="Link to this heading">#</a></h2>
+<section id="ejercicio-3-colaboracion-en-el-script-de-procesamiento">
+<h3>Ejercicio 3: “Colaboración en el Script de Procesamiento”<a class="headerlink" href="#ejercicio-3-colaboracion-en-el-script-de-procesamiento" title="Link to this heading">#</a></h3>
+<p>En lugar de escribir comandos sueltos, el Astrónomo A ha creado un script de Bash automatizado (un archivo <code class="docutils literal notranslate"><span class="pre">.sh</span></code>) en un repositorio compartido. El Astrónomo B debe clonar el repositorio y mejorar el script añadiendo herramientas estadísticas como wc.</p>
+<p><strong>Astrónomo A</strong>: Crea un repositorio en GitHub llamado pipeline_colaborativo con un README. Invita al Astrónomo B como colaborador. Clona el repo en tu terminal, crea un archivo llamado procesar.sh que contenga echo “Iniciando descarga…”, haz commit y haz push.</p>
+<p><strong>Astrónomo B</strong>: Acepta la invitación y clona el repositorio en tu computadora.</p>
+<p><strong>Astrónomo B</strong>: Crea una nueva rama local (git checkout -b mejora_estadistica).</p>
+<p><strong>Astrónomo B</strong>: Edita el archivo procesar.sh añadiendo una línea que simule un conteo de datos usando pipes: ls -l | wc -l.</p>
+<p><strong>Astrónomo B</strong>: Haz commit de tus cambios y sube tu rama a GitHub (git push origin mejora_estadistica).</p>
+</section>
+<section id="ejercicio-4-revision-cientifica-y-fusion-pull-request">
+<h3>Ejercicio 4: “Revisión Científica y Fusión (Pull Request)”<a class="headerlink" href="#ejercicio-4-revision-cientifica-y-fusion-pull-request" title="Link to this heading">#</a></h3>
+<p>El Astrónomo (B) ha propuesto una mejora al código. El Astrónomo (A) debe revisar que los comandos de terminal añadidos sean correctos antes de integrarlos al flujo de trabajo principal del observatorio.</p>
+<p><strong>Astrónomo B</strong>: En GitHub, abre un Pull Request (PR) desde tu rama mejora_estadistica hacia main. Deja un comentario explicando qué comandos añadiste.</p>
+<p><strong>Astrónomo A</strong>: Entra a GitHub, revisa el código en la pestaña Files changed del PR. Asegúrate de que el uso de wc -l sea correcto.</p>
+<p><strong>Astrónomo A</strong>: Aprueba y haz “Merge pull request”.</p>
+<p><strong>Ambos Astrónomos</strong>: Vuelvan a sus terminales, asegúrense de estar en la rama main (git checkout main) y actualicen sus repositorios locales para tener la versión final (git pull origin main).</p>
+<p><strong>Ambos Astrónomos</strong>: Ejecuten el script automatizado escribiendo bash procesar.sh en su terminal para comprobar que todo funciona.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código bash aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ejercicio-avanzado-la-caza-de-jupiteres-frios-y-calientes">
+<h2>Ejercicio Avanzado: “La Caza de Júpiteres Fríos y Calientes”<a class="headerlink" href="#ejercicio-avanzado-la-caza-de-jupiteres-frios-y-calientes" title="Link to this heading">#</a></h2>
+<p>Descubrir planetas como la Tierra es difícil, pero descubrir gigantes gaseosos lejanos a su estrella (“Júpiteres Fríos”) también tiene sus retos. Tienen periodos orbitales muy largos, por lo que debes observar la estrella durante años para ver un solo tránsito o ciclo de velocidad radial.</p>
+<p>En este ejercicio, descargarás un catálogo real de exoplanetas. Escribirás un script (un “pipeline”) en la terminal que filtre matemáticamente la base de datos para responder a esta pregunta: <strong>¿Cuál es el método de descubrimiento más exitoso para encontrar exoplanetas de periodo largo (más de 300 días) que estén relativamente cerca de nuestro sistema solar (a menos de 50 parsecs)?</strong></p>
+<p>Luego, usarás el control de versiones para proponer un análisis alternativo (“Júpiteres Calientes”) usando ramas en GitHub.</p>
+<hr class="docutils" />
+<section id="fase-1-entorno-seguro-y-obtencion-de-datos">
+<h3>Fase 1: Entorno Seguro y Obtención de Datos<a class="headerlink" href="#fase-1-entorno-seguro-y-obtencion-de-datos" title="Link to this heading">#</a></h3>
+<p>Un buen científico de datos nunca rastrea archivos pesados en Git. Primero, preparamos la bóveda.</p>
+<ol class="arabic">
+<li><p>Crea un directorio llamado <code class="docutils literal notranslate"><span class="pre">censo_exoplanetario</span></code> e inicializa Git.</p></li>
+<li><p>Crea un archivo <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> y configúralo para que ignore cualquier archivo <code class="docutils literal notranslate"><span class="pre">.csv</span></code>. Haz el primer <code class="docutils literal notranslate"><span class="pre">commit</span></code> de este escudo protector.</p></li>
+<li><p>Descarga la base de datos usando <code class="docutils literal notranslate"><span class="pre">wget</span></code> y nómbrala <code class="docutils literal notranslate"><span class="pre">planetas.csv</span></code>.
+<em>URL de los datos:</em> <a class="reference external" href="https://raw.githubusercontent.com/mwaskom/seaborn-data/master/planets.csv">Link</a></p>
+<p><em>(Las columnas son: method, number, orbital_period, mass, distance, year).</em></p>
+</li>
+</ol>
+</section>
+<section id="fase-2-mineria-matematica-con-awk-el-pipeline-principal">
+<h3>Fase 2: Minería Matemática con awk (El Pipeline Principal)<a class="headerlink" href="#fase-2-mineria-matematica-con-awk-el-pipeline-principal" title="Link to this heading">#</a></h3>
+<p>Ahora escribiremos nuestro análisis en un script de Bash para que sea reproducible.</p>
+<ol class="arabic simple">
+<li><p>Crea un archivo llamado <code class="docutils literal notranslate"><span class="pre">analisis_frios.sh.</span></code></p></li>
+<li><p>Dentro del script, usa <code class="docutils literal notranslate"><span class="pre">awk</span></code> para filtrar el archivo planetas.csv. Debes extraer solo la columna del método (columna 1), pero únicamente si se cumplen estas condiciones:</p></li>
+</ol>
+<ul class="simple">
+<li><p>El periodo orbital (columna 3) es mayor a 300 días.</p></li>
+<li><p>La distancia (columna 5) es menor a 50 parsecs.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Conecta la salida de ese <code class="docutils literal notranslate"><span class="pre">awk</span></code> usando pipes (<code class="docutils literal notranslate"><span class="pre">|</span></code>) hacia <code class="docutils literal notranslate"><span class="pre">sort</span></code>, luego <code class="docutils literal notranslate"><span class="pre">uniq</span> <span class="pre">-c</span></code> para contarlos, y finalmente <code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">-nr</span></code> para ordenarlos de mayor a menor éxito.</p></li>
+<li><p>Redirige toda esa salida a un archivo llamado <code class="docutils literal notranslate"><span class="pre">resultados_frios.txt</span></code>.</p></li>
+<li><p>Ejecuta el script (<code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">analisis_frios.sh</span></code>), añade el script y el archivo de resultados a Git, y haz commit.</p></li>
+</ol>
+<p>Crea el repositorio en GitHub, conéctalo a tu entorno local y haz push de la rama main.</p>
+</section>
+<section id="fase-3-la-hipotesis-alternativa-branches-y-pull-requests">
+<h3>Fase 3: La Hipótesis Alternativa (Branches y Pull Requests)<a class="headerlink" href="#fase-3-la-hipotesis-alternativa-branches-y-pull-requests" title="Link to this heading">#</a></h3>
+<p>Tu supervisor aprueba tu trabajo, pero te hace una pregunta: “¿Y si cambiamos los parámetros de búsqueda para encontrar Júpiteres Calientes (periodo orbital MENOR a 10 días) usando el mismo script?”.</p>
+<p>No debes modificar la rama main porque romperías el análisis de Júpiteres Fríos. Debes crear una “realidad alternativa” (Branch).</p>
+<ol class="arabic simple">
+<li><p>En tu terminal, crea una nueva rama llamada <code class="docutils literal notranslate"><span class="pre">hipotesis_calientes</span></code> y cámbiate a ella.</p></li>
+<li><p>Copia el archivo <code class="docutils literal notranslate"><span class="pre">analisis_frios.sh</span></code> y renómbralo a <code class="docutils literal notranslate"><span class="pre">analisis_calientes.sh</span></code>.</p></li>
+<li><p>Edita <code class="docutils literal notranslate"><span class="pre">analisis_calientes.sh</span></code> (puedes usar nano o un editor de texto) y cambia la lógica matemática de <code class="docutils literal notranslate"><span class="pre">awk</span></code>: el periodo (columna 3) ahora debe ser <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">10</span></code>, y la salida debe llamarse <code class="docutils literal notranslate"><span class="pre">resultados_calientes.txt</span></code>.</p></li>
+<li><p>Ejecuta el nuevo script y verifica que los resultados son totalmente distintos (probablemente el método de “Tránsito” gane por goleada aquí).</p></li>
+<li><p>Haz add y commit en tu nueva rama.</p></li>
+<li><p>Sube esta nueva rama a GitHub (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">hipotesis_calientes</span></code>).</p></li>
+<li><p>Ve a tu repositorio en GitHub y abre un Pull Request para fusionar <code class="docutils literal notranslate"><span class="pre">hipotesis_calientes</span></code> dentro de main. En el mensaje del PR, escribe qué método resultó ser el ganador para Júpiteres Calientes. ¡Haz el Merge tú mismo!</p></li>
+</ol>
+<blockquote>
+<div><p>Al ir a GitHub usted verá que el proyecto ahora tiene dos scripts distintos conviviendo en armonía tras el Merge. Habrán logrado filtrar matemáticamente una base de datos de miles de filas, crear dos modelos astrofísicos diferentes y versionar todo el proceso con calidad industrial.</p>
 </div></blockquote>
 </section>
 </section>
@@ -844,6 +961,22 @@ GitHub empaqueta la versión final de la rama <code class="docutils literal notr
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-revision-de-pares-crear-pull-requests">Paso 5: Revisión de Pares (Crear Pull Requests)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-6-la-fusion-merge-pull-request">Paso 6: La Fusión (Merge Pull Request)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-7-sincronizacion-final-cerrando-el-ciclo-local">Paso 7: Sincronización Final (Cerrando el ciclo local)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercio-de-clase-para-consola-de-comandos-y-herramientas-de-git-y-github-parte-i-trabajo-individual">Ejercio de clase para consola de comandos y herramientas de git y Github. Parte I: Trabajo Individual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-el-pipeline-reproducible">Ejercicio 1: “El Pipeline Reproducible”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-documentacion-y-despliegue-en-la-nube">Ejercicio 2: “Documentación y Despliegue en la Nube”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parte-ii-trabajo-en-parejas">Parte II: Trabajo en Parejas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-colaboracion-en-el-script-de-procesamiento">Ejercicio 3: “Colaboración en el Script de Procesamiento”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-revision-cientifica-y-fusion-pull-request">Ejercicio 4: “Revisión Científica y Fusión (Pull Request)”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-avanzado-la-caza-de-jupiteres-frios-y-calientes">Ejercicio Avanzado: “La Caza de Júpiteres Fríos y Calientes”</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-1-entorno-seguro-y-obtencion-de-datos">Fase 1: Entorno Seguro y Obtención de Datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-2-mineria-matematica-con-awk-el-pipeline-principal">Fase 2: Minería Matemática con awk (El Pipeline Principal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-3-la-hipotesis-alternativa-branches-y-pull-requests">Fase 3: La Hipótesis Alternativa (Branches y Pull Requests)</a></li>
 </ul>
 </li>
 </ul>
