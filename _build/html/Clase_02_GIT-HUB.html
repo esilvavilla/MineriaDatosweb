@@ -409,6 +409,18 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-3-la-hipotesis-alternativa-branches-y-pull-requests">Fase 3: La Hipótesis Alternativa (Branches y Pull Requests)</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-final-de-la-clase-ciencia-abierta-peer-review-y-control-de-calidad">Ejercicio Final de la clase: “Ciencia Abierta, Peer Review y Control de Calidad”</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-de-misiones-para-el-proyecto">Catálogo de Misiones para el Proyecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-creacion-del-repositorio">Paso 1: Creación del Repositorio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso2-ingesta-de-la-base-de-datos-publica">Paso2: Ingesta de la Base de Datos Pública</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-limpieza-inicial-pipeline-cli">Paso 3: Limpieza Inicial (Pipeline CLI)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-analisis-estadistico-basico">Paso 4: Análisis Estadístico Básico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-presentacion-de-resultados-pull-request">Paso 5: Presentación de Resultados (Pull Request)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-6-revision-por-pares-y-control-de-calidad-reformas">Paso 6: Revisión por Pares y Control de Calidad (Reformas)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-7-segunda-revision">Paso 7: Segunda Revisión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-8-entrega-de-la-version-final">Paso 8: Entrega de la Versión Final</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -870,8 +882,141 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 <li><p>Ve a tu repositorio en GitHub y abre un Pull Request para fusionar <code class="docutils literal notranslate"><span class="pre">hipotesis_calientes</span></code> dentro de main. En el mensaje del PR, escribe qué método resultó ser el ganador para Júpiteres Calientes. ¡Haz el Merge tú mismo!</p></li>
 </ol>
 <blockquote>
-<div><p>Al ir a GitHub usted verá que el proyecto ahora tiene dos scripts distintos conviviendo en armonía tras el Merge. Habrán logrado filtrar matemáticamente una base de datos de miles de filas, crear dos modelos astrofísicos diferentes y versionar todo el proceso con calidad industrial.</p>
+<div><p>Al ir a GitHub usted verá que el proyecto ahora tiene dos scripts distintos conviviendo en armonía tras el Merge. Habrá logrado filtrar matemáticamente una base de datos de miles de filas, crear dos modelos astrofísicos diferentes y versionar todo el proceso con calidad industrial.</p>
 </div></blockquote>
+</section>
+</section>
+<section id="ejercicio-final-de-la-clase-ciencia-abierta-peer-review-y-control-de-calidad">
+<h2>Ejercicio Final de la clase: “Ciencia Abierta, Peer Review y Control de Calidad”<a class="headerlink" href="#ejercicio-final-de-la-clase-ciencia-abierta-peer-review-y-control-de-calidad" title="Link to this heading">#</a></h2>
+<p>En la astronomía de la era del Big Data, las agencias espaciales publican bases de datos con cientos de miles de registros. Sin embargo, estos catálogos crudos contienen valores nulos, mediciones fallidas o errores instrumentales.</p>
+<p>Ustedes son un equipo de investigación. El <strong>Investigador Principal (IP)</strong> se encargará de la <em>Ingeniería de Datos</em> (ingesta y limpieza de la base elegida). El <strong>Co-Investigador (Co-I)</strong> realizará un <em>Análisis Estadístico</em> rápido. Finalmente, mediante revisión por pares (Peer Review), detectarán un problema de calidad de datos específico de su misión y lo solucionarán de forma conjunta.</p>
+<p><em>Instrucciones Previas:</em> Formen parejas, decidan sus roles (IP y Co-I) y elijan <strong>UNA</strong> base de datos de la siguiente tabla para desarrollar todo el ejercicio.</p>
+<section id="catalogo-de-misiones-para-el-proyecto">
+<h3>Catálogo de Misiones para el Proyecto<a class="headerlink" href="#catalogo-de-misiones-para-el-proyecto" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Misión / Base de Datos</p></th>
+<th class="head text-left"><p>Enlace de Descarga (Comando Exacto)</p></th>
+<th class="head text-left"><p>Disciplina</p></th>
+<th class="head text-left"><p>Columna a Analizar (Co-I)</p></th>
+<th class="head text-left"><p>Columna de Calidad DQ (Falla a corregir por el IP)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>1. SDSS (Galaxias)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">-q</span> <span class="pre">-O</span> <span class="pre">datos.csv</span> <span class="pre">&quot;http://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?cmd=SELECT%20TOP%20150000%20objid,ra,dec,u,g,r,i,z,type%20FROM%20PhotoObj&amp;format=csv&quot;</span></code></p></td>
+<td class="text-left"><p>Extragaláctica</p></td>
+<td class="text-left"><p>Tipo de Objeto (Col 9)</p></td>
+<td class="text-left"><p>Magnitud ‘u’ faltante o error (Col 4)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>2. NASA Exoplanetas</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">-q</span> <span class="pre">-O</span> <span class="pre">datos.csv</span> <span class="pre">&quot;https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=SELECT+TOP+100000+pl_name,hostname,discoverymethod,disc_year,pl_rade,pl_bmasse+FROM+ps&amp;format=csv&quot;</span></code></p></td>
+<td class="text-left"><p>Exoplanetas</p></td>
+<td class="text-left"><p>Año de Descubrimiento (Col 4)</p></td>
+<td class="text-left"><p>Radio del Planeta nulo (Col 5)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>3. Hipparcos (Astrometría)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">-q</span> <span class="pre">-O</span> <span class="pre">datos.csv</span> <span class="pre">&quot;https://tapvizier.cds.unistra.fr/TAPVizieR/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=SELECT+*+FROM+%22I/239/hip_main%22&quot;</span></code></p></td>
+<td class="text-left"><p>Estelar</p></td>
+<td class="text-left"><p>Tipo Espectral (Col 77)</p></td>
+<td class="text-left"><p>Índice de Color B-V nulo (Col 38)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>4. AllWISE (Infrarrojo)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">-q</span> <span class="pre">-O</span> <span class="pre">datos.csv</span> <span class="pre">&quot;https://tapvizier.cds.unistra.fr/TAPVizieR/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=SELECT+TOP+150000+WISE,RAJ2000,DEJ2000,W1mag,W2mag,W3mag+FROM+%22II/328/allwise%22&quot;</span></code></p></td>
+<td class="text-left"><p>Infrarrojo</p></td>
+<td class="text-left"><p>Declinación (Agrupar) (Col 3)</p></td>
+<td class="text-left"><p>Magnitud W3 nula (Col 6)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>5. Meteoritos (NASA)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">-q</span> <span class="pre">-O</span> <span class="pre">datos.csv</span> <span class="pre">&quot;https://data.nasa.gov/resource/gh4g-9sfh.csv?$limit=50000&quot;</span></code></p></td>
+<td class="text-left"><p>Planetaria</p></td>
+<td class="text-left"><p>Clase de Meteorito (Col 4)</p></td>
+<td class="text-left"><p>Masa del Meteorito nula (Col 5)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="paso-1-creacion-del-repositorio">
+<h3>Paso 1: Creación del Repositorio<a class="headerlink" href="#paso-1-creacion-del-repositorio" title="Link to this heading">#</a></h3>
+<p><strong>IP</strong></p>
+<ol class="arabic simple">
+<li><p>En GitHub, crea un repositorio público llamado <code class="docutils literal notranslate"><span class="pre">proyecto_astronomia_abierta</span></code>.</p></li>
+<li><p>Inicialízalo con un archivo <code class="docutils literal notranslate"><span class="pre">README.md</span></code>.</p></li>
+<li><p>Ve a <strong>Settings &gt; Collaborators</strong> y añade a tu Co-I.</p></li>
+<li><p>En tu terminal local, clona el repositorio y entra en la carpeta</p></li>
+</ol>
+</section>
+<section id="paso2-ingesta-de-la-base-de-datos-publica">
+<h3>Paso2: Ingesta de la Base de Datos Pública<a class="headerlink" href="#paso2-ingesta-de-la-base-de-datos-publica" title="Link to this heading">#</a></h3>
+<p><strong>IP</strong></p>
+<ol class="arabic simple">
+<li><p>Vas a descargar el archivo masivo, pero protegerás tu Git para no colapsarlo.</p></li>
+<li><p>Crea un .gitignore para que Git ignore este archivo pesado de forma explícita.</p></li>
+</ol>
+</section>
+<section id="paso-3-limpieza-inicial-pipeline-cli">
+<h3>Paso 3: Limpieza Inicial (Pipeline CLI)<a class="headerlink" href="#paso-3-limpieza-inicial-pipeline-cli" title="Link to this heading">#</a></h3>
+<p><strong>IP</strong></p>
+<ol class="arabic simple">
+<li><p>Las bases de datos suelen traer encabezados o comentarios. Usa un pipeline básico para quitar cualquier comentario que empiece con # (si lo hay) y guarda el resultado en un archivo llamado datos_trabajo.csv (este sí lo subiremos a Git).</p></li>
+<li><p>Sube esta sub-muestra limpia a GitHub para entregársela a tu colega.</p></li>
+</ol>
+</section>
+<section id="paso-4-analisis-estadistico-basico">
+<h3>Paso 4: Análisis Estadístico Básico<a class="headerlink" href="#paso-4-analisis-estadistico-basico" title="Link to this heading">#</a></h3>
+<p><strong>Co-I</strong></p>
+<ol class="arabic simple">
+<li><p>Acepta la invitación en GitHub, abre tu terminal y clona el repositorio. (Si ya lo habías clonado, haz git pull origin main).</p></li>
+<li><p>Entra a la carpeta y crea una nueva rama para no afectar el trabajo del IP.</p></li>
+<li><p>Revisa la tabla superior. Busca la “Columna a Analizar (Co-I)” de tu misión (por ejemplo, la 4 o la 9).</p></li>
+<li><p>Corta esa columna, ordénala, cuéntala y extrae el Top 5. Guarda el resultado en un reporte.</p></li>
+</ol>
+</section>
+<section id="paso-5-presentacion-de-resultados-pull-request">
+<h3>Paso 5: Presentación de Resultados (Pull Request)<a class="headerlink" href="#paso-5-presentacion-de-resultados-pull-request" title="Link to this heading">#</a></h3>
+<p><strong>Co-I</strong></p>
+<ol class="arabic simple">
+<li><p>Guarda tu reporte en Git y súbelo a la nube en tu propia rama.</p></li>
+<li><p>Ve a GitHub y abre un Pull Request (PR) hacia la rama main. Deja un comentario para el IP con tus hallazgos.</p></li>
+</ol>
+</section>
+<section id="paso-6-revision-por-pares-y-control-de-calidad-reformas">
+<h3>Paso 6: Revisión por Pares y Control de Calidad (Reformas)<a class="headerlink" href="#paso-6-revision-por-pares-y-control-de-calidad-reformas" title="Link to this heading">#</a></h3>
+<p><strong>IP</strong></p>
+<ol class="arabic simple">
+<li><p>Entras a GitHub a revisar el PR de tu colega. Revisas la tabla de la misión y te das cuenta de un problema científico crítico indicado en la “Columna de Calidad DQ”. ¡La estadística del Co-I incluyó registros corruptos, nulos o faltantes en esa variable física vital!</p></li>
+<li><p>Debes intervenir la rama de tu colega para añadir Control de Calidad (Data Quality - DQ).</p></li>
+<li><p>En tu terminal, actualiza tu repo y muévete a la rama de tu colega.</p></li>
+<li><p>Revisa el número de la “Columna de Calidad DQ” en la tabla para tu misión (ej. la 5 o la 6).</p></li>
+<li><p>Aplica un filtro con <code class="docutils literal notranslate"><span class="pre">awk</span></code> para generar un catálogo de “Alta Calidad” que elimine las filas donde esa columna esté vacía o tenga problemas.</p></li>
+<li><p>Rehace el análisis del Co-I con los datos limpios y añade métricas DQ.</p></li>
+<li><p>Sube tus correcciones directamente a la rama del Pull Request.</p></li>
+</ol>
+</section>
+<section id="paso-7-segunda-revision">
+<h3>Paso 7: Segunda Revisión<a class="headerlink" href="#paso-7-segunda-revision" title="Link to this heading">#</a></h3>
+<p><strong>Co-I</strong></p>
+<ol class="arabic simple">
+<li><p>En tu terminal, actualiza tu rama para ver los cambios del IP.</p></li>
+<li><p>Visualiza el archivo modificado: cat reporte.txt.</p></li>
+</ol>
+<blockquote>
+<div><p>Te darás cuenta de que la métrica DQ revela que muchos datos fueron descartados por no tener mediciones confirmadas. ¡El IP te ha salvado de publicar estadísticas engañosas!</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Ve a GitHub, entra al Pull Request y, como estás de acuerdo con la corrección científica, aprueba los cambios.</p></li>
+</ol>
+</section>
+<section id="paso-8-entrega-de-la-version-final">
+<h3>Paso 8: Entrega de la Versión Final<a class="headerlink" href="#paso-8-entrega-de-la-version-final" title="Link to this heading">#</a></h3>
+<p><strong>IP y/o Co-I</strong></p>
+<ol class="arabic simple">
+<li><p>En la página del Pull Request en GitHub, haz clic en “Merge pull request” y confirma la fusión.</p></li>
+<li><p>Ambos astrónomos deben sincronizar sus computadoras locales con la versión final unificada y volver a la línea temporal principal.</p></li>
+</ol>
+<p><strong>¡Felicidades!</strong> Han completado un flujo de trabajo agnóstico y profesional. No importa qué base de datos hayan elegido, han aplicado los principios universales de la minería de datos científica.</p>
 </section>
 </section>
 </section>
@@ -977,6 +1122,18 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-1-entorno-seguro-y-obtencion-de-datos">Fase 1: Entorno Seguro y Obtención de Datos</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-2-mineria-matematica-con-awk-el-pipeline-principal">Fase 2: Minería Matemática con awk (El Pipeline Principal)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-3-la-hipotesis-alternativa-branches-y-pull-requests">Fase 3: La Hipótesis Alternativa (Branches y Pull Requests)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-final-de-la-clase-ciencia-abierta-peer-review-y-control-de-calidad">Ejercicio Final de la clase: “Ciencia Abierta, Peer Review y Control de Calidad”</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catalogo-de-misiones-para-el-proyecto">Catálogo de Misiones para el Proyecto</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-1-creacion-del-repositorio">Paso 1: Creación del Repositorio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso2-ingesta-de-la-base-de-datos-publica">Paso2: Ingesta de la Base de Datos Pública</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-3-limpieza-inicial-pipeline-cli">Paso 3: Limpieza Inicial (Pipeline CLI)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-4-analisis-estadistico-basico">Paso 4: Análisis Estadístico Básico</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-5-presentacion-de-resultados-pull-request">Paso 5: Presentación de Resultados (Pull Request)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-6-revision-por-pares-y-control-de-calidad-reformas">Paso 6: Revisión por Pares y Control de Calidad (Reformas)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-7-segunda-revision">Paso 7: Segunda Revisión</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-8-entrega-de-la-version-final">Paso 8: Entrega de la Versión Final</a></li>
 </ul>
 </li>
 </ul>
