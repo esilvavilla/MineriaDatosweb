@@ -373,19 +373,19 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-mineria-de-datos-tabulares"><strong>Pandas: Minería de Datos Tabulares</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1-carga-y-exploracion">Ejemplo 1: Carga y Exploración</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-agrupacion-y-limpieza-data-quality">Ejemplo 2: Agrupación y Limpieza (Data Quality)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-3-carga-y-exploracion">Ejemplo 3: Carga y Exploración</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-4-agrupacion-y-limpieza-data-quality">Ejemplo 4: Agrupación y Limpieza (Data Quality)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-el-lienzo-de-la-visualizacion"><strong>Matplotlib: El Lienzo de la Visualización</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1-grafico-de-dispersion-simple">Ejemplo 1: Gráfico de Dispersión simple</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-histogramas-y-estadistica">Ejemplo 2. Histogramas y Estadística</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-3-ejes-multiples-y-escalas-diagrama-h-r">Ejemplo 3: Ejes Múltiples y Escalas (Diagrama H-R)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-5-grafico-de-dispersion-simple">Ejemplo 5: Gráfico de Dispersión simple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-6-histogramas-y-estadistica">Ejemplo 6. Histogramas y Estadística</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-7-ejes-multiples-y-escalas-diagrama-h-r">Ejemplo 7: Ejes Múltiples y Escalas (Diagrama H-R)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seaborn-visualizacion-estadistica-elegante"><strong>Seaborn: Visualización Estadística Elegante</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1-distribuciones-violin-plot">Ejemplo 1: Distribuciones (Violin Plot)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-pairplot-relaciones-multivariables">Ejemplo 2: Pairplot (Relaciones Multivariables)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-8-distribuciones-violin-plot">Ejemplo 8: Distribuciones (Violin Plot)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-9-pairplot-relaciones-multivariables">Ejemplo 9: Pairplot (Relaciones Multivariables)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet">Cheatsheet</a></li>
@@ -398,7 +398,7 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyectos-integradores-consola-github-analisis-cientifico">Proyectos Integradores (Consola + GitHub + Análisis Científico)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-1-descubriendo-la-estructura-galactica"><strong>Proyecto Integrador 1</strong>: “Descubriendo la Estructura Galáctica”</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-2-el-zoologico-de-exoplanetas">Proyecto Integrador 2: “El Zoológico de Exoplanetas”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-2-el-zoologico-de-exoplanetas"><strong>Proyecto Integrador 2</strong>: “El Zoológico de Exoplanetas”</a></li>
 </ul>
 </li>
 </ul>
@@ -518,8 +518,8 @@ Estrellas en Secuencia Principal: 21638.
 </ul>
 <p><strong>¿Cuándo usarlo?</strong></p>
 <p>Siempre que tengas un archivo tabular (CSV, TSV, Excel, bases de datos SQL) donde las columnas tengan diferentes tipos de datos (texto, números, fechas). Es el rey de la “Limpieza de Datos” (Data Wrangling).</p>
-<section id="ejemplo-1-carga-y-exploracion">
-<h3>Ejemplo 1: Carga y Exploración<a class="headerlink" href="#ejemplo-1-carga-y-exploracion" title="Link to this heading">#</a></h3>
+<section id="ejemplo-3-carga-y-exploracion">
+<h3>Ejemplo 3: Carga y Exploración<a class="headerlink" href="#ejemplo-3-carga-y-exploracion" title="Link to this heading">#</a></h3>
 <p>Simulamos un diccionario para crear un DataFrame</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -534,7 +534,7 @@ Estrellas en Secuencia Principal: 21638.
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El DF completo es:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">+</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El DF filtrado es:&#39;</span><span class="p">)</span>
 <span class="c1"># Filtrar solo galaxias</span>
 <span class="n">galaxias</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Tipo&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Galaxia&#39;</span><span class="p">]</span>
@@ -549,7 +549,9 @@ Estrellas en Secuencia Principal: 21638.
 1      M33  Galaxia          850.0  5.000000e+10
 2   NGC104   Cúmulo            4.5           NaN
 3  NGC6752   Cúmulo            4.0  2.000000e+05
+
 ----------
+
 El DF filtrado es:
   Objeto     Tipo  Distancia_kpc     Masa_Msol
 0    M31  Galaxia          780.0  1.000000e+12
@@ -559,8 +561,8 @@ El DF filtrado es:
 </div>
 </div>
 </section>
-<section id="ejemplo-2-agrupacion-y-limpieza-data-quality">
-<h3>Ejemplo 2: Agrupación y Limpieza (Data Quality)<a class="headerlink" href="#ejemplo-2-agrupacion-y-limpieza-data-quality" title="Link to this heading">#</a></h3>
+<section id="ejemplo-4-agrupacion-y-limpieza-data-quality">
+<h3>Ejemplo 4: Agrupación y Limpieza (Data Quality)<a class="headerlink" href="#ejemplo-4-agrupacion-y-limpieza-data-quality" title="Link to this heading">#</a></h3>
 <p>Rellenar la masa faltante con la media de su propio ‘Tipo’ (Cúmulo)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -595,8 +597,8 @@ El DF filtrado es:
 </ul>
 <p>¿Cuándo usarlo?</p>
 <p>Para tener un control milimétrico sobre cada píxel del gráfico: cambiar el grosor de las líneas, mover leyendas, crear figuras con múltiples sub-paneles y ajustar escalas logarítmicas.</p>
-<section id="ejemplo-1-grafico-de-dispersion-simple">
-<h3>Ejemplo 1: Gráfico de Dispersión simple<a class="headerlink" href="#ejemplo-1-grafico-de-dispersion-simple" title="Link to this heading">#</a></h3>
+<section id="ejemplo-5-grafico-de-dispersion-simple">
+<h3>Ejemplo 5: Gráfico de Dispersión simple<a class="headerlink" href="#ejemplo-5-grafico-de-dispersion-simple" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -620,8 +622,8 @@ El DF filtrado es:
 </div>
 </div>
 </section>
-<section id="ejemplo-2-histogramas-y-estadistica">
-<h3>Ejemplo 2. Histogramas y Estadística<a class="headerlink" href="#ejemplo-2-histogramas-y-estadistica" title="Link to this heading">#</a></h3>
+<section id="ejemplo-6-histogramas-y-estadistica">
+<h3>Ejemplo 6. Histogramas y Estadística<a class="headerlink" href="#ejemplo-6-histogramas-y-estadistica" title="Link to this heading">#</a></h3>
 <p>Supongamos que tenemos datos de magnitudes de estrellas (distribución normal simulada).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -642,8 +644,8 @@ El DF filtrado es:
 </div>
 </div>
 </section>
-<section id="ejemplo-3-ejes-multiples-y-escalas-diagrama-h-r">
-<h3>Ejemplo 3: Ejes Múltiples y Escalas (Diagrama H-R)<a class="headerlink" href="#ejemplo-3-ejes-multiples-y-escalas-diagrama-h-r" title="Link to this heading">#</a></h3>
+<section id="ejemplo-7-ejes-multiples-y-escalas-diagrama-h-r">
+<h3>Ejemplo 7: Ejes Múltiples y Escalas (Diagrama H-R)<a class="headerlink" href="#ejemplo-7-ejes-multiples-y-escalas-diagrama-h-r" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -691,8 +693,8 @@ El DF filtrado es:
 </ul>
 <p>¿Cuándo usarlo?</p>
 <p>Durante el Análisis Exploratorio de Datos (EDA). Cuando tienes un catálogo de Pandas con múltiples características (masas, radios, periodos, métodos) y quieres ver rápidamente cómo se correlacionan o se distribuyen por categorías sin escribir código de configuración complejo.</p>
-<section id="ejemplo-1-distribuciones-violin-plot">
-<h3>Ejemplo 1: Distribuciones (Violin Plot)<a class="headerlink" href="#ejemplo-1-distribuciones-violin-plot" title="Link to this heading">#</a></h3>
+<section id="ejemplo-8-distribuciones-violin-plot">
+<h3>Ejemplo 8: Distribuciones (Violin Plot)<a class="headerlink" href="#ejemplo-8-distribuciones-violin-plot" title="Link to this heading">#</a></h3>
 <p>Simulado de exoplanetas</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -715,8 +717,8 @@ El DF filtrado es:
 </div>
 </div>
 </section>
-<section id="ejemplo-2-pairplot-relaciones-multivariables">
-<h3>Ejemplo 2: Pairplot (Relaciones Multivariables)<a class="headerlink" href="#ejemplo-2-pairplot-relaciones-multivariables" title="Link to this heading">#</a></h3>
+<section id="ejemplo-9-pairplot-relaciones-multivariables">
+<h3>Ejemplo 9: Pairplot (Relaciones Multivariables)<a class="headerlink" href="#ejemplo-9-pairplot-relaciones-multivariables" title="Link to this heading">#</a></h3>
 <p>Simulamos un catálogo con múltiples propiedades correlacionadas</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -747,12 +749,16 @@ El DF filtrado es:
 <section id="cheatsheet">
 <h2>Cheatsheet<a class="headerlink" href="#cheatsheet" title="Link to this heading">#</a></h2>
 <p>Es importante saber de todos los posibles usos que tiene cada una de las herramientas, así que dejamos por acá unas cheatsheet para cada uno de las librerías con el fin de acceder de manera rápida y sencilla a sus funciones.</p>
+<p>Cheatsheet para Numpy</p>
 <p><img alt="Cheatsheet Numpy" src="_images/numpy-cheat-sheet.png" /></p>
 <p>Imagen tomada de: <a class="reference external" href="https://ashutoshtripathi.com/wp-content/uploads/2019/02/numpy-cheat-sheet.png">Link</a></p>
+<p>Cheatsheet para Pandas</p>
 <p><img alt="Cheatsheet Pandas" src="_images/pandas_cheatsheet.png" /></p>
 <p>Imagen tomada de: <a class="reference external" href="https://www.kaggle.com/discussions/getting-started/156692">Link</a></p>
+<p>Cheatsheet para Matplotlib</p>
 <p><img alt="Cheatsheet Matplotlib" src="_images/matplotlib_cheatsheets.png" /></p>
 <p>Imagen tomada de: <a class="reference external" href="https://matplotlib.org/cheatsheets/">Link</a></p>
+<p>Cheatsheet para Seaborn</p>
 <p><img alt="Cheatsheet Seaborn" src="_images/seaborn_cheatsheet.png" /></p>
 <p>Imagen tomada de: <a class="reference external" href="https://www.kaggle.com/discussions/getting-started/124992">Link</a></p>
 </section>
@@ -763,10 +769,10 @@ El DF filtrado es:
 <h3>Ejercicio 1: Integración Numérica del Flujo<a class="headerlink" href="#ejercicio-1-integracion-numerica-del-flujo" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Crea un array tiempo de 0 a 10 segundos con 10,000 puntos usando np.linspace.</p></li>
-<li><p>Modela una señal de un púlsar: señal = np.sin(2 * np.pi * 5 * tiempo) * np.exp(-tiempo / 3). (Una onda de 5Hz con decaimiento exponencial).</p></li>
+<li><p>Modela una señal de un púlsar: $señal = np.sin(2 * np.pi * 5 * tiempo) * np.exp(-tiempo / 3)$. (Una onda de 5Hz con decaimiento exponencial).</p></li>
 <li><p>Encuentra los instantes de tiempo donde la señal supera el umbral de 0.5 usando máscaras.</p></li>
 <li><p>Calcula el “flujo total” (la suma acumulada) de la señal sólo durante esos instantes que superan el umbral.
-Solución: mascara = señal &gt; 0.5; tiempos_altos = tiempo[mascara]; flujo_total = np.sum(señal[mascara]).</p></li>
+Solución: $mascara = señal &gt; 0.5; tiempos_altos = tiempo[mascara]$; $flujo_total = np.sum(señal[mascara])$.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -780,7 +786,7 @@ Solución: mascara = señal &gt; 0.5; tiempos_altos = tiempo[mascara]; flujo_tot
 <h3>Ejercicio 2: Limpieza Extrema de Catálogos<a class="headerlink" href="#ejercicio-2-limpieza-extrema-de-catalogos" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Suponga un DataFrame df con las columnas [‘Objeto’, ‘$B_{mag}$’, ‘$V_{mag}$’] con múltiples NaN en las magnitudes.</p></li>
-<li><p>Crea una nueva columna llamada <code class="docutils literal notranslate"><span class="pre">$Color_{BV}$</span></code> que sea la resta $B_{mag}$ - $V_{mag}$.</p></li>
+<li><p>Crea una nueva columna llamada $Color_{BV}$ que sea la resta $B_{mag}$ - $V_{mag}$.</p></li>
 <li><p>Pandas dejará como NaN el color si falta alguna magnitud. Elimina todas las filas (<code class="docutils literal notranslate"><span class="pre">dropna()</span></code>) que no tengan el índice de color calculado.</p></li>
 <li><p>Encuentra cuál es el objeto con el índice de color más bajo (el más azul) usando el método df.loc[df[‘Color_BV’].idxmin()].</p></li>
 </ol>
@@ -871,7 +877,7 @@ Solución: mascara = señal &gt; 0.5; tiempos_altos = tiempo[mascara]; flujo_tot
 </div>
 </section>
 <section id="proyecto-integrador-2-el-zoologico-de-exoplanetas">
-<h3>Proyecto Integrador 2: “El Zoológico de Exoplanetas”<a class="headerlink" href="#proyecto-integrador-2-el-zoologico-de-exoplanetas" title="Link to this heading">#</a></h3>
+<h3><strong>Proyecto Integrador 2</strong>: “El Zoológico de Exoplanetas”<a class="headerlink" href="#proyecto-integrador-2-el-zoologico-de-exoplanetas" title="Link to this heading">#</a></h3>
 <p>Usar el API de NASA, limpiar datos de misiones exoplanetarias y utilizar diagramas de dispersión avanzados en Matplotlib para replicar un gráfico estándar de la industria (Masa vs Radio).</p>
 <ol class="arabic simple">
 <li><p>Investigador Principal (IP):</p></li>
@@ -907,7 +913,7 @@ Solución: mascara = señal &gt; 0.5; tiempos_altos = tiempo[mascara]; flujo_tot
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Escribe tu código bash aquí</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>  <span class="c1"># Escribe tu código bash aquí</span>
 </pre></div>
 </div>
 </div>
@@ -973,19 +979,19 @@ Solución: mascara = señal &gt; 0.5; tiempos_altos = tiempo[mascara]; flujo_tot
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-mineria-de-datos-tabulares"><strong>Pandas: Minería de Datos Tabulares</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1-carga-y-exploracion">Ejemplo 1: Carga y Exploración</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-agrupacion-y-limpieza-data-quality">Ejemplo 2: Agrupación y Limpieza (Data Quality)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-3-carga-y-exploracion">Ejemplo 3: Carga y Exploración</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-4-agrupacion-y-limpieza-data-quality">Ejemplo 4: Agrupación y Limpieza (Data Quality)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib-el-lienzo-de-la-visualizacion"><strong>Matplotlib: El Lienzo de la Visualización</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1-grafico-de-dispersion-simple">Ejemplo 1: Gráfico de Dispersión simple</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-histogramas-y-estadistica">Ejemplo 2. Histogramas y Estadística</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-3-ejes-multiples-y-escalas-diagrama-h-r">Ejemplo 3: Ejes Múltiples y Escalas (Diagrama H-R)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-5-grafico-de-dispersion-simple">Ejemplo 5: Gráfico de Dispersión simple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-6-histogramas-y-estadistica">Ejemplo 6. Histogramas y Estadística</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-7-ejes-multiples-y-escalas-diagrama-h-r">Ejemplo 7: Ejes Múltiples y Escalas (Diagrama H-R)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seaborn-visualizacion-estadistica-elegante"><strong>Seaborn: Visualización Estadística Elegante</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1-distribuciones-violin-plot">Ejemplo 1: Distribuciones (Violin Plot)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-pairplot-relaciones-multivariables">Ejemplo 2: Pairplot (Relaciones Multivariables)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-8-distribuciones-violin-plot">Ejemplo 8: Distribuciones (Violin Plot)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-9-pairplot-relaciones-multivariables">Ejemplo 9: Pairplot (Relaciones Multivariables)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet">Cheatsheet</a></li>
@@ -998,7 +1004,7 @@ Solución: mascara = señal &gt; 0.5; tiempos_altos = tiempo[mascara]; flujo_tot
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyectos-integradores-consola-github-analisis-cientifico">Proyectos Integradores (Consola + GitHub + Análisis Científico)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-1-descubriendo-la-estructura-galactica"><strong>Proyecto Integrador 1</strong>: “Descubriendo la Estructura Galáctica”</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-2-el-zoologico-de-exoplanetas">Proyecto Integrador 2: “El Zoológico de Exoplanetas”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-2-el-zoologico-de-exoplanetas"><strong>Proyecto Integrador 2</strong>: “El Zoológico de Exoplanetas”</a></li>
 </ul>
 </li>
 </ul>
