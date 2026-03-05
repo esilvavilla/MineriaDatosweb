@@ -794,10 +794,10 @@ Solución: <code class="docutils literal notranslate"><span class="pre">mascara<
 <section id="ejercicio-2-limpieza-extrema-de-catalogos">
 <h3>Ejercicio 2: Limpieza Extrema de Catálogos<a class="headerlink" href="#ejercicio-2-limpieza-extrema-de-catalogos" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Suponga un DataFrame df con las columnas [Objeto, $B_{mag}$, $V_{mag}$] con múltiples NaN en las magnitudes.</p></li>
-<li><p>Crea una nueva columna llamada $Color_{BV}$ que sea la resta $B_{mag}$ - $V_{mag}$.</p></li>
+<li><p>Suponga un DataFrame df con las columnas [Objeto, <span class="math notranslate nohighlight">\(B_{mag}\)</span>, <span class="math notranslate nohighlight">\(V_{mag}\)</span>] con múltiples NaN en las magnitudes.</p></li>
+<li><p>Crea una nueva columna llamada <span class="math notranslate nohighlight">\(Color_{BV}\)</span> que sea la resta <span class="math notranslate nohighlight">\(B_{mag} - V_{mag}\)</span>.</p></li>
 <li><p>Pandas dejará como NaN el color si falta alguna magnitud. Elimina todas las filas (<code class="docutils literal notranslate"><span class="pre">dropna()</span></code>) que no tengan el índice de color calculado.</p></li>
-<li><p>Encuentra cuál es el objeto con el índice de color más bajo (el más azul) usando el método df.loc[df[Color$_{BV}$].idxmin()].</p></li>
+<li><p>Encuentra cuál es el objeto con el índice de color más bajo (el más azul) usando el método <span class="math notranslate nohighlight">\(df.loc[df[Color_{BV}].idxmin()]\)</span>.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -967,7 +967,7 @@ Trabajarán en paralelo usando GitHub. El <strong>Investigador Principal (IP)</s
 <ol class="arabic simple">
 <li><p>Crea una rama llamada <code class="docutils literal notranslate"><span class="pre">analisis_composicion</span></code>.</p></li>
 <li><p>Crea un script en Python (<code class="docutils literal notranslate"><span class="pre">plot_masa_radio.py</span></code>) usando la <strong>línea de comandos</strong>. Carga <code class="docutils literal notranslate"><span class="pre">cat_limpio.csv</span></code> con <strong>Pandas</strong>.</p></li>
-<li><p>Calcula la <strong>Densidad</strong> aproximada de cada planeta en $g/cm^3$. <em>(Sabiendo que la Tierra tiene <span class="math notranslate nohighlight">\(\rho \approx 5.51 \text{ g/cm}^3\)</span>, la fórmula es: $\rho = 5.51 \times \frac{M}{R^3}$)</em>.</p></li>
+<li><p>Calcula la <strong>Densidad</strong> aproximada de cada planeta en <span class="math notranslate nohighlight">\(g/cm^3\)</span>. <em>(Sabiendo que la Tierra tiene <span class="math notranslate nohighlight">\(\rho \approx 5.51 \text{ g/cm}^3\)</span>, la fórmula es: <span class="math notranslate nohighlight">\(\rho = 5.51 \times \frac{M}{R^3}\)</span>)</em>.</p></li>
 <li><p>Usa <strong>Matplotlib</strong> para crear un Scatter Plot de <strong>Masa vs. Radio</strong>.</p>
 <ul class="simple">
 <li><p>Usa escala logarítmica en ambos ejes.</p></li>
