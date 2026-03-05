@@ -769,10 +769,10 @@ El DF filtrado es:
 <h3>Ejercicio 1: Integración Numérica del Flujo<a class="headerlink" href="#ejercicio-1-integracion-numerica-del-flujo" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Crea un array tiempo de 0 a 10 segundos con 10,000 puntos usando np.linspace.</p></li>
-<li><p>Modela una señal de un púlsar: $señal = np.sin(2 * np.pi * 5 * tiempo) * np.exp(-tiempo / 3)$. (Una onda de 5Hz con decaimiento exponencial).</p></li>
+<li><p>Modela una señal de un púlsar: <code class="docutils literal notranslate"><span class="pre">señal</span> <span class="pre">=</span> <span class="pre">np.sin(2</span> <span class="pre">*</span> <span class="pre">np.pi</span> <span class="pre">*</span> <span class="pre">5</span> <span class="pre">*</span> <span class="pre">tiempo)</span> <span class="pre">*</span> <span class="pre">np.exp(-tiempo</span> <span class="pre">/</span> <span class="pre">3)</span></code>. (Una onda de 5Hz con decaimiento exponencial).</p></li>
 <li><p>Encuentra los instantes de tiempo donde la señal supera el umbral de 0.5 usando máscaras.</p></li>
 <li><p>Calcula el “flujo total” (la suma acumulada) de la señal sólo durante esos instantes que superan el umbral.
-Solución: $mascara = señal &gt; 0.5; tiempos_altos = tiempo[mascara]$; $flujo_total = np.sum(señal[mascara])$.</p></li>
+Solución: <code class="docutils literal notranslate"><span class="pre">mascara</span> <span class="pre">=</span> <span class="pre">señal</span> <span class="pre">&gt;</span> <span class="pre">0.5;</span> <span class="pre">tiempos_altos</span> <span class="pre">=</span> <span class="pre">tiempo[mascara]</span></code>; <code class="docutils literal notranslate"><span class="pre">flujo_total</span> <span class="pre">=</span> <span class="pre">np.sum(señal[mascara])</span></code>.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -785,10 +785,10 @@ Solución: $mascara = señal &gt; 0.5; tiempos_altos = tiempo[mascara]$; $flujo_
 <section id="ejercicio-2-limpieza-extrema-de-catalogos">
 <h3>Ejercicio 2: Limpieza Extrema de Catálogos<a class="headerlink" href="#ejercicio-2-limpieza-extrema-de-catalogos" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Suponga un DataFrame df con las columnas [‘Objeto’, ‘$B_{mag}$’, ‘$V_{mag}$’] con múltiples NaN en las magnitudes.</p></li>
+<li><p>Suponga un DataFrame df con las columnas [‘Objeto’, $B_{mag}$, $V_{mag}$] con múltiples NaN en las magnitudes.</p></li>
 <li><p>Crea una nueva columna llamada $Color_{BV}$ que sea la resta $B_{mag}$ - $V_{mag}$.</p></li>
 <li><p>Pandas dejará como NaN el color si falta alguna magnitud. Elimina todas las filas (<code class="docutils literal notranslate"><span class="pre">dropna()</span></code>) que no tengan el índice de color calculado.</p></li>
-<li><p>Encuentra cuál es el objeto con el índice de color más bajo (el más azul) usando el método df.loc[df[‘Color_BV’].idxmin()].</p></li>
+<li><p>Encuentra cuál es el objeto con el índice de color más bajo (el más azul) usando el método df.loc[df[Color$_{BV}$].idxmin()].</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
