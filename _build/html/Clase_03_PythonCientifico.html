@@ -483,7 +483,7 @@
 </section>
 <section id="ejemplo-2-mascaras-booleanas-complejas-e-indexacion-numerica">
 <h3>Ejemplo 2: Máscaras Booleanas Complejas e Indexación Numérica<a class="headerlink" href="#ejemplo-2-mascaras-booleanas-complejas-e-indexacion-numerica" title="Link to this heading">#</a></h3>
-<p>Encontrar estrellas en la “Secuencia Principal” basándonos en parámetros de temperatura ($T_{eff}$) y gravedad superficial ($log_{10}(g)$).</p>
+<p>Encontrar estrellas en la “Secuencia Principal” basándonos en parámetros de temperatura (<span class="math notranslate nohighlight">\(T_{eff}\)</span>) y gravedad superficial (<span class="math notranslate nohighlight">\(log_{10}(g)\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -797,7 +797,7 @@ Solución: <code class="docutils literal notranslate"><span class="pre">mascara<
 <li><p>Suponga un DataFrame df con las columnas [Objeto, <span class="math notranslate nohighlight">\(B_{mag}\)</span>, <span class="math notranslate nohighlight">\(V_{mag}\)</span>] con múltiples NaN en las magnitudes.</p></li>
 <li><p>Crea una nueva columna llamada <span class="math notranslate nohighlight">\(Color_{BV}\)</span> que sea la resta <span class="math notranslate nohighlight">\(B_{mag} - V_{mag}\)</span>.</p></li>
 <li><p>Pandas dejará como NaN el color si falta alguna magnitud. Elimina todas las filas (<code class="docutils literal notranslate"><span class="pre">dropna()</span></code>) que no tengan el índice de color calculado.</p></li>
-<li><p>Encuentra cuál es el objeto con el índice de color más bajo (el más azul) usando el método <span class="math notranslate nohighlight">\(df.loc[df[Color_{BV}].idxmin()]\)</span>.</p></li>
+<li><p>Encuentra cuál es el objeto con el índice de color más bajo (el más azul) usando el método df.loc[df[{math}`Color_{BV}].idxmin()].</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
