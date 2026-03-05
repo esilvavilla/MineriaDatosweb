@@ -60,6 +60,7 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_03_PythonCientifico';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -401,6 +402,14 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-2-el-zoologico-de-exoplanetas"><strong>Proyecto Integrador 2</strong>: “El Zoológico de Exoplanetas”</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-de-investigacion-arquitectura-exoplanetaria-y-el-desierto-de-neptunos"><strong>Proyecto de Investigación: Arquitectura Exoplanetaria y el “Desierto de Neptunos”</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-problema-cientifico">El Problema Científico</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-1-ingenieria-de-datos-y-entorno">Fase 1: Ingeniería de Datos y Entorno</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-2-analisis-de-composicion-interna">Fase 2: Análisis de Composición Interna</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-3-la-busqueda-del-desierto">Fase 3: La Búsqueda del Desierto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-4-fusion-y-co-autoria-cientifica">Fase 4: Fusión y Co-Autoría Científica</a></li>
 </ul>
             </nav>
         </div>
@@ -474,7 +483,7 @@
 </section>
 <section id="ejemplo-2-mascaras-booleanas-complejas-e-indexacion-numerica">
 <h3>Ejemplo 2: Máscaras Booleanas Complejas e Indexación Numérica<a class="headerlink" href="#ejemplo-2-mascaras-booleanas-complejas-e-indexacion-numerica" title="Link to this heading">#</a></h3>
-<p>Encontrar estrellas en la “Secuencia Principal” basándonos en parámetros de temperatura ($T_{eff}$) y gravedad superficial ($log_{10}(g)$).</p>
+<p>Encontrar estrellas en la “Secuencia Principal” basándonos en parámetros de temperatura (<span class="math notranslate nohighlight">\(T_{eff}\)</span>) y gravedad superficial (<span class="math notranslate nohighlight">\(log_{10}(g)\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -785,10 +794,10 @@ Solución: <code class="docutils literal notranslate"><span class="pre">mascara<
 <section id="ejercicio-2-limpieza-extrema-de-catalogos">
 <h3>Ejercicio 2: Limpieza Extrema de Catálogos<a class="headerlink" href="#ejercicio-2-limpieza-extrema-de-catalogos" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
-<li><p>Suponga un DataFrame df con las columnas [Objeto, $B_{mag}$, $V_{mag}$] con múltiples NaN en las magnitudes.</p></li>
-<li><p>Crea una nueva columna llamada $Color_{BV}$ que sea la resta $B_{mag}$ - $V_{mag}$.</p></li>
+<li><p>Suponga un DataFrame df con las columnas [Objeto, <span class="math notranslate nohighlight">\(B_{mag}\)</span>, <span class="math notranslate nohighlight">\(V_{mag}\)</span>] con múltiples NaN en las magnitudes.</p></li>
+<li><p>Crea una nueva columna llamada <span class="math notranslate nohighlight">\(Color_{BV}\)</span> que sea la resta <span class="math notranslate nohighlight">\(B_{mag} - V_{mag}\)</span>.</p></li>
 <li><p>Pandas dejará como NaN el color si falta alguna magnitud. Elimina todas las filas (<code class="docutils literal notranslate"><span class="pre">dropna()</span></code>) que no tengan el índice de color calculado.</p></li>
-<li><p>Encuentra cuál es el objeto con el índice de color más bajo (el más azul) usando el método df.loc[df[Color$_{BV}$].idxmin()].</p></li>
+<li><p>Encuentra cuál es el objeto con el índice de color más bajo (el más azul) usando el método df.loc[df[<span class="math notranslate nohighlight">\(Color_{BV}\)</span>].idxmin()].</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -920,6 +929,96 @@ Solución: <code class="docutils literal notranslate"><span class="pre">mascara<
 </div>
 </section>
 </section>
+<section id="proyecto-de-investigacion-arquitectura-exoplanetaria-y-el-desierto-de-neptunos">
+<h2><strong>Proyecto de Investigación: Arquitectura Exoplanetaria y el “Desierto de Neptunos”</strong><a class="headerlink" href="#proyecto-de-investigacion-arquitectura-exoplanetaria-y-el-desierto-de-neptunos" title="Link to this heading">#</a></h2>
+<section id="el-problema-cientifico">
+<h3>El Problema Científico<a class="headerlink" href="#el-problema-cientifico" title="Link to this heading">#</a></h3>
+<p>En las últimas décadas, hemos descubierto miles de exoplanetas, revelando que nuestro Sistema Solar no es la regla, sino una excepción. Para entender cómo se forman y evolucionan los planetas, los astrofísicos estudian dos relaciones fundamentales:</p>
+<ol class="arabic simple">
+<li><p><strong>Masa vs. Radio:</strong> Nos revela la densidad y, por ende, la composición interna (rocoso, gigante de hielo, gigante gaseoso).</p></li>
+<li><p><strong>Periodo Orbital vs. Masa:</strong> Nos muestra dónde “sobreviven” los planetas. Existe una región misteriosa muy cerca de la estrella anfitriona donde no encontramos planetas del tamaño de Neptuno, conocida como el <strong>“Desierto de Neptunos”</strong>.</p></li>
+</ol>
+<p><strong>Misión del Equipo:</strong>
+Trabajarán en paralelo usando GitHub. El <strong>Investigador Principal (IP)</strong> analizará la composición interna (Masa-Radio), mientras que el <strong>Co-Investigador (Co-I)</strong> buscará la evidencia del Desierto de Neptunos (Periodo-Masa). Al final, deberán fusionar su código y co-escribir la interpretación física en el <code class="docutils literal notranslate"><span class="pre">README.md</span></code>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="fase-1-ingenieria-de-datos-y-entorno">
+<h2>Fase 1: Ingeniería de Datos y Entorno<a class="headerlink" href="#fase-1-ingenieria-de-datos-y-entorno" title="Link to this heading">#</a></h2>
+<p>Investigador Principal (IP)</p>
+<p>El archivo crudo de la NASA (<code class="docutils literal notranslate"><span class="pre">PS_2026.03.02_04.48.37.csv</span></code>, <a class="reference external" href="https://github.com/esilvavilla/MineriaDatosweb/blob/main/PS_2026.03.02_04.48.37.csv">Link</a>) tiene casi 100 líneas de comentarios y registros duplicados (múltiples papers midiendo el mismo planeta).</p>
+<ol class="arabic simple">
+<li><p>Crea un repositorio en GitHub llamado <code class="docutils literal notranslate"><span class="pre">arquitectura_exoplanetaria</span></code> e invita al Co-I. Clónalo localmente.</p></li>
+<li><p>Añade el archivo CSV crudo a tu <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>.</p></li>
+<li><p>Usa la <strong>línea de comandos</strong> para generar una muestra de “Alta Calidad” sin duplicados:</p>
+<ul class="simple">
+<li><p>Omitir comentarios (<code class="docutils literal notranslate"><span class="pre">#</span></code>).</p></li>
+<li><p>Filtrar solo la solución por defecto (<code class="docutils literal notranslate"><span class="pre">default_flag</span></code> = 1).</p></li>
+<li><p>Extraer <strong>solo</strong>: Nombre, Método, Periodo, Radio y Masa.</p></li>
+<li><p>Finalmente, excluir filas donde el Periodo, Masa o Radio estén vacíos.</p></li>
+</ul>
+</li>
+<li><p>Guarda el resultado como <code class="docutils literal notranslate"><span class="pre">cat_limpio.csv</span></code>, haz commit y súbelo a <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+</ol>
+</section>
+<section id="fase-2-analisis-de-composicion-interna">
+<h2>Fase 2: Análisis de Composición Interna<a class="headerlink" href="#fase-2-analisis-de-composicion-interna" title="Link to this heading">#</a></h2>
+<p>Investigador Principal (IP)</p>
+<ol class="arabic simple">
+<li><p>Crea una rama llamada <code class="docutils literal notranslate"><span class="pre">analisis_composicion</span></code>.</p></li>
+<li><p>Crea un script en Python (<code class="docutils literal notranslate"><span class="pre">plot_masa_radio.py</span></code>) usando la <strong>línea de comandos</strong>. Carga <code class="docutils literal notranslate"><span class="pre">cat_limpio.csv</span></code> con <strong>Pandas</strong>.</p></li>
+<li><p>Calcula la <strong>Densidad</strong> aproximada de cada planeta en <span class="math notranslate nohighlight">\(g/cm^3\)</span>. <em>(Sabiendo que la Tierra tiene <span class="math notranslate nohighlight">\(\rho \approx 5.51 \text{ g/cm}^3\)</span>, la fórmula es: <span class="math notranslate nohighlight">\(\rho = 5.51 \times \frac{M}{R^3}\)</span>)</em>.</p></li>
+<li><p>Usa <strong>Matplotlib</strong> para crear un Scatter Plot de <strong>Masa vs. Radio</strong>.</p>
+<ul class="simple">
+<li><p>Usa escala logarítmica en ambos ejes.</p></li>
+<li><p>Colorea los puntos usando el array de densidad calculado y un mapa de color.</p></li>
+<li><p>Añade una barra de color.</p></li>
+</ul>
+</li>
+<li><p>Guarda la imagen (<code class="docutils literal notranslate"><span class="pre">masa_radio.png</span></code>), haz commit y abre un Pull Request.</p></li>
+</ol>
+</section>
+<section id="fase-3-la-busqueda-del-desierto">
+<h2>Fase 3: La Búsqueda del Desierto<a class="headerlink" href="#fase-3-la-busqueda-del-desierto" title="Link to this heading">#</a></h2>
+<p>Co-Investigador (Co-I)</p>
+<ol class="arabic simple">
+<li><p>Clona el repositorio y actualízate (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>). Crea tu propia rama: <code class="docutils literal notranslate"><span class="pre">analisis_orbital</span></code>.</p></li>
+<li><p>Crea un script en Python (<code class="docutils literal notranslate"><span class="pre">plot_desierto.py</span></code>). Carga el mismo <code class="docutils literal notranslate"><span class="pre">cat_limpio.csv</span></code> con <strong>Pandas</strong> usando <strong>línea de comandos</strong>.</p></li>
+<li><p>Usa Seaborn o Matplotlib para crear un Scatter Plot de **Periodo Orbital vs. Masa **.</p>
+<ul class="simple">
+<li><p>Usa escala logarítmica en ambos ejes.</p></li>
+<li><p>Ajusta la transparencia para observar las concentraciones de densidad.</p></li>
+</ul>
+</li>
+<li><p>Guarda la imagen (<code class="docutils literal notranslate"><span class="pre">desierto.png</span></code>), haz commit y abre un Pull Request paralelo al del IP.</p></li>
+</ol>
+</section>
+<section id="fase-4-fusion-y-co-autoria-cientifica">
+<h2>Fase 4: Fusión y Co-Autoría Científica<a class="headerlink" href="#fase-4-fusion-y-co-autoria-cientifica" title="Link to this heading">#</a></h2>
+<p>Ambos en conjunto.</p>
+<ol class="arabic simple">
+<li><p>Ambos deben revisar y aprobar el Pull Request del otro en GitHub. Hagan el <strong>Merge</strong> a <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+<li><p>Ahora que <code class="docutils literal notranslate"><span class="pre">main</span></code> tiene ambos gráficos y scripts, el IP debe hacer un <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> a su máquina local.</p></li>
+<li><p><strong>El Análisis Escrito:</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Abran el archivo <code class="docutils literal notranslate"><span class="pre">README.md</span></code>.</p></li>
+<li><p>Deben incrustar las dos imágenes generadas y <strong>redactar en colaboración</strong> la discusión de resultados.</p></li>
+<li><p>Deben responder conjuntamente a:</p>
+<ul>
+<li><p><strong>Sobre el Gráfico 1:</strong> Identifiquen dónde están los “Júpiteres” (Gigantes gaseosos de baja densidad) y dónde las “Supertierras” (Rocosos de alta densidad). ¿A partir de qué radio los planetas dejan de ser rocosos densos y se vuelven “esponjosos” (retienen atmósferas masivas de H/He)?</p></li>
+<li><p><strong>Sobre el Gráfico 2:</strong> Observen la región de periodos muy cortos (&lt; 5 días) y masas intermedias (entre 10 y 50 masas terrestres). Esta zona está extrañamente vacía (El Desierto de Neptunos). <strong>Teoricen por qué:</strong> Si un planeta de masa intermedia orbita tan cerca de su estrella, ¿qué proceso físico destructivo impide que mantenga su tamaño original y “sobreviva” en ese desierto?</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>  <span class="c1"># Escribe tu código bash aquí</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1016,6 +1115,14 @@ Solución: <code class="docutils literal notranslate"><span class="pre">mascara<
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-integrador-2-el-zoologico-de-exoplanetas"><strong>Proyecto Integrador 2</strong>: “El Zoológico de Exoplanetas”</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-de-investigacion-arquitectura-exoplanetaria-y-el-desierto-de-neptunos"><strong>Proyecto de Investigación: Arquitectura Exoplanetaria y el “Desierto de Neptunos”</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#el-problema-cientifico">El Problema Científico</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-1-ingenieria-de-datos-y-entorno">Fase 1: Ingeniería de Datos y Entorno</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-2-analisis-de-composicion-interna">Fase 2: Análisis de Composición Interna</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-3-la-busqueda-del-desierto">Fase 3: La Búsqueda del Desierto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fase-4-fusion-y-co-autoria-cientifica">Fase 4: Fusión y Co-Autoría Científica</a></li>
 </ul>
   </nav></div>
 
