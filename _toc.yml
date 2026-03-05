@@ -6,4 +6,5 @@ root: intro
 chapters:
 - file: Clase_01_INTROyCLI
 - file: Clase_02_GIT-HUB
+- file: Clase_03_PythonCientifico
 
