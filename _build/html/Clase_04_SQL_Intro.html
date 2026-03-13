@@ -693,7 +693,7 @@ python3<span class="w"> </span>graficar_consola.py
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1"># Reemplazamos espacios por %20. Extraemos color u, g de Quásares y Galaxias.</span>
 <span class="nv">QUERY</span><span class="o">=</span><span class="s2">&quot;SELECT%20TOP%205000%20class,u,g%20FROM%20SpecObjAll%20WHERE%20class=&#39;QSO&#39;%20OR%20class=&#39;GALAXY&#39;&quot;</span>
-<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;[http://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?format=csv&amp;cmd=</span>$<span class="s2">](http://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?format=csv&amp;cmd=</span>$<span class="s2">){QUERY}&quot;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;http://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?format=csv&amp;cmd=</span><span class="si">${</span><span class="nv">QUERY</span><span class="si">}</span><span class="s2">&quot;</span>
 wget<span class="w"> </span>-q<span class="w"> </span>-O<span class="w"> </span>sdss_datos.csv<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$URL</span><span class="s2">&quot;</span>
 <span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Datos de SDSS descargados.&quot;</span>
 </pre></div>
@@ -725,7 +725,7 @@ wget<span class="w"> </span>-q<span class="w"> </span>-O<span class="w"> </span>
 <span class="c1"># 1. Consultar a la NASA (Endpoint TAP usando SQL simple)</span>
 <span class="c1"># Seleccionamos Nombre, Método, Radio y Masa Terrestre</span>
 <span class="nv">QUERY</span><span class="o">=</span><span class="s2">&quot;SELECT+pl_name,discoverymethod,pl_rade,pl_bmasse+FROM+ps&quot;</span>
-<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;[https://exoplanetarchive.ipac.caltech.edu/TAP/sync?format=csv&amp;query=</span>$<span class="s2">](https://exoplanetarchive.ipac.caltech.edu/TAP/sync?format=csv&amp;query=</span>$<span class="s2">){QUERY}&quot;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://exoplanetarchive.ipac.caltech.edu/TAP/sync?format=csv&amp;query=</span><span class="si">${</span><span class="nv">QUERY</span><span class="si">}</span><span class="s2">&quot;</span>
 wget<span class="w"> </span>-q<span class="w"> </span>-O<span class="w"> </span>exoplanetas.csv<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$URL</span><span class="s2">&quot;</span>
 
 <span class="c1"># 2. Script de Python embebido para Migrar a SQLite Local</span>
