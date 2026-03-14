@@ -1,0 +1,943 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Clase 4: Introducción a SQL y Bases de Datos Relacionales &#8212; Minería de datos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_04_SQL_Intro';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)" href="Clase_03_PythonCientifico.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
+    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Minería de datos para el pregrado de Astronomía UdeA
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Clase_01_INTROyCLI.html">Clase 1: La Consola de Comandos (Bash)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_02_GIT-HUB.html">Clase 2: Introducción a herramientas de control de versiones Git y Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_03_PythonCientifico.html">Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 4: Introducción a SQL y Bases de Datos Relacionales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FClase_04_SQL_Intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Clase_04_SQL_Intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clase 4: Introducción a SQL y Bases de Datos Relacionales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-concepto-relacional-sql-y-sqlite">1. El Concepto Relacional, SQL y SQLite</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomia-de-una-base-de-datos-relacional">Anatomía de una Base de Datos Relacional</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-basicos-de-sql-diccionario-humano-maquina">2. Comandos Básicos de SQL (Diccionario Humano-Máquina)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-table-crear-tabla"><code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> (Crear Tabla)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insert-into-insertar-datos"><code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code> (Insertar Datos)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-y-from-seleccionar-de"><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">y</span> <span class="pre">FROM</span></code> (Seleccionar De)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-donde-filtrado-condicional"><code class="docutils literal notranslate"><span class="pre">WHERE</span></code> (Donde - Filtrado Condicional)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-by-ordenar-por"><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> (Ordenar Por)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#join-unir-tablas"><code class="docutils literal notranslate"><span class="pre">JOIN</span></code> (Unir Tablas)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-crea-una-base-de-datos-desde-la-consola-cli">3. ¿Cómo se crea una base de datos desde la Consola (CLI)?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-paso-a-paso">Ejemplo Paso a Paso:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-leer-bases-de-datos-desde-consola-y-graficar-en-python">4. ¿Cómo leer bases de datos desde Consola y graficar en Python?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-lectura-exportando-desde-sqlite-a-csv">Ejemplo de Lectura (Exportando desde SQLite a CSV):</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-crea-una-base-de-datos-desde-python">5. ¿Cómo se crea una base de datos desde Python?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-leer-bases-de-datos-desde-python-usando-archivos-creados-en-consola">6. ¿Cómo leer bases de datos desde Python usando archivos creados en Consola?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unificacion-total-sql-cli-python-y-bases-remotas">7. Unificación Total: SQL, CLI, Python y Bases Remotas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-endpoints-publicos-astronomicos">Tabla de Endpoints Públicos Astronómicos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-unificado-1-mineria-de-quasares-en-sdss-bash-sql-python">Ejemplo Unificado 1: Minería de Quásares en SDSS (Bash -&gt; SQL -&gt; Python)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-unificado-2-guardando-exoplanetas-en-sqlite-local">Ejemplo Unificado 2: Guardando Exoplanetas en SQLite Local</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet-de-sql"><strong>CheatSheet de SQL</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-practicos-nivel-avanzado">8. Ejercicios Prácticos (Nivel Avanzado)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-individuales">Ejercicios Individuales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-el-constructor-automatico-cli-python-git">Ejercicio 1: “El Constructor Automático” (CLI + Python + Git)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-corrimiento-al-rojo-de-sloan-sql-remoto-pandas">Ejercicio 2: “Corrimiento al Rojo de Sloan” (SQL Remoto + Pandas)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-en-parejas-flujos-de-trabajo-github">Ejercicios en Parejas (Flujos de Trabajo GitHub)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-la-arquitectura-de-la-base-de-datos-local">Ejercicio 3: “La Arquitectura de la Base de Datos Local”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-color-vs-temperatura-en-la-via-lactea-sql-complejo-seaborn">Ejercicio 4: “Color vs Temperatura en la Vía Láctea” (SQL Complejo + Seaborn)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-5-migracion-de-big-data-de-nasa-a-local-integracion-total">Ejercicio 5: “Migración de Big Data: De NASA a Local” (Integración Total)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="clase-4-introduccion-a-sql-y-bases-de-datos-relacionales">
+<h1>Clase 4: Introducción a SQL y Bases de Datos Relacionales<a class="headerlink" href="#clase-4-introduccion-a-sql-y-bases-de-datos-relacionales" title="Link to this heading">#</a></h1>
+<p>En la ciencia de datos astrofísica, la información rara vez vive en un solo archivo CSV. Los datos reales son masivos, complejos y están interconectados. En esta semana aprenderemos a <strong>diseñar, crear, consultar y graficar</strong> Bases de Datos Relacionales usando SQL (Structured Query Language) y Python.</p>
+<section id="el-concepto-relacional-sql-y-sqlite">
+<h2>1. El Concepto Relacional, SQL y SQLite<a class="headerlink" href="#el-concepto-relacional-sql-y-sqlite" title="Link to this heading">#</a></h2>
+<p>Una <strong>Base de Datos Relacional</strong> es un sistema que almacena información dividiéndola en múltiples tablas temáticas interconectadas para evitar la redundancia (repetición) de los datos.</p>
+<p><strong>SQL</strong> es el lenguaje universal diseñado para “hablar” con estas bases de datos. Por otro lado, <strong>SQLite</strong> es un motor de base de datos específico, ultra-ligero, que guarda toda esta arquitectura relacional en un único archivo local (ej. <code class="docutils literal notranslate"><span class="pre">datos.db</span></code>), sin necesidad de configurar servidores pesados.</p>
+<section id="anatomia-de-una-base-de-datos-relacional">
+<h3>Anatomía de una Base de Datos Relacional<a class="headerlink" href="#anatomia-de-una-base-de-datos-relacional" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Tabla (Table):</strong> Una colección de datos sobre una sola entidad (ej. <code class="docutils literal notranslate"><span class="pre">Estrellas</span></code>, <code class="docutils literal notranslate"><span class="pre">Planetas</span></code>).</p></li>
+<li><p><strong>Columnas y Filas:</strong> Las columnas definen los <em>atributos</em> (Masa, Radio) y las filas los <em>registros</em> individuales.</p></li>
+<li><p><strong>Clave Primaria (Primary Key - PK):</strong> Un identificador único e irrepetible para cada fila (ej. <code class="docutils literal notranslate"><span class="pre">ID_Estrella</span></code>).</p></li>
+<li><p><strong>Clave Foránea (Foreign Key - FK):</strong> Una columna que hace referencia a la Clave Primaria de otra tabla, creando la “relación” o puente entre ambas.</p></li>
+</ul>
+<p><em>Ejemplo Sencillo:</em>
+Tenemos una tabla <code class="docutils literal notranslate"><span class="pre">Estrellas</span></code> (PK: <code class="docutils literal notranslate"><span class="pre">id_estrella</span></code>) y una tabla <code class="docutils literal notranslate"><span class="pre">Planetas</span></code> (PK: <code class="docutils literal notranslate"><span class="pre">id_planeta</span></code>). Para saber a qué estrella orbita un planeta, la tabla <code class="docutils literal notranslate"><span class="pre">Planetas</span></code> tendrá una columna llamada <code class="docutils literal notranslate"><span class="pre">id_estrella_madre</span></code> (FK) que apunta directamente al ID de la primera tabla.</p>
+<p><img alt="Bases de datos" src="_images/conceptual-data-model.png" /></p>
+<p>Imagen tomada de: <a class="reference external" href="https://www.datensen.com/blog/docs/about-luna-modeler-a-database-design-tool-for-relational-databases/">Link</a></p>
+</section>
+</section>
+<section id="comandos-basicos-de-sql-diccionario-humano-maquina">
+<h2>2. Comandos Básicos de SQL (Diccionario Humano-Máquina)<a class="headerlink" href="#comandos-basicos-de-sql-diccionario-humano-maquina" title="Link to this heading">#</a></h2>
+<p>A continuación, explicamos los comandos fundamentales de SQL, ilustrados con ejemplos y su “traducción” exacta a lenguaje humano.</p>
+<section id="create-table-crear-tabla">
+<h3><code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> (Crear Tabla)<a class="headerlink" href="#create-table-crear-tabla" title="Link to this heading">#</a></h3>
+<p>Define la estructura de una nueva tabla y el tipo de dato de cada columna (<code class="docutils literal notranslate"><span class="pre">INTEGER</span></code> para enteros, <code class="docutils literal notranslate"><span class="pre">REAL</span></code> para decimales, <code class="docutils literal notranslate"><span class="pre">TEXT</span></code> para palabras).</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">galaxias</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_galaxia</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nombre</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">distancia_mpc</span><span class="w"> </span><span class="nb">REAL</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p><em><strong>Traducción</strong></em>: “Crea una plantilla llamada ‘galaxias’ con tres columnas. La primera será un número entero que no se puede repetir, la segunda guardará texto, y la tercera guardará números decimales.”</p>
+</section>
+<section id="insert-into-insertar-datos">
+<h3><code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code> (Insertar Datos)<a class="headerlink" href="#insert-into-insertar-datos" title="Link to this heading">#</a></h3>
+<p>Agrega una nueva fila de datos respetando la estructura de la tabla.</p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">galaxias</span><span class="w"> </span><span class="p">(</span><span class="n">id_galaxia</span><span class="p">,</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">distancia_mpc</span><span class="p">)</span>
+<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Andromeda&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">78</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><em><strong>Traducción</strong></em>: “Inserta un nuevo registro en la tabla ‘galaxias’. En los campos id, nombre y distancia, coloca los valores 1, ‘Andromeda’ y 0.78 respectivamente.”</p>
+</section>
+<section id="select-y-from-seleccionar-de">
+<h3><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">y</span> <span class="pre">FROM</span></code> (Seleccionar De)<a class="headerlink" href="#select-y-from-seleccionar-de" title="Link to this heading">#</a></h3>
+<p>Extrae información específica de la base de datos.</p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="p">,</span><span class="w"> </span><span class="n">distancia_mpc</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">galaxias</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><em><strong>Traducción</strong></em>: “Tráeme únicamente las columnas ‘nombre’ y ‘distancia_mpc’ de la tabla ‘galaxias’.”</p>
+</section>
+<section id="where-donde-filtrado-condicional">
+<h3><code class="docutils literal notranslate"><span class="pre">WHERE</span></code> (Donde - Filtrado Condicional)<a class="headerlink" href="#where-donde-filtrado-condicional" title="Link to this heading">#</a></h3>
+<p>Filtra los registros basados en una condición matemática o lógica.</p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">nombre</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">galaxias</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">distancia_mpc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><em><strong>Traducción</strong></em>: “Tráeme el nombre de las galaxias, pero SÓLO aquellas cuya distancia sea estrictamente menor a 1.0 Mpc.”</p>
+</section>
+<section id="order-by-ordenar-por">
+<h3><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> (Ordenar Por)<a class="headerlink" href="#order-by-ordenar-por" title="Link to this heading">#</a></h3>
+<p>Ordena los resultados devueltos de forma Ascendente (ASC) o Descendente (DESC).</p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">galaxias</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">distancia_mpc</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><em><strong>Traducción</strong></em>: “Tráeme TODAS (*) las columnas de las galaxias, y ordénalas desde la más lejana hasta la más cercana.”</p>
+</section>
+<section id="join-unir-tablas">
+<h3><code class="docutils literal notranslate"><span class="pre">JOIN</span></code> (Unir Tablas)<a class="headerlink" href="#join-unir-tablas" title="Link to this heading">#</a></h3>
+<p>Es el comando más poderoso. Fusiona temporalmente dos tablas diferentes basándose en sus claves (Primary y Foreign keys) para responder preguntas complejas.</p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">nombre_planeta</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">nombre_estrella</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">planetas</span><span class="w"> </span><span class="n">p</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">estrellas</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">id_estrella_madre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">id_estrella</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><em><strong>Traducción</strong></em>: “Tráeme el nombre del planeta y el nombre de su estrella. Hazlo uniendo la tabla de ‘planetas’ con la de ‘estrellas’, emparejando los registros donde el ID de la estrella en la tabla de planetas coincida con el ID oficial de la estrella en su propia tabla.”</p>
+</section>
+</section>
+<section id="como-se-crea-una-base-de-datos-desde-la-consola-cli">
+<h2>3. ¿Cómo se crea una base de datos desde la Consola (CLI)?<a class="headerlink" href="#como-se-crea-una-base-de-datos-desde-la-consola-cli" title="Link to this heading">#</a></h2>
+<p>Podemos crear e interactuar con bases de datos directamente desde Bash usando el comando sqlite3.</p>
+<section id="ejemplo-paso-a-paso">
+<h3>Ejemplo Paso a Paso:<a class="headerlink" href="#ejemplo-paso-a-paso" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Cómo se crearía una base de datos desde la consola de comandos con un dato?</p></li>
+</ol>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crea el archivo y ejecuta un comando SQL inmediatamente</span>
+sqlite3<span class="w"> </span>mi_catalogo.db<span class="w"> </span><span class="s2">&quot;CREATE TABLE pleyades (id INTEGER PRIMARY KEY, magnitud REAL);&quot;</span>
+sqlite3<span class="w"> </span>mi_catalogo.db<span class="w"> </span><span class="s2">&quot;INSERT INTO pleyades (magnitud) VALUES (3.5);&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Cómo se crearía una base de datos desde la consola de comandos de manera interactiva con un usuario? <em><strong>Script Interactivo en Bash para Usuarios</strong></em>: Crearemos un script (crear_db.sh) que interactúe con el usuario haciéndole preguntas para construir la base de datos.</p></li>
+</ol>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># Script: crear_db.sh</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;=== CREADOR AUTOMÁTICO DE BASES DE DATOS ===&quot;</span>
+<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;1. Ingresa el nombre del archivo de la base de datos (sin extensión): &quot;</span><span class="w"> </span>dbname
+<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;2. Ingresa el nombre de la nueva tabla: &quot;</span><span class="w"> </span>tablename
+<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;3. Ingresa el nombre de la 1ra columna (Texto): &quot;</span><span class="w"> </span>col1
+<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;4. Ingresa el nombre de la 2da columna (Decimal): &quot;</span><span class="w"> </span>col2
+
+<span class="c1"># Ejecutamos la creación de la tabla inyectando las variables</span>
+sqlite3<span class="w"> </span><span class="si">${</span><span class="nv">dbname</span><span class="si">}</span>.db<span class="w"> </span><span class="s2">&quot;CREATE TABLE </span><span class="si">${</span><span class="nv">tablename</span><span class="si">}</span><span class="s2"> (id INTEGER PRIMARY KEY AUTOINCREMENT, </span><span class="si">${</span><span class="nv">col1</span><span class="si">}</span><span class="s2"> TEXT, </span><span class="si">${</span><span class="nv">col2</span><span class="si">}</span><span class="s2"> REAL);&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;--- ¡Estructura Creada! Ingresa el primer registro ---&quot;</span>
+<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Valor para </span><span class="si">${</span><span class="nv">col1</span><span class="si">}</span><span class="s2"> (ej. Sirio): &quot;</span><span class="w"> </span>val1
+<span class="nb">read</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;Valor para </span><span class="si">${</span><span class="nv">col2</span><span class="si">}</span><span class="s2"> (ej. 1.45): &quot;</span><span class="w"> </span>val2
+
+<span class="c1"># Insertamos el registro</span>
+sqlite3<span class="w"> </span><span class="si">${</span><span class="nv">dbname</span><span class="si">}</span>.db<span class="w"> </span><span class="s2">&quot;INSERT INTO </span><span class="si">${</span><span class="nv">tablename</span><span class="si">}</span><span class="s2"> (</span><span class="si">${</span><span class="nv">col1</span><span class="si">}</span><span class="s2">, </span><span class="si">${</span><span class="nv">col2</span><span class="si">}</span><span class="s2">) VALUES (&#39;</span><span class="si">${</span><span class="nv">val1</span><span class="si">}</span><span class="s2">&#39;, </span><span class="si">${</span><span class="nv">val2</span><span class="si">}</span><span class="s2">);&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;¡Éxito! Base de datos </span><span class="si">${</span><span class="nv">dbname</span><span class="si">}</span><span class="s2">.db creada y datos guardados.&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="como-leer-bases-de-datos-desde-consola-y-graficar-en-python">
+<h2>4. ¿Cómo leer bases de datos desde Consola y graficar en Python?<a class="headerlink" href="#como-leer-bases-de-datos-desde-consola-y-graficar-en-python" title="Link to this heading">#</a></h2>
+<p>Una vez creada la base de datos, podemos extraer datos desde la terminal exportándolos a un formato legible por Python, y encadenar un script de graficación.</p>
+<section id="ejemplo-de-lectura-exportando-desde-sqlite-a-csv">
+<h3>Ejemplo de Lectura (Exportando desde SQLite a CSV):<a class="headerlink" href="#ejemplo-de-lectura-exportando-desde-sqlite-a-csv" title="Link to this heading">#</a></h3>
+<p>Supongamos que usamos el script anterior para crear estrellas.db con una tabla brillo y columnas nombre y flujo.</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># 1. Leemos la base de datos desde la consola y guardamos el resultado en un CSV</span>
+<span class="c1"># Configuramos sqlite3 para que la salida sea en formato CSV y con encabezados</span>
+sqlite3<span class="w"> </span>-header<span class="w"> </span>-csv<span class="w"> </span>estrellas.db<span class="w"> </span><span class="s2">&quot;SELECT nombre, flujo FROM brillo ORDER BY flujo DESC;&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>datos_extraidos.csv
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Datos extraídos a CSV. Generando gráfico con Python...&quot;</span>
+
+<span class="c1"># 2. Creamos un script de Python dinámicamente desde Bash para graficar</span>
+
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; graficar_consola.py</span>
+<span class="s">import pandas as pd</span>
+<span class="s">import matplotlib.pyplot as plt</span>
+
+<span class="s"># Leemos el archivo generado por la terminal</span>
+<span class="s">df = pd.read_csv(&#39;datos_extraidos.csv&#39;)</span>
+
+<span class="s"># Graficamos</span>
+<span class="s">plt.figure(figsize=(8,5))</span>
+<span class="s">plt.bar(df[&#39;nombre&#39;], df[&#39;flujo&#39;], color=&#39;cyan&#39;)</span>
+<span class="s">plt.title(&#39;Flujo Estelar Extraído desde CLI&#39;)</span>
+<span class="s">plt.ylabel(&#39;Flujo (cuentas)&#39;)</span>
+<span class="s">plt.savefig(&#39;grafico_cli.png&#39;)</span>
+<span class="s">print(&quot;¡Imagen grafico_cli.png generada con éxito!&quot;)</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 3. Ejecutamos el script de Python</span>
+python3<span class="w"> </span>graficar_consola.py
+</pre></div>
+</div>
+</section>
+</section>
+<section id="como-se-crea-una-base-de-datos-desde-python">
+<h2>5. ¿Cómo se crea una base de datos desde Python?<a class="headerlink" href="#como-se-crea-una-base-de-datos-desde-python" title="Link to this heading">#</a></h2>
+<p>Podemos usar la librería nativa <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> de Python para hacer exactamente lo mismo, pero aprovechando la lógica de programación (ciclos, condicionales).</p>
+<p>Script Interactivo en Python (<code class="docutils literal notranslate"><span class="pre">crear_db.py</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== CREADOR DE BASES DE DATOS EN PYTHON ===&quot;</span><span class="p">)</span>
+<span class="n">db_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;1. Nombre de la base de datos (ej. catalogo.db): &quot;</span><span class="p">)</span>
+<span class="n">table_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;2. Nombre de la tabla: &quot;</span><span class="p">)</span>
+<span class="n">col_cat</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;3. Nombre de columna categórica (Texto): &quot;</span><span class="p">)</span>
+<span class="n">col_num</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;4. Nombre de columna numérica (Decimal): &quot;</span><span class="p">)</span>
+
+<span class="c1"># 1. Conexión a la base de datos (Crea el archivo si no existe)</span>
+<span class="n">conexion</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="c1"># El cursor es el &quot;mensajero&quot; que envía los comandos SQL</span>
+
+<span class="c1"># 2. Creación de la Tabla</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CREATE TABLE IF NOT EXISTS </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> (id INTEGER PRIMARY KEY, </span><span class="si">{</span><span class="n">col_cat</span><span class="si">}</span><span class="s2"> TEXT, </span><span class="si">{</span><span class="n">col_num</span><span class="si">}</span><span class="s2"> REAL)&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3. Ciclo para insertar múltiples registros</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">-- Nuevo Registro --&quot;</span><span class="p">)</span>
+    <span class="n">val_cat</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ingresa </span><span class="si">{</span><span class="n">col_cat</span><span class="si">}</span><span class="s2"> (o escribe &#39;salir&#39; para terminar): &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">val_cat</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;salir&#39;</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="n">val_num</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ingresa </span><span class="si">{</span><span class="n">col_num</span><span class="si">}</span><span class="s2">: &quot;</span><span class="p">))</span>
+    
+    <span class="c1"># Inserción segura usando &quot;?&quot; para evitar &quot;Inyecciones SQL&quot;</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;INSERT INTO </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">col_cat</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">col_num</span><span class="si">}</span><span class="s2">) VALUES (?, ?)&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">val_cat</span><span class="p">,</span> <span class="n">val_num</span><span class="p">))</span>
+
+<span class="c1"># 4. Guardar los cambios (Commit) y cerrar</span>
+<span class="n">conexion</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">conexion</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;¡Base de datos cerrada y guardada exitosamente!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="como-leer-bases-de-datos-desde-python-usando-archivos-creados-en-consola">
+<h2>6. ¿Cómo leer bases de datos desde Python usando archivos creados en Consola?<a class="headerlink" href="#como-leer-bases-de-datos-desde-python-usando-archivos-creados-en-consola" title="Link to this heading">#</a></h2>
+<p>La forma más elegante e industrial de extraer datos de un archivo .<code class="docutils literal notranslate"><span class="pre">db</span></code> usando Python es a través de <code class="docutils literal notranslate"><span class="pre">Pandas</span></code>, que traduce directamente la respuesta <code class="docutils literal notranslate"><span class="pre">SQL</span></code> a un DataFrame bidimensional.</p>
+<section id="ejemplo">
+<h3>Ejemplo:<a class="headerlink" href="#ejemplo" title="Link to this heading">#</a></h3>
+<p>Vamos a leer el archivo <code class="docutils literal notranslate"><span class="pre">catalogo.db</span></code> creado en el paso anterior y a generar un gráfico.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># 1. Establecemos conexión con el archivo creado previamente por la consola (o por el script)</span>
+<span class="n">conexion</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;catalogo.db&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2. Definimos nuestra consulta SQL</span>
+<span class="c1"># NOTA: Debes reemplazar &#39;mi_tabla&#39; por el nombre que le diste al crearla</span>
+<span class="n">consulta</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM mi_tabla ORDER BY id ASC;&quot;</span>
+
+<span class="c1"># 3. Pandas ejecuta la consulta y convierte el resultado en DataFrame al instante</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">consulta</span><span class="p">,</span> <span class="n">conexion</span><span class="p">)</span>
+
+<span class="c1"># 4. Cerramos conexión por seguridad</span>
+<span class="n">conexion</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Mostramos los datos en la terminal</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datos extraídos de la Base de Datos:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># 5. Visualizamos los datos (Asumiendo que col_cat y col_num son las variables que ingresamos)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Análisis de Base de Datos SQLite via Pandas&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;grafico_python_sql.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="unificacion-total-sql-cli-python-y-bases-remotas">
+<h2>7. Unificación Total: SQL, CLI, Python y Bases Remotas<a class="headerlink" href="#unificacion-total-sql-cli-python-y-bases-remotas" title="Link to this heading">#</a></h2>
+<p>Para consultar observatorios reales sin descargar Terabytes, enviamos consultas SQL directamente mediante sus URLs (Endpoints).</p>
+<section id="tabla-de-endpoints-publicos-astronomicos">
+<h3>Tabla de Endpoints Públicos Astronómicos<a class="headerlink" href="#tabla-de-endpoints-publicos-astronomicos" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Nombre de la Base de Datos</p></th>
+<th class="head text-left"><p>Página Web (Interfaz)</p></th>
+<th class="head text-left"><p>Endpoint HTTP Base (Para CLI/Scripts)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>SDSS (Sloan Digital Sky Survey)</p></td>
+<td class="text-left"><p>skyserver.sdss.org</p></td>
+<td class="text-left"><p>http://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?format=csv&amp;cmd=</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>VizieR TAP (Catálogos Varios)</p></td>
+<td class="text-left"><p>vizier.cds.unistra.fr</p></td>
+<td class="text-left"><p>https://tapvizier.cds.unistra.fr/TAPVizieR/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>NASA Exoplanet Archive</p></td>
+<td class="text-left"><p>exoplanetarchive.ipac.caltech.edu</p></td>
+<td class="text-left"><p>https://exoplanetarchive.ipac.caltech.edu/TAP/sync?format=csv&amp;query=</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em><strong>(Nota: VizieR y NASA usan el protocolo TAP/ADQL, que es un dialecto estandarizado de SQL para astronomía).</strong></em></p>
+</section>
+</section>
+<section id="ejemplo-unificado-1-mineria-de-quasares-en-sdss-bash-sql-python">
+<h2>Ejemplo Unificado 1: Minería de Quásares en SDSS (Bash -&gt; SQL -&gt; Python)<a class="headerlink" href="#ejemplo-unificado-1-mineria-de-quasares-en-sdss-bash-sql-python" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Bash (Descarga SQL Remota): descarga_sdss.sh</p></li>
+</ol>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># Reemplazamos espacios por %20. Extraemos color u, g de Quásares y Galaxias.</span>
+<span class="nv">QUERY</span><span class="o">=</span><span class="s2">&quot;SELECT%20TOP%205000%20class,u,g%20FROM%20SpecObjAll%20WHERE%20class=&#39;QSO&#39;%20OR%20class=&#39;GALAXY&#39;&quot;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;http://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?format=csv&amp;cmd=</span><span class="si">${</span><span class="nv">QUERY</span><span class="si">}</span><span class="s2">&quot;</span>
+wget<span class="w"> </span>-q<span class="w"> </span>-O<span class="w"> </span>sdss_datos.csv<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$URL</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Datos de SDSS descargados.&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Python (Análisis Pandas): analisis_sdss.py</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sdss_datos.csv&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># SDSS incluye una línea de metadata extra</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Color_UG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">]</span> <span class="c1"># Índice de color</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Color_UG&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Color u-g: Quásares vs Galaxias (SDSS)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;sdss_boxplot.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="ejemplo-unificado-2-guardando-exoplanetas-en-sqlite-local">
+<h2>Ejemplo Unificado 2: Guardando Exoplanetas en SQLite Local<a class="headerlink" href="#ejemplo-unificado-2-guardando-exoplanetas-en-sqlite-local" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Bash + Python Unificado: Consultaremos el Endpoint de la NASA, guardaremos los datos en un CSV, y usaremos Python para inyectarlo en una Base de Datos Local SQLite para futuras consultas.</p></li>
+</ol>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># 1. Consultar a la NASA (Endpoint TAP usando SQL simple)</span>
+<span class="c1"># Seleccionamos Nombre, Método, Radio y Masa Terrestre</span>
+<span class="nv">QUERY</span><span class="o">=</span><span class="s2">&quot;SELECT+pl_name,discoverymethod,pl_rade,pl_bmasse+FROM+ps&quot;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://exoplanetarchive.ipac.caltech.edu/TAP/sync?format=csv&amp;query=</span><span class="si">${</span><span class="nv">QUERY</span><span class="si">}</span><span class="s2">&quot;</span>
+wget<span class="w"> </span>-q<span class="w"> </span>-O<span class="w"> </span>exoplanetas.csv<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$URL</span><span class="s2">&quot;</span>
+
+<span class="c1"># 2. Script de Python embebido para Migrar a SQLite Local</span>
+python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<span class="s2">import pandas as pd</span>
+<span class="s2">import sqlite3</span>
+<span class="s2"># Cargamos el CSV a Pandas</span>
+<span class="s2">df = pd.read_csv(&#39;exoplanetas.csv&#39;)</span>
+<span class="s2"># Limpieza rápida: Borramos filas sin masa o sin radio</span>
+<span class="s2">df = df.dropna(subset=[&#39;pl_rade&#39;, &#39;pl_bmasse&#39;])</span>
+<span class="s2"># Conectamos a una base de datos local</span>
+<span class="s2">conn = sqlite3.connect(&#39;mi_archivo_nasa.db&#39;)</span>
+<span class="s2"># ¡Magia! Guardamos todo el DataFrame como una tabla SQL</span>
+<span class="s2">df.to_sql(&#39;planetas&#39;, conn, if_exists=&#39;replace&#39;, index=False)</span>
+<span class="s2">conn.close()</span>
+<span class="s2">print(&#39;Exoplanetas migrados a mi_archivo_nasa.db exitosamente.&#39;)</span>
+<span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="cheatsheet-de-sql">
+<h2><strong>CheatSheet de SQL</strong><a class="headerlink" href="#cheatsheet-de-sql" title="Link to this heading">#</a></h2>
+<p><img alt="Cheatsheet SQL" src="_images/sql-basics-cheat-sheet-a4-page-1.png" /></p>
+<p>Imagen tomada de: <a class="reference external" href="https://learnsql.com/blog/sql-basics-cheat-sheet/">Link</a></p>
+</section>
+<section id="ejercicios-practicos-nivel-avanzado">
+<h2>8. Ejercicios Prácticos (Nivel Avanzado)<a class="headerlink" href="#ejercicios-practicos-nivel-avanzado" title="Link to this heading">#</a></h2>
+</section>
+<section id="ejercicios-individuales">
+<h2>Ejercicios Individuales<a class="headerlink" href="#ejercicios-individuales" title="Link to this heading">#</a></h2>
+<section id="ejercicio-1-el-constructor-automatico-cli-python-git">
+<h3>Ejercicio 1: “El Constructor Automático” (CLI + Python + Git)<a class="headerlink" href="#ejercicio-1-el-constructor-automatico-cli-python-git" title="Link to this heading">#</a></h3>
+<p>Crea un script de Bash interactivo (como el del Punto 3) que pida al usuario datos para crear una base de datos local llamada <code class="docutils literal notranslate"><span class="pre">telescopios.db</span></code> con la tabla opticos (<code class="docutils literal notranslate"><span class="pre">Columnas:</span> <span class="pre">nombre,</span> <span class="pre">diametro_m</span></code>). Luego, escribe un script de Python que se conecte a esta base, extraiga los datos y genere un gráfico de barras. Haz un git init y sube todo a GitHub.</p>
+</section>
+<section id="ejercicio-2-corrimiento-al-rojo-de-sloan-sql-remoto-pandas">
+<h3>Ejercicio 2: “Corrimiento al Rojo de Sloan” (SQL Remoto + Pandas)<a class="headerlink" href="#ejercicio-2-corrimiento-al-rojo-de-sloan-sql-remoto-pandas" title="Link to this heading">#</a></h3>
+<p>Escribe un script bash con una URL de SDSS. La consulta SQL debe seleccionar <code class="docutils literal notranslate"><span class="pre">z</span></code> (redshift) y <code class="docutils literal notranslate"><span class="pre">dered_r</span></code> (magnitud óptica pura) de 20,000 objetos donde <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">=</span> <span class="pre">'GALAXY'</span></code>. Descárgalo, usa Pandas para calcular la distancia métrica cruda (<span class="math notranslate nohighlight">\(d=zx4000\)</span> Mpc). Grafica un Histograma de las distancias para visualizar la distribución de galaxias en nuestro universo local.</p>
+</section>
+</section>
+<section id="ejercicios-en-parejas-flujos-de-trabajo-github">
+<h2>Ejercicios en Parejas (Flujos de Trabajo GitHub)<a class="headerlink" href="#ejercicios-en-parejas-flujos-de-trabajo-github" title="Link to this heading">#</a></h2>
+<section id="ejercicio-3-la-arquitectura-de-la-base-de-datos-local">
+<h3>Ejercicio 3: “La Arquitectura de la Base de Datos Local”<a class="headerlink" href="#ejercicio-3-la-arquitectura-de-la-base-de-datos-local" title="Link to this heading">#</a></h3>
+<p>Estudiante A: Escribe un script en Python (como el del Punto 5) que le pida a un usuario clasificar meteoritos. Debe crear <code class="docutils literal notranslate"><span class="pre">meteoritos.db</span></code> con las columnas <code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">clase</span></code> (Fell o Found) y <code class="docutils literal notranslate"><span class="pre">masa_kg</span></code>. Ejecuta el script, ingresa 5 datos reales y empuja el <code class="docutils literal notranslate"><span class="pre">script.py</span></code> y el <code class="docutils literal notranslate"><span class="pre">archivo.db</span></code> a una rama de GitHub.</p>
+<p>Estudiante B: Clona el repositorio, lee el <code class="docutils literal notranslate"><span class="pre">.db</span></code> enviado por el Estudiante A usando <code class="docutils literal notranslate"><span class="pre">pd.read_sql_query</span></code>, agrupa la masa por clase y genera un gráfico circular (<code class="docutils literal notranslate"><span class="pre">plt.pie</span></code>). Abre un Pull Request al Estudiante A.</p>
+</section>
+<section id="ejercicio-4-color-vs-temperatura-en-la-via-lactea-sql-complejo-seaborn">
+<h3>Ejercicio 4: “Color vs Temperatura en la Vía Láctea” (SQL Complejo + Seaborn)<a class="headerlink" href="#ejercicio-4-color-vs-temperatura-en-la-via-lactea-sql-complejo-seaborn" title="Link to this heading">#</a></h3>
+<p>Estudiante A: Escribe un script en Bash que consulte a SDSS (<code class="docutils literal notranslate"><span class="pre">PhotoObjAll</span></code>). Extrae <code class="docutils literal notranslate"><span class="pre">u</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code>, <code class="docutils literal notranslate"><span class="pre">r</span></code> para 10,000 objetos donde <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">=</span> <span class="pre">6</span></code> (Estrellas). Descarga el CSV y empújalo a Git.</p>
+<p>Estudiante B: Clona el repo. Lee el CSV en Pandas. Calcula dos índices de color: <code class="docutils literal notranslate"><span class="pre">U−G</span></code> y <code class="docutils literal notranslate"><span class="pre">G−R</span></code>. Usando Seaborn, grafica un <code class="docutils literal notranslate"><span class="pre">sns.kdeplot()</span></code> (mapa topográfico de densidad) enfrentando ambos colores. Redacten juntos en el <code class="docutils literal notranslate"><span class="pre">README.md</span></code> cómo las estrellas más frías (rojas) se agrupan en una región distinta a las calientes (azules).</p>
+</section>
+<section id="ejercicio-5-migracion-de-big-data-de-nasa-a-local-integracion-total">
+<h3>Ejercicio 5: “Migración de Big Data: De NASA a Local” (Integración Total)<a class="headerlink" href="#ejercicio-5-migracion-de-big-data-de-nasa-a-local-integracion-total" title="Link to this heading">#</a></h3>
+<p>Estudiante A: Utilizando el Endpoint de la NASA (TAP), construye un comando <code class="docutils literal notranslate"><span class="pre">wget</span></code> para extraer una lista masiva de planetas (<code class="docutils literal notranslate"><span class="pre">pl_name</span></code>, <code class="docutils literal notranslate"><span class="pre">disc_year</span></code>, <code class="docutils literal notranslate"><span class="pre">pl_orbper</span></code>). Carga ese CSV en Pandas y utiliza <code class="docutils literal notranslate"><span class="pre">.to_sql()</span></code> para crear una base de datos SQLite llamada <code class="docutils literal notranslate"><span class="pre">analisis_orbital.db</span></code>. Sube este archivo <code class="docutils literal notranslate"><span class="pre">.db</span></code> a GitHub.</p>
+<p>Estudiante B: Clona el repo. Conéctate a <code class="docutils literal notranslate"><span class="pre">analisis_orbital.db</span></code>. Ejecuta una consulta SQL en Python usando <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> o filtrado (ej. WHERE disc_year &gt; 2010) usando <code class="docutils literal notranslate"><span class="pre">pd.read_sql_query()</span></code>. Grafica un Scatter Plot de <code class="docutils literal notranslate"><span class="pre">Año</span></code> vs <code class="docutils literal notranslate"><span class="pre">Periodo</span> <span class="pre">Orbital</span></code> con escala logarítmica. Abran un Pull Request y discutan en el <code class="docutils literal notranslate"><span class="pre">README.md</span></code> cómo el telescopio Kepler (lanzado en 2009) cambió el volumen de descubrimientos.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Clase_03_PythonCientifico.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-concepto-relacional-sql-y-sqlite">1. El Concepto Relacional, SQL y SQLite</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomia-de-una-base-de-datos-relacional">Anatomía de una Base de Datos Relacional</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comandos-basicos-de-sql-diccionario-humano-maquina">2. Comandos Básicos de SQL (Diccionario Humano-Máquina)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-table-crear-tabla"><code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> (Crear Tabla)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insert-into-insertar-datos"><code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span></code> (Insertar Datos)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-y-from-seleccionar-de"><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">y</span> <span class="pre">FROM</span></code> (Seleccionar De)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-donde-filtrado-condicional"><code class="docutils literal notranslate"><span class="pre">WHERE</span></code> (Donde - Filtrado Condicional)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-by-ordenar-por"><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> (Ordenar Por)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#join-unir-tablas"><code class="docutils literal notranslate"><span class="pre">JOIN</span></code> (Unir Tablas)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-crea-una-base-de-datos-desde-la-consola-cli">3. ¿Cómo se crea una base de datos desde la Consola (CLI)?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-paso-a-paso">Ejemplo Paso a Paso:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-leer-bases-de-datos-desde-consola-y-graficar-en-python">4. ¿Cómo leer bases de datos desde Consola y graficar en Python?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-lectura-exportando-desde-sqlite-a-csv">Ejemplo de Lectura (Exportando desde SQLite a CSV):</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-crea-una-base-de-datos-desde-python">5. ¿Cómo se crea una base de datos desde Python?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-leer-bases-de-datos-desde-python-usando-archivos-creados-en-consola">6. ¿Cómo leer bases de datos desde Python usando archivos creados en Consola?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo">Ejemplo:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unificacion-total-sql-cli-python-y-bases-remotas">7. Unificación Total: SQL, CLI, Python y Bases Remotas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-de-endpoints-publicos-astronomicos">Tabla de Endpoints Públicos Astronómicos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-unificado-1-mineria-de-quasares-en-sdss-bash-sql-python">Ejemplo Unificado 1: Minería de Quásares en SDSS (Bash -&gt; SQL -&gt; Python)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-unificado-2-guardando-exoplanetas-en-sqlite-local">Ejemplo Unificado 2: Guardando Exoplanetas en SQLite Local</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet-de-sql"><strong>CheatSheet de SQL</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-practicos-nivel-avanzado">8. Ejercicios Prácticos (Nivel Avanzado)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-individuales">Ejercicios Individuales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-el-constructor-automatico-cli-python-git">Ejercicio 1: “El Constructor Automático” (CLI + Python + Git)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-corrimiento-al-rojo-de-sloan-sql-remoto-pandas">Ejercicio 2: “Corrimiento al Rojo de Sloan” (SQL Remoto + Pandas)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-en-parejas-flujos-de-trabajo-github">Ejercicios en Parejas (Flujos de Trabajo GitHub)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-la-arquitectura-de-la-base-de-datos-local">Ejercicio 3: “La Arquitectura de la Base de Datos Local”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-color-vs-temperatura-en-la-via-lactea-sql-complejo-seaborn">Ejercicio 4: “Color vs Temperatura en la Vía Láctea” (SQL Complejo + Seaborn)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-5-migracion-de-big-data-de-nasa-a-local-integracion-total">Ejercicio 5: “Migración de Big Data: De NASA a Local” (Integración Total)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Esteban Silva Villa y Germán Chaparro Molano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
