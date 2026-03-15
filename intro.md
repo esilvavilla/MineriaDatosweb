@@ -9,6 +9,8 @@ Si tienen alguna duda metodológica, con los ejercicios o las clases, el profeso
 
 Este repositorio está en construcción, por lo que el material disponible se irá actualizando semana a semana. Es tarea de todos y todas estar pendientes a las novedades que se incluirán en él.
 
+Para que tengan una información sobre lo que se espera ver en el curso, dejamos a continuación un documento con el plan de la asignatura: [Link](https://drive.google.com/file/d/1ke_2mhD6lNJ0d0szoxdRoSoeEcnp1KJ_/view?usp=sharing)
+
 A continuación, la tabla de contenidos del sitio:
 
 
