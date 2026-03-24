@@ -382,6 +382,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-completo-sql-adql-cli-python-git">4. Pipeline Completo: SQL + ADQL + CLI + Python + Git</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet-de-adql">CheatSheet de ADQL</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-practicos-en-clase-nivel-avanzado">5. Ejercicios Prácticos en Clase (Nivel Avanzado)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-individual-mapeando-la-galaxia-de-andromeda">Ejercicio 1 (Individual): “Mapeando la Galaxia de Andrómeda”</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-individual-el-vecindario-solar-extremo">Ejercicio 2 (Individual): “El Vecindario Solar Extremo”</a></li>
@@ -389,7 +390,6 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-parejas-cinematica-de-fuga-runaway-stars">Ejercicio 4 (Parejas): “Cinemática de Fuga (Runaway Stars)”</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet-de-sql"><strong>CheatSheet de SQL</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-en-clase-mineria-de-datos-espaciales-con-adql">Práctica en Clase: Minería de Datos Espaciales con ADQL</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-individuales"><strong>Ejercicios Individuales</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-cazando-la-nebulosa-de-orion">Ejercicio 1: “Cazando la Nebulosa de Orión”</a></li>
@@ -566,6 +566,12 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 <p>El resultado es:</p>
 <p><img alt="Mapa Pleyades" src="_images/mapa_pleyades.png" /></p>
 </section>
+<section id="cheatsheet-de-adql">
+<h2>CheatSheet de ADQL<a class="headerlink" href="#cheatsheet-de-adql" title="Link to this heading">#</a></h2>
+<p><img alt="Cheatsheet ADQL" src="_images/adqlref1.png" /></p>
+<p><img alt="Cheatsheet ADQL" src="_images/adqlref2.png" /></p>
+<p>Imagen tomada de: <a class="reference external" href="https://docs.g-vo.org/adqlref/adqlref.pdf">Link</a></p>
+</section>
 <section id="ejercicios-practicos-en-clase-nivel-avanzado">
 <h2>5. Ejercicios Prácticos en Clase (Nivel Avanzado)<a class="headerlink" href="#ejercicios-practicos-en-clase-nivel-avanzado" title="Link to this heading">#</a></h2>
 <p>A continuación, se presentan 4 problemas de investigación. Deberán crear scripts en Bash que contengan la consulta ADQL exacta (formateando espacios con sed), ejecuten el análisis en Python y manejen el versionado en Git.</p>
@@ -603,11 +609,6 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 <p><em><strong>(Estudiante A)</strong></em>: Escribe un Bash script con ADQL. Busca estrellas en el catálogo de Gaia DR3 que se muevan a velocidades tangenciales extremas. Extrae RA_ICRS, DE_ICRS, pmRA y pmDE. La condición matemática ADQL será: el vector de movimiento propio total (Teorema de Pitágoras de pmRA y pmDE) debe ser mayor a 200 mas/yr. Limita a 5000 resultados (TOP 5000).</p>
 <p><em><strong>(Estudiante)</strong></em>: Escribe el código Python. Grafica las posiciones de estas estrellas súper-rápidas en el cielo. Utiliza el comando <code class="docutils literal notranslate"><span class="pre">plt.quiver</span></code> de Matplotlib para dibujar pequeñas flechas sobre cada estrella, indicando la dirección y magnitud de su movimiento vectorial (pmRA, pmDE). En el <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, analicen si los movimientos parecen apuntar en una misma dirección o si son dispersos.</p>
 </section>
-</section>
-<section id="cheatsheet-de-sql">
-<h2><strong>CheatSheet de SQL</strong><a class="headerlink" href="#cheatsheet-de-sql" title="Link to this heading">#</a></h2>
-<p><img alt="Cheatsheet SQL" src="_images/adqlref.png" /></p>
-<p>Imagen tomada de: <a class="reference external" href="https://docs.g-vo.org/adqlref/adqlref.pdf">Link</a></p>
 </section>
 <section id="practica-en-clase-mineria-de-datos-espaciales-con-adql">
 <h2>Práctica en Clase: Minería de Datos Espaciales con ADQL<a class="headerlink" href="#practica-en-clase-mineria-de-datos-espaciales-con-adql" title="Link to this heading">#</a></h2>
@@ -753,6 +754,7 @@ Para cada uno de los siguientes ejercicios, debes crear un flujo de trabajo 100%
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-completo-sql-adql-cli-python-git">4. Pipeline Completo: SQL + ADQL + CLI + Python + Git</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet-de-adql">CheatSheet de ADQL</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-practicos-en-clase-nivel-avanzado">5. Ejercicios Prácticos en Clase (Nivel Avanzado)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-individual-mapeando-la-galaxia-de-andromeda">Ejercicio 1 (Individual): “Mapeando la Galaxia de Andrómeda”</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-individual-el-vecindario-solar-extremo">Ejercicio 2 (Individual): “El Vecindario Solar Extremo”</a></li>
@@ -760,7 +762,6 @@ Para cada uno de los siguientes ejercicios, debes crear un flujo de trabajo 100%
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-parejas-cinematica-de-fuga-runaway-stars">Ejercicio 4 (Parejas): “Cinemática de Fuga (Runaway Stars)”</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet-de-sql"><strong>CheatSheet de SQL</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-en-clase-mineria-de-datos-espaciales-con-adql">Práctica en Clase: Minería de Datos Espaciales con ADQL</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-individuales"><strong>Ejercicios Individuales</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-cazando-la-nebulosa-de-orion">Ejercicio 1: “Cazando la Nebulosa de Orión”</a></li>
