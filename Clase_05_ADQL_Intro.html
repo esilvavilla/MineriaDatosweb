@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL &#8212; Minería de datos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_05_ADQL_Intro';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Proyecto 1er mes" href="Proyecto%201er%20mes.html" />
+    <link rel="prev" title="Clase 4: Introducción a SQL y Bases de Datos Relacionales" href="Clase_04_SQL_Intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
+    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Minería de datos para el pregrado de Astronomía UdeA
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Clase_01_INTROyCLI.html">Clase 1: La Consola de Comandos (Bash)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_02_GIT-HUB.html">Clase 2: Introducción a herramientas de control de versiones Git y Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_03_PythonCientifico.html">Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_04_SQL_Intro.html">Clase 4: Introducción a SQL y Bases de Datos Relacionales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FClase_05_ADQL_Intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Clase_05_ADQL_Intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-protocolo-tap-y-los-endpoints">1. El Protocolo TAP y los Endpoints</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#endpoints-astronomicos-principales-para-adql">Endpoints Astronómicos Principales para ADQL</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-arsenal-geometrico-de-adql">2. El Arsenal Geométrico de ADQL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-definiendo-formas-geometrias">A) Definiendo Formas (Geometrías)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-operaciones-espaciales">B) Operaciones Espaciales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-practicos-paso-a-paso">3. Ejemplos Prácticos Paso a Paso</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1-busqueda-en-cono-cone-search">Ejemplo 1: Búsqueda en Cono (Cone Search)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-cross-matching-extremo-cruzando-catalogos">Ejemplo 2: Cross-Matching Extremo (Cruzando Catálogos)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-completo-sql-adql-cli-python-git">4. Pipeline Completo: SQL + ADQL + CLI + Python + Git</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-practicos-en-clase-nivel-avanzado">5. Ejercicios Prácticos en Clase (Nivel Avanzado)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-individual-mapeando-la-galaxia-de-andromeda">Ejercicio 1 (Individual): “Mapeando la Galaxia de Andrómeda”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-individual-el-vecindario-solar-extremo">Ejercicio 2 (Individual): “El Vecindario Solar Extremo”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-parejas-cross-match-infrarrojo-en-la-nube-de-magallanes">Ejercicio 3 (Parejas): “Cross-Match Infrarrojo en la Nube de Magallanes”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-parejas-cinematica-de-fuga-runaway-stars">Ejercicio 4 (Parejas): “Cinemática de Fuga (Runaway Stars)”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet-de-sql"><strong>CheatSheet de SQL</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-en-clase-mineria-de-datos-espaciales-con-adql">Práctica en Clase: Minería de Datos Espaciales con ADQL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-individuales"><strong>Ejercicios Individuales</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-cazando-la-nebulosa-de-orion">Ejercicio 1: “Cazando la Nebulosa de Orión”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-el-vecindario-solar-y-las-enanas-rojas">Ejercicio 2: “El Vecindario Solar y las Enanas Rojas”</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-en-parejas"><strong>Ejercicios en Parejas</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-polvo-galactico-cross-match-en-sagitario-a">Ejercicio 3: “Polvo Galáctico: Cross-Match en Sagitario A*”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-el-mapa-de-los-mundos-y-el-sesgo-de-kepler">Ejercicio 4: “El Mapa de los Mundos y el Sesgo de Kepler”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="clase-5-el-observatorio-virtual-y-geometria-espacial-con-adql">
+<h1>Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL<a class="headerlink" href="#clase-5-el-observatorio-virtual-y-geometria-espacial-con-adql" title="Link to this heading">#</a></h1>
+<p>Hasta ahora hemos dominado SQL clásico para extraer datos de tablas estándar. Sin embargo, el universo no es una hoja de cálculo plana, es una esfera tridimensional. Cuando intentamos buscar qué estrellas están “cerca” de un cúmulo estelar o queremos superponer dos imágenes del cielo, el SQL tradicional se queda corto.</p>
+<p>Aquí entra el <strong>ADQL (Astronomical Data Query Language)</strong>, el lenguaje oficial del Observatorio Virtual (VO).</p>
+<section id="el-protocolo-tap-y-los-endpoints">
+<h2>1. El Protocolo TAP y los Endpoints<a class="headerlink" href="#el-protocolo-tap-y-los-endpoints" title="Link to this heading">#</a></h2>
+<p>Para usar ADQL, no consultamos bases de datos ordinarias, sino servidores equipados con el protocolo <strong>TAP (Table Access Protocol)</strong>. Estos supercomputadores entienden de coordenadas celestes y proyecciones esféricas.</p>
+<section id="endpoints-astronomicos-principales-para-adql">
+<h3>Endpoints Astronómicos Principales para ADQL<a class="headerlink" href="#endpoints-astronomicos-principales-para-adql" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Nombre del Catálogo</p></th>
+<th class="head text-left"><p>Interfaz Web</p></th>
+<th class="head text-left"><p>Endpoint HTTP Base (Para Bash/<code class="docutils literal notranslate"><span class="pre">wget</span></code>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>VizieR TAP (Gaia, 2MASS, WISE)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">vizier.cds.unistra.fr</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://tapvizier.cds.unistra.fr/TAPVizieR/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>NASA Exoplanet Archive</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">exoplanetarchive.ipac.caltech.edu</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://exoplanetarchive.ipac.caltech.edu/TAP/sync?format=csv&amp;query=</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>(Nota vital: Al usar la consola, los espacios en las consultas ADQL deben reemplazarse por el símbolo <code class="docutils literal notranslate"><span class="pre">+</span></code> o <code class="docutils literal notranslate"><span class="pre">%20</span></code> para que la URL de internet sea válida).</p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="el-arsenal-geometrico-de-adql">
+<h2>2. El Arsenal Geométrico de ADQL<a class="headerlink" href="#el-arsenal-geometrico-de-adql" title="Link to this heading">#</a></h2>
+<p>ADQL introduce funciones matemáticas espaciales que se ejecutan directamente en los servidores de las agencias espaciales, ahorrándonos descargar catálogos enteros.</p>
+<section id="a-definiendo-formas-geometrias">
+<h3>A) Definiendo Formas (Geometrías)<a class="headerlink" href="#a-definiendo-formas-geometrias" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">POINT('ICRS',</span> <span class="pre">ra,</span> <span class="pre">dec)</span></code>: Define un punto exacto en el cielo usando el sistema de referencia ICRS (Ascensión Recta y Declinación en grados).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CIRCLE('ICRS',</span> <span class="pre">ra,</span> <span class="pre">dec,</span> <span class="pre">radio)</span></code>: Define un círculo o “cono” visual. El radio se da en grados.</p></li>
+</ul>
+</section>
+<section id="b-operaciones-espaciales">
+<h3>B) Operaciones Espaciales<a class="headerlink" href="#b-operaciones-espaciales" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CONTAINS(geometria_1,</span> <span class="pre">geometria_2)</span></code>: Función lógica. Devuelve <code class="docutils literal notranslate"><span class="pre">1</span></code> (Verdadero) si la geometría 1 está completamente dentro de la geometría 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DISTANCE(punto_1,</span> <span class="pre">punto_2)</span></code>: Calcula la distancia angular real (en grados) entre dos puntos en la esfera celeste.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ejemplos-practicos-paso-a-paso">
+<h2>3. Ejemplos Prácticos Paso a Paso<a class="headerlink" href="#ejemplos-practicos-paso-a-paso" title="Link to this heading">#</a></h2>
+<section id="ejemplo-1-busqueda-en-cono-cone-search">
+<h3>Ejemplo 1: Búsqueda en Cono (Cone Search)<a class="headerlink" href="#ejemplo-1-busqueda-en-cono-cone-search" title="Link to this heading">#</a></h3>
+<p>Queremos encontrar todas las estrellas medidas por Gaia que estén a menos de 1 grado del centro de la Nebulosa de Orión (RA: 83.82, Dec: -5.39).</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Seleccionamos las columnas de identificación, coordenadas y magnitud G</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">Source</span><span class="p">,</span><span class="w"> </span><span class="n">RA_ICRS</span><span class="p">,</span><span class="w"> </span><span class="n">DE_ICRS</span><span class="p">,</span><span class="w"> </span><span class="n">Gmag</span>
+<span class="c1">-- Del catálogo de Gaia DR3 alojado en VizieR</span>
+<span class="k">FROM</span><span class="w"> </span><span class="ss">&quot;I/355/gaiadr3&quot;</span>
+<span class="c1">-- Donde sea VERDADERO (1) que...</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CONTAINS</span><span class="p">(</span>
+<span class="w">    </span><span class="c1">-- ...el PUNTO individual de la estrella que estamos evaluando...</span>
+<span class="w">    </span><span class="n">POINT</span><span class="p">(</span><span class="s1">&#39;ICRS&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">RA_ICRS</span><span class="p">,</span><span class="w"> </span><span class="n">DE_ICRS</span><span class="p">),</span>
+<span class="w">    </span><span class="c1">-- ...caiga dentro del CÍRCULO de 1 grado de radio centrado en Orión.</span>
+<span class="w">    </span><span class="n">CIRCLE</span><span class="p">(</span><span class="s1">&#39;ICRS&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">83</span><span class="p">.</span><span class="mi">82</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">5</span><span class="p">.</span><span class="mi">39</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="ejemplo-2-cross-matching-extremo-cruzando-catalogos">
+<h3>Ejemplo 2: Cross-Matching Extremo (Cruzando Catálogos)<a class="headerlink" href="#ejemplo-2-cross-matching-extremo-cruzando-catalogos" title="Link to this heading">#</a></h3>
+<p>Queremos saber si las estrellas brillantes de Gaia emiten también en luz infrarroja (Catálogo 2MASS). Le pediremos al servidor que cruce ambos catálogos mediante distancias angulares.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Seleccionamos el ID de Gaia, el ID de 2MASS y sus magnitudes</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="k">Source</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">_2MASS</span><span class="p">,</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">Gmag</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">Jmag</span>
+<span class="c1">-- Definimos Gaia como nuestra tabla principal &#39;g&#39;</span>
+<span class="k">FROM</span><span class="w"> </span><span class="ss">&quot;I/355/gaiadr3&quot;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">g</span>
+<span class="c1">-- La unimos (JOIN) con el catálogo infrarrojo 2MASS, llamándolo &#39;m&#39;</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="ss">&quot;II/246/out&quot;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">m</span>
+<span class="c1">-- La condición de unión espacial: Que las coordenadas de la fuente infrarroja (m)</span>
+<span class="c1">-- estén en un radio minúsculo de 1 arcosegundo (1/3600 grados) de la posición óptica (g).</span>
+<span class="k">ON</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CONTAINS</span><span class="p">(</span>
+<span class="w">    </span><span class="n">POINT</span><span class="p">(</span><span class="s1">&#39;ICRS&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">RAJ2000</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">DEJ2000</span><span class="p">),</span>
+<span class="w">    </span><span class="n">CIRCLE</span><span class="p">(</span><span class="s1">&#39;ICRS&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">RA_ICRS</span><span class="p">,</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="n">DE_ICRS</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="o">/</span><span class="mi">3600</span><span class="p">.)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="pipeline-completo-sql-adql-cli-python-git">
+<h2>4. Pipeline Completo: SQL + ADQL + CLI + Python + Git<a class="headerlink" href="#pipeline-completo-sql-adql-cli-python-git" title="Link to this heading">#</a></h2>
+<p>Vamos a construir un flujo de trabajo que automatice una consulta ADQL desde la consola, genere un script de Python al vuelo, grafique los datos y guarde todo en Git. Construiremos un mapa de las Pléyades.</p>
+<p>Script Maestro: <code class="docutils literal notranslate"><span class="pre">mapeo_pleyades.sh</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># !/bin/bash</span>
+<span class="c1"># Anunciamos el inicio del proceso</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;1. Consultando VizieR TAP mediante ADQL...&quot;</span>
+
+<span class="c1"># Guardamos la consulta pura. (Centro Pléyades: RA 56.75, Dec 24.11, Radio 2 grados)</span>
+<span class="nv">ADQL</span><span class="o">=</span><span class="s2">&quot;SELECT TOP 2000 RA_ICRS, DE_ICRS, Gmag FROM \&quot;I/355/gaiadr3\&quot; WHERE Gmag &lt; 15 AND 1=CONTAINS(POINT(&#39;ICRS&#39;, RA_ICRS, DE_ICRS), CIRCLE(&#39;ICRS&#39;, 56.75, 24.11, 2.0))&quot;</span>
+
+<span class="c1"># Reemplazamos los espacios por &#39;+&#39; usando &#39;sed&#39; para que la URL no se rompa en internet</span>
+<span class="nv">URL_ADQL</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$ADQL</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/ /+/g&#39;</span><span class="k">)</span>
+<span class="c1"># Definimos el Endpoint base de VizieR</span>
+<span class="nv">TAP_URL</span><span class="o">=</span><span class="s2">&quot;https://tapvizier.cds.unistra.fr/TAPVizieR/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=&quot;</span>
+
+<span class="c1"># Ejecutamos wget combinando el Endpoint y la consulta codificada</span>
+wget<span class="w"> </span>-q<span class="w"> </span>-O<span class="w"> </span>pleyades.csv<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$TAP_URL$URL_ADQL</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Descarga finalizada: pleyades.csv&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;2. Generando script de visualización en Python...&quot;</span>
+<span class="c1"># Usamos el comando &#39;cat&#39; para escribir un archivo de Python directamente desde la consola</span>
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; graficar_mapa.py</span>
+<span class="s">import pandas as pd</span>
+<span class="s">import matplotlib.pyplot as plt</span>
+
+<span class="s"># Cargamos el CSV recién descargado</span>
+<span class="s">df = pd.read_csv(&#39;pleyades.csv&#39;)</span>
+
+<span class="s">plt.figure(figsize=(8,8))</span>
+<span class="s">plt.style.use(&#39;dark_background&#39;)</span>
+<span class="s"># El tamaño del punto (s) será inversamente proporcional a la magnitud (más brillante = más grande)</span>
+<span class="s">plt.scatter(df[&#39;RA_ICRS&#39;], df[&#39;DE_ICRS&#39;], s=(20-df[&#39;Gmag&#39;])**2, color=&#39;azure&#39;, alpha=0.8)</span>
+
+<span class="s"># Convención astronómica: Invertir el eje de Ascensión Recta</span>
+<span class="s">plt.gca().invert_xaxis()</span>
+<span class="s">plt.title(&#39;Mapa Estelar: Las Pléyades (Cone Search 2 grados)&#39;)</span>
+<span class="s">plt.xlabel(&#39;Ascensión Recta (Grados)&#39;)</span>
+<span class="s">plt.ylabel(&#39;Declinación (Grados)&#39;)</span>
+<span class="s">plt.savefig(&#39;mapa_pleyades.png&#39;)</span>
+<span class="s">print(&quot;Imagen mapa_pleyades.png generada.&quot;)</span>
+<span class="s">EOF</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;3. Ejecutando Python...&quot;</span>
+<span class="c1"># Ejecutamos el script que acabamos de crear</span>
+python3<span class="w"> </span>graficar_mapa.py
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;4. Guardando en Control de Versiones...&quot;</span>
+<span class="c1"># Inicializamos el repositorio</span>
+git<span class="w"> </span>init
+<span class="c1"># Ignoramos el CSV crudo para no saturar GitHub</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;pleyades.csv&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>.gitignore
+git<span class="w"> </span>add<span class="w"> </span>mapeo_pleyades.sh<span class="w"> </span>graficar_mapa.py<span class="w"> </span>mapa_pleyades.png<span class="w"> </span>.gitignore
+<span class="c1"># Guardamos la versión</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Pipeline automático: Cone Search y Mapeo de las Pléyades&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;¡Proceso 100% reproducible completado!&quot;</span>
+</pre></div>
+</div>
+<p>El resultado es:</p>
+<p><img alt="Mapa Pleyades" src="_images/mapa_pleyades.png" /></p>
+</section>
+<section id="ejercicios-practicos-en-clase-nivel-avanzado">
+<h2>5. Ejercicios Prácticos en Clase (Nivel Avanzado)<a class="headerlink" href="#ejercicios-practicos-en-clase-nivel-avanzado" title="Link to this heading">#</a></h2>
+<p>A continuación, se presentan 4 problemas de investigación. Deberán crear scripts en Bash que contengan la consulta ADQL exacta (formateando espacios con sed), ejecuten el análisis en Python y manejen el versionado en Git.</p>
+<section id="ejercicio-1-individual-mapeando-la-galaxia-de-andromeda">
+<h3>Ejercicio 1 (Individual): “Mapeando la Galaxia de Andrómeda”<a class="headerlink" href="#ejercicio-1-individual-mapeando-la-galaxia-de-andromeda" title="Link to this heading">#</a></h3>
+<p>Andrómeda (M31) se encuentra en RA=10.68˚, Dec=41.26˚</p>
+<ul class="simple">
+<li><p>Escribe un script en Bash que use ADQL para extraer las coordenadas (RA_ICRS, DE_ICRS) de estrellas en el catálogo Gaia DR3 (I/355/gaiadr3) en un círculo de 3 grados de radio alrededor de ese punto. Filtra solo estrellas brillantes (Gmag &lt; 16).</p></li>
+<li><p>El script Bash debe ejecutar un script Python que cargue los datos y use Matplotlib para crear un Scatter Plot del cielo (RA_ICRS vs DE_ICRS). No olvides invertir el eje X. Sube todo a un repositorio de GitHub personal.</p></li>
+</ul>
+</section>
+<section id="ejercicio-2-individual-el-vecindario-solar-extremo">
+<h3>Ejercicio 2 (Individual): “El Vecindario Solar Extremo”<a class="headerlink" href="#ejercicio-2-individual-el-vecindario-solar-extremo" title="Link to this heading">#</a></h3>
+<p>Queremos aislar las estrellas más cercanas a la Tierra.</p>
+<ul class="simple">
+<li><p>Escribe un script con una consulta ADQL para el catálogo de Gaia que extraiga Source, Plx (Paralaje) y Gmag. Filtra algebraicamente en ADQL: solo estrellas con una paralaje mayor a 50 milisegundos de arco (<code class="docutils literal notranslate"><span class="pre">Plx</span> <span class="pre">&gt;</span> <span class="pre">50</span></code>).</p></li>
+<li><p>En Python, convierte la Paralaje a Distancia en Parsecs usando la fórmula D=1000/Plx. Usa Seaborn para crear un Histograma (<code class="docutils literal notranslate"><span class="pre">sns.histplot</span></code>) de las distancias. Discute en tu <code class="docutils literal notranslate"><span class="pre">README.md</span></code> cuántas estrellas lograste encontrar a menos de 10 parsecs.</p></li>
+</ul>
+</section>
+<section id="ejercicio-3-parejas-cross-match-infrarrojo-en-la-nube-de-magallanes">
+<h3>Ejercicio 3 (Parejas): “Cross-Match Infrarrojo en la Nube de Magallanes”<a class="headerlink" href="#ejercicio-3-parejas-cross-match-infrarrojo-en-la-nube-de-magallanes" title="Link to this heading">#</a></h3>
+<p>Repositorio colaborativo. Trabajen en ramas separadas y fusionen con Pull Request.</p>
+<p><em><strong>(Estudiante A)</strong></em>: Escribe el script Bash con ADQL. Debes hacer un JOIN entre Gaia DR3 (I/355/gaiadr3) y el catálogo Infrarrojo AllWISE (II/328/allwise). El punto central es la Gran Nube de Magallanes (RA=80.89˚, Dec=−69.75˚) con un radio de 1 grado. Cruza objetos que estén a menos de 2 arcosegundos (2/3600 grados).</p>
+<ul class="simple">
+<li><p>Extrae la magnitud óptica (Gmag de Gaia) y la infrarroja (W1mag de AllWISE).</p></li>
+</ul>
+<p><em><strong>(Estudiante B)</strong></em>: El script Python debe calcular el índice de color Óptico-Infrarrojo (<code class="docutils literal notranslate"><span class="pre">G−W1</span></code>).</p>
+<ul class="simple">
+<li><p>Genera un mapa de densidad topográfico (<code class="docutils literal notranslate"><span class="pre">plt.hexbin</span></code>) enfrentando el color <code class="docutils literal notranslate"><span class="pre">G−W1</span></code> en el Eje <code class="docutils literal notranslate"><span class="pre">X</span></code> y <code class="docutils literal notranslate"><span class="pre">Gmag</span></code> en el Eje <code class="docutils literal notranslate"><span class="pre">Y</span></code>.</p></li>
+</ul>
+</section>
+<section id="ejercicio-4-parejas-cinematica-de-fuga-runaway-stars">
+<h3>Ejercicio 4 (Parejas): “Cinemática de Fuga (Runaway Stars)”<a class="headerlink" href="#ejercicio-4-parejas-cinematica-de-fuga-runaway-stars" title="Link to this heading">#</a></h3>
+<p>Repositorio colaborativo. Pull Request final.</p>
+<p><em><strong>(Estudiante A)</strong></em>: Escribe un Bash script con ADQL. Busca estrellas en el catálogo de Gaia DR3 que se muevan a velocidades tangenciales extremas. Extrae RA_ICRS, DE_ICRS, pmRA y pmDE. La condición matemática ADQL será: el vector de movimiento propio total (Teorema de Pitágoras de pmRA y pmDE) debe ser mayor a 200 mas/yr. Limita a 5000 resultados (TOP 5000).</p>
+<p><em><strong>(Estudiante)</strong></em>: Escribe el código Python. Grafica las posiciones de estas estrellas súper-rápidas en el cielo. Utiliza el comando <code class="docutils literal notranslate"><span class="pre">plt.quiver</span></code> de Matplotlib para dibujar pequeñas flechas sobre cada estrella, indicando la dirección y magnitud de su movimiento vectorial (pmRA, pmDE). En el <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, analicen si los movimientos parecen apuntar en una misma dirección o si son dispersos.</p>
+</section>
+</section>
+<section id="cheatsheet-de-sql">
+<h2><strong>CheatSheet de SQL</strong><a class="headerlink" href="#cheatsheet-de-sql" title="Link to this heading">#</a></h2>
+<p><img alt="Cheatsheet SQL" src="_images/adqlref.png" /></p>
+<p>Imagen tomada de: <a class="reference external" href="https://docs.g-vo.org/adqlref/adqlref.pdf">Link</a></p>
+</section>
+<section id="practica-en-clase-mineria-de-datos-espaciales-con-adql">
+<h2>Práctica en Clase: Minería de Datos Espaciales con ADQL<a class="headerlink" href="#practica-en-clase-mineria-de-datos-espaciales-con-adql" title="Link to this heading">#</a></h2>
+<p><strong>Instrucciones Generales:</strong>
+Para cada uno de los siguientes ejercicios, debes crear un flujo de trabajo 100% automatizado y reproducible. Esto significa que debes entregar un repositorio en GitHub que contenga:</p>
+<ol class="arabic simple">
+<li><p>Un script de Bash (<code class="docutils literal notranslate"><span class="pre">.sh</span></code>) que realice la consulta ADQL usando <code class="docutils literal notranslate"><span class="pre">wget</span></code> (recuerda usar <code class="docutils literal notranslate"><span class="pre">sed</span></code> para reemplazar los espacios por <code class="docutils literal notranslate"><span class="pre">+</span></code> en la URL).</p></li>
+<li><p>Un script de Python (<code class="docutils literal notranslate"><span class="pre">.py</span></code>) que cargue los datos, los limpie y genere una visualización gráfica de calidad científica.</p></li>
+<li><p>Un archivo <code class="docutils literal notranslate"><span class="pre">README.md</span></code> que contenga la gráfica generada y la respuesta al análisis físico solicitado.</p></li>
+</ol>
+<hr class="docutils" />
+<section id="ejercicios-individuales">
+<h3><strong>Ejercicios Individuales</strong><a class="headerlink" href="#ejercicios-individuales" title="Link to this heading">#</a></h3>
+<section id="ejercicio-1-cazando-la-nebulosa-de-orion">
+<h4>Ejercicio 1: “Cazando la Nebulosa de Orión”<a class="headerlink" href="#ejercicio-1-cazando-la-nebulosa-de-orion" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Las zonas de formación estelar son regiones densas y jóvenes. Queremos mapear el corazón de la Nebulosa de Orión.</p></li>
+<li><p>Endpoint a utilizar (VizieR):
+<code class="docutils literal notranslate"><span class="pre">https://tapvizier.cds.unistra.fr/TAPVizieR/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=</span></code></p></li>
+<li><p>Escribe una consulta ADQL para extraer las columnas <code class="docutils literal notranslate"><span class="pre">RA_ICRS</span></code>, <code class="docutils literal notranslate"><span class="pre">DE_ICRS</span></code> y <code class="docutils literal notranslate"><span class="pre">Gmag</span></code> del catálogo Gaia DR3 (<code class="docutils literal notranslate"><span class="pre">I/355/gaiadr3</span></code>). Debes usar las funciones espaciales <code class="docutils literal notranslate"><span class="pre">CONTAINS</span></code>, <code class="docutils literal notranslate"><span class="pre">POINT</span></code> y <code class="docutils literal notranslate"><span class="pre">CIRCLE</span></code> para limitar tu búsqueda a un radio de 2 grados centrado en las coordenadas de Orión (Ascensión Recta: 83.82˚, Declinación: -5.39˚). Filtra para obtener estrellas con una magnitud <code class="docutils literal notranslate"><span class="pre">Gmag</span></code> menor a 16.</p></li>
+<li><p>Genera un mapa estelar (Scatter Plot de RA vs Dec). Inversamente al plano cartesiano normal, la Ascensión Recta debe graficarse invertida (de mayor a menor).</p></li>
+<li><p>README.md: Observa la gráfica generada. ¿Ves una distribución uniforme de estrellas o notas una aglomeración en el centro? Explica brevemente por qué las nebulosas presentan esta morfología visual.</p></li>
+</ul>
+</section>
+<section id="ejercicio-2-el-vecindario-solar-y-las-enanas-rojas">
+<h4>Ejercicio 2: “El Vecindario Solar y las Enanas Rojas”<a class="headerlink" href="#ejercicio-2-el-vecindario-solar-y-las-enanas-rojas" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Las estrellas más cercanas a la Tierra suelen ser enanas rojas (frías y tenues), difíciles de ver a simple vista pero con gran movimiento aparente.</p></li>
+<li><p>Endpoint a utilizar (VizieR):
+<code class="docutils literal notranslate"><span class="pre">https://tapvizier.cds.unistra.fr/TAPVizieR/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=</span></code></p></li>
+<li><p>Escribe una consulta ADQL para extraer <code class="docutils literal notranslate"><span class="pre">Source</span></code>, <code class="docutils literal notranslate"><span class="pre">Plx</span></code> (Paralaje) y <code class="docutils literal notranslate"><span class="pre">Teff</span></code> (Temperatura Efectiva) del catálogo Gaia DR3 (<code class="docutils literal notranslate"><span class="pre">I/355/gaiadr3</span></code>). Extrae únicamente las estrellas que estén a menos de 20 parsecs de distancia. (Pista: Recuerda la relación Paralaje-Distancia. Debes filtrar matemáticamente en ADQL exigiendo <code class="docutils literal notranslate"><span class="pre">Plx</span> <span class="pre">&gt;</span> <span class="pre">50</span></code>).</p></li>
+<li><p>Limpia los datos nulos (<code class="docutils literal notranslate"><span class="pre">NaN</span></code>). Crea un histograma de la Temperatura Efectiva (<code class="docutils literal notranslate"><span class="pre">Teff</span></code>) de estas estrellas cercanas.</p></li>
+<li><p>README.md: Analizando el histograma, ¿cuál es el rango de temperatura dominante en nuestro vecindario solar? Sabiendo que el Sol tiene aproximadamente 5778 K, ¿somos la regla o la excepción en nuestro rincón de la galaxia?</p></li>
+</ul>
+</section>
+</section>
+<section id="ejercicios-en-parejas">
+<h3><strong>Ejercicios en Parejas</strong><a class="headerlink" href="#ejercicios-en-parejas" title="Link to this heading">#</a></h3>
+<p>Un estudiante programa la ingesta de datos (Bash/ADQL) y el otro programa el análisis y visualización (Python). Deben unificar su trabajo mediante un Pull Request.</p>
+<section id="ejercicio-3-polvo-galactico-cross-match-en-sagitario-a">
+<h4>Ejercicio 3: “Polvo Galáctico: Cross-Match en Sagitario A*”<a class="headerlink" href="#ejercicio-3-polvo-galactico-cross-match-en-sagitario-a" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>El centro de nuestra galaxia está oculto detrás de inmensas nubes de polvo interestelar que bloquean la luz visible (Gaia), pero dejan pasar la luz infrarroja (2MASS).</p></li>
+<li><p>Endpoint a utilizar (VizieR):
+<code class="docutils literal notranslate"><span class="pre">https://tapvizier.cds.unistra.fr/TAPVizieR/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=</span></code></p></li>
+<li><p><em>Estudiante A</em> - Bash/ADQL: Realiza un <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> espacial en el servidor. Une Gaia DR3 (<code class="docutils literal notranslate"><span class="pre">I/355/gaiadr3</span></code>) con 2MASS (<code class="docutils literal notranslate"><span class="pre">II/246/out</span></code>). Busca en un radio de 0.5 grados alrededor del centro galáctico (RA: 266.41˚, Dec: -29.00˚). La condición de cruce es que las coordenadas de ambos catálogos coincidan en un radio de 1 arcosegundo (1./3600 grados). Extrae la magnitud óptica de Gaia (<code class="docutils literal notranslate"><span class="pre">Gmag</span></code>) y la infrarroja de 2MASS (<code class="docutils literal notranslate"><span class="pre">Jmag</span></code>). Limita a 5000 resultados (<code class="docutils literal notranslate"><span class="pre">TOP</span> <span class="pre">5000</span></code>).</p></li>
+<li><p><em>Estudiante B</em> - Python: Calcula el Índice de Color Óptico-Infrarrojo restando las magnitudes (<code class="docutils literal notranslate"><span class="pre">Color</span> <span class="pre">=</span> <span class="pre">Gmag</span> <span class="pre">-</span> <span class="pre">Jmag</span></code>). Genera un gráfico de dispersión enfrentando este Color (Eje X) contra la magnitud Gmag (Eje Y, invertido).</p></li>
+<li><p>README.md: Los valores de índice de color muy altos significan que el objeto es extremadamente brillante en el infrarrojo pero casi invisible en el rango óptico. Sabiendo que apuntaron al centro de la galaxia, expliquen físicamente el concepto de “Extinción Interestelar”.</p></li>
+</ul>
+</section>
+<section id="ejercicio-4-el-mapa-de-los-mundos-y-el-sesgo-de-kepler">
+<h4>Ejercicio 4: “El Mapa de los Mundos y el Sesgo de Kepler”<a class="headerlink" href="#ejercicio-4-el-mapa-de-los-mundos-y-el-sesgo-de-kepler" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Hemos descubierto más de 5000 exoplanetas, pero ¿estamos mirando en todas direcciones por igual?</p></li>
+<li><p>Endpoint a utilizar (NASA Exoplanet Archive):
+<code class="docutils literal notranslate"><span class="pre">https://exoplanetarchive.ipac.caltech.edu/TAP/sync?format=csv&amp;query=</span></code></p></li>
+<li><p><em>Estudiante A</em> - Bash/SQL: El catálogo de la NASA no requiere geometría esférica para la búsqueda completa. Descarga las columnas del nombre del planeta (<code class="docutils literal notranslate"><span class="pre">pl_name</span></code>), la Ascensión Recta de la estrella (<code class="docutils literal notranslate"><span class="pre">ra</span></code>), su Declinación (<code class="docutils literal notranslate"><span class="pre">dec</span></code>) y el método de descubrimiento (<code class="docutils literal notranslate"><span class="pre">discoverymethod</span></code>) de la tabla maestra (<code class="docutils literal notranslate"><span class="pre">ps</span></code>). Filtra para que no haya datos nulos en esas columnas.</p></li>
+<li><p><em>Estudiante B</em> - Python: Crea un mapa de todo el cielo (Scatter Plot de <code class="docutils literal notranslate"><span class="pre">ra</span></code> en Eje X vs <code class="docutils literal notranslate"><span class="pre">dec</span></code> en Eje Y, recordando invertir <code class="docutils literal notranslate"><span class="pre">ra</span></code>). Colorea los puntos dependiendo del método de descubrimiento (<code class="docutils literal notranslate"><span class="pre">hue='discoverymethod'</span></code> usando Seaborn). Usa un tamaño de punto muy pequeño (<code class="docutils literal notranslate"><span class="pre">s=5</span></code>, <code class="docutils literal notranslate"><span class="pre">alpha=0.6</span></code>).</p></li>
+<li><p>README.md: Al ver el mapa del cielo, notarán una aglomeración cuadrada/rectangular masiva de puntos en una región específica del cielo, casi todos descubiertos por el método de “Tránsito”. Investiguen y expliquen a qué se debe esa anomalía geométrica (Pista: Busquen información sobre el campo de visión del telescopio espacial Kepler).</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Clase_04_SQL_Intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Clase 4: Introducción a SQL y Bases de Datos Relacionales</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Proyecto%201er%20mes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Proyecto 1er mes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-protocolo-tap-y-los-endpoints">1. El Protocolo TAP y los Endpoints</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#endpoints-astronomicos-principales-para-adql">Endpoints Astronómicos Principales para ADQL</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-arsenal-geometrico-de-adql">2. El Arsenal Geométrico de ADQL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-definiendo-formas-geometrias">A) Definiendo Formas (Geometrías)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-operaciones-espaciales">B) Operaciones Espaciales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-practicos-paso-a-paso">3. Ejemplos Prácticos Paso a Paso</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1-busqueda-en-cono-cone-search">Ejemplo 1: Búsqueda en Cono (Cone Search)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-cross-matching-extremo-cruzando-catalogos">Ejemplo 2: Cross-Matching Extremo (Cruzando Catálogos)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-completo-sql-adql-cli-python-git">4. Pipeline Completo: SQL + ADQL + CLI + Python + Git</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-practicos-en-clase-nivel-avanzado">5. Ejercicios Prácticos en Clase (Nivel Avanzado)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-individual-mapeando-la-galaxia-de-andromeda">Ejercicio 1 (Individual): “Mapeando la Galaxia de Andrómeda”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-individual-el-vecindario-solar-extremo">Ejercicio 2 (Individual): “El Vecindario Solar Extremo”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-parejas-cross-match-infrarrojo-en-la-nube-de-magallanes">Ejercicio 3 (Parejas): “Cross-Match Infrarrojo en la Nube de Magallanes”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-parejas-cinematica-de-fuga-runaway-stars">Ejercicio 4 (Parejas): “Cinemática de Fuga (Runaway Stars)”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet-de-sql"><strong>CheatSheet de SQL</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-en-clase-mineria-de-datos-espaciales-con-adql">Práctica en Clase: Minería de Datos Espaciales con ADQL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-individuales"><strong>Ejercicios Individuales</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-cazando-la-nebulosa-de-orion">Ejercicio 1: “Cazando la Nebulosa de Orión”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-el-vecindario-solar-y-las-enanas-rojas">Ejercicio 2: “El Vecindario Solar y las Enanas Rojas”</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-en-parejas"><strong>Ejercicios en Parejas</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-3-polvo-galactico-cross-match-en-sagitario-a">Ejercicio 3: “Polvo Galáctico: Cross-Match en Sagitario A*”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-el-mapa-de-los-mundos-y-el-sesgo-de-kepler">Ejercicio 4: “El Mapa de los Mundos y el Sesgo de Kepler”</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Esteban Silva Villa y Germán Chaparro Molano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
