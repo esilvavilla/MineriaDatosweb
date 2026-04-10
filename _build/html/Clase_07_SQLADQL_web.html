@@ -1,0 +1,745 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs) &#8212; Minería de datos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_07_SQLADQL_web';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Proyecto 1er mes" href="Proyecto%201er%20mes.html" />
+    <link rel="prev" title="Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales" href="Clase_06_ADQL_Intro2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
+    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Minería de datos para el pregrado de Astronomía UdeA
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Clase_01_INTROyCLI.html">Clase 1: La Consola de Comandos (Bash)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_02_GIT-HUB.html">Clase 2: Introducción a herramientas de control de versiones Git y Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_03_PythonCientifico.html">Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_04_SQL_Intro.html">Clase 4: Introducción a SQL y Bases de Datos Relacionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_05_ADQL_Intro.html">Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_06_ADQL_Intro2.html">Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FClase_07_SQLADQL_web.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Clase_07_SQLADQL_web.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directorio-de-bases-de-datos-y-tablas-principales">1. Directorio de Bases de Datos y Tablas Principales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-columnas-principales">2. Diccionario de Columnas Principales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-gaia-dr3-vizier">A. Gaia DR3 (VizieR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-sdss-dr18-skyserver">B. SDSS DR18 (SkyServer)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-nasa-exoplanet-archive">C. NASA Exoplanet Archive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-mast-mikulski-archive-for-space-telescopes">D. MAST (Mikulski Archive for Space Telescopes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-simbad-astronomical-database">E. SIMBAD Astronomical Database</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-ilustrativos-de-la-teoria-a-los-clics">3. Ejemplos Ilustrativos: De la Teoría a los Clics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1-el-diagrama-color-magnitud-de-las-pleyades-vizier">Ejemplo 1: El Diagrama Color-Magnitud de las Pléyades (VizieR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-el-enrojecimiento-de-los-quasares-sdss">Ejemplo 2: El Enrojecimiento de los Quásares (SDSS)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-3-filtrado-dinamico-en-nasa-exoplanet-archive">Ejemplo 3: Filtrado Dinámico en NASA Exoplanet Archive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-4-resolucion-de-nombres-y-tipos-en-simbad">Ejemplo 4: Resolución de Nombres y Tipos en SIMBAD</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-independiente-10-ejercicios-web">4. Práctica Independiente: 10 Ejercicios Web</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="clase-7-exploracion-de-datos-astronomicos-mediante-interfaces-graficas-guis">
+<h1>Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)<a class="headerlink" href="#clase-7-exploracion-de-datos-astronomicos-mediante-interfaces-graficas-guis" title="Link to this heading">#</a></h1>
+<section id="directorio-de-bases-de-datos-y-tablas-principales">
+<h2>1. Directorio de Bases de Datos y Tablas Principales<a class="headerlink" href="#directorio-de-bases-de-datos-y-tablas-principales" title="Link to this heading">#</a></h2>
+<p>A continuación, se presentan las direcciones web exactas de los portales de búsqueda. Para evitar errores de formato, las URLs se entregan en texto plano (cópialas y pégalas en tu navegador).</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Base de Datos</p></th>
+<th class="head text-left"><p>Interfaz Web (URL plana)</p></th>
+<th class="head text-left"><p>Tablas / Colecciones Principales</p></th>
+<th class="head text-left"><p>Uso Principal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>1. VizieR (CDS)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://vizier.cds.unistra.fr/viz-bin/VizieR</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">I/355/gaiadr3</span></code> (Gaia), <code class="docutils literal notranslate"><span class="pre">II/328/allwise</span></code> (Infrarrojo)</p></td>
+<td class="text-left"><p>Astrometría, Cinemática y cruce de catálogos masivos.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>2. SDSS SkyServer</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">http://skyserver.sdss.org/dr18/SearchTools/sql</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">SpecObjAll</span></code>, <code class="docutils literal notranslate"><span class="pre">PhotoObjAll</span></code>, <code class="docutils literal notranslate"><span class="pre">SpecPhotoAll</span></code></p></td>
+<td class="text-left"><p>Espectroscopía, Cosmología, separación Galaxia/Quásar.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>3. NASA Exoplanet</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&amp;config=PS</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ps</span></code> (Planetary Systems)</p></td>
+<td class="text-left"><p>Búsqueda, parámetros y estadística de exoplanetas.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>4. MAST (Space Telescopes)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://mast.stsci.edu/portal/Mashup/Clients/Mast/Portal.html</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">HST</span></code> (Hubble), <code class="docutils literal notranslate"><span class="pre">JWST</span></code> (Webb), <code class="docutils literal notranslate"><span class="pre">Kepler</span></code>, <code class="docutils literal notranslate"><span class="pre">TESS</span></code></p></td>
+<td class="text-left"><p>Descarga de curvas de luz e imágenes FITS de misiones espaciales.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>5. SIMBAD (CDS)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">http://simbad.cds.unistra.fr/simbad/sim-fid</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">basic</span></code> (Datos básicos), <code class="docutils literal notranslate"><span class="pre">ident</span></code> (Identificadores)</p></td>
+<td class="text-left"><p>Identificación rápida de un solo objeto, bibliografía y tipo espectral.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="diccionario-de-columnas-principales">
+<h2>2. Diccionario de Columnas Principales<a class="headerlink" href="#diccionario-de-columnas-principales" title="Link to this heading">#</a></h2>
+<p>Antes de buscar, debemos saber qué variables marcar en los formularios web. Aquí están las columnas más importantes y los enlaces oficiales (en texto plano) para investigar a fondo su significado físico.</p>
+<section id="a-gaia-dr3-vizier">
+<h3>A. Gaia DR3 (VizieR)<a class="headerlink" href="#a-gaia-dr3-vizier" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Columnas:</strong> <code class="docutils literal notranslate"><span class="pre">Source</span></code> (ID), <code class="docutils literal notranslate"><span class="pre">RA_ICRS</span></code> / <code class="docutils literal notranslate"><span class="pre">DE_ICRS</span></code> (Coordenadas), <code class="docutils literal notranslate"><span class="pre">Plx</span></code> (Paralaje), <code class="docutils literal notranslate"><span class="pre">pmRA</span></code> / <code class="docutils literal notranslate"><span class="pre">pmDE</span></code> (Movimiento Propio), <code class="docutils literal notranslate"><span class="pre">Gmag</span></code>, <code class="docutils literal notranslate"><span class="pre">BPmag</span></code>, <code class="docutils literal notranslate"><span class="pre">RPmag</span></code> (Fotometría), <code class="docutils literal notranslate"><span class="pre">Teff</span></code> (Temperatura).</p></li>
+<li><p><strong>Documentación:</strong> <code class="docutils literal notranslate"><span class="pre">https://gea.esac.esa.int/archive/documentation/GDR3/Gaia_archive/chap_datamodel/</span></code></p></li>
+</ul>
+</section>
+<section id="b-sdss-dr18-skyserver">
+<h3>B. SDSS DR18 (SkyServer)<a class="headerlink" href="#b-sdss-dr18-skyserver" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Columnas:</strong> <code class="docutils literal notranslate"><span class="pre">objid</span></code> (ID fotométrico), <code class="docutils literal notranslate"><span class="pre">ra</span></code> / <code class="docutils literal notranslate"><span class="pre">dec</span></code> (Coordenadas), <code class="docutils literal notranslate"><span class="pre">u</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code>, <code class="docutils literal notranslate"><span class="pre">r</span></code>, <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">z</span></code> (Magnitudes), <code class="docutils literal notranslate"><span class="pre">class</span></code> (STAR, GALAXY, QSO), <code class="docutils literal notranslate"><span class="pre">z</span></code> (Redshift / Corrimiento al rojo).</p></li>
+<li><p><strong>Documentación:</strong> <code class="docutils literal notranslate"><span class="pre">http://skyserver.sdss.org/dr18/DataAccess/SchemaBrowser</span></code></p></li>
+</ul>
+</section>
+<section id="c-nasa-exoplanet-archive">
+<h3>C. NASA Exoplanet Archive<a class="headerlink" href="#c-nasa-exoplanet-archive" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Columnas:</strong> <code class="docutils literal notranslate"><span class="pre">pl_name</span></code> (Planeta), <code class="docutils literal notranslate"><span class="pre">hostname</span></code> (Estrella), <code class="docutils literal notranslate"><span class="pre">discoverymethod</span></code> (Método), <code class="docutils literal notranslate"><span class="pre">disc_year</span></code> (Año), <code class="docutils literal notranslate"><span class="pre">pl_orbper</span></code> (Periodo orbital), <code class="docutils literal notranslate"><span class="pre">pl_rade</span></code> (Radio Terrestre), <code class="docutils literal notranslate"><span class="pre">pl_bmasse</span></code> (Masa Terrestre).</p></li>
+<li><p><strong>Documentación:</strong> <code class="docutils literal notranslate"><span class="pre">https://exoplanetarchive.ipac.caltech.edu/docs/API_PS_columns.html</span></code></p></li>
+</ul>
+</section>
+<section id="d-mast-mikulski-archive-for-space-telescopes">
+<h3>D. MAST (Mikulski Archive for Space Telescopes)<a class="headerlink" href="#d-mast-mikulski-archive-for-space-telescopes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Columnas:</strong> <code class="docutils literal notranslate"><span class="pre">obs_id</span></code> (ID de Observación), <code class="docutils literal notranslate"><span class="pre">target_name</span></code> (Nombre del objetivo), <code class="docutils literal notranslate"><span class="pre">instrument_name</span></code> (Ej. NIRCAM, WFC3), <code class="docutils literal notranslate"><span class="pre">filters</span></code> (Filtro óptico/IR usado), <code class="docutils literal notranslate"><span class="pre">t_exptime</span></code> (Tiempo de exposición).</p></li>
+<li><p><strong>Documentación:</strong> <code class="docutils literal notranslate"><span class="pre">https://mast.stsci.edu/api/v0/MastApiTutorial.html</span></code></p></li>
+</ul>
+</section>
+<section id="e-simbad-astronomical-database">
+<h3>E. SIMBAD Astronomical Database<a class="headerlink" href="#e-simbad-astronomical-database" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Columnas:</strong> <code class="docutils literal notranslate"><span class="pre">main_id</span></code> (Nombre principal), <code class="docutils literal notranslate"><span class="pre">ra</span></code> / <code class="docutils literal notranslate"><span class="pre">dec</span></code> (Coordenadas), <code class="docutils literal notranslate"><span class="pre">otype</span></code> (Tipo de Objeto, ej. <em>Cl</em>, <em>Gl</em>), <code class="docutils literal notranslate"><span class="pre">sp_type</span></code> (Clasificación Espectral, ej. <em>G2V</em>).</p></li>
+<li><p><strong>Documentación:</strong> <code class="docutils literal notranslate"><span class="pre">http://simbad.cds.unistra.fr/simbad/sim-help?Page=sim-fout</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="ejemplos-ilustrativos-de-la-teoria-a-los-clics">
+<h2>3. Ejemplos Ilustrativos: De la Teoría a los Clics<a class="headerlink" href="#ejemplos-ilustrativos-de-la-teoria-a-los-clics" title="Link to this heading">#</a></h2>
+<p>A continuación, veremos cómo realizar búsquedas y descargas utilizando únicamente el navegador web.</p>
+<section id="ejemplo-1-el-diagrama-color-magnitud-de-las-pleyades-vizier">
+<h3>Ejemplo 1: El Diagrama Color-Magnitud de las Pléyades (VizieR)<a class="headerlink" href="#ejemplo-1-el-diagrama-color-magnitud-de-las-pleyades-vizier" title="Link to this heading">#</a></h3>
+<p><em>Descargar la fotometría del cúmulo M45 y graficar su Secuencia Principal para identificar su edad relativa.</em></p>
+<p><strong>1. Extracción en la Interfaz (GUI):</strong></p>
+<ol class="arabic simple">
+<li><p>Ve a <code class="docutils literal notranslate"><span class="pre">https://vizier.cds.unistra.fr/viz-bin/VizieR</span></code>.</p></li>
+<li><p>Busca el catálogo <code class="docutils literal notranslate"><span class="pre">I/355/gaiadr3</span></code> y selecciona “Gaia DR3 Part 1”.</p></li>
+<li><p>En “Target”, escribe <code class="docutils literal notranslate"><span class="pre">M45</span></code>. Cambia el radio a <code class="docutils literal notranslate"><span class="pre">2</span></code> y la unidad a <code class="docutils literal notranslate"><span class="pre">deg</span></code>.</p></li>
+<li><p>En “Preferences” (izquierda), cambia a formato <strong>“CSV”</strong> y Max Entries a <code class="docutils literal notranslate"><span class="pre">unlimited</span></code>.</p></li>
+<li><p>Marca las columnas: <code class="docutils literal notranslate"><span class="pre">Source</span></code>, <code class="docutils literal notranslate"><span class="pre">Gmag</span></code>, <code class="docutils literal notranslate"><span class="pre">BPmag</span></code>, <code class="docutils literal notranslate"><span class="pre">RPmag</span></code> y haz clic en “Submit”. (Guarda el archivo como <code class="docutils literal notranslate"><span class="pre">pleyades_gui.csv</span></code>).</p></li>
+</ol>
+<p><strong>2. Código en Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Cargar datos y limpiar nulos</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;pleyades_gui.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Calcular el Índice de Color (Azul - Rojo)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Color_BP_RP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;BPmag&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;RPmag&#39;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="c1"># Graficar Color vs Magnitud</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Color_BP_RP&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gmag&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Invertir el eje Y (Magnitudes astronómicas)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Diagrama Color-Magnitud: Las Pléyades (M45)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Color Óptico (BP - RP) -&gt; Más rojo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Magnitud G -&gt; Más brillante&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;pleyades_cmd.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>3. Análisis de los resultados:</strong>
+Realiza un pequeño análisis de los resultados obtenidos y verifícalos con la literatura para este cúmulo.</p>
+</section>
+<section id="ejemplo-2-el-enrojecimiento-de-los-quasares-sdss">
+<h3>Ejemplo 2: El Enrojecimiento de los Quásares (SDSS)<a class="headerlink" href="#ejemplo-2-el-enrojecimiento-de-los-quasares-sdss" title="Link to this heading">#</a></h3>
+<p><em>Comprobar visualmente cómo la expansión del universo afecta el color aparente de los núcleos galácticos activos.</em></p>
+<p><strong>1. Extracción en la Interfaz (GUI):</strong></p>
+<p>Ve a <code class="docutils literal notranslate"><span class="pre">http://skyserver.sdss.org/dr18/SearchTools/sql</span></code></p>
+<p>Pega la siguiente consulta en la caja de texto para obtener quásares con sus brillos en ultravioleta (u) y verde (g):</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SQL</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="mi">5000</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="k">g</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">SpecPhotoAll</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;QSO&#39;</span>
+</pre></div>
+</div>
+<p>Selecciona formato “CSV” debajo de la caja y presiona “Submit”. (Guarda como quasares_gui.csv).</p>
+<p><strong>2. Código en Python:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Omitir metadatos de SDSS</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;quasares_gui.csv&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Calcular color Ultravioleta-Verde</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Color_u_g&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Color_u_g&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Efecto Cosmológico en el Color de los Quásares&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Redshift Cosmológico (z)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Índice de Color (u - g)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;quasares_color.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>3. Análisis de los resultados:</strong>
+Presenta un análisis de tus resultados en relación a las observaciones de los Quasar.</p>
+</section>
+<section id="ejemplo-3-filtrado-dinamico-en-nasa-exoplanet-archive">
+<h3>Ejemplo 3: Filtrado Dinámico en NASA Exoplanet Archive<a class="headerlink" href="#ejemplo-3-filtrado-dinamico-en-nasa-exoplanet-archive" title="Link to this heading">#</a></h3>
+<p><em>Filtrar exoplanetas masivos visualmente.</em></p>
+<ol class="arabic simple">
+<li><p><strong>Ingreso:</strong> Ve a <code class="docutils literal notranslate"><span class="pre">https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&amp;config=PS</span></code>.</p></li>
+<li><p><strong>Explorar la Tabla:</strong> Verás una tabla interactiva similar a Excel.</p></li>
+<li><p><strong>Filtrar:</strong> Debajo de la columna <code class="docutils literal notranslate"><span class="pre">Planet</span> <span class="pre">Mass</span> <span class="pre">[Earth</span> <span class="pre">Mass]</span></code>, hay un cuadro de texto en blanco. Escribe <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">100</span></code> y presiona Enter. La tabla se actualizará al instante (simulando un <code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">pl_bmasse</span> <span class="pre">&gt;</span> <span class="pre">100</span></code>).</p></li>
+<li><p><strong>Descargar:</strong> En la esquina superior derecha de la tabla, haz clic en <strong>“Download Table”</strong> y selecciona el formato “CSV”.</p></li>
+</ol>
+</section>
+<section id="ejemplo-4-resolucion-de-nombres-y-tipos-en-simbad">
+<h3>Ejemplo 4: Resolución de Nombres y Tipos en SIMBAD<a class="headerlink" href="#ejemplo-4-resolucion-de-nombres-y-tipos-en-simbad" title="Link to this heading">#</a></h3>
+<p><em>Descubrir qué tipo de objeto es “HD 209458” y obtener sus coordenadas precisas.</em></p>
+<ol class="arabic simple">
+<li><p><strong>Ingreso:</strong> Ve a <code class="docutils literal notranslate"><span class="pre">http://simbad.cds.unistra.fr/simbad/sim-fid</span></code> (Búsqueda por Identificador).</p></li>
+<li><p><strong>Búsqueda:</strong> En el cuadro “Identifier”, escribe <code class="docutils literal notranslate"><span class="pre">HD</span> <span class="pre">209458</span></code> y presiona “submit id”.</p></li>
+<li><p><strong>Análisis de la Página:</strong> Se abrirá la ficha técnica. Verás que en “Object type” dice <strong>Star</strong>, y en “Spectral type” dice <strong>G0V</strong> (muy parecida a nuestro Sol).</p></li>
+<li><p><strong>Bibliografía:</strong> Si bajas un poco, verás la sección “References”. Esto te permite ver todos los artículos científicos (papers) que han estudiado esta estrella específica sin tener que buscar en Google Scholar.</p></li>
+</ol>
+</section>
+</section>
+<section id="practica-independiente-10-ejercicios-web">
+<h2>4. Práctica Independiente: 10 Ejercicios Web<a class="headerlink" href="#practica-independiente-10-ejercicios-web" title="Link to this heading">#</a></h2>
+<p>Usa las interfaces web (sin terminal ni <code class="docutils literal notranslate"><span class="pre">wget</span></code>) para resolver estos ejercicios. Para cada uno, descarga el CSV (si aplica), crea un script de Python básico para graficar el resultado y sube todo a GitHub.</p>
+<ul class="simple">
+<li><p><strong>Nivel Básico (Filtros Simples y Resolución)</strong></p></li>
+</ul>
+<ol class="arabic simple">
+<li><p><strong>El Cúmulo de Hércules:</strong> En VizieR (Gaia DR3), haz una búsqueda en cono centrada en <code class="docutils literal notranslate"><span class="pre">M13</span></code> con un radio de 0.5 grados. Selecciona las columnas <code class="docutils literal notranslate"><span class="pre">Gmag</span></code>, <code class="docutils literal notranslate"><span class="pre">BPmag</span></code>, <code class="docutils literal notranslate"><span class="pre">RPmag</span></code>. En Python, grafica el diagrama Color-Magnitud ($BP-RP$ vs $Gmag$).</p></li>
+<li><p><strong>Mundos Acuáticos Teóricos:</strong> En el portal de la NASA, busca planetas con Radio Terrestre (<code class="docutils literal notranslate"><span class="pre">Planet</span> <span class="pre">Radius</span></code>) entre 1.5 y 2.5 (<code class="docutils literal notranslate"><span class="pre">&gt;1.5</span> <span class="pre">and</span> <span class="pre">&lt;2.5</span></code>), que orbiten una estrella tipo M (<code class="docutils literal notranslate"><span class="pre">Stellar</span> <span class="pre">Effective</span> <span class="pre">Temp</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;4000</span></code>). Descarga el CSV y grafica Masa vs Radio.</p></li>
+<li><p><strong>El Carnet de Identidad de Sirio:</strong> Entra a SIMBAD. Busca la estrella <code class="docutils literal notranslate"><span class="pre">Sirius</span></code>. En tu <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, anota su tipo espectral exacto, su magnitud en la banda V, y cuántas referencias bibliográficas tiene publicadas.</p></li>
+<li><p><strong>Galaxias Cercanas:</strong> En el SkyServer de SDSS, usa el formulario SQL para extraer el redshift (<code class="docutils literal notranslate"><span class="pre">z</span></code>) de 5000 galaxias (<code class="docutils literal notranslate"><span class="pre">class='GALAXY'</span></code>) donde $z &lt; 0.05$. Haz un histograma en Python.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Nivel Intermedio (Filtros Múltiples y Misiones Especiales)</strong></p></li>
+</ul>
+<ol class="arabic simple" start="5">
+<li><p><strong>Buscando a Tatooine:</strong> En la tabla principal de la NASA, añade la columna <code class="docutils literal notranslate"><span class="pre">cb_flag</span></code> (Circumbinary Flag - 1 significa que orbita dos estrellas). Filtra la tabla donde este valor sea <code class="docutils literal notranslate"><span class="pre">1</span></code>. Descarga y grafica un histograma del Año de Descubrimiento de estos raros planetas.</p></li>
+<li><p><strong>El Ojo del James Webb:</strong> Ve al portal de MAST. En la barra superior, busca <code class="docutils literal notranslate"><span class="pre">M74</span></code> (La Galaxia del Fantasma). En el panel de filtros de la izquierda, selecciona la misión <code class="docutils literal notranslate"><span class="pre">JWST</span></code> y el instrumento <code class="docutils literal notranslate"><span class="pre">MIRI</span></code>. Imprime una captura de pantalla de la interfaz web mostrando las observaciones disponibles.</p></li>
+<li><p><strong>Filtro Infrarrojo Manual:</strong> En VizieR, busca el catálogo AllWISE (<code class="docutils literal notranslate"><span class="pre">II/328/allwise</span></code>). Haz una búsqueda en cono en el Centro Galáctico (<code class="docutils literal notranslate"><span class="pre">266.41</span> <span class="pre">-29.00</span></code>, radio 2 grados). Filtra en las casillas para obtener solo objetos muy brillantes en infrarrojo (<code class="docutils literal notranslate"><span class="pre">W1mag</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">8</span></code>). Descarga y mapea las coordenadas en Python.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Nivel Avanzado (Análisis Crítico y Cross-DB)</strong></p></li>
+</ul>
+<ol class="arabic simple" start="8">
+<li><p><strong>El Sesgo de Tránsito:</strong> En la web de la NASA, filtra la tabla para que el <code class="docutils literal notranslate"><span class="pre">Discovery</span> <span class="pre">Method</span></code> sea exactamente <code class="docutils literal notranslate"><span class="pre">Transit</span></code>. Descarga el CSV. Limpia los filtros y busca por <code class="docutils literal notranslate"><span class="pre">Radial</span> <span class="pre">Velocity</span></code>. Descarga el segundo CSV. En un script de Python, superpón dos histogramas de la Masa Planetaria (<code class="docutils literal notranslate"><span class="pre">pl_bmasse</span></code>) para ver visualmente cuál método es más sensible a planetas ligeros.</p></li>
+<li><p><strong>Arqueología Estelar (Metalicidad):</strong> En la web SQL de SDSS, busca estrellas (<code class="docutils literal notranslate"><span class="pre">class='STAR'</span></code>) y extrae su metalicidad (<code class="docutils literal notranslate"><span class="pre">z</span></code> en la tabla <code class="docutils literal notranslate"><span class="pre">SpecObj</span></code>) y sus coordenadas. Descarga 10,000 registros. Grafica un mapa estelar en Python coloreando los puntos (<code class="docutils literal notranslate"><span class="pre">hue</span></code> o <code class="docutils literal notranslate"><span class="pre">c</span></code>) según su nivel de metalicidad.</p></li>
+<li><p><strong>El Límite de Gaia:</strong> En VizieR (Gaia DR3), deja el Target vacío. Filtra el error de paralaje (<code class="docutils literal notranslate"><span class="pre">e_Plx</span></code>) con <code class="docutils literal notranslate"><span class="pre">&lt;0.1</span></code> y la Paralaje (<code class="docutils literal notranslate"><span class="pre">Plx</span></code>) con <code class="docutils literal notranslate"><span class="pre">&lt;0.5</span></code> (muy lejanas y con alta precisión). Descarga el CSV y calcula en Python cuál es la distancia máxima (en parsecs) de la muestra. Verifica en SIMBAD las coordenadas de la estrella más lejana de tu CSV para descubrir qué objeto exótico es.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Clase_06_ADQL_Intro2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Proyecto%201er%20mes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Proyecto 1er mes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directorio-de-bases-de-datos-y-tablas-principales">1. Directorio de Bases de Datos y Tablas Principales</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-columnas-principales">2. Diccionario de Columnas Principales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-gaia-dr3-vizier">A. Gaia DR3 (VizieR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-sdss-dr18-skyserver">B. SDSS DR18 (SkyServer)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-nasa-exoplanet-archive">C. NASA Exoplanet Archive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-mast-mikulski-archive-for-space-telescopes">D. MAST (Mikulski Archive for Space Telescopes)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-simbad-astronomical-database">E. SIMBAD Astronomical Database</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-ilustrativos-de-la-teoria-a-los-clics">3. Ejemplos Ilustrativos: De la Teoría a los Clics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1-el-diagrama-color-magnitud-de-las-pleyades-vizier">Ejemplo 1: El Diagrama Color-Magnitud de las Pléyades (VizieR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-el-enrojecimiento-de-los-quasares-sdss">Ejemplo 2: El Enrojecimiento de los Quásares (SDSS)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-3-filtrado-dinamico-en-nasa-exoplanet-archive">Ejemplo 3: Filtrado Dinámico en NASA Exoplanet Archive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-4-resolucion-de-nombres-y-tipos-en-simbad">Ejemplo 4: Resolución de Nombres y Tipos en SIMBAD</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practica-independiente-10-ejercicios-web">4. Práctica Independiente: 10 Ejercicios Web</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Esteban Silva Villa y Germán Chaparro Molano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
