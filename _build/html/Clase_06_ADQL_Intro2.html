@@ -1,0 +1,798 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales &#8212; Minería de datos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_06_ADQL_Intro2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Proyecto 1er mes" href="Proyecto%201er%20mes.html" />
+    <link rel="prev" title="Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL" href="Clase_05_ADQL_Intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
+    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Minería de datos para el pregrado de Astronomía UdeA
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Clase_01_INTROyCLI.html">Clase 1: La Consola de Comandos (Bash)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_02_GIT-HUB.html">Clase 2: Introducción a herramientas de control de versiones Git y Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_03_PythonCientifico.html">Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_04_SQL_Intro.html">Clase 4: Introducción a SQL y Bases de Datos Relacionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_05_ADQL_Intro.html">Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FClase_06_ADQL_Intro2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Clase_06_ADQL_Intro2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-arte-de-los-joins-cruces-de-tablas-en-sql">1. El Arte de los JOINs (Cruces de Tablas en SQL)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-inner-join-la-interseccion-definitiva">A) INNER JOIN (La Intersección Definitiva)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-left-join-priorizando-el-catalogo-principal">B) LEFT JOIN (Priorizando el Catálogo Principal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-right-join-priorizando-la-tabla-secundaria">C) RIGHT JOIN (Priorizando la Tabla Secundaria)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-full-outer-join-la-fusion-total">D) FULL OUTER JOIN (La Fusión Total)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-avanzadas-de-filtrado-y-agrupacion">2. Herramientas Avanzadas de Filtrado y Agrupación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-funciones-de-agregacion-estadistica-en-el-servidor">A) Funciones de Agregación (Estadística en el Servidor)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-operadores-logicos-y-de-patron">B) Operadores Lógicos y de Patrón</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adql-geometrico-circle-y-contains">3. ADQL Geométrico: CIRCLE y CONTAINS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-definicion-de-geometria-circle">A) Definición de Geometría: <code class="docutils literal notranslate"><span class="pre">CIRCLE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-operacion-espacial-contains">B) Operación Espacial: <code class="docutils literal notranslate"><span class="pre">CONTAINS</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet-de-adql">CheatSheet de ADQL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipelines-completos-integracion-y-automatizacion">4. Pipelines Completos: Integración y Automatización</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-1-agrupacion-y-estadistica-el-censo-de-exoplanetas">Pipeline 1: Agrupación y Estadística (El Censo de Exoplanetas)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-2-reteniendo-datos-con-left-join-sdss">Pipeline 2: Reteniendo Datos con LEFT JOIN (SDSS)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-practicos-mineria-de-datos-avanzada">Ejercicios Prácticos: Minería de Datos Avanzada</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-individual-los-extremos-de-la-via-lactea">Ejercicio 1 (Individual): “Los Extremos de la Vía Láctea”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-individual-patrones-en-el-cielo-el-telescopio-tess">Ejercicio 2 (Individual): “Patrones en el Cielo: El Telescopio TESS”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-3-parejas-poblaciones-galacticas-con-between-e-in">Ejercicios 3 (Parejas): “Poblaciones Galácticas con BETWEEN e IN”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-asimetria-infrarroja-con-left-join">Ejercicio 4: “Asimetría Infrarroja con LEFT JOIN”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-5-historia-de-los-exoplanetas-group-by-y-order-by">Ejercicio 5: “Historia de los Exoplanetas (GROUP BY y ORDER BY)”</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="clase-6-sql-y-adql-avanzado-mineria-de-datos-y-cruces-espaciales">
+<h1>Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales<a class="headerlink" href="#clase-6-sql-y-adql-avanzado-mineria-de-datos-y-cruces-espaciales" title="Link to this heading">#</a></h1>
+<p>En esta semana, daremos el salto cualitativo hacia la <strong>Minería de Datos Avanzada</strong>. Para responder preguntas científicas reales, rara vez nos basta con un simple <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code>. Necesitamos filtrar con bisturí, realizar cálculos estadísticos directamente en los servidores de las agencias espaciales y cruzar catálogos incompletos sin perder información.</p>
+<p>Aprenderemos a utilizar las cláusulas más potentes de los lenguajes de consulta relacional. Estas herramientas nos permiten realizar cálculos masivos en los servidores remotos, descargando únicamente los resultados estadísticos o las muestras perfectamente filtradas que necesitamos para nuestros gráficos en Python.</p>
+<section id="el-arte-de-los-joins-cruces-de-tablas-en-sql">
+<h2>1. El Arte de los JOINs (Cruces de Tablas en SQL)<a class="headerlink" href="#el-arte-de-los-joins-cruces-de-tablas-en-sql" title="Link to this heading">#</a></h2>
+<p>Cruzar tablas es el núcleo de las bases de datos relacionales. Nos permite conectar entidades diferentes (ej. “Estrellas” y “Planetas”) usando sus claves (Primary y Foreign keys). Sin embargo, no todos los cruces son iguales y elegir el correcto es vital para la integridad científica de la muestra.</p>
+<p><em>Representación Visual General:</em> Imagina dos círculos superpuestos. El círculo izquierdo es la “Tabla A (Estrellas)” y el derecho es la “Tabla B (Planetas)”. La zona donde se cruzan representa los registros que tienen coincidencia (estrellas que tienen planetas).</p>
+<p><img alt="Bases de datos" src="_images/UI25E.jpg" /></p>
+<p>Imagen tomada de: <a class="reference external" href="https://stackoverflow.com/questions/13997365/sql-joins-as-venn-diagram">Link</a></p>
+<section id="a-inner-join-la-interseccion-definitiva">
+<h3>A) INNER JOIN (La Intersección Definitiva)<a class="headerlink" href="#a-inner-join-la-interseccion-definitiva" title="Link to this heading">#</a></h3>
+<p>Devuelve ÚNICAMENTE las filas que tienen coincidencias en AMBAS tablas. Es el cruce más estricto. Si una estrella en la Tabla A no tiene planetas registrados en la Tabla B, esa estrella desaparece por completo del resultado final.</p>
+<blockquote>
+<div><p><strong>Descripción Visual del INNER JOIN:</strong>
+En el diagrama de dos círculos (Tabla A y Tabla B), <strong>solo la zona central de intersección está coloreada brillantemente</strong>. Los restos de los círculos A y B (donde no hay cruce) están en gris oscuro o transparentes, indicando que esos datos se descartan.</p>
+</div></blockquote>
+</section>
+<section id="b-left-join-priorizando-el-catalogo-principal">
+<h3>B) LEFT JOIN (Priorizando el Catálogo Principal)<a class="headerlink" href="#b-left-join-priorizando-el-catalogo-principal" title="Link to this heading">#</a></h3>
+<p>Devuelve TODAS las filas de la tabla de la izquierda (la primera que mencionas en el <code class="docutils literal notranslate"><span class="pre">FROM</span></code>), y las cruza con las que coincidan en la derecha. Si no hay coincidencia en la derecha, el resultado muestra <code class="docutils literal notranslate"><span class="pre">NULL</span></code> (vacío) para esas columnas, pero <strong>no borra</strong> a la estrella original de la muestra. Es vital para estudios de completitud.</p>
+<blockquote>
+<div><p><strong>Descripción Visual del LEFT JOIN:</strong>
+En el diagrama de Venn, <strong>todo el círculo de la Tabla A (izquierda) está coloreado brillantemente</strong>, incluyendo la zona de intersección con B. El resto del círculo B (derecha, sin cruce) permanece gris. Esto indica que se mantienen todas las estrellas de A, tengan o no planeta en B.</p>
+</div></blockquote>
+</section>
+<section id="c-right-join-priorizando-la-tabla-secundaria">
+<h3>C) RIGHT JOIN (Priorizando la Tabla Secundaria)<a class="headerlink" href="#c-right-join-priorizando-la-tabla-secundaria" title="Link to this heading">#</a></h3>
+<p>Es el espejo del LEFT JOIN. Devuelve todas las filas de la tabla de la derecha y busca coincidencias en la izquierda. Si no hay cruce, rellena la izquierda con <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. En la práctica, se suele usar LEFT JOIN reordenando las tablas para mayor claridad.</p>
+<blockquote>
+<div><p><strong>Descripción Visual del RIGHT JOIN:</strong>
+En el diagrama de Venn, <strong>todo el círculo de la Tabla B (derecha) está coloreado brillantemente</strong>, incluyendo la intersección. El resto del círculo A (izquierda, sin cruce) permanece gris. Se mantienen todos los planetas de B, tengan o no estrella madre en A (aunque esto físicamente es raro, la lógica SQL lo permite).</p>
+</div></blockquote>
+</section>
+<section id="d-full-outer-join-la-fusion-total">
+<h3>D) FULL OUTER JOIN (La Fusión Total)<a class="headerlink" href="#d-full-outer-join-la-fusion-total" title="Link to this heading">#</a></h3>
+<p>Devuelve todas las filas de ambas tablas. Si hay coincidencia, las cruza; si no, rellena con <code class="docutils literal notranslate"><span class="pre">NULL</span></code> en el lado correspondiente. Es el cruce más inclusivo y genera las tablas más grandes. <em>(Nota: Servidores astronómicos masivos como VizieR suelen restringir esta función por su altísimo consumo de memoria).</em></p>
+<blockquote>
+<div><p><strong>Descripción Visual del FULL OUTER JOIN:</strong>
+En el diagrama de Venn, <strong>ambos círculos (A y B) están completamente coloreados brillantemente</strong>, incluyendo la intersección. No queda ninguna zona gris. Absolutamente todos los datos de ambas tablas se mantienen en el resultado final.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="herramientas-avanzadas-de-filtrado-y-agrupacion">
+<h2>2. Herramientas Avanzadas de Filtrado y Agrupación<a class="headerlink" href="#herramientas-avanzadas-de-filtrado-y-agrupacion" title="Link to this heading">#</a></h2>
+<section id="a-funciones-de-agregacion-estadistica-en-el-servidor">
+<h3>A) Funciones de Agregación (Estadística en el Servidor)<a class="headerlink" href="#a-funciones-de-agregacion-estadistica-en-el-servidor" title="Link to this heading">#</a></h3>
+<p>En lugar de descargar un millón de filas para sacar un promedio en Python, le pedimos a la base de datos que haga la matemática. <strong>Siempre deben usarse junto con <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></strong> si queremos separar la estadística por categorías.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">COUNT(columna)</span></code>:</strong> Cuenta el número de filas (registros) que no son nulas.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">MIN()</span></code> / <code class="docutils literal notranslate"><span class="pre">MAX()</span></code>:</strong> Encuentra el valor mínimo o máximo de una columna numérica.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">AVG()</span></code>:</strong> Calcula el promedio aritmético (Average).</p></li>
+</ul>
+</section>
+<section id="b-operadores-logicos-y-de-patron">
+<h3>B) Operadores Lógicos y de Patrón<a class="headerlink" href="#b-operadores-logicos-y-de-patron" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">BETWEEN</span></code> (Entre):</strong> Filtra valores dentro de un rango inclusivo.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">IN</span></code> (En la lista):</strong> Permite filtrar por múltiples valores exactos sin escribir infinitos <code class="docutils literal notranslate"><span class="pre">OR</span></code>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">LIKE</span></code> (Como / Patrón):</strong> Se usa para buscar patrones en cadenas de texto usando el comodín <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code> (Distintos):</strong> Elimina los registros duplicados en los resultados.</p></li>
+</ul>
+</section>
+</section>
+<section id="adql-geometrico-circle-y-contains">
+<h2>3. ADQL Geométrico: CIRCLE y CONTAINS<a class="headerlink" href="#adql-geometrico-circle-y-contains" title="Link to this heading">#</a></h2>
+<p>El dialecto ADQL (Astronomical Data Query Language) es el estándar del Observatorio Virtual (VO) para realizar búsquedas esféricas y cruzado de catálogos espaciales. Aquí no filtramos solo por números, sino por <strong>regiones del cielo</strong>.</p>
+<section id="a-definicion-de-geometria-circle">
+<h3>A) Definición de Geometría: <code class="docutils literal notranslate"><span class="pre">CIRCLE</span></code><a class="headerlink" href="#a-definicion-de-geometria-circle" title="Link to this heading">#</a></h3>
+<p>La función <code class="docutils literal notranslate"><span class="pre">CIRCLE</span></code> define una región cónica de búsqueda en la esfera celeste. Requiere el sistema de referencia (<code class="docutils literal notranslate"><span class="pre">'ICRS'</span></code>), las coordenadas del centro (<code class="docutils literal notranslate"><span class="pre">ra</span></code>, <code class="docutils literal notranslate"><span class="pre">dec</span></code>) y el radio de búsqueda en grados.</p>
+<blockquote>
+<div><p><strong>Descripción Visual de ADQL CIRCLE:</strong>
+Imagina una representación 3D de la esfera celeste (con líneas de cuadrícula de RA y Dec). Desde el centro (donde estaría la Tierra), se proyecta un cono visual hacia el cielo. Donde este cono toca la esfera celeste, se define una <strong>región circular gris transparente</strong> con un radio angular claramente etiquetado en grados.</p>
+</div></blockquote>
+</section>
+<section id="b-operacion-espacial-contains">
+<h3>B) Operación Espacial: <code class="docutils literal notranslate"><span class="pre">CONTAINS</span></code><a class="headerlink" href="#b-operacion-espacial-contains" title="Link to this heading">#</a></h3>
+<p>La función lógica <code class="docutils literal notranslate"><span class="pre">CONTAINS</span></code> es el “bisturí espacial”. Devuelve Verdadero (<code class="docutils literal notranslate"><span class="pre">1</span></code>) o Falso (<code class="docutils literal notranslate"><span class="pre">0</span></code>) si una geometría (generalmente un punto o estrella) está completamente dentro de otra geometría (como el círculo definido anteriormente). Se usa casi exclusivamente dentro de la cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>.</p>
+<blockquote>
+<div><p><strong>Descripción Visual de ADQL CONTAINS:</strong>
+Es un plano 2D de una región del cielo oscuro. Vemos un gran círculo gris transparente (definido por <code class="docutils literal notranslate"><span class="pre">CIRCLE</span></code>). Una estrella brillante (Punto A) está <strong>dentro</strong> del círculo. Otra estrella brillante (Punto B) está <strong>fuera</strong> del círculo. Las etiquetas indican claramente: ‘CONTAINS(Punto A, Círculo) -&gt; Verdadero (1)’ y ‘CONTAINS(Punto B, Círculo) -&gt; Falso (0)’.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="cheatsheet-de-adql">
+<h2>CheatSheet de ADQL<a class="headerlink" href="#cheatsheet-de-adql" title="Link to this heading">#</a></h2>
+<p>La guía completa de ADQL, la de uso oficial en la comunidad, la encuentran en este <a class="reference external" href="https://www.ivoa.net/Documents/REC/ADQL/ADQL-20081030.pdf">Link</a></p>
+<!-- ![Cheatsheet ADQL](./imagenes/adqlref1.png) -->
+</section>
+<section id="pipelines-completos-integracion-y-automatizacion">
+<h2>4. Pipelines Completos: Integración y Automatización<a class="headerlink" href="#pipelines-completos-integracion-y-automatizacion" title="Link to this heading">#</a></h2>
+<p><em>(Esta sección permanece igual que la anterior, ya que los scripts son funcionales y generan sus propias imágenes .png al ejecutarse).</em></p>
+<section id="pipeline-1-agrupacion-y-estadistica-el-censo-de-exoplanetas">
+<h3>Pipeline 1: Agrupación y Estadística (El Censo de Exoplanetas)<a class="headerlink" href="#pipeline-1-agrupacion-y-estadistica-el-censo-de-exoplanetas" title="Link to this heading">#</a></h3>
+<p><strong>Script:</strong> <code class="docutils literal notranslate"><span class="pre">censo_planetas.sh</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;1. Consultando Agregaciones en NASA Exoplanet Archive...&quot;</span>
+<span class="nv">QUERY</span><span class="o">=</span><span class="s2">&quot;SELECT+discoverymethod,COUNT(pl_name)+as+total,AVG(pl_bmasse)+as+masa_promedio+FROM+ps+WHERE+pl_name+LIKE+&#39;Kepler-%&#39;+OR+pl_name+LIKE+&#39;K2-%&#39;+GROUP+BY+discoverymethod+ORDER+BY+total+DESC&quot;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://exoplanetarchive.ipac.caltech.edu/TAP/sync?format=csv&amp;query=</span><span class="si">${</span><span class="nv">QUERY</span><span class="si">}</span><span class="s2">&quot;</span>
+wget<span class="w"> </span>-q<span class="w"> </span>-O<span class="w"> </span>estadisticas_kepler.csv<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$URL</span><span class="s2">&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;2. Ejecutando Análisis en Python...&quot;</span>
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; plot_censo.py</span>
+<span class="s">import pandas as pd</span>
+<span class="s">import matplotlib.pyplot as plt</span>
+<span class="s">import seaborn as sns</span>
+<span class="s">df = pd.read_csv(&#39;estadisticas_kepler.csv&#39;).dropna()</span>
+<span class="s">plt.figure(figsize=(10, 6))</span>
+<span class="s">sns.barplot(data=df, x=&#39;discoverymethod&#39;, y=&#39;total&#39;, palette=&#39;magma&#39;)</span>
+<span class="s">plt.xticks(rotation=45, ha=&#39;right&#39;)</span>
+<span class="s">plt.title(&#39;Misiones Kepler/K2: Descubrimientos por Método&#39;)</span>
+<span class="s">plt.ylabel(&#39;Total de Planetas Confirmados&#39;)</span>
+<span class="s">plt.xlabel(&#39;Método de Descubrimiento&#39;)</span>
+<span class="s">plt.tight_layout()</span>
+<span class="s">plt.savefig(&#39;censo_kepler.png&#39;)</span>
+<span class="s">print(&quot;¡Gráfica censo_kepler.png generada!&quot;)</span>
+<span class="s">EOF</span>
+python3<span class="w"> </span>plot_censo.py
+</pre></div>
+</div>
+</section>
+<section id="pipeline-2-reteniendo-datos-con-left-join-sdss">
+<h3>Pipeline 2: Reteniendo Datos con LEFT JOIN (SDSS)<a class="headerlink" href="#pipeline-2-reteniendo-datos-con-left-join-sdss" title="Link to this heading">#</a></h3>
+<p><strong>Script:</strong> <code class="docutils literal notranslate"><span class="pre">quasares_leftjoin.sh</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;1. Ejecutando LEFT JOIN en SDSS...&quot;</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;http://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?format=csv&amp;cmd=SELECT%20TOP%2020000%20s.z,p.g,p.r%20FROM%20SpecObj%20s%20LEFT%20JOIN%20PhotoObj%20p%20ON%20s.bestObjID=p.objID%20WHERE%20s.class=&#39;QSO&#39;%20AND%20s.z%20BETWEEN%201.0%20AND%203.0&quot;</span>
+wget<span class="w"> </span>-q<span class="w"> </span>-O<span class="w"> </span>quasares_join.csv<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$URL</span><span class="s2">&quot;</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;2. Graficando en Python...&quot;</span>
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; plot_join.py</span>
+<span class="s">import pandas as pd</span>
+<span class="s">import matplotlib.pyplot as plt</span>
+<span class="s">import seaborn as sns</span>
+<span class="s">df = pd.read_csv(&#39;quasares_join.csv&#39;, skiprows=1, names=[&#39;z&#39;, &#39;g&#39;, &#39;r&#39;])</span>
+<span class="s">nulos = df[&#39;g&#39;].isna().sum()</span>
+<span class="s">print(f&quot;Quásares totales: {len(df)}. Quásares sin fotometría óptica: {nulos}&quot;)</span>
+<span class="s">df_limpio = df.dropna()</span>
+<span class="s">plt.figure(figsize=(8, 5))</span>
+<span class="s">sns.scatterplot(data=df_limpio, x=&#39;z&#39;, y=&#39;g&#39;, s=2, color=&#39;orange&#39;, alpha=0.5)</span>
+<span class="s">plt.title(&#39;Quásares (LEFT JOIN): Magnitud Óptica vs Redshift&#39;)</span>
+<span class="s">plt.xlabel(&#39;Redshift (z)&#39;)</span>
+<span class="s">plt.ylabel(&#39;Magnitud g&#39;)</span>
+<span class="s">plt.gca().invert_yaxis()</span>
+<span class="s">plt.savefig(&#39;quasares_leftjoin.png&#39;)</span>
+<span class="s">print(&quot;¡Gráfica quasares_leftjoin.png generada!&quot;)</span>
+<span class="s">EOF</span>
+python3<span class="w"> </span>plot_join.py
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ejercicios-practicos-mineria-de-datos-avanzada">
+<h2>Ejercicios Prácticos: Minería de Datos Avanzada<a class="headerlink" href="#ejercicios-practicos-mineria-de-datos-avanzada" title="Link to this heading">#</a></h2>
+<p>Deben entregar un repositorio de GitHub que contenga el script de Bash (<code class="docutils literal notranslate"><span class="pre">.sh</span></code>), el script de Python (<code class="docutils literal notranslate"><span class="pre">.py</span></code>), las imágenes generadas y un archivo <code class="docutils literal notranslate"><span class="pre">README.md</span></code> con el análisis físico detallado de los resultados.</p>
+<section id="ejercicio-1-individual-los-extremos-de-la-via-lactea">
+<h3>Ejercicio 1 (Individual): “Los Extremos de la Vía Láctea”<a class="headerlink" href="#ejercicio-1-individual-los-extremos-de-la-via-lactea" title="Link to this heading">#</a></h3>
+<p>No necesitamos descargar catálogos enteros si solo queremos conocer los límites estadísticos de una población estelar.</p>
+<ol class="arabic simple">
+<li><p><strong>Bash/ADQL</strong>: Usa el Endpoint TAP de VizieR (https://tapvizier.cds.unistra.fr/TAPVizieR/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=) para consultar Gaia DR3 (“I/355/gaiadr3”). Usa las funciones de agregación <code class="docutils literal notranslate"><span class="pre">MIN()</span></code>, <code class="docutils literal notranslate"><span class="pre">MAX()</span></code> y <code class="docutils literal notranslate"><span class="pre">AVG()</span></code> para calcular la Temperatura Efectiva (<code class="docutils literal notranslate"><span class="pre">Teff</span></code>) mínima, máxima y promedio de toda la muestra de estrellas brillantes (<code class="docutils literal notranslate"><span class="pre">Gmag</span> <span class="pre">&lt;</span> <span class="pre">10</span></code>). Recuerda usar <code class="docutils literal notranslate"><span class="pre">sed</span></code> para formatear los espacios de tu consulta.</p></li>
+<li><p><strong>Python</strong>: Como el resultado será de una sola fila y tres columnas, tu script de Python solo debe imprimir estos valores numéricos en la terminal de forma elegante usando <code class="docutils literal notranslate"><span class="pre">print()</span></code>. No se requiere gráfica.</p></li>
+<li><p><strong>README.md</strong>: Compara la temperatura mínima y máxima devuelta con las clases espectrales estelares teóricas (O, B, A, F, G, K, M). ¿A qué tipo de estrellas corresponden esos extremos?</p></li>
+</ol>
+</section>
+<section id="ejercicio-2-individual-patrones-en-el-cielo-el-telescopio-tess">
+<h3>Ejercicio 2 (Individual): “Patrones en el Cielo: El Telescopio TESS”<a class="headerlink" href="#ejercicio-2-individual-patrones-en-el-cielo-el-telescopio-tess" title="Link to this heading">#</a></h3>
+<p>Las misiones espaciales suelen nombrar a sus candidatos a exoplanetas con prefijos específicos.</p>
+<ol class="arabic simple">
+<li><p><strong>Bash/SQL</strong>: Usa el Endpoint TAP de la NASA (https://exoplanetarchive.ipac.caltech.edu/TAP/sync?format=csv&amp;query=). Usa <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">DISTINCT</span></code> hostname para obtener una lista única de estrellas anfitrionas confirmadas por la misión TESS. Para lograrlo, filtra usando la cláusula <code class="docutils literal notranslate"><span class="pre">LIKE</span> <span class="pre">'TOI-%'</span></code> (TESS Object of Interest). Ojo: en la URL, el símbolo <code class="docutils literal notranslate"><span class="pre">%</span></code> debe escribirse como <code class="docutils literal notranslate"><span class="pre">%25</span></code> para que internet lo entienda.</p></li>
+<li><p><strong>Python</strong>: Lee el archivo CSV descargado e imprime en consola la cantidad total de estrellas únicas descubiertas por TESS que existen actualmente en la base de datos.</p></li>
+<li><p><strong>README.md</strong>: Investiga y describe brevemente qué es la misión TESS de la NASA y cuál es su principal diferencia estratégica respecto a la misión Kepler original.</p></li>
+</ol>
+</section>
+<section id="ejercicios-3-parejas-poblaciones-galacticas-con-between-e-in">
+<h3>Ejercicios 3 (Parejas): “Poblaciones Galácticas con BETWEEN e IN”<a class="headerlink" href="#ejercicios-3-parejas-poblaciones-galacticas-con-between-e-in" title="Link to this heading">#</a></h3>
+<p>Un estudiante programa la ingesta de datos en Bash/SQL y el otro programa el análisis en Python. Trabajen en ramas separadas y unifiquen con un Pull Request.</p>
+<ol class="arabic simple">
+<li><p><strong>Estudiante A - Bash/SQL</strong>:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Consulta a <code class="docutils literal notranslate"><span class="pre">SDSS</span></code> combinando tablas con un <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code>. Une la tabla de espectros (<code class="docutils literal notranslate"><span class="pre">SpecObj</span> <span class="pre">s</span></code>) y la de fotometría (<code class="docutils literal notranslate"><span class="pre">PhotoObj</span> <span class="pre">p</span></code>) usando la condición <code class="docutils literal notranslate"><span class="pre">ON</span> <span class="pre">s.bestObjID=p.objID</span></code>. Extrae la clase (<code class="docutils literal notranslate"><span class="pre">s.class</span></code>), el redshift (<code class="docutils literal notranslate"><span class="pre">s.z</span></code>), y los brillos (<code class="docutils literal notranslate"><span class="pre">p.u</span></code> y <code class="docutils literal notranslate"><span class="pre">p.g</span></code>).</p></li>
+<li><p>Usa la cláusula <code class="docutils literal notranslate"><span class="pre">IN</span></code> para filtrar estrictamente objetos clasificados como (<code class="docutils literal notranslate"><span class="pre">STAR</span></code>, <code class="docutils literal notranslate"><span class="pre">GALAXY</span></code>).</p></li>
+<li><p>Usa <code class="docutils literal notranslate"><span class="pre">BETWEEN</span></code> para limitar la muestra a aquellos con una magnitud ultravioleta (<code class="docutils literal notranslate"><span class="pre">p.u</span></code>) entre <code class="docutils literal notranslate"><span class="pre">15</span></code> y <code class="docutils literal notranslate"><span class="pre">18</span></code>.</p></li>
+<li><p>Descarga un máximo de 20,000 registros.</p></li>
+</ul>
+<blockquote>
+<div><p>Endpoint SDSS: http://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?format=csv&amp;cmd=</p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p><strong>Estudiante B - Python</strong>:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Calcula el índice de color ultravioleta-verde restando las columnas (<code class="docutils literal notranslate"><span class="pre">u−g</span></code>) en Pandas. Genera un histograma superpuesto (<code class="docutils literal notranslate"><span class="pre">sns.histplot</span></code>) de este color, separando las distribuciones visualmente según su clase estelar/galáctica (<code class="docutils literal notranslate"><span class="pre">hue='class'</span></code>).</p></li>
+<li><p>Análisis (En conjunto): Observando la gráfica resultante, ¿existe un sesgo de color claro entre las estrellas seleccionadas y las galaxias en este rango específico de magnitud ultravioleta?</p></li>
+</ul>
+</section>
+<section id="ejercicio-4-asimetria-infrarroja-con-left-join">
+<h3>Ejercicio 4: “Asimetría Infrarroja con LEFT JOIN”<a class="headerlink" href="#ejercicio-4-asimetria-infrarroja-con-left-join" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Estudiante A - Bash/ADQL</strong>:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Realiza un <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code> espacial usando el TAP de VizieR.</p></li>
+<li><p>La tabla principal (izquierda) será Gaia DR3 (<code class="docutils literal notranslate"><span class="pre">&quot;I/355/gaiadr3&quot;</span> <span class="pre">AS</span> <span class="pre">g</span></code>), limitada a 10,000 estrellas extremadamente brillantes en el cielo nocturno (<code class="docutils literal notranslate"><span class="pre">Gmag</span> <span class="pre">&lt;</span> <span class="pre">8</span></code>).</p></li>
+<li><p>La tabla secundaria (derecha) será el catálogo infrarrojo AllWISE (<code class="docutils literal notranslate"><span class="pre">&quot;II/328/allwise&quot;</span> <span class="pre">AS</span> <span class="pre">w</span></code>).</p></li>
+<li><p>Crúzalas espacialmente usando <code class="docutils literal notranslate"><span class="pre">CONTAINS</span></code> y <code class="docutils literal notranslate"><span class="pre">CIRCLE</span></code> con un radio de 2 arcosegundos (2./3600.) en todo el cielo.</p></li>
+<li><p>Extrae la magnitud óptica (<code class="docutils literal notranslate"><span class="pre">g.Gmag</span></code>) y la magnitud infrarroja (<code class="docutils literal notranslate"><span class="pre">w.W1mag</span></code>).</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><strong>Estudiante B - Python</strong>:</p></li>
+</ol>
+<ul class="simple">
+<li><p>La magia del <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code> asegurará que tengas las 10,000 estrellas de Gaia intactas. Aquellas que no tengan una detección en el catálogo infrarrojo AllWISE aparecerán con un valor nulo (<code class="docutils literal notranslate"><span class="pre">NaN</span></code>) en la columna <code class="docutils literal notranslate"><span class="pre">W1mag</span></code>. En Python, usando Pandas, calcula e imprime exactamente qué porcentaje (<code class="docutils literal notranslate"><span class="pre">%</span></code>) de estas estrellas brillantes visibles carecen de datos en el infrarrojo medio.</p></li>
+<li><p>Análisis (En conjunto): Investiguen y escriban en el README.md por qué una estrella que es tan brillante en el rango de luz visible podría ser completamente indetectable por un telescopio infrarrojo como WISE.</p></li>
+</ul>
+</section>
+<section id="ejercicio-5-historia-de-los-exoplanetas-group-by-y-order-by">
+<h3>Ejercicio 5: “Historia de los Exoplanetas (GROUP BY y ORDER BY)”<a class="headerlink" href="#ejercicio-5-historia-de-los-exoplanetas-group-by-y-order-by" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Estudiante A - Bash/SQL</strong>:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Consulta la tabla ps del NASA Exoplanet Archive (https://exoplanetarchive.ipac.caltech.edu/TAP/sync?format=csv&amp;query=).</p></li>
+<li><p>No descargues la lista de planetas; pide la estadística. Extrae el año de descubrimiento (<code class="docutils literal notranslate"><span class="pre">disc_year</span></code>) y usa <code class="docutils literal notranslate"><span class="pre">COUNT</span></code>(<code class="docutils literal notranslate"><span class="pre">pl_name</span></code>) para saber cuántos planetas se descubrieron cada año.</p></li>
+<li><p>Usa <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> <code class="docutils literal notranslate"><span class="pre">disc_year</span></code> para que el servidor haga la agrupación por ti.</p></li>
+<li><p>Usa <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> <code class="docutils literal notranslate"><span class="pre">disc_year</span></code> <code class="docutils literal notranslate"><span class="pre">ASC</span></code> para que los datos lleguen ordenados cronológicamente desde el primer descubrimiento hasta hoy.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><strong>Estudiante B - Python</strong>: Carga este ligero CSV agrupado. Grafica un diagrama de barras (plt.bar) donde el Eje X sea el año y el Eje Y sea el total de planetas descubiertos.</p></li>
+<li><p>Análisis (En conjunto): En la gráfica observarán “picos” masivos y anómalos en años muy específicos (por ejemplo, 2014 y 2016). Investiguen en internet qué eventos astronómicos, publicaciones de artículos o liberaciones de datos masivos (Data Releases) de la NASA causaron estos saltos exponenciales históricos.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Clase_05_ADQL_Intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Proyecto%201er%20mes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Proyecto 1er mes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-arte-de-los-joins-cruces-de-tablas-en-sql">1. El Arte de los JOINs (Cruces de Tablas en SQL)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-inner-join-la-interseccion-definitiva">A) INNER JOIN (La Intersección Definitiva)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-left-join-priorizando-el-catalogo-principal">B) LEFT JOIN (Priorizando el Catálogo Principal)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-right-join-priorizando-la-tabla-secundaria">C) RIGHT JOIN (Priorizando la Tabla Secundaria)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-full-outer-join-la-fusion-total">D) FULL OUTER JOIN (La Fusión Total)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas-avanzadas-de-filtrado-y-agrupacion">2. Herramientas Avanzadas de Filtrado y Agrupación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-funciones-de-agregacion-estadistica-en-el-servidor">A) Funciones de Agregación (Estadística en el Servidor)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-operadores-logicos-y-de-patron">B) Operadores Lógicos y de Patrón</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adql-geometrico-circle-y-contains">3. ADQL Geométrico: CIRCLE y CONTAINS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-definicion-de-geometria-circle">A) Definición de Geometría: <code class="docutils literal notranslate"><span class="pre">CIRCLE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-operacion-espacial-contains">B) Operación Espacial: <code class="docutils literal notranslate"><span class="pre">CONTAINS</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cheatsheet-de-adql">CheatSheet de ADQL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipelines-completos-integracion-y-automatizacion">4. Pipelines Completos: Integración y Automatización</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-1-agrupacion-y-estadistica-el-censo-de-exoplanetas">Pipeline 1: Agrupación y Estadística (El Censo de Exoplanetas)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipeline-2-reteniendo-datos-con-left-join-sdss">Pipeline 2: Reteniendo Datos con LEFT JOIN (SDSS)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-practicos-mineria-de-datos-avanzada">Ejercicios Prácticos: Minería de Datos Avanzada</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-1-individual-los-extremos-de-la-via-lactea">Ejercicio 1 (Individual): “Los Extremos de la Vía Láctea”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-2-individual-patrones-en-el-cielo-el-telescopio-tess">Ejercicio 2 (Individual): “Patrones en el Cielo: El Telescopio TESS”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicios-3-parejas-poblaciones-galacticas-con-between-e-in">Ejercicios 3 (Parejas): “Poblaciones Galácticas con BETWEEN e IN”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-4-asimetria-infrarroja-con-left-join">Ejercicio 4: “Asimetría Infrarroja con LEFT JOIN”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-5-historia-de-los-exoplanetas-group-by-y-order-by">Ejercicio 5: “Historia de los Exoplanetas (GROUP BY y ORDER BY)”</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Esteban Silva Villa y Germán Chaparro Molano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
