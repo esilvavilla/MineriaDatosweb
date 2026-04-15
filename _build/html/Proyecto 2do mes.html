@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Minería de datos para el pregrado de Astronomía UdeA &#8212; Minería de datos</title>
+    <title>Proyecto 2do mes &#8212; Minería de datos</title>
   
   
   
@@ -60,11 +60,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Proyecto 2do mes';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Clase 1: La Consola de Comandos (Bash)" href="Clase_01_INTROyCLI.html" />
+    <link rel="prev" title="Proyecto 1er mes" href="Proyecto%201er%20mes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -116,8 +115,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -137,7 +134,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -164,13 +161,13 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Minería de datos para el pregrado de Astronomía UdeA
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Clase_01_INTROyCLI.html">Clase 1: La Consola de Comandos (Bash)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_02_GIT-HUB.html">Clase 2: Introducción a herramientas de control de versiones Git y Github</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_03_PythonCientifico.html">Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)</a></li>
@@ -179,7 +176,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Clase_06_ADQL_Intro2.html">Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Proyecto 2do mes</a></li>
 </ul>
 
     </div>
@@ -256,7 +253,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FProyecto 2do mes.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -286,7 +283,7 @@
       
       
       
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/Proyecto 2do mes.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -296,7 +293,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -349,7 +346,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -360,11 +359,20 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Minería de datos para el pregrado de Astronomía UdeA</h1>
+    <h1>Proyecto 2do mes</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-1-arqueologia-galactica-y-el-misterio-de-omega-centauri">Proyecto 1: Arqueología Galáctica y el Misterio de Omega Centauri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-2-arquitectura-planetaria-y-la-busqueda-de-tierra-2-0">Proyecto 2: Arquitectura Planetaria y la Búsqueda de “Tierra 2.0”</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -374,27 +382,78 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="mineria-de-datos-para-el-pregrado-de-astronomia-udea">
-<h1>Minería de datos para el pregrado de Astronomía UdeA<a class="headerlink" href="#mineria-de-datos-para-el-pregrado-de-astronomia-udea" title="Link to this heading">#</a></h1>
-<p>Este repositorio tiene como objetivo que estudiantes y docentes puedan tener acceso rápido y fácil a los diferentes temas que se presentarán durante el curso, intentando fortalecer y facilitar los procesos de enseñanza-aprendizaje en las aulas.</p>
-<p>Para el desarrollo de los cursos, la intención es que el material sea estudiado previo a las clases, de forma tal que el tiempo en las salas de cómputo sea optimizado resolviendo dudas, haciendo ejercicios y resolviendo prácticas sin las cuales el aprendizaje en programación es más lento o difícil. Este será su compromiso como estudiantes. Los docentes, por su parte, responderán a todas las inquietudes que el estudio del material les haya generado.</p>
-<p>Si tienen alguna duda metodológica, con los ejercicios o las clases, el profesor estará atento a responderlas.</p>
-<p>Este repositorio está en construcción, por lo que el material disponible se irá actualizando semana a semana. Es tarea de todos y todas estar pendientes a las novedades que se incluirán en él.</p>
-<p>Para que tengan una información sobre lo que se espera ver en el curso, dejamos a continuación un documento con el plan de la asignatura: <a class="reference external" href="https://drive.google.com/file/d/1ke_2mhD6lNJ0d0szoxdRoSoeEcnp1KJ_/view?usp=sharing">Link</a></p>
-<p>A continuación, la tabla de contenidos del sitio:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Clase_01_INTROyCLI.html">Clase 1: La Consola de Comandos (Bash)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Clase_02_GIT-HUB.html">Clase 2: Introducción a herramientas de control de versiones Git y Github</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Clase_03_PythonCientifico.html">Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Clase_04_SQL_Intro.html">Clase 4: Introducción a SQL y Bases de Datos Relacionales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Clase_05_ADQL_Intro.html">Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Clase_06_ADQL_Intro2.html">Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
-</ul>
-</div>
+  <section id="proyecto-2do-mes">
+<h1>Proyecto 2do mes<a class="headerlink" href="#proyecto-2do-mes" title="Link to this heading">#</a></h1>
+<p>Para continuar el proceso de evaluación de conocimientos, se propone a continuación un problema que pretende evaluar, de manera individual, lo aprendido hasta el momento.</p>
+<p>Así, se espera que se sigan los pasos descritos y se entregue un link de Github donde reposará la solución del proyecto.</p>
+<p>La <strong>evaluación</strong> de este proyecto se dividirá en 50% (códigos) y 50% (análisis de resultados).</p>
+<p>La fecha máxima de entrega será el día lunes 27 de abril a las 23:59. La entrega se deberá realizar enviando un link de su repositorio de Github a través del siguiente link: <a class="reference external" href="https://forms.gle/NRWMkZEdoPvZYAU97">Link</a></p>
+<section id="proyecto-1-arqueologia-galactica-y-el-misterio-de-omega-centauri">
+<h2>Proyecto 1: Arqueología Galáctica y el Misterio de Omega Centauri<a class="headerlink" href="#proyecto-1-arqueologia-galactica-y-el-misterio-de-omega-centauri" title="Link to this heading">#</a></h2>
+<p>Omega Centauri no es un cúmulo globular ordinario. Muchos astrónomos creen que es el núcleo remanente de una galaxia enana que fue devorada por nuestra Vía Láctea hace miles de millones de años. Para probar esto, debemos separar las estrellas que pertenecen al cúmulo de las estrellas de la Vía Láctea que simplemente se cruzan visualmente frente a él. Lo haremos usando “Cinemática” (su movimiento en el cielo).</p>
+<p><strong>Parte 1</strong></p>
+<ol class="arabic simple">
+<li><p>Abre la interfaz web de <strong>SIMBAD</strong>.</p></li>
+<li><p>Busca “Omega Centauri” (o NGC 5139).</p></li>
+<li><p>Anota en tu <code class="docutils literal notranslate"><span class="pre">README.md</span></code> sus coordenadas precisas (Ascensión Recta y Declinación en grados decimales, no en horas/minutos).</p></li>
+</ol>
+<p><strong>Parte 2</strong></p>
+<ol class="arabic simple">
+<li><p>Crea un script llamado <code class="docutils literal notranslate"><span class="pre">1_descarga_omega.sh</span></code>.</p></li>
+<li><p>Escribe una consulta <strong>ADQL</strong> para el catálogo Gaia DR3 en VizieR.</p></li>
+<li><p>Haz un <code class="docutils literal notranslate"><span class="pre">CIRCLE</span></code> search (<code class="docutils literal notranslate"><span class="pre">CONTAINS</span></code>) centrado en las coordenadas que encontraste en SIMBAD, con un radio de <strong>0.5 grados</strong>.</p></li>
+<li><p>Extrae las columnas: <code class="docutils literal notranslate"><span class="pre">Source</span></code>, <code class="docutils literal notranslate"><span class="pre">RA_ICRS</span></code>, <code class="docutils literal notranslate"><span class="pre">DE_ICRS</span></code>, <code class="docutils literal notranslate"><span class="pre">pmRA</span></code>, <code class="docutils literal notranslate"><span class="pre">pmDE</span></code>, <code class="docutils literal notranslate"><span class="pre">Gmag</span></code>, <code class="docutils literal notranslate"><span class="pre">BPmag</span></code>, <code class="docutils literal notranslate"><span class="pre">RPmag</span></code>.</p></li>
+<li><p>Usa <code class="docutils literal notranslate"><span class="pre">wget</span></code> en el script para descargar el archivo y guárdalo como <code class="docutils literal notranslate"><span class="pre">omega_bruto.csv</span></code>.</p></li>
+</ol>
+<p><strong>Parte 3</strong></p>
+<ol class="arabic simple">
+<li><p>Crea un script <code class="docutils literal notranslate"><span class="pre">2_crear_db.py</span></code>.</p></li>
+<li><p>Usa Pandas para leer el CSV y limpiar cualquier fila que tenga valores nulos (NaN) en los movimientos propios (<code class="docutils literal notranslate"><span class="pre">pmRA</span></code>, <code class="docutils literal notranslate"><span class="pre">pmDE</span></code>) o fotometría.</p></li>
+<li><p>Usa la librería <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> para crear una base de datos local llamada <code class="docutils literal notranslate"><span class="pre">arqueologia.db</span></code>.</p></li>
+<li><p>Transfiere el DataFrame limpio a una tabla SQL llamada <code class="docutils literal notranslate"><span class="pre">estrellas</span></code>.</p></li>
+</ol>
+<p><strong>Parte 4</strong></p>
+<ol class="arabic simple">
+<li><p>Crea un script <code class="docutils literal notranslate"><span class="pre">3_analisis.py</span></code>.</p></li>
+<li><p>Conéctate a <code class="docutils literal notranslate"><span class="pre">arqueologia.db</span></code> y extrae los datos.</p></li>
+<li><p>Gráfica 1: Grafica el movimiento propio (<code class="docutils literal notranslate"><span class="pre">pmRA</span></code> en el eje X, <code class="docutils literal notranslate"><span class="pre">pmDE</span></code> en el eje Y) usando un Scatter Plot. Notarás una nube dispersa centrada en el origen (0,0) que es la Vía Láctea, y un “racimo” muy denso desplazado a un lado. <em>¡Ese racimo es Omega Centauri moviéndose como un enjambre!</em></p></li>
+<li><p>Filtro SQL Avanzado: Identifica a ojo (en tu gráfica) las coordenadas de ese “racimo” de movimiento propio. Modifica tu consulta para extraer <strong>únicamente</strong> las estrellas que pertenecen al racimo.</p></li>
+<li><p>Gráfica 2 (El Diagrama HR): Con las estrellas filtradas cinemáticamente, calcula el índice de color ($BP - RP$) y grafica el Diagrama Color-Magnitud ($Color$ vs $Gmag$ invertido).</p></li>
+<li><p>Guarda ambas gráficas y súbelas al repositorio. Discute en el <code class="docutils literal notranslate"><span class="pre">README.md</span></code> cómo el diagrama HR se ve mucho más limpio al remover las estrellas “intrusas” usando SQL.</p></li>
+</ol>
+</section>
+<section id="proyecto-2-arquitectura-planetaria-y-la-busqueda-de-tierra-2-0">
+<h2>Proyecto 2: Arquitectura Planetaria y la Búsqueda de “Tierra 2.0”<a class="headerlink" href="#proyecto-2-arquitectura-planetaria-y-la-busqueda-de-tierra-2-0" title="Link to this heading">#</a></h2>
+<p>No todos los planetas orbitan estrellas como nuestro Sol. Muchos orbitan enanas rojas frías o estrellas gigantes calientes. Queremos descubrir qué tipos de telescopios y métodos de descubrimiento son más eficientes para encontrar exoplanetas pequeños (rocosos) que existan en zonas donde el agua podría ser líquida.</p>
+<p><strong>Parte 1:</strong></p>
+<ol class="arabic simple">
+<li><p>Abre la interfaz web de la <strong>NASA Exoplanet Archive</strong> (Tabla <code class="docutils literal notranslate"><span class="pre">PS</span></code>).</p></li>
+<li><p>Usa la interfaz visual para encontrar cómo se llama internamente la columna “Equilibrium Temperature” (Temperatura de Equilibrio del planeta).</p></li>
+<li><p>Investiga cuántos planetas descubrió el telescopio terrestre “TRAPPIST-South” usando la barra de búsqueda de la GUI.</p></li>
+</ol>
+<p><strong>Parte 2:</strong></p>
+<ol class="arabic simple">
+<li><p>Crea un script <code class="docutils literal notranslate"><span class="pre">1_descarga_exoplanetas.sh</span></code>.</p></li>
+<li><p>Escribe una consulta <strong>SQL</strong> para enviarla al endpoint TAP de la NASA.</p></li>
+<li><p>Extrae: <code class="docutils literal notranslate"><span class="pre">pl_name</span></code> (Nombre), <code class="docutils literal notranslate"><span class="pre">discoverymethod</span></code> (Método), <code class="docutils literal notranslate"><span class="pre">disc_facility</span></code> (Telescopio), <code class="docutils literal notranslate"><span class="pre">pl_rade</span></code> (Radio Terrestre), <code class="docutils literal notranslate"><span class="pre">pl_eqt</span></code> (Temperatura de Equilibrio), <code class="docutils literal notranslate"><span class="pre">st_teff</span></code> (Temperatura de la Estrella).</p></li>
+<li><p>Asegurarte que <code class="docutils literal notranslate"><span class="pre">pl_rade</span></code> y <code class="docutils literal notranslate"><span class="pre">pl_eqt</span></code> <strong>no sean nulos</strong>.</p></li>
+<li><p>Descarga el archivo como <code class="docutils literal notranslate"><span class="pre">exoplanetas_bruto.csv</span></code>.</p></li>
+</ol>
+<p><strong>Parte 3:</strong></p>
+<ol class="arabic simple">
+<li><p>Crea un script <code class="docutils literal notranslate"><span class="pre">2_crear_db.py</span></code>.</p></li>
+<li><p>Lee el CSV con Pandas, crea la base de datos <code class="docutils literal notranslate"><span class="pre">sistemas_planetarios.db</span></code>.</p></li>
+<li><p>Guarda los datos en una tabla llamada <code class="docutils literal notranslate"><span class="pre">planetas</span></code>.</p></li>
+</ol>
+<p><strong>Parte 4:</strong></p>
+<ol class="arabic simple">
+<li><p>Crea un script <code class="docutils literal notranslate"><span class="pre">3_analisis.py</span></code>.</p></li>
+<li><p>Cálculo Estadístico: Escribe una consulta SQL que use agrupe <code class="docutils literal notranslate"><span class="pre">discoverymethod</span></code> y calcule el valor promedio de el Radio Promedio de los planetas descubiertos por cada método. Imprime el resultado en la consola.</p></li>
+<li><p>El Filtro de Habitabilidad: Haz una segunda consulta. Extrae todos los datos, pero aisla lo que consideraremos “Mundos Rocosos Templados”: Temperatura de equilibrio (<code class="docutils literal notranslate"><span class="pre">pl_eqt</span></code>) entre 200 K y 320 K, y Radio (<code class="docutils literal notranslate"><span class="pre">pl_rade</span></code>) menor a 2.5 radios terrestres.</p></li>
+<li><p>Gráfica 1: Grafica Temperatura de la Estrella (<code class="docutils literal notranslate"><span class="pre">st_teff</span></code> en el eje X) vs Temperatura del Planeta (<code class="docutils literal notranslate"><span class="pre">pl_eqt</span></code> en el eje Y). Pinta de gris todos los planetas de la base de datos general, y superpón en color <strong>Azul</strong> brillante los planetas filtrados que cumplen la condición de habitabilidad.</p></li>
+<li><p>Sube todo a GitHub. En tu <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, analiza la gráfica: ¿La mayoría de los planetas “habitables” que hemos encontrado orbitan estrellas como el Sol (~5800K) o estrellas Enanas Rojas más frías (&lt;4000K)? Explica por qué crees que ocurre este sesgo observacional.</p></li>
+</ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -427,14 +486,14 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
-       href="Clase_01_INTROyCLI.html"
-       title="next page">
+    <a class="left-prev"
+       href="Proyecto%201er%20mes.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Clase 1: La Consola de Comandos (Bash)</p>
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Proyecto 1er mes</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -442,6 +501,23 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-1-arqueologia-galactica-y-el-misterio-de-omega-centauri">Proyecto 1: Arqueología Galáctica y el Misterio de Omega Centauri</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-2-arquitectura-planetaria-y-la-busqueda-de-tierra-2-0">Proyecto 2: Arquitectura Planetaria y la Búsqueda de “Tierra 2.0”</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
