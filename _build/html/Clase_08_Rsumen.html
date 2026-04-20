@@ -1,0 +1,765 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Clase 8: Gran Repaso de Minería de Datos Astronómicos &#8212; Minería de datos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_08_Rsumen';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
+    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Minería de datos para el pregrado de Astronomía UdeA
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Clase_01_INTROyCLI.html">Clase 1: La Consola de Comandos (Bash)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_02_GIT-HUB.html">Clase 2: Introducción a herramientas de control de versiones Git y Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_03_PythonCientifico.html">Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_04_SQL_Intro.html">Clase 4: Introducción a SQL y Bases de Datos Relacionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_05_ADQL_Intro.html">Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_06_ADQL_Intro2.html">Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FClase_08_Rsumen.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Clase_08_Rsumen.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clase 8: Gran Repaso de Minería de Datos Astronómicos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-contenidos-y-tablas-de-comandos-clave">1. Resumen de Contenidos y Tablas de Comandos Clave</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-automatizacion-y-versionado-bash-y-git">A. Automatización y Versionado (Bash y Git)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-analisis-y-visualizacion-python">B. Análisis y Visualización (Python)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-mineria-en-bases-de-datos-sql-y-adql">C. Minería en Bases de Datos (SQL y ADQL)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#las-10-bases-de-datos-fundamentales-del-observatorio-virtual">2. Las 10 Bases de Datos Fundamentales del Observatorio Virtual</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-detallado-pipeline-de-extraccion-extragalactica">3. Ejemplo Detallado: Pipeline de Extracción Extragaláctica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retos-de-programacion-laboratorio-final">4. Retos de Programación (Laboratorio Final)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="clase-8-gran-repaso-de-mineria-de-datos-astronomicos">
+<h1>Clase 8: Gran Repaso de Minería de Datos Astronómicos<a class="headerlink" href="#clase-8-gran-repaso-de-mineria-de-datos-astronomicos" title="Link to this heading">#</a></h1>
+<p><em>(Preparación para Machine Learning)</em></p>
+<p>A lo largo de estas semanas hemos construido un “Data Stack” completo para la investigación astronómica. Hemos pasado de no tener datos a poder descargar, cruzar y visualizar catálogos masivos alojados en servidores de todo el mundo, garantizando la reproducibilidad mediante el control de versiones.</p>
+<p>Este documento consolida todos los conceptos clave, herramientas y bases de datos que formarán los cimientos para la siguiente etapa: el Aprendizaje Automático.</p>
+<section id="resumen-de-contenidos-y-tablas-de-comandos-clave">
+<h2>1. Resumen de Contenidos y Tablas de Comandos Clave<a class="headerlink" href="#resumen-de-contenidos-y-tablas-de-comandos-clave" title="Link to this heading">#</a></h2>
+<section id="a-automatizacion-y-versionado-bash-y-git">
+<h3>A. Automatización y Versionado (Bash y Git)<a class="headerlink" href="#a-automatizacion-y-versionado-bash-y-git" title="Link to this heading">#</a></h3>
+<p>El trabajo científico debe ser automatizado y reproducible. La terminal de Linux/Unix y Git son el estándar de la industria.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Categoría</p></th>
+<th class="head text-left"><p>Comando/Herramienta</p></th>
+<th class="head text-left"><p>Descripción y Uso Práctico</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Descarga</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">-q</span> <span class="pre">-O</span> <span class="pre">archivo.csv</span> <span class="pre">&quot;URL&quot;</span></code></p></td>
+<td class="text-left"><p>Descarga silenciosa de datos desde un Endpoint a un archivo local.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Texto</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">sed</span> <span class="pre">'s/</span> <span class="pre">/+/g'</span></code></p></td>
+<td class="text-left"><p>Reemplaza espacios por signos <code class="docutils literal notranslate"><span class="pre">+</span></code> (vital para formatear consultas ADQL en URLs).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Variables</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">QUERY=&quot;...&quot;</span></code></p></td>
+<td class="text-left"><p>Almacenamiento de consultas SQL complejas en variables para código limpio.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Versionado</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> / <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code></p></td>
+<td class="text-left"><p>Inicializa un repositorio y añade los scripts al área de preparación (staging).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Historial</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;Mensaje&quot;</span></code></p></td>
+<td class="text-left"><p>Guarda una versión inmutable del código con un mensaje descriptivo.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Colaboración</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> / <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span></code></p></td>
+<td class="text-left"><p>Creación de ramas para trabajo en paralelo y unificación de código (Pull Requests).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="b-analisis-y-visualizacion-python">
+<h3>B. Análisis y Visualización (Python)<a class="headerlink" href="#b-analisis-y-visualizacion-python" title="Link to this heading">#</a></h3>
+<p>Python es el motor matemático donde los datos crudos se transforman en astrofísica.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Librería</p></th>
+<th class="head text-left"><p>Función Clave</p></th>
+<th class="head text-left"><p>Descripción y Uso Práctico</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Pandas</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code></p></td>
+<td class="text-left"><p>Carga el archivo crudo en un DataFrame (estructura tabular matricial).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Pandas</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">df.dropna()</span></code></p></td>
+<td class="text-left"><p>Limpieza de datos: elimina filas con valores nulos (<code class="docutils literal notranslate"><span class="pre">NaN</span></code>), vital antes de hacer Machine Learning.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Matplotlib</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">plt.scatter(x,</span> <span class="pre">y)</span></code></p></td>
+<td class="text-left"><p>Gráfico de dispersión, la herramienta número uno para diagramas HR, CMDs o mapas estelares.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Matplotlib</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">plt.gca().invert_yaxis()</span></code></p></td>
+<td class="text-left"><p>Convención astronómica obligatoria: invierte ejes para magnitudes (menor valor = más brillante).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Seaborn</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">sns.histplot()</span></code></p></td>
+<td class="text-left"><p>Creación de histogramas estadísticos superpuestos (usando <code class="docutils literal notranslate"><span class="pre">hue</span></code> para clasificar, ej. Estrella vs Galaxia).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="c-mineria-en-bases-de-datos-sql-y-adql">
+<h3>C. Minería en Bases de Datos (SQL y ADQL)<a class="headerlink" href="#c-mineria-en-bases-de-datos-sql-y-adql" title="Link to this heading">#</a></h3>
+<p>Mover el cómputo al servidor en lugar de descargar terabytes de datos a nuestro disco duro.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Concepto</p></th>
+<th class="head text-left"><p>Sintaxis SQL/ADQL</p></th>
+<th class="head text-left"><p>Significado Analítico</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Selección</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">TOP</span> <span class="pre">100</span> <span class="pre">ra,</span> <span class="pre">dec</span></code></p></td>
+<td class="text-left"><p>Extrae columnas específicas limitando la cantidad de filas de salida.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Condición</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">pl_rade</span> <span class="pre">BETWEEN</span> <span class="pre">1</span> <span class="pre">AND</span> <span class="pre">2</span></code></p></td>
+<td class="text-left"><p>Filtra los datos algebraicamente (ej. planetas de tamaño terrestre).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Cruce</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">JOIN</span> <span class="pre">tabla_B</span> <span class="pre">ON</span> <span class="pre">id_A</span> <span class="pre">=</span> <span class="pre">id_B</span></code></p></td>
+<td class="text-left"><p>Intersección relacional. Cruza fotometría y espectroscopía de un mismo objeto.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Geometría</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CIRCLE('ICRS',</span> <span class="pre">ra,</span> <span class="pre">dec,</span> <span class="pre">radio)</span></code></p></td>
+<td class="text-left"><p>(Solo ADQL) Define un cono de búsqueda espacial en grados en la esfera celeste.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Inclusión</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">=</span> <span class="pre">CONTAINS(Punto,</span> <span class="pre">Circulo)</span></code></p></td>
+<td class="text-left"><p>(Solo ADQL) Función lógica que evalúa si un objeto celeste está dentro de una región.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Agregación</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">COUNT()</span></code>, <code class="docutils literal notranslate"><span class="pre">AVG()</span></code>, <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></p></td>
+<td class="text-left"><p>Estadísticas en el servidor (ej. “calcula el promedio de masa agrupado por galaxia”).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="las-10-bases-de-datos-fundamentales-del-observatorio-virtual">
+<h2>2. Las 10 Bases de Datos Fundamentales del Observatorio Virtual<a class="headerlink" href="#las-10-bases-de-datos-fundamentales-del-observatorio-virtual" title="Link to this heading">#</a></h2>
+<p>Para alimentar futuros modelos de Machine Learning, necesitamos saber de dónde sacar los datos de entrenamiento. Aquí están los 10 repositorios más importantes del mundo, sus Endpoints para la terminal y sus tablas clave.</p>
+<p><em>(Nota: Las URLs de los Endpoints están en texto plano para su uso directo en scripts)</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Nombre y Enfoque</p></th>
+<th class="head text-left"><p>URL Interfaz Web (GUI)</p></th>
+<th class="head text-left"><p>Endpoint de Máquina (TAP/SQL)</p></th>
+<th class="head text-left"><p>Tablas / Colecciones Principales</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>1. VizieR (Multicatálogo)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://vizier.cds.unistra.fr</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://tapvizier.cds.unistra.fr/TAPVizieR/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">I/355/gaiadr3</span></code> (Gaia), <code class="docutils literal notranslate"><span class="pre">II/328/allwise</span></code> (Infrarrojo), <code class="docutils literal notranslate"><span class="pre">V/147</span></code> (Exoplanetas).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>2. SDSS (Espectroscopía)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">http://skyserver.sdss.org/dr18</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">http://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?format=csv&amp;cmd=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">SpecObjAll</span></code> (Espectros), <code class="docutils literal notranslate"><span class="pre">PhotoObjAll</span></code> (Imágenes).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>3. NASA Exoplanet Archive</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://exoplanetarchive.ipac.caltech.edu</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://exoplanetarchive.ipac.caltech.edu/TAP/sync?format=csv&amp;query=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ps</span></code> (Planetary Systems - Catálogo maestro).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>4. ESA Gaia Archive</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://gea.esac.esa.int/archive/</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://gea.esac.esa.int/tap-server/tap/sync?REQUEST=doQuery&amp;LANG=ADQL&amp;FORMAT=csv&amp;QUERY=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">gaiadr3.gaia_source</span></code> (Catálogo puro original).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>5. SIMBAD (Identificación)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">http://simbad.cds.unistra.fr/simbad/</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">http://simbad.cds.unistra.fr/simbad/sim-tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">basic</span></code> (Coordenadas y tipos de objetos).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>6. MAST (Hubble/JWST/TESS)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://mast.stsci.edu/portal/</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://vao.stsci.edu/CAOMTAP/TapService.aspx/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ivoa.ObsCore</span></code> (Metadatos de observaciones).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>7. HEASARC (Rayos X / Gamma)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://heasarc.gsfc.nasa.gov</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://heasarc.gsfc.nasa.gov/xamin/vo/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=</span></code></p></td>
+<td class="text-left"><p>Colecciones de misiones como Chandra, Fermi o XMM-Newton.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>8. NED (Extragaláctico)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://ned.ipac.caltech.edu</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://ned.ipac.caltech.edu/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">objdir</span></code> (Objetos extragalácticos, galaxias).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>9. ESO Archive (VLT/ALMA)</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">http://archive.eso.org/scienceportal/</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">http://archive.eso.org/tap_obs/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ivoa.ObsCore</span></code> (Datos del Observatorio Europeo Austral).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>10. ALMA Science Archive</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://almascience.eso.org/aq/</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">https://almascience.eso.org/tap/sync?request=doQuery&amp;lang=ADQL&amp;format=csv&amp;query=</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ivoa.ObsCore</span></code> (Interferometría de radio submilimétrica).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="ejemplo-detallado-pipeline-de-extraccion-extragalactica">
+<h2>3. Ejemplo Detallado: Pipeline de Extracción Extragaláctica<a class="headerlink" href="#ejemplo-detallado-pipeline-de-extraccion-extragalactica" title="Link to this heading">#</a></h2>
+<p>El siguiente es un ejemplo completo y reproducible de cómo se integran todas las herramientas para resolver un problema físico: <strong>Obtener la relación Color-Magnitud de las galaxias usando un JOIN en SDSS</strong>.</p>
+<p><strong>A. El Script de Extracción (Bash + SQL): <code class="docutils literal notranslate"><span class="pre">1_descarga.sh</span></code></strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Iniciando pipeline astronómico...&quot;</span>
+
+<span class="c1"># 1. Definimos la consulta SQL</span>
+<span class="c1"># Unimos espectroscopía (para saber qué es y a qué distancia está) con fotometría (para el brillo y color)</span>
+<span class="nv">QUERY</span><span class="o">=</span><span class="s2">&quot;SELECT TOP 5000 s.z, p.u, p.r FROM SpecObj s INNER JOIN PhotoObj p ON s.bestObjID=p.objID WHERE s.class=&#39;GALAXY&#39; AND s.z BETWEEN 0.05 AND 0.15&quot;</span>
+
+<span class="c1"># 2. Definimos el Endpoint explícito</span>
+<span class="nv">ENDPOINT</span><span class="o">=</span><span class="s2">&quot;[http://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?format=csv&amp;cmd=](http://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?format=csv&amp;cmd=)&quot;</span>
+
+<span class="c1"># 3. Formateamos y descargamos</span>
+<span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ENDPOINT</span><span class="si">}${</span><span class="nv">QUERY</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="c1"># Reemplazamos los espacios por %20 para la URL de Sloan</span>
+<span class="nv">URL_CLEAN</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$URL</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/ /%20/g&#39;</span><span class="k">)</span>
+
+wget<span class="w"> </span>-q<span class="w"> </span>-O<span class="w"> </span>galaxias_sdss.csv<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$URL_CLEAN</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Datos descargados exitosamente.&quot;</span>
+</pre></div>
+</div>
+<p><strong>B. El Script de Análisis (Python):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># 1. Ingesta y Limpieza</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;galaxias_sdss.csv&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;redshift&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">])</span>
+<span class="n">df_limpio</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># 2. Ingeniería de Datos (Feature Engineering básica)</span>
+<span class="c1"># Calculamos el índice de color (Ultravioleta - Rojo)</span>
+<span class="n">df_limpio</span><span class="p">[</span><span class="s1">&#39;color_u_r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_limpio</span><span class="p">[</span><span class="s1">&#39;u&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_limpio</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span>
+
+<span class="c1"># 3. Visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="c1"># Hexbin es ideal para visualizar altas densidades de puntos</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">df_limpio</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">],</span> <span class="n">df_limpio</span><span class="p">[</span><span class="s1">&#39;color_u_r&#39;</span><span class="p">],</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Densidad de Galaxias&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_xaxis</span><span class="p">()</span> <span class="c1"># Magnitudes absolutas crecen hacia la izquierda</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Diagrama Color-Magnitud Galáctico&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Magnitud r (Brillo)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Índice de Color (u - r)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;cmd_galaxias.png&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Análisis completado. Gráfica guardada.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="retos-de-programacion-laboratorio-final">
+<h2>4. Retos de Programación (Laboratorio Final)<a class="headerlink" href="#retos-de-programacion-laboratorio-final" title="Link to this heading">#</a></h2>
+<p>A continuación, se presentan 4 problemas astrofísicos reales. Los estudiantes deberán decidir qué base de datos usar de la tabla anterior, escribir la consulta (SQL o ADQL), construir el pipeline en Bash/Python, y argumentar los resultados físicos.</p>
+<p><strong>Retos Individuales</strong>:</p>
+<ol class="arabic simple">
+<li><p>“La Estructura a Gran Escala del Universo”:
+Utilizando el catálogo espectroscópico de SDSS, extraigan una muestra masiva (mínimo 200,000 registros) de galaxias ubicadas en un corte transversal del cielo (por ejemplo, fijen la Declinación dec en un rango muy estrecho de +/−2 grados, y extraigan toda la información, incluyendo el corrimiento al rojo z). Usando coordenadas polares en Python, grafiquen la Ascensión Recta como el ángulo y el corrimiento al rojo como el radio.
+Objetivo Científico: Identificar visualmente la “Red Cósmica” (Cosmic Web), confirmando que las galaxias no se distribuyen uniformemente, sino en filamentos densos y grandes vacíos.</p></li>
+<li><p>“El Límite Técnico de la Misión Kepler”:
+Utilizando el Endpoint de la NASA Exoplanet Archive, aíslen exclusivamente los planetas que fueron descubiertos por el observatorio espacial Kepler (revisen la columna disc_facility o filtren el nombre). Extraigan su masa planetaria y su periodo orbital.
+Objetivo Científico: Grafiquen Masa vs Periodo Orbital en escala logarítmica. Identifiquen la “zona vacía” en su gráfica. Deduzcan y expliquen en su informe por qué el método de tránsito empleado por Kepler tiene un sesgo instrumental gigantesco que le impide descubrir planetas de masa terrestre con órbitas largas (como la de Júpiter o Saturno).</p></li>
+</ol>
+<p><strong>Retos en Parejas (Vía Pull Requests de GitHub)</strong></p>
+<ol class="arabic simple" start="3">
+<li><p>“Hermanos Solares en el Vecindario”:
+Nuestro Sol tiene parámetros muy específicos: Temperatura efectiva <code class="docutils literal notranslate"><span class="pre">Teff≈5778</span></code>K, y una metalicidad cercana a la media galáctica. Queremos buscar estrellas casi idénticas al Sol en nuestro vecindario local.
+Objetivo Científico: Realicen un cruce espacial masivo (usando ADQL en VizieR) entre la astrometría de Gaia DR3 y la espectroscopía/fotometría de SDSS. Deben aislar un volumen esférico alrededor de la Tierra (paralaje mayor a un cierto límite). Filtren las estrellas cuya temperatura sea estadísticamente similar a la solar. Grafiquen la distribución espacial (coordenadas) de estos “hermanos solares” e indiquen cuántos lograron confirmar mediante el cruce de ambos catálogos.</p></li>
+<li><p>“Cazadores de Fuentes de Alta Energía”:
+La astronomía óptica (SDSS/Gaia) nos muestra estrellas y galaxias normales, pero el universo violento brilla en Rayos X.
+Objetivo Científico: Consulten el Endpoint TAP del archivo de HEASARC (NASA). Extraigan las coordenadas de las fuentes catalogadas por el observatorio de rayos X Chandra (tabla chandra). En un script separado, extraigan coordenadas de galaxias ordinarias en SDSS. Usando Python, sobrepongan ambas poblaciones en un mapa del cielo. Analicen la correlación espacial: ¿Las fuentes de rayos X parecen distribuirse al azar, o siguen la misma estructura que las agrupaciones de galaxias?</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-contenidos-y-tablas-de-comandos-clave">1. Resumen de Contenidos y Tablas de Comandos Clave</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-automatizacion-y-versionado-bash-y-git">A. Automatización y Versionado (Bash y Git)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-analisis-y-visualizacion-python">B. Análisis y Visualización (Python)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-mineria-en-bases-de-datos-sql-y-adql">C. Minería en Bases de Datos (SQL y ADQL)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#las-10-bases-de-datos-fundamentales-del-observatorio-virtual">2. Las 10 Bases de Datos Fundamentales del Observatorio Virtual</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-detallado-pipeline-de-extraccion-extragalactica">3. Ejemplo Detallado: Pipeline de Extracción Extragaláctica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retos-de-programacion-laboratorio-final">4. Retos de Programación (Laboratorio Final)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Esteban Silva Villa y Germán Chaparro Molano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
