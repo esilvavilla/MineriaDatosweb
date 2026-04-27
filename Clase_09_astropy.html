@@ -1,0 +1,1126 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Clase 9: Astropy: Unidades y Coordenadas &#8212; Minería de datos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_09_astropy';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Proyecto 1er mes" href="Proyecto%201er%20mes.html" />
+    <link rel="prev" title="Clase 8: Gran Repaso de Minería de Datos Astronómicos" href="Clase_08_Rsumen.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
+    <script>document.write(`<img src="_static/UdeA.png" class="logo__image only-dark" alt="Minería de datos - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Minería de datos para el pregrado de Astronomía UdeA
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Clase_01_INTROyCLI.html">Clase 1: La Consola de Comandos (Bash)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_02_GIT-HUB.html">Clase 2: Introducción a herramientas de control de versiones Git y Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_03_PythonCientifico.html">Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_04_SQL_Intro.html">Clase 4: Introducción a SQL y Bases de Datos Relacionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_05_ADQL_Intro.html">Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_06_ADQL_Intro2.html">Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 9: Astropy: Unidades y Coordenadas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FClase_09_astropy.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Clase_09_astropy.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clase 9: Astropy: Unidades y Coordenadas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidades-y-cantidades-astropy-units"><strong>Unidades y Cantidades (<code class="docutils literal notranslate"><span class="pre">astropy.units</span></code>)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas-de-astropy-astropy-table"><strong>Tablas de Astropy (<code class="docutils literal notranslate"><span class="pre">astropy.table</span></code>)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordenadas-celestes-astropy-coordinates"><strong>Coordenadas Celestes (<code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code>)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidades">Unidades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usando-astropy-coordinates">Usando <code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determinando-lugares-en-el-cielo-con-coordinates">Determinando lugares en el cielo con <code class="docutils literal notranslate"><span class="pre">coordinates</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformando-entre-sistemas-de-coordenadas-y-planeacion-de-observaciones">Transformando entre sistemas de coordenadas y planeación de observaciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduciendo-transformaciones-de-coordenadas">Introduciendo transformaciones de coordenadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-a-coordenadas-altaz">Cambio a coordenadas AltAz</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="clase-9-astropy-unidades-y-coordenadas">
+<h1>Clase 9: Astropy: Unidades y Coordenadas<a class="headerlink" href="#clase-9-astropy-unidades-y-coordenadas" title="Permalink to this heading">#</a></h1>
+<p>Adaptado de http://www.astropy.org/astropy-tutorials/Coordinates.html</p>
+<p>##<strong>Introducción a Astropy</strong></p>
+<ul class="simple">
+<li><p>Librería de código abierto impulsado por la comunidad con herramientas diseñadas para investigación astronómica.</p></li>
+<li><p>Históricamente, el código astronómico era fragmentado, con lectores de FITS y conversores de unidades propios, lo que causaba errores y falta de reproducibilidad.</p></li>
+<li><p>Astropy establece un estándar unificado que se integra con el ecosistema científico de Python (<code class="docutils literal notranslate"><span class="pre">NumPy</span></code>, <code class="docutils literal notranslate"><span class="pre">SciPy</span></code>, <code class="docutils literal notranslate"><span class="pre">Matplotlib</span></code>).</p></li>
+<li><p>Instalado por defecto en el entorno de Colab.</p></li>
+<li><p>Desarrollado por Thomas Robitaille et al en el STScI en el 2011.</p></li>
+<li><p>Citación original: <em>Robitaille, Thomas P.; Tollerud, Erik J.; et al. (2013). “Astropy: A community Python package for astronomy”. Astronomy &amp; Astrophysics. 558: A33. arXiv:<a class="reference external" href="https://arxiv.org/abs/1307.6212">1307.6212</a></em></p></li>
+<li><p><strong>Herramientas para la Minería de Datos:</strong></p>
+<ul>
+<li><p><strong>Constants:</strong> Valores físicos estandarizados.</p></li>
+<li><p><strong>Units:</strong> Gestión, conversión de unidades físicas.</p></li>
+<li><p><strong>Tables:</strong> Manejo de catálogos con metadatos y unidades.</p></li>
+<li><p><strong>WCS (World Coordinate System):</strong> Estándar (contenido en el <em>header</em> de los archivos FITS) que define la transformación matemática entre las coordenadas de píxeles $(x, y)$ y las coordenadas astronómicas $(RA, Dec)$.</p></li>
+<li><p>Compatibilidad con <code class="docutils literal notranslate"><span class="pre">astroquery</span></code>, librería de acceso a múltiples bases de datos.</p></li>
+</ul>
+</li>
+</ul>
+<p>##<strong>Constantes Físicas (<code class="docutils literal notranslate"><span class="pre">astropy.constants</span></code>)</strong></p>
+<ul class="simple">
+<li><p><strong>Valores CODATA:</strong> Basados en estándares internacionales.</p></li>
+<li><p><strong>Metadatos:</strong> Incluyen nombre, valor, incertidumbre y referencia.</p></li>
+<li><p><strong>Objetos <code class="docutils literal notranslate"><span class="pre">Quantity</span></code>:</strong> Las constantes ya vienen con sus unidades asociadas.</p></li>
+</ul>
+<p><strong>Ejemplo de uso:</strong>
+$$R_s = \frac{2GM}{c^2}$$</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">G</span><span class="p">,</span> <span class="n">M_sun</span><span class="p">,</span> <span class="n">c</span>
+
+<span class="n">R_s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">G</span> <span class="o">*</span> <span class="n">M_sun</span><span class="p">)</span> <span class="o">/</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">R_s</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">astropy.constants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">c</span>
+<span class="c1"># Es preferible usar un alias para legibilidad del código</span>
+
+<span class="n">R_s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">G</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">M_sun</span><span class="p">)</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">R_s</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="unidades-y-cantidades-astropy-units">
+<h2><strong>Unidades y Cantidades (<code class="docutils literal notranslate"><span class="pre">astropy.units</span></code>)</strong><a class="headerlink" href="#unidades-y-cantidades-astropy-units" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>El tipo de objeto <code class="docutils literal notranslate"><span class="pre">Quantity</span></code> es la unión entre un valor (o array de <code class="docutils literal notranslate"><span class="pre">NumPy</span></code>) con un objeto de unidad (dimensión) física.</p></li>
+<li><p>Permite hacer conversiones y simplificaciones sin errores manuales.</p></li>
+<li><p>También permite conversiones entre unidades que no son dimensionalmente iguales pero tienen una relación física:</p>
+<ul>
+<li><p><strong>Espectrales:</strong> Energía $\leftrightarrow$ Frecuencia $\leftrightarrow$ Longitud de onda.</p></li>
+<li><p><strong>Astrofísicas:</strong> Paralaje $\leftrightarrow$ Distancia.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Ejemplo de código:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+
+<span class="n">distancia</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">pc</span>
+<span class="c1"># Conversión simple</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">distancia</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">lightyear</span><span class="p">))</span>
+
+<span class="c1"># Equivalencia de paralaje (arcsec -&gt; pc)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.002</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">arcsec</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">pc</span><span class="p">,</span> <span class="n">equivalencies</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">parallax</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="tablas-de-astropy-astropy-table">
+<h2><strong>Tablas de Astropy (<code class="docutils literal notranslate"><span class="pre">astropy.table</span></code>)</strong><a class="headerlink" href="#tablas-de-astropy-astropy-table" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Objetos diseñados para leer/escribir archivos <strong>FITS</strong>, <strong>VOTables</strong> y <strong>CSV</strong> conservando metadatos.</p></li>
+<li><p>Una sola celda puede contener un array (ej. un espectro completo de 2000 canales), permitiendo manejar estructuras de datos embebidos que el CSV estándar no soporta.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">QTable</span></code> (Quantity Table):</strong></p>
+<ul>
+<li><p>Clase nativa de Astropy para tablas.</p></li>
+<li><p>Cada columna mantiene sus unidades y se comporta nativamente como un array de <code class="docutils literal notranslate"><span class="pre">astropy.units</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Operaciones de Minería:</strong></p>
+<ul>
+<li><p>Slicing mediante máscaras booleanas.</p></li>
+<li><p>Joins de catálogos (p. ej. cruzar datos de posición de Gaia con fotometría de SDSS).</p></li>
+</ul>
+</li>
+<li><p><strong>Compatibilidad</strong></p>
+<ul>
+<li><p>Convierte archivos <strong>FITS</strong>, <strong>VOTables</strong>, <strong>HDF</strong>, a objetos <code class="docutils literal notranslate"><span class="pre">Qtables</span></code>.</p></li>
+<li><p>Interopera tablas con  dataframes de <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, diccionarios de Python, o arreglos de <code class="docutils literal notranslate"><span class="pre">numpy</span></code>. Exportación a Pandas DataFrame con el método <code class="docutils literal notranslate"><span class="pre">.to_pandas()</span></code>.</p></li>
+<li><p>Los resultados de búsquedas TAP/ADQL en bases de datos como Gaia o SDSS se descargan como objetos que se convierten directamente en <code class="docutils literal notranslate"><span class="pre">QTable</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="coordenadas-celestes-astropy-coordinates">
+<h2><strong>Coordenadas Celestes (<code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code>)</strong><a class="headerlink" href="#coordenadas-celestes-astropy-coordinates" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Objetos <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code>, que unifican posiciones, sistemas de referencia y distancias.</p></li>
+<li><p>Sistemas de referencia/coordenados: ICRS (estándar), FK5, Galáctico, AltAz (local), entre otros.</p></li>
+<li><p>Convierte entre coordenadas ecuatoriales (RA/Dec), alt-az o galácticas ($l, b$).</p></li>
+<li><p>Permite calcular la distancia angular en el cielo entre dos objetos.</p></li>
+<li><p><strong>Cross-matching:</strong> Encontrar qué objetos de un catálogo A coinciden con el catálogo B dentro de un radio determinado (ej. 1 arcsec).</p></li>
+<li><p>Permite calcular la masa de aire para observaciones.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">SkyCoord</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+
+<span class="c1"># Definir una posición (ej. el centro de la Galaxia)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="mf">266.4168</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">dec</span><span class="o">=-</span><span class="mf">29.0078</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
+
+<span class="c1"># Transformar a coordenadas galácticas</span>
+<span class="n">gal</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">galactic</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longitud: </span><span class="si">{</span><span class="n">gal</span><span class="o">.</span><span class="n">l</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, Latitud: </span><span class="si">{</span><span class="n">gal</span><span class="o">.</span><span class="n">b</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calcular distancia a otro objeto</span>
+<span class="n">otro</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="mf">266.5</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">dec</span><span class="o">=-</span><span class="mf">28.9</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
+<span class="n">sep</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">separation</span><span class="p">(</span><span class="n">otro</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Separación: </span><span class="si">{</span><span class="n">sep</span><span class="o">.</span><span class="n">arcmin</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> arcmin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="unidades">
+<h2>Unidades<a class="headerlink" href="#unidades" title="Permalink to this heading">#</a></h2>
+<p>Astropy puede hacer conversión de unidades muy eficientemente a través del método <code class="docutils literal notranslate"><span class="pre">.to()</span></code> aplicado a un objeto <code class="docutils literal notranslate"><span class="pre">Quantity</span></code>. También hay atajos como los métodos <code class="docutils literal notranslate"><span class="pre">.cgs</span></code> <code class="docutils literal notranslate"><span class="pre">.si</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurement</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">h</span>
+<span class="n">measurement</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">measurement</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">h</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">measurement</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;u&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flux</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">Jy</span>
+<span class="n">flux</span><span class="o">.</span><span class="n">cgs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Astropy incluye equivalencias para casi cualquier situación donde dos unidades no son físicamente la misma dimensión, pero están vinculadas por una ley física o un modelo estándar. Se usan con el alias, o sea <code class="docutils literal notranslate"><span class="pre">u.spectral()</span></code> como argumento del método de conversión <code class="docutils literal notranslate"><span class="pre">.to()</span></code></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Equivalencia</p></th>
+<th class="head text-left"><p>Convierte entre…</p></th>
+<th class="head text-left"><p>Constante/Parámetro necesario</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral()</span></code></p></td>
+<td class="text-left"><p>$\lambda, \nu, E, cm^{-1}$</p></td>
+<td class="text-left"><p>Ninguno (usa $h$ y $c$)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">parallax()</span></code></p></td>
+<td class="text-left"><p>Ángulo ($arcsec$) y Distancia ($pc$)</p></td>
+<td class="text-left"><p>Ninguno (geometría)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">doppler_x()</span></code></p></td>
+<td class="text-left"><p>Velocidad y $\lambda$ o $\nu$</p></td>
+<td class="text-left"><p>$\lambda_0$ o $\nu_0$ (reposo)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mass_energy()</span></code></p></td>
+<td class="text-left"><p>Masa y Energía</p></td>
+<td class="text-left"><p>Ninguno (usa $c^2$)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_density()</span></code></p></td>
+<td class="text-left"><p>$Jy$ y $erg \cdot s^{-1} \cdot cm^{-2} \cdot \text{\AA}^{-1}$</p></td>
+<td class="text-left"><p>$\lambda$ o $\nu$ de observación</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+
+<span class="n">lambda_uv</span> <span class="o">=</span> <span class="mf">91.2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span>
+
+<span class="c1"># Con equivalencies=u.spectral() Astropy usa E = h * c / lambda</span>
+<span class="n">frecuencia</span> <span class="o">=</span> <span class="n">lambda_uv</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span> <span class="n">equivalencies</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">())</span>
+<span class="n">energia</span> <span class="o">=</span> <span class="n">lambda_uv</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">eV</span><span class="p">,</span> <span class="n">equivalencies</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">())</span>
+<span class="n">numero_de_onda</span> <span class="o">=</span> <span class="n">lambda_uv</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**-</span><span class="mi">1</span><span class="p">,</span> <span class="n">equivalencies</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longitud de onda: </span><span class="si">{</span><span class="n">lambda_verde</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Frecuencia: </span><span class="si">{</span><span class="n">frecuencia</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Energía: </span><span class="si">{</span><span class="n">energia</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Número de onda (lambda^-1): </span><span class="si">{</span><span class="n">numero_de_onda</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Astropy puede descomponer unidades, reconocer unidades en texto plano, extraer valores, unidades de objetos <code class="docutils literal notranslate"><span class="pre">Quantity</span></code> o representar unidades en strings para latex. También puede revisar equivalencia dimensional.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">un_watt</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">W</span>
+<span class="n">un_watt</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s2">&quot;kg m2 / s2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distancia</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">lightyear</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">distancia</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="c1"># 100</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">distancia</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span>  <span class="c1"># ly</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s2">&quot;kg m2 / s2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;$\\mathrm{\\frac{m^{2}\\,kg}{s^{2}}}$&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freq</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">erg</span> <span class="o">/</span> <span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">)</span>
+<span class="p">(</span><span class="n">freq</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span><span class="o">.</span><span class="n">is_equivalent</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">Jy</span><span class="p">)</span>                <span class="c1"># False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ejercicio: Determine la longitud galáctica en ángulo horario a la que apunta el cenit en este momento en Medellín.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="usando-astropy-coordinates">
+<h2>Usando <code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code><a class="headerlink" href="#usando-astropy-coordinates" title="Permalink to this heading">#</a></h2>
+<p>En esta parte exploraremos cómo el paquete <code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code> junto con la funcionalidad general de astropy puede ser usado para planear observaciones y en general obtener información que requiera el uso de catálogos astronómicos grandes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">urllib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">IPython.display</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy</span><span class="w"> </span><span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">SkyCoord</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="determinando-lugares-en-el-cielo-con-coordinates">
+<h2>Determinando lugares en el cielo con <code class="docutils literal notranslate"><span class="pre">coordinates</span></code><a class="headerlink" href="#determinando-lugares-en-el-cielo-con-coordinates" title="Permalink to this heading">#</a></h2>
+<p>Comencemos considerando un campo alrededor del pintoresco Grupo Compacto Hickson 7 (HCG7). Primero necesitamos obtener un objeto que represente las coordenadas del centro de este grupo.</p>
+<p>En Astropy, el objeto más común para trabajar coordenadas es <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code>.  Un <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> puede ser creado simplemente a partir de ángulos como se muestra más abajo. Es recomendable especificar el marco de referencia de sus coordenadas, aunque no es estrictamente necesario, ya que por defecto se usa el estándar ICRS de la IAU. Este estándar se puede entender como aproximadamente igual al sistema ecuatorial en el equinoxio de J2000, y se da en RA/DEC.</p>
+<p>https://en.wikipedia.org/wiki/International_Celestial_Reference_System</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>SkyCoord<span class="o">?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="mf">9.81625</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="mf">0.88806</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
+<span class="n">hcg7_center</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
+    (9.81625, 0.88806)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> también acepta coordenadas formateadas como <code class="docutils literal notranslate"><span class="pre">strings</span></code> ya sea como  <code class="docutils literal notranslate"><span class="pre">strings</span></code> separados para RA/DEC o como un <code class="docutils literal notranslate"><span class="pre">string</span></code> simple. Si las unidades no vienen en el <code class="docutils literal notranslate"><span class="pre">string</span></code> original, usted tiene que especificarlas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SkyCoord</span><span class="p">(</span><span class="s1">&#39;23h39m15.9s&#39;</span><span class="p">,</span> <span class="s1">&#39;0d53m17.016s&#39;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
+    (354.81625, 0.88806)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SkyCoord</span><span class="p">(</span><span class="s1">&#39;0:39:15.9 0:53:17.016&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">),</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
+    (9.81625, 0.88806)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si el objeto que le interesa está en <a class="reference external" href="http://cdsweb.u-strasbg.fr/cgi-bin/Sesame">SESAME</a>, usted puede hallarlo directamente usando el método de clase<sup>1</sup> <code class="docutils literal notranslate"><span class="pre">SkyCoord.from_name()</span></code>. Esto requiere que usted esté conectado a internet. Dado que ya lo definimos explícitamente, no es necesario ejecutar este paso si usted no está conectado a internet.</p>
+<p><sub> <sup>1</sup>Un objeto de clase es un constructor alternativo para un objeto <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> object. Si usted llama la  <code class="docutils literal notranslate"><span class="pre">SkyCoord.from_name()</span></code> con un nombre, va a generar un nuevo objeto <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code>. Para más información sobre los objetos de clase y su uso, vea <a class="reference external" href="https://julien.danjou.info/blog/2013/guide-python-static-class-abstract-methods">esta página</a>.</sub></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s1">&#39;Hcg 7&#39;</span><span class="p">)</span>
+<span class="n">hcg7_center</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
+    (9.81625, 0.88805556)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Black_Hole</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s1">&#39;Sgr A*&#39;</span><span class="p">)</span>
+<span class="n">Black_Hole</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
+    (266.41681662, -29.00782497)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>El objeto que acabamos de crear nos da varias formas útiles de tener acceso a la información que almacena. En particular se usan los atributos <code class="docutils literal notranslate"><span class="pre">ra</span></code> y <code class="docutils literal notranslate"><span class="pre">dec</span></code>, que son objetos <a class="reference external" href="http://docs.astropy.org/en/stable/units/index.html"><code class="docutils literal notranslate"><span class="pre">Quantity</span></code></a> de Astropy especializados (de hecho, pertenecen a una sub-clase llamada <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.coordinates.Angle.html"><code class="docutils literal notranslate"><span class="pre">Angle</span></code></a>, cuyas subclases son <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.coordinates.Latitude.html"><code class="docutils literal notranslate"><span class="pre">Latitude</span></code></a> y <a class="reference external" href="http://docs.astropy.org/en/stable/api/astropy.coordinates.Longitude.html"><code class="docutils literal notranslate"><span class="pre">Longitude</span></code></a>).  Estos objetos almacenan ángulos y muestran representaciones bonitas de ellos. También tiene atributos útiles para convertir fácilmente a unidades comunes de ángulo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">ra</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">dec</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(astropy.coordinates.angles.core.Longitude,
+ astropy.coordinates.angles.core.Latitude)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">dec</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[0^\circ53{}^\prime17.000016{}^{\prime\prime}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">ra</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[9^\circ48{}^\prime58.5{}^{\prime\prime}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">hour</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.05920370400000001)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora que tenemos un objeto <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code>, podemos usarlo para acceder a datos del <a class="reference external" href="http://www.sdss.org/">Sloan Digital Sky Survey</a> (SDSS).  Empecemos intentando obtener una imagen usando la herramienta de recorte de imágenes de SDSS para asegurarnos que HGC7 está incluido en el catálogo SDSS y que tiene buena calidad de imagen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">impix</span> <span class="o">=</span> <span class="mi">1024</span>
+<span class="n">imsize</span> <span class="o">=</span> <span class="mi">12</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span>
+<span class="n">cutoutbaseurl</span> <span class="o">=</span> <span class="s1">&#39;http://skyservice.pha.jhu.edu/DR12/ImgCutout/getjpeg.aspx&#39;</span>
+<span class="n">query_string</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span>
+                                     <span class="n">dec</span><span class="o">=</span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span>
+                                     <span class="n">width</span><span class="o">=</span><span class="n">impix</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">impix</span><span class="p">,</span>
+                                     <span class="n">scale</span><span class="o">=</span><span class="n">imsize</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">impix</span><span class="p">))</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">cutoutbaseurl</span> <span class="o">+</span> <span class="s1">&#39;?&#39;</span> <span class="o">+</span> <span class="n">query_string</span>
+
+<span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;HCG7_SDSS_cutout.jpg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;HCG7_SDSS_cutout.jpg&#39;, &lt;http.client.HTTPMessage at 0x7f037c649130&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span>
+                                     <span class="n">dec</span><span class="o">=</span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span>
+                                     <span class="n">width</span><span class="o">=</span><span class="n">impix</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">impix</span><span class="p">,</span>
+                                     <span class="n">scale</span><span class="o">=</span><span class="n">imsize</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">impix</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ra=9.81625&amp;dec=0.88805556&amp;width=1024&amp;height=1024&amp;scale=0.703125&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora miremos la imagen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;HCG7_SDSS_cutout.jpg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f89ce8d7d061f414aea508bb8f00264325309ec4b0d40b5a6d6188a078470eac.jpg" src="_images/f89ce8d7d061f414aea508bb8f00264325309ec4b0d40b5a6d6188a078470eac.jpg" />
+</div>
+</div>
+<p>¡Bonito!</p>
+</section>
+<section id="transformando-entre-sistemas-de-coordenadas-y-planeacion-de-observaciones">
+<h2>Transformando entre sistemas de coordenadas y planeación de observaciones<a class="headerlink" href="#transformando-entre-sistemas-de-coordenadas-y-planeacion-de-observaciones" title="Permalink to this heading">#</a></h2>
+<p>Supongamos que usted quiere estudiar alguno de los objetos en este catálogo, y usted quiere saber cuando puede observarlo. Afortunadamente <code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code> nos da esta información.</p>
+<section id="introduciendo-transformaciones-de-coordenadas">
+<h3>Introduciendo transformaciones de coordenadas<a class="headerlink" href="#introduciendo-transformaciones-de-coordenadas" title="Permalink to this heading">#</a></h3>
+<p>Para enteder lo que viene a continuación, recomendamos leer el <a class="reference external" href="http://astropy.readthedocs.org/en/latest/coordinates/index.html#overview-of-astropy-coordinates-concepts">resumen del esquema de coordenadas de astropy</a>.  Lo importante es saber que todas las coordenadas en astropy están en “marcos de referencia” particulares, y podemos transformar el mismo objeto <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> de un marco a otro.  Pdemos transformar nuestro centro de HCG7 de ICRS a coordenadas galácticas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">galactic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (Galactic): (l, b) in deg
+    (116.47556718, -61.83099914)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
+    (9.81625, 0.88805556)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lo anterior nos permite hacer una visualización rápida del cambio de coordenadas. También es posible usar el método <code class="docutils literal notranslate"><span class="pre">transform_to()</span></code> para hacer este cambio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">Galactic</span>
+<span class="n">hcg7_center</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">Galactic</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">galactic</span><span class="o">.</span><span class="n">ra</span>  <span class="c1"># esto debe dar un mensaje de error</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">galactic</span><span class="o">.</span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cambio-a-coordenadas-altaz">
+<h3>Cambio a coordenadas AltAz<a class="headerlink" href="#cambio-a-coordenadas-altaz" title="Permalink to this heading">#</a></h3>
+<p>Para hacer observaciones, necesitamos hacer un cambio de coordenadas a un sistema basado en donde está el observador. Lo más común es usar coordenadas horizontales, o “AltAz”. Necesitamos especificar desde donde queremos observar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">EarthLocation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.time</span><span class="w"> </span><span class="kn">import</span> <span class="n">Time</span>
+
+<span class="n">observing_location</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="s1">&#39;4d&#39;</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="s1">&#39;-72d&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2600</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>  <span class="c1"># Bogotá</span>
+<span class="c1"># Si se usa astropy v1.1 o más reciente, se puede reemplazar por la ubicación del observatorio:</span>
+<span class="c1">#observing_location = EarthLocation.of_site(&#39;Kitt Peak&#39;)</span>
+
+<span class="n">observing_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s1">&#39;2015-12-21 1:00&#39;</span><span class="p">)</span>
+<span class="c1">#observing_time = Time.now()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora usamos lo anterior para crear un objeto en el marco <code class="docutils literal notranslate"><span class="pre">AltAz</span></code>. Este marco tiene información sobre la atmósfera, que puede ser usado para corregir por refracción atmosférica.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">AltAz</span>
+
+<span class="n">aa</span> <span class="o">=</span> <span class="n">AltAz</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">observing_location</span><span class="p">,</span> <span class="n">obstime</span><span class="o">=</span><span class="n">observing_time</span><span class="p">)</span>
+<span class="n">aa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AltAz Frame (obstime=2015-12-21 01:00:00.000, location=(1966985.0948135238, -6053757.644176692, 442126.472079737) m, pressure=0.0 hPa, temperature=0.0 deg_C, relative_humidity=0.0, obswl=1.0 micron)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora transformamos nuestro <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> en ICRS a <code class="docutils literal notranslate"><span class="pre">AltAz</span></code> para encontrar la ubicación en el cielo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ejercicio: Determine la longitud galáctica en ángulo horario a la que apunta el cenit en este momento en Medellín.</p>
+<p><strong>Masa de aire:</strong> Determinar <em>airmass</em> para programar observaciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">AltAz</span><span class="p">,</span> <span class="n">EarthLocation</span><span class="p">,</span> <span class="n">SkyCoord</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.time</span><span class="w"> </span><span class="kn">import</span> <span class="n">Time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+
+<span class="c1"># 1. Definir ubicación y tiempo</span>
+<span class="n">observatorio</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="p">(</span><span class="n">lat</span><span class="o">=-</span><span class="mf">30.16</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">70.80</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2200</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span> <span class="c1"># CTIO</span>
+<span class="n">tiempo</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s1">&#39;2026-04-27 02:00:00&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2. Definir el objeto y transformar a AltAz</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s1">&#39;Sirius&#39;</span><span class="p">)</span>
+<span class="n">frame_altaz</span> <span class="o">=</span> <span class="n">AltAz</span><span class="p">(</span><span class="n">obstime</span><span class="o">=</span><span class="n">tiempo</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">observatorio</span><span class="p">)</span>
+<span class="n">sirius_altaz</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">frame_altaz</span><span class="p">)</span>
+
+<span class="c1"># 3. Obtener el Airmass</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Altitud: </span><span class="si">{</span><span class="n">sirius_altaz</span><span class="o">.</span><span class="n">alt</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Airmass: </span><span class="si">{</span><span class="n">sirius_altaz</span><span class="o">.</span><span class="n">secz</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Clase_08_Rsumen.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Clase 8: Gran Repaso de Minería de Datos Astronómicos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Proyecto%201er%20mes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Proyecto 1er mes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidades-y-cantidades-astropy-units"><strong>Unidades y Cantidades (<code class="docutils literal notranslate"><span class="pre">astropy.units</span></code>)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas-de-astropy-astropy-table"><strong>Tablas de Astropy (<code class="docutils literal notranslate"><span class="pre">astropy.table</span></code>)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordenadas-celestes-astropy-coordinates"><strong>Coordenadas Celestes (<code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code>)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidades">Unidades</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usando-astropy-coordinates">Usando <code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determinando-lugares-en-el-cielo-con-coordinates">Determinando lugares en el cielo con <code class="docutils literal notranslate"><span class="pre">coordinates</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformando-entre-sistemas-de-coordenadas-y-planeacion-de-observaciones">Transformando entre sistemas de coordenadas y planeación de observaciones</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduciendo-transformaciones-de-coordenadas">Introduciendo transformaciones de coordenadas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-a-coordenadas-altaz">Cambio a coordenadas AltAz</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Esteban Silva Villa y Germán Chaparro Molano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

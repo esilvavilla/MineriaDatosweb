@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="./" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Clase 1: La Consola de Comandos (Bash) &#8212; Minería de datos</title>
   
@@ -16,50 +17,51 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_01_INTROyCLI';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -67,7 +69,6 @@
     <link rel="prev" title="Minería de datos para el pregrado de Astronomía UdeA" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -83,8 +84,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -92,6 +104,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -99,8 +112,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -116,8 +129,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -147,18 +159,11 @@
     
     
     <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
-    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
+    <script>document.write(`<img src="_static/UdeA.png" class="logo__image only-dark" alt="Minería de datos - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -177,6 +182,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Clase_06_ADQL_Intro2.html">Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_09_astropy.html">Clase 9: Astropy: Unidades y Coordenadas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
@@ -187,14 +193,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -213,9 +214,9 @@
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -338,19 +339,27 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -404,9 +413,9 @@
                 <article class="bd-article">
                   
   <section id="clase-1-la-consola-de-comandos-bash">
-<h1>Clase 1: La Consola de Comandos (Bash)<a class="headerlink" href="#clase-1-la-consola-de-comandos-bash" title="Link to this heading">#</a></h1>
+<h1>Clase 1: La Consola de Comandos (Bash)<a class="headerlink" href="#clase-1-la-consola-de-comandos-bash" title="Permalink to this heading">#</a></h1>
 <section id="objetivos-del-curso">
-<h2>Objetivos del curso<a class="headerlink" href="#objetivos-del-curso" title="Link to this heading">#</a></h2>
+<h2>Objetivos del curso<a class="headerlink" href="#objetivos-del-curso" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Entender qué es la minería de datos en el contexto astronómico.</p></li>
 <li><p>Familiarizarse con el entorno de control de versiones, usos de Google Colab y herramientas de machine learning.</p></li>
@@ -414,7 +423,7 @@
 </ol>
 </section>
 <section id="evaluacion-del-curso">
-<h2>Evaluación del curso<a class="headerlink" href="#evaluacion-del-curso" title="Link to this heading">#</a></h2>
+<h2>Evaluación del curso<a class="headerlink" href="#evaluacion-del-curso" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Proyectos mensuales (4: 10%-20%-10%-20%) con fechas de entrega 23 de marzo, 20 de abril, 18 de mayo y 15 de junio.</p></li>
 <li><p>Proyecto final (1x40%) con fecha de entrega el 1o de junio. Esta evaluación se dividirá en 30% proyecto y 10% examen oral de 10 minutos.</p></li>
@@ -422,14 +431,14 @@
 <p><strong>Importante - Declaración de uso de IA generativa:</strong> Cada entrega de proyecto debe incluir una declaración de uso ético de IA generativa según los lineamientos del artículo https://link.springer.com/article/10.1186/s41077-025-00350-6</p>
 </section>
 <section id="horario-del-curso-y-aula-de-clase">
-<h2>Horario del curso y aula de clase<a class="headerlink" href="#horario-del-curso-y-aula-de-clase" title="Link to this heading">#</a></h2>
+<h2>Horario del curso y aula de clase<a class="headerlink" href="#horario-del-curso-y-aula-de-clase" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>El horario del curso será los lunes y miércoles de 2 a 4 de la tarde</p></li>
 <li><p>El aula para el curso será la 5-104</p></li>
 </ul>
 </section>
 <section id="resumen-de-la-informacion">
-<h2>Resumen de la información<a class="headerlink" href="#resumen-de-la-informacion" title="Link to this heading">#</a></h2>
+<h2>Resumen de la información<a class="headerlink" href="#resumen-de-la-informacion" title="Permalink to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Dato</p></th>
@@ -460,7 +469,7 @@
 </div>
 </section>
 <section id="por-que-la-relevancia-de-este-curso">
-<h2>Por qué la relevancia de este curso<a class="headerlink" href="#por-que-la-relevancia-de-este-curso" title="Link to this heading">#</a></h2>
+<h2>Por qué la relevancia de este curso<a class="headerlink" href="#por-que-la-relevancia-de-este-curso" title="Permalink to this heading">#</a></h2>
 <p>Las bases de datos en Astronomía se han estado cosntruyendo desde que se comenzó el estudio de la posición en el cielo (por ejemplo el catálogo de Hipparco, catálogo de Tycho, entre otros).</p>
 <p>Luego de la llegada de las cámaras fotográficas a finales del siglo XIX los catálogos comenzaron a tener una mayor cantidad de datos.</p>
 <p>Pero su apogeo surge a partir de la llegada de los computadores y las cámaras digitales a partir de mediados del siglo XX.</p>
@@ -476,7 +485,7 @@
 https://events.asiaa.sinica.edu.tw/school/20170904/talk/djorgovski1.pdf</p>
 </section>
 <section id="objetivos-de-hoy">
-<h2>Objetivos de hoy<a class="headerlink" href="#objetivos-de-hoy" title="Link to this heading">#</a></h2>
+<h2>Objetivos de hoy<a class="headerlink" href="#objetivos-de-hoy" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Aprender a navegar por el sistema de archivos desde la terminal.</p></li>
 <li><p>Crear, mover y borrar archivos.</p></li>
@@ -485,7 +494,7 @@ https://events.asiaa.sinica.edu.tw/school/20170904/talk/djorgovski1.pdf</p>
 </ol>
 </section>
 <section id="navegacion-basica">
-<h2>1. Navegación Básica<a class="headerlink" href="#navegacion-basica" title="Link to this heading">#</a></h2>
+<h2>1. Navegación Básica<a class="headerlink" href="#navegacion-basica" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">pwd</span></code> nos dice dónde estamos (Print Working Directory). <code class="docutils literal notranslate"><span class="pre">ls</span></code> lista los archivos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -495,48 +504,48 @@ https://events.asiaa.sinica.edu.tw/school/20170904/talk/djorgovski1.pdf</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/esteban/Library/CloudStorage/GoogleDrive-esteban.silva.villa@gmail.com/Mi unidad/Drive - UdeA/Clases semestrales/Minería de Datos/MineriaDatosweb
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/germanchaparro/Downloads/MineriaDatosweb-main
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 76784
--rw-r--r--@  1 esteban  staff    61M Mar  2 09:28 <span class=" -Color -Color-Black -Color-Black-BGWhite">2mass.csv</span>
--rw-r--r--@  1 esteban  staff    19K Apr 20 13:45 Clase_01_INTROyCLI.ipynb
--rw-r--r--@  1 esteban  staff    37K Apr 20 13:46 <span class=" -Color -Color-Black -Color-Black-BGWhite">Clase_02_GIT-HUB.ipynb</span>
--rw-r--r--@  1 esteban  staff   292K Apr 20 13:46 <span class=" -Color -Color-Black -Color-Black-BGWhite">Clase_03_PythonCientifico.ipynb</span>
--rw-r--r--@  1 esteban  staff    19K Apr 20 13:47 <span class=" -Color -Color-Black -Color-Black-BGWhite">Clase_04_SQL_Intro.ipynb</span>
--rw-------@  1 esteban  staff    17K Apr 20 13:48 Clase_05_ADQL_Intro.ipynb
--rw-------@  1 esteban  staff    17K Apr 15 13:44 <span class=" -Color -Color-Black -Color-Black-BGWhite">Clase_06_ADQL_Intro2.ipynb</span>
--rw-------@  1 esteban  staff    12K Apr 10 14:34 Clase_07_SQLADQL_web.ipynb
--rw-------@  1 esteban  staff    13K Apr 20 10:24 Clase_08_Rsumen.ipynb
--rw-r--r--@  1 esteban  staff   6.2K May 29  2025 <span class=" -Color -Color-Black -Color-Black-BGWhite">Fireball_And_Bolide_Reports_rows.csv</span>
--rw-r--r--@  1 esteban  staff    36M Mar  2 07:53 <span class=" -Color -Color-Black -Color-Black-BGWhite">PS_2026.03.02_04.48.37.csv</span>
--rw-------@  1 esteban  staff   199B Mar 13 13:20 Proyecto 1er mes - Entrega.gform
--rw-------@  1 esteban  staff   4.9K Apr 15 13:50 Proyecto 1er mes.ipynb
--rw-------@  1 esteban  staff   199B Apr 14 10:37 Proyecto 2do mes - Entrega.gform
--rw-------@  1 esteban  staff   7.1K Apr 15 13:50 Proyecto 2do mes.ipynb
--rw-r--r--@  1 esteban  staff    20B Feb 11 18:11 README.md
--rw-r--r--@  1 esteban  staff   1.0M Feb 28  2025 UdeA.png
-drwxr-xr-x@  5 esteban  staff   160B Feb 11 18:45 <span class=" -Color -Color-Blue">_build</span>
--rw-r--r--@  1 esteban  staff   1.2K Feb 11 19:27 _config.yml
--rw-r--r--@  1 esteban  staff   392B Apr 20 10:28 _toc.yml
--rw-r--r--@  1 esteban  staff   128B Mar 19 21:36 catalogo_pequeno.csv
-drwxr-xr-x@  2 esteban  staff    64B Feb 11 19:05 <span class=" -Color -Color-Blue">datos_astronomia</span>
--rw-r--r--@  1 esteban  staff   3.2M Apr 29  2021 <span class=" -Color -Color-Black -Color-Black-BGWhite">exoplanet_confirm_and_candidates.csv</span>
--rwx------@  1 esteban  staff    32M Feb 24 08:53 <span class=" -Color -Color-Red">hyg_v38.csv</span>
-drwxr-xr-x@ 23 esteban  staff   736B Apr  1 08:47 <span class=" -Color -Color-Blue">imagenes</span>
--rw-r--r--@  1 esteban  staff   1.4K Mar 15 10:21 intro.md
--rw-r--r--@  1 esteban  staff   282B Feb 18 14:31 objetos_messier.csv
--rw-r--r--@  1 esteban  staff   288B Feb 18 14:53 <span class=" -Color -Color-Black -Color-Black-BGWhite">observacion_jueves.txt</span>
--rw-r--r--@  1 esteban  staff   2.0K Feb 16 10:52 ran_gen_data.sh
--rw-r--r--@  1 esteban  staff    30B Feb 28  2025 <span class=" -Color -Color-Black -Color-Black-BGWhite">requirements.txt</span>
--rw-r--r--@  1 esteban  staff   4.0M Mar 19 21:36 server_data_large.csv
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 283416
+-rw-rw-r--@  1 germanchaparro  staff    61M Apr 27 13:01 2mass.csv
+-rw-rw-r--@  1 germanchaparro  staff    19K Apr 27 13:01 Clase_01_INTROyCLI.ipynb
+-rw-rw-r--@  1 germanchaparro  staff    37K Apr 27 13:01 Clase_02_GIT-HUB.ipynb
+-rw-rw-r--@  1 germanchaparro  staff   292K Apr 27 13:01 Clase_03_PythonCientifico.ipynb
+-rw-rw-r--@  1 germanchaparro  staff    19K Apr 27 13:01 Clase_04_SQL_Intro.ipynb
+-rw-rw-r--@  1 germanchaparro  staff    17K Apr 27 13:01 Clase_05_ADQL_Intro.ipynb
+-rw-rw-r--@  1 germanchaparro  staff    17K Apr 27 13:01 Clase_06_ADQL_Intro2.ipynb
+-rw-rw-r--@  1 germanchaparro  staff    12K Apr 27 13:01 Clase_07_SQLADQL_web.ipynb
+-rw-rw-r--@  1 germanchaparro  staff    13K Apr 27 13:01 Clase_08_Rsumen.ipynb
+-rw-rw-r--@  1 germanchaparro  staff   156K Apr 27 13:01 Clase_09_astropy.ipynb
+-rw-rw-r--@  1 germanchaparro  staff   6.2K Apr 27 13:01 Fireball_And_Bolide_Reports_rows.csv
+-rw-rw-r--@  1 germanchaparro  staff    36M Apr 27 13:01 PS_2026.03.02_04.48.37.csv
+-rw-rw-r--@  1 germanchaparro  staff   199B Apr 27 13:01 Proyecto 1er mes - Entrega.gform
+-rw-rw-r--@  1 germanchaparro  staff   4.9K Apr 27 13:01 Proyecto 1er mes.ipynb
+-rw-rw-r--@  1 germanchaparro  staff   199B Apr 27 13:01 Proyecto 2do mes - Entrega.gform
+-rw-rw-r--@  1 germanchaparro  staff   7.1K Apr 27 13:01 Proyecto 2do mes.ipynb
+-rw-rw-r--@  1 germanchaparro  staff    20B Apr 27 13:01 README.md
+-rw-rw-r--@  1 germanchaparro  staff   1.0M Apr 27 13:01 UdeA.png
+drwxrwxr-x@  5 germanchaparro  staff   160B Apr 27 13:01 <span class=" -Color -Color-Blue">_build</span>
+-rw-rw-r--@  1 germanchaparro  staff   1.2K Apr 27 13:01 _config.yml
+-rw-rw-r--@  1 germanchaparro  staff   417B Apr 27 13:05 _toc.yml
+-rw-rw-r--@  1 germanchaparro  staff   128B Apr 27 13:01 catalogo_pequeno.csv
+-rw-rw-r--@  1 germanchaparro  staff   3.2M Apr 27 13:01 exoplanet_confirm_and_candidates.csv
+-rwxr-xr-x@  1 germanchaparro  staff    32M Apr 27 13:01 <span class=" -Color -Color-Red">hyg_v38.csv</span>
+drwxrwxr-x@ 23 germanchaparro  staff   736B Apr 27 13:01 <span class=" -Color -Color-Blue">imagenes</span>
+-rw-rw-r--@  1 germanchaparro  staff   1.4K Apr 27 13:01 intro.md
+-rw-rw-r--@  1 germanchaparro  staff   282B Apr 27 13:01 objetos_messier.csv
+-rw-rw-r--@  1 germanchaparro  staff   288B Apr 27 13:01 observacion_jueves.txt
+-rw-rw-r--@  1 germanchaparro  staff   2.0K Apr 27 13:01 ran_gen_data.sh
+-rw-rw-r--@  1 germanchaparro  staff    30B Apr 27 13:01 requirements.txt
+-rw-rw-r--@  1 germanchaparro  staff   4.0M Apr 27 13:01 server_data_large.csv
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="creando-estructura">
-<h2>2. Creando Estructura<a class="headerlink" href="#creando-estructura" title="Link to this heading">#</a></h2>
+<h2>2. Creando Estructura<a class="headerlink" href="#creando-estructura" title="Permalink to this heading">#</a></h2>
 <p>Vamos a crear un directorio para nuestros datos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -546,9 +555,6 @@ drwxr-xr-x@ 23 esteban  staff   736B Apr  1 08:47 <span class=" -Color -Color-Bl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mkdir: datos_astronomia: File exists
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Estamos dentro de la carpeta
 </pre></div>
 </div>
@@ -556,7 +562,7 @@ drwxr-xr-x@ 23 esteban  staff   736B Apr  1 08:47 <span class=" -Color -Color-Bl
 </div>
 </section>
 <section id="manipulacion-de-archivos">
-<h2>3. Manipulación de Archivos<a class="headerlink" href="#manipulacion-de-archivos" title="Link to this heading">#</a></h2>
+<h2>3. Manipulación de Archivos<a class="headerlink" href="#manipulacion-de-archivos" title="Permalink to this heading">#</a></h2>
 <p>Vamos a crear un archivo simulado de datos astronómicos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -574,10 +580,10 @@ drwxr-xr-x@ 23 esteban  staff   736B Apr  1 08:47 <span class=" -Color -Color-Bl
 📝 Líneas totales:   100001
 🔍 Primeras 5 líneas:
 ID,Tipo,Mag,Prob,RA,DEC
-1,Quasar,18.12,100,13:17:04,-03:17:50
-2,Variable_Star,19.61,65,08:15:29,-50:37:01
-3,Ruido,12.45,30,08:12:27,+00:21:26
-4,Variable_Star,16.84,63,17:19:14,+40:53:31
+1,Ruido,16.51,23,21:38:06,+16:58:15
+2,Quasar,20.46,63,19:05:03,-08:57:37
+3,Supernova,14.16,42,02:28:00,+08:44:26
+4,Ruido,17.30,35,20:18:47,-72:12:26
 </pre></div>
 </div>
 </div>
@@ -589,16 +595,16 @@ ID,Tipo,Mag,Prob,RA,DEC
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99979 14.32
-99980 14.94
-99982 13.90
-99986 12.93
-99988 14.41
-99990 13.38
-99992 13.80
-99994 13.69
-99995 14.74
-99998 12.21
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99967 12.06
+99972 14.94
+99973 13.06
+99975 12.68
+99980 14.93
+99985 12.08
+99989 14.17
+99995 12.10
+99998 13.93
+100000 14.60
 </pre></div>
 </div>
 </div>
@@ -633,7 +639,7 @@ ID,Tipo,Mag,Prob,RA,DEC
 </div>
 </section>
 <section id="filtrando-con-grep">
-<h2>4. Filtrando con Grep<a class="headerlink" href="#filtrando-con-grep" title="Link to this heading">#</a></h2>
+<h2>4. Filtrando con Grep<a class="headerlink" href="#filtrando-con-grep" title="Permalink to this heading">#</a></h2>
 <p>Imagina que solo queremos ver las estrellas (STAR) de este archivo CSV sin usar Python, solo Bash.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -664,17 +670,17 @@ ID,Tipo,Mag,Prob,RA,DEC
 </div>
 </section>
 <section id="cheatsheet">
-<h2>Cheatsheet<a class="headerlink" href="#cheatsheet" title="Link to this heading">#</a></h2>
+<h2>Cheatsheet<a class="headerlink" href="#cheatsheet" title="Permalink to this heading">#</a></h2>
 <p>Muchas veces se encontrarán con que es difícil poder conocer todos los comandos que se necesitan para realizar alguna de las actividades que se desea construir.</p>
 <p>Existen lo que se conoce como <code class="docutils literal notranslate"><span class="pre">cheatsheet</span></code> o como <code class="docutils literal notranslate"><span class="pre">hojas</span> <span class="pre">de</span> <span class="pre">trampa</span></code>. Son generalmente un resumen de las cosas más importantes que se deben conocer respecto a una herramienta específica.</p>
 <p>Para el CLI les dejamos por acá una de esas:
 <a class="reference external" href="https://www.igmguru.com/blog/linux-commands-cheat-sheet">LINK</a></p>
 </section>
 <section id="ejercicio-en-clase">
-<h2>Ejercicio en Clase<a class="headerlink" href="#ejercicio-en-clase" title="Link to this heading">#</a></h2>
+<h2>Ejercicio en Clase<a class="headerlink" href="#ejercicio-en-clase" title="Permalink to this heading">#</a></h2>
 <p>Usa comandos de bash para resolver los siguientes problemas:</p>
 <section id="problema-1">
-<h3>Problema 1<a class="headerlink" href="#problema-1" title="Link to this heading">#</a></h3>
+<h3>Problema 1<a class="headerlink" href="#problema-1" title="Permalink to this heading">#</a></h3>
 <p>Copiar y pegar el siguiente texto en una consola de comandos:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span> <span class="o">&gt;</span> <span class="n">objetos_messier</span><span class="o">.</span><span class="n">csv</span>
 <span class="n">M1</span><span class="p">,</span><span class="n">Remanente_Supernova</span><span class="p">,</span><span class="n">Tauro</span>
@@ -710,7 +716,7 @@ Tienes el archivo objetos_messier.csv. No te interesa el nombre del objeto (M1, 
 </div>
 </section>
 <section id="problema-2">
-<h3>Problema 2<a class="headerlink" href="#problema-2" title="Link to this heading">#</a></h3>
+<h3>Problema 2<a class="headerlink" href="#problema-2" title="Permalink to this heading">#</a></h3>
 <p>Copiar y pegar el siguiente texto en una consola de comandos:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span> <span class="o">&gt;</span> <span class="n">observacion_jueves</span><span class="o">.</span><span class="n">txt</span>
 <span class="c1"># PLAN DE OBSERVACION - TELESCOPIO 1m</span>
@@ -748,7 +754,7 @@ Tu tarea es generar un archivo limpio llamado lista_final.txt que contenga únic
 </div>
 </section>
 <section id="problema-3">
-<h3>Problema 3<a class="headerlink" href="#problema-3" title="Link to this heading">#</a></h3>
+<h3>Problema 3<a class="headerlink" href="#problema-3" title="Permalink to this heading">#</a></h3>
 <p>Copiar y pegar el siguiente texto en una consola de comandos:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">&lt;&lt;</span> <span class="n">EOF</span> <span class="o">&gt;</span> <span class="n">galaxias_locales</span><span class="o">.</span><span class="n">csv</span>
 <span class="n">ID</span><span class="p">,</span><span class="n">Tipo</span><span class="p">,</span><span class="n">Distancia_Mpc</span>
@@ -802,7 +808,7 @@ Es tu turno de iniciar operaciones en el observatorio. Antes de abrir la cúpula
 </div>
 </section>
 <section id="problema-4">
-<h3>Problema 4<a class="headerlink" href="#problema-4" title="Link to this heading">#</a></h3>
+<h3>Problema 4<a class="headerlink" href="#problema-4" title="Permalink to this heading">#</a></h3>
 <p>Tu equipo recibe actualizaciones diarias del catálogo de exoplanetas. Tu tarea rutinaria es:</p>
 <p><a class="reference external" href="https://raw.githubusercontent.com/mwaskom/seaborn-data/master/planets.csv">Link a la base de datos</a></p>
 <ol class="arabic simple">
@@ -822,7 +828,7 @@ Es tu turno de iniciar operaciones en el observatorio. Antes de abrir la cúpula
 </div>
 </section>
 <section id="problema-5">
-<h3>Problema 5<a class="headerlink" href="#problema-5" title="Link to this heading">#</a></h3>
+<h3>Problema 5<a class="headerlink" href="#problema-5" title="Permalink to this heading">#</a></h3>
 <p>Usar la base de datos pública anterior para construir una pipeline (archivo <code class="docutils literal notranslate"><span class="pre">.sh</span></code>) que:</p>
 <ol class="arabic simple">
 <li><p>Descargue los datos: Usar wget para traer el archivo planets.csv.</p></li>
@@ -846,7 +852,7 @@ Es tu turno de iniciar operaciones en el observatorio. Antes de abrir la cúpula
 </div>
 </section>
 <section id="problema-6">
-<h3>Problema 6<a class="headerlink" href="#problema-6" title="Link to this heading">#</a></h3>
+<h3>Problema 6<a class="headerlink" href="#problema-6" title="Permalink to this heading">#</a></h3>
 <p>La siguiente base de datos es una recopilación de meteoritos que entraron a la atmósfera terrestre:</p>
 <p><a class="reference external" href="https://data.nasa.gov/docs/legacy/Fireball_And_Bolide_Reports/Fireball_And_Bolide_Reports_rows.csv">Link a la base de datos</a></p>
 <ol class="arabic simple">
@@ -865,7 +871,7 @@ Es tu turno de iniciar operaciones en el observatorio. Antes de abrir la cúpula
 </div>
 </section>
 <section id="problema-7">
-<h3>Problema 7<a class="headerlink" href="#problema-7" title="Link to this heading">#</a></h3>
+<h3>Problema 7<a class="headerlink" href="#problema-7" title="Permalink to this heading">#</a></h3>
 <p>El siguiente link contiene información sobre estrellas, incluyendo algunas de ellas con clasificación espectral:</p>
 <p><a class="reference external" href="https://github.com/astronexus/HYG-Database/blob/main/hyg/v3/hyg_v38.csv.gz">Link a la base de datos</a></p>
 <ol class="arabic simple">
@@ -942,8 +948,7 @@ Es tu turno de iniciar operaciones en el observatorio. Antes de abrir la cúpula
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -997,7 +1002,7 @@ By Esteban Silva Villa y Germán Chaparro Molano
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>
@@ -1021,8 +1026,8 @@ By Esteban Silva Villa y Germán Chaparro Molano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
