@@ -492,14 +492,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Supongamos que tenemos distancias estelares en parsecs (pc)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">distancias_pc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.3</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">12.4</span><span class="p">,</span> <span class="mf">20.1</span><span class="p">,</span> <span class="mf">100.5</span><span class="p">])</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distancias en Años Luz: [  4.240028  16.3078    40.443344  65.557356 327.78678 ]
 </pre></div>
 </div>
 </div>
@@ -576,19 +569,19 @@ Estrellas en Secuencia Principal: 21638.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El DF completo es:
-     Objeto     Tipo  Distancia_kpc     Masa_Msol
-0      M31  Galaxia          780.0  1.000000e+12
-1      M33  Galaxia          850.0  5.000000e+10
-2   NGC104   Cúmulo            4.5           NaN
-3  NGC6752   Cúmulo            4.0  2.000000e+05
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">datos</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="s1">&#39;Objeto&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;M31&#39;</span><span class="p">,</span> <span class="s1">&#39;M33&#39;</span><span class="p">,</span> <span class="s1">&#39;NGC104&#39;</span><span class="p">,</span> <span class="s1">&#39;NGC6752&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="s1">&#39;Tipo&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Galaxia&#39;</span><span class="p">,</span> <span class="s1">&#39;Galaxia&#39;</span><span class="p">,</span> <span class="s1">&#39;Cúmulo&#39;</span><span class="p">,</span> <span class="s1">&#39;Cúmulo&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="s1">&#39;Distancia_kpc&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">780</span><span class="p">,</span> <span class="mi">850</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">],</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="s1">&#39;Masa_Msol&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e12</span><span class="p">,</span> <span class="mf">5e10</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">2e5</span><span class="p">]</span> <span class="c1"># Notemos un dato faltante (NaN)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="p">}</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
 
-----------
-
-El DF filtrado es:
-  Objeto     Tipo  Distancia_kpc     Masa_Msol
-0    M31  Galaxia          780.0  1.000000e+12
-1    M33  Galaxia          850.0  5.000000e+10
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
 </pre></div>
 </div>
 </div>
