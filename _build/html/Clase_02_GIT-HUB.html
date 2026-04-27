@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="./" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Clase 2: Introducción a herramientas de control de versiones Git y Github &#8212; Minería de datos</title>
   
@@ -16,50 +17,51 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_02_GIT-HUB';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -67,7 +69,6 @@
     <link rel="prev" title="Clase 1: La Consola de Comandos (Bash)" href="Clase_01_INTROyCLI.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -83,8 +84,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -92,6 +104,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -99,8 +112,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -116,8 +129,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -147,18 +159,11 @@
     
     
     <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
-    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
+    <script>document.write(`<img src="_static/UdeA.png" class="logo__image only-dark" alt="Minería de datos - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -177,6 +182,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Clase_06_ADQL_Intro2.html">Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_09_astropy.html">Clase 9: Astropy: Unidades y Coordenadas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
@@ -187,14 +193,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -213,9 +214,9 @@
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</button></div>
+</label></div>
       
     </div>
   
@@ -338,19 +339,27 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</button>
+</label>
 </div></div>
       
     </div>
@@ -442,9 +451,9 @@
                 <article class="bd-article">
                   
   <section id="clase-2-introduccion-a-herramientas-de-control-de-versiones-git-y-github">
-<h1>Clase 2: Introducción a herramientas de control de versiones Git y Github<a class="headerlink" href="#clase-2-introduccion-a-herramientas-de-control-de-versiones-git-y-github" title="Link to this heading">#</a></h1>
+<h1>Clase 2: Introducción a herramientas de control de versiones Git y Github<a class="headerlink" href="#clase-2-introduccion-a-herramientas-de-control-de-versiones-git-y-github" title="Permalink to this heading">#</a></h1>
 <section id="objetivos-de-hoy">
-<h2>Objetivos de hoy<a class="headerlink" href="#objetivos-de-hoy" title="Link to this heading">#</a></h2>
+<h2>Objetivos de hoy<a class="headerlink" href="#objetivos-de-hoy" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Entender qué son las herramientas de control de versiones.</p></li>
 <li><p>Familiarizarse con Git y Github.</p></li>
@@ -452,7 +461,7 @@
 </ol>
 </section>
 <section id="introduccion-por-que-necesitamos-git">
-<h2>1. Introducción: ¿Por qué necesitamos Git?<a class="headerlink" href="#introduccion-por-que-necesitamos-git" title="Link to this heading">#</a></h2>
+<h2>1. Introducción: ¿Por qué necesitamos Git?<a class="headerlink" href="#introduccion-por-que-necesitamos-git" title="Permalink to this heading">#</a></h2>
 <p>Todo científico ha vivido esta pesadilla en su computadora:
 <code class="docutils literal notranslate"><span class="pre">analisis_espectros.py</span></code>
 <code class="docutils literal notranslate"><span class="pre">analisis_espectros_final.py</span></code>
@@ -460,7 +469,7 @@
 <code class="docutils literal notranslate"><span class="pre">analisis_espectros_final_v2_corregido_por_el_tutor.py</span></code></p>
 <p>Este método de guardar versiones es propenso a errores, hace imposible saber qué cambió exactamente entre la versión 1 y la 4, y arruina la colaboración. La solución estándar en la industria y la academia es <strong>Git</strong>.</p>
 <section id="git-vs-github-aclarando-la-confusion">
-<h3>Git vs. GitHub: Aclarando la confusión<a class="headerlink" href="#git-vs-github-aclarando-la-confusion" title="Link to this heading">#</a></h3>
+<h3>Git vs. GitHub: Aclarando la confusión<a class="headerlink" href="#git-vs-github-aclarando-la-confusion" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Git:</strong> Es el <em>motor</em>. Es un programa de línea de comandos (como los que vimos la semana pasada) que vive localmente en tu computadora. Rastrea los cambios en tus archivos a lo largo del tiempo.</p></li>
 <li><p><strong>GitHub:</strong> Es la <em>nube</em>. Es una plataforma web de Microsoft que aloja repositorios de Git. Es el “Google Drive” del código. Permite respaldar tu trabajo y colaborar con astrofísicos en todo el mundo.</p></li>
@@ -469,7 +478,7 @@
 <p>Imagen tomada de: <a class="reference external" href="https://bytebytego.com/guides/git-vs-github/">Link</a></p>
 </section>
 <section id="las-3-zonas-de-git-el-modelo-mental">
-<h3>Las 3 “Zonas” de Git (El Modelo Mental)<a class="headerlink" href="#las-3-zonas-de-git-el-modelo-mental" title="Link to this heading">#</a></h3>
+<h3>Las 3 “Zonas” de Git (El Modelo Mental)<a class="headerlink" href="#las-3-zonas-de-git-el-modelo-mental" title="Permalink to this heading">#</a></h3>
 <p>Para usar Git sin frustrarse, debes entender que tus archivos pasan por tres estados:</p>
 <ol class="arabic simple">
 <li><p><strong>Directorio de Trabajo (Working Directory):</strong> Tu carpeta actual. Donde editas tu código.</p></li>
@@ -479,31 +488,31 @@
 </section>
 </section>
 <section id="la-caja-de-herramientas-comandos-esenciales">
-<h2>2. La Caja de Herramientas: Comandos Esenciales<a class="headerlink" href="#la-caja-de-herramientas-comandos-esenciales" title="Link to this heading">#</a></h2>
+<h2>2. La Caja de Herramientas: Comandos Esenciales<a class="headerlink" href="#la-caja-de-herramientas-comandos-esenciales" title="Permalink to this heading">#</a></h2>
 <p>Antes de empezar, debemos presentarnos ante Git por única vez en nuestra computadora:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;Tu Nombre&quot;</span>
 git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;tu_correo@universidad.edu&quot;</span>
 </pre></div>
 </div>
 <section id="comandos-de-creacion-y-estado">
-<h3>Comandos de Creación y Estado<a class="headerlink" href="#comandos-de-creacion-y-estado" title="Link to this heading">#</a></h3>
+<h3>Comandos de Creación y Estado<a class="headerlink" href="#comandos-de-creacion-y-estado" title="Permalink to this heading">#</a></h3>
 <p><strong>git init</strong>: Convierte una carpeta normal en un repositorio de Git. Crea una carpeta oculta .git.</p>
 <p><strong>git clone [URL]</strong>: Descarga un repositorio completo desde GitHub a tu computadora.</p>
 <p><strong>git status</strong>: Tu mejor amigo. Te dice en qué estado están tus archivos (modificados, en staging, o guardados). ¡Úsalo todo el tiempo!</p>
 </section>
 <section id="comandos-de-guardado-el-flujo-diario">
-<h3>Comandos de Guardado (El Flujo Diario)<a class="headerlink" href="#comandos-de-guardado-el-flujo-diario" title="Link to this heading">#</a></h3>
+<h3>Comandos de Guardado (El Flujo Diario)<a class="headerlink" href="#comandos-de-guardado-el-flujo-diario" title="Permalink to this heading">#</a></h3>
 <p><strong>git add [archivo]</strong>: Mueve un archivo modificado al Área de Preparación (Staging). Si usas git add ., preparas todos los archivos modificados.</p>
 <p><strong>git commit -m “Mensaje descriptivo”</strong>: Toma la “fotografía” de los archivos en staging y la guarda en el historial con un mensaje que explica qué cambiaste y por qué.</p>
 </section>
 <section id="comandos-de-sincronizacion-conectando-con-github">
-<h3>Comandos de Sincronización (Conectando con GitHub)<a class="headerlink" href="#comandos-de-sincronizacion-conectando-con-github" title="Link to this heading">#</a></h3>
+<h3>Comandos de Sincronización (Conectando con GitHub)<a class="headerlink" href="#comandos-de-sincronizacion-conectando-con-github" title="Permalink to this heading">#</a></h3>
 <p><strong>git push</strong>: “Empuja” tus commits locales hacia el repositorio en GitHub (Nube).</p>
 <p><strong>git pull</strong>: “Jala” los cambios más recientes de GitHub hacia tu computadora local.</p>
 </section>
 </section>
 <section id="ejemplo-de-flujo-de-trabajo-workflows">
-<h2><strong>Ejemplo de Flujo de Trabajo (Workflows)</strong><a class="headerlink" href="#ejemplo-de-flujo-de-trabajo-workflows" title="Link to this heading">#</a></h2>
+<h2><strong>Ejemplo de Flujo de Trabajo (Workflows)</strong><a class="headerlink" href="#ejemplo-de-flujo-de-trabajo-workflows" title="Permalink to this heading">#</a></h2>
 <p>A continuación, veremos tres escenarios reales que vivirás como astrónomo y cómo resolverlos usando la consola.</p>
 <ol class="arabic simple">
 <li><p><em><strong>El Investigador Solitario (Local)</strong></em></p></li>
@@ -578,19 +587,19 @@ git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"
 <p><strong>Nota</strong>: El ciclo de vida del trabajo diario en equipo es siempre: git pull (al empezar el día) -&gt; editar código -&gt; git add -&gt; git commit -&gt; git push (al terminar el día).</p>
 </section>
 <section id="cheatsheet">
-<h2><strong>Cheatsheet</strong><a class="headerlink" href="#cheatsheet" title="Link to this heading">#</a></h2>
+<h2><strong>Cheatsheet</strong><a class="headerlink" href="#cheatsheet" title="Permalink to this heading">#</a></h2>
 <p>Muchas veces se encontrarán con que es difícil poder conocer todos los comandos que se necesitan para realizar alguna de las actividades que se desea construir.</p>
 <p>Existen lo que se conoce como <code class="docutils literal notranslate"><span class="pre">cheatsheet</span></code> o como <code class="docutils literal notranslate"><span class="pre">hojas</span> <span class="pre">de</span> <span class="pre">trampa</span></code>. Son generalmente un resumen de las cosas más importantes que se deben conocer respecto a una herramienta específica.</p>
 <p><img alt="Cheatsheet para Git y Github" src="_images/GitCheatSheet.png" /></p>
-<p>Imagen tomada de: <a class="reference external" href="https://www.facebook.com/photo?fbid=1847862406104515&amp;amp;set=gm.24983018308035159&amp;amp;idorvanity=138216772941990">Link</a></p>
+<p>Imagen tomada de: <a class="reference external" href="https://www.facebook.com/photo?fbid=1847862406104515&amp;set=gm.24983018308035159&amp;idorvanity=138216772941990">Link</a></p>
 </section>
 <section id="ejercicios">
-<h2><strong>Ejercicios</strong><a class="headerlink" href="#ejercicios" title="Link to this heading">#</a></h2>
+<h2><strong>Ejercicios</strong><a class="headerlink" href="#ejercicios" title="Permalink to this heading">#</a></h2>
 <p>En astronomía, el código es tan importante como el telescopio. Estos ejercicios están diseñados para simular el flujo de trabajo real que utilizarán durante sus proyectos mensuales y, eventualmente, en su vida profesional.</p>
 <p>Abran su terminal y asegúrense de haber configurado su usuario y correo antes de empezar (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.name</span> <span class="pre">&quot;Nombre&quot;</span></code>, etc.).</p>
 <hr class="docutils" />
 <section id="ejercicio-1-el-diario-de-observacion-git-local">
-<h3>Ejercicio 1: “El Diario de Observación” (Git Local)<a class="headerlink" href="#ejercicio-1-el-diario-de-observacion-git-local" title="Link to this heading">#</a></h3>
+<h3>Ejercicio 1: “El Diario de Observación” (Git Local)<a class="headerlink" href="#ejercicio-1-el-diario-de-observacion-git-local" title="Permalink to this heading">#</a></h3>
 <p>Vas a iniciar un nuevo proyecto para clasificar espectros estelares. Necesitas crear un espacio seguro en tu computadora donde Git rastree todos tus avances, evitando que pierdas tu trabajo si cometes un error en el código.</p>
 <ol class="arabic simple">
 <li><p>Crea una nueva carpeta llamada <code class="docutils literal notranslate"><span class="pre">proyecto_espectros</span></code> y entra en ella.</p></li>
@@ -608,7 +617,7 @@ git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"
 </div>
 </section>
 <section id="ejercicio-2-el-escudo-contra-agujeros-negros-el-gitignore">
-<h3>Ejercicio 2: “El Escudo contra Agujeros Negros” (El .gitignore)<a class="headerlink" href="#ejercicio-2-el-escudo-contra-agujeros-negros-el-gitignore" title="Link to this heading">#</a></h3>
+<h3>Ejercicio 2: “El Escudo contra Agujeros Negros” (El .gitignore)<a class="headerlink" href="#ejercicio-2-el-escudo-contra-agujeros-negros-el-gitignore" title="Permalink to this heading">#</a></h3>
 <p>GitHub tiene un límite estricto: no puedes subir archivos mayores a <strong>100 MB</strong>. En astronomía, un solo archivo de imagen .fits o un catálogo .csv puede pesar Gigabytes. Si intentas hacer commit de esos datos y subirlos, bloquearás tu repositorio. Debemos enseñarle a Git a ignorar los datos pesados y rastrear solo el código.</p>
 <p>Siguiendo dentro de tu carpeta proyecto_espectros:</p>
 <ol class="arabic simple">
@@ -626,7 +635,7 @@ git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"
 </div>
 </section>
 <section id="ejercicio-3-lanzamiento-orbital-conectando-con-github">
-<h3>Ejercicio 3: “Lanzamiento Orbital” (Conectando con GitHub)<a class="headerlink" href="#ejercicio-3-lanzamiento-orbital-conectando-con-github" title="Link to this heading">#</a></h3>
+<h3>Ejercicio 3: “Lanzamiento Orbital” (Conectando con GitHub)<a class="headerlink" href="#ejercicio-3-lanzamiento-orbital-conectando-con-github" title="Permalink to this heading">#</a></h3>
 <p>Tu entorno local está configurado y protegido. Ahora necesitas respaldar este código en la nube (GitHub) para poder trabajar desde la computadora del laboratorio de la universidad sin llevar una memoria USB.</p>
 <p>Ve a tu cuenta de GitHub en el navegador y crea un repositorio nuevo y vacío llamado proyecto_espectros. No marques la opción de añadir un README (porque ya creamos uno localmente).</p>
 <ol class="arabic simple">
@@ -644,7 +653,7 @@ git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"
 </div>
 </section>
 <section id="ejercicio-4-clonando-el-observatorio-virtual-git-clone">
-<h3>Ejercicio 4: “Clonando el Observatorio Virtual” (Git Clone)<a class="headerlink" href="#ejercicio-4-clonando-el-observatorio-virtual-git-clone" title="Link to this heading">#</a></h3>
+<h3>Ejercicio 4: “Clonando el Observatorio Virtual” (Git Clone)<a class="headerlink" href="#ejercicio-4-clonando-el-observatorio-virtual-git-clone" title="Permalink to this heading">#</a></h3>
 <p>Has encontrado un repositorio público en GitHub de un investigador que creó herramientas útiles para leer archivos de la misión Kepler. Quieres descargar ese código a tu computadora para probarlo.</p>
 <ol class="arabic simple">
 <li><p>Sal de tu carpeta actual para no crear un repositorio dentro de otro (muy importante).</p></li>
@@ -661,13 +670,13 @@ git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"
 </section>
 </section>
 <section id="practica-en-parejas-simulando-un-sistema-binario-en-github">
-<h2>Práctica en Parejas: Simulando un Sistema Binario en GitHub<a class="headerlink" href="#practica-en-parejas-simulando-un-sistema-binario-en-github" title="Link to this heading">#</a></h2>
+<h2>Práctica en Parejas: Simulando un Sistema Binario en GitHub<a class="headerlink" href="#practica-en-parejas-simulando-un-sistema-binario-en-github" title="Permalink to this heading">#</a></h2>
 <p><strong>Objetivo:</strong> Simular un entorno real de investigación colaborativa. Aprenderán a clonar un repositorio compartido, aislar su trabajo en “Ramas” (Branches), solicitar revisiones (Pull Requests) y fusionar el código sin destruir el trabajo de su colega.</p>
 <p><strong>Instrucciones Previas:</strong> Hagan parejas. Decidan quién será el <strong>Astrónomo A (Investigador Principal)</strong> y quién será el <strong>Astrónomo B (Co-Investigador)</strong>.
 En este proyecto, van a simular datos para un nuevo sistema planetario. El Astrónomo A simulará los datos de la estrella, y el Astrónomo B simulará los datos de los exoplanetas.</p>
 <hr class="docutils" />
 <section id="paso-1-el-observatorio-compartido-creacion-y-clonacion">
-<h3>Paso 1: El Observatorio Compartido (Creación y Clonación)<a class="headerlink" href="#paso-1-el-observatorio-compartido-creacion-y-clonacion" title="Link to this heading">#</a></h3>
+<h3>Paso 1: El Observatorio Compartido (Creación y Clonación)<a class="headerlink" href="#paso-1-el-observatorio-compartido-creacion-y-clonacion" title="Permalink to this heading">#</a></h3>
 <p>Para poder colaborar, necesitamos un punto central en internet al que ambos tengan acceso de escritura.</p>
 <p><strong>Acciones de los Investigadores:</strong></p>
 <ul class="simple">
@@ -684,7 +693,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </section>
 <hr class="docutils" />
 <section id="paso-2-universos-paralelos-creacion-de-ramas-branches">
-<h3>Paso 2: Universos Paralelos (Creación de Ramas / Branches)<a class="headerlink" href="#paso-2-universos-paralelos-creacion-de-ramas-branches" title="Link to this heading">#</a></h3>
+<h3>Paso 2: Universos Paralelos (Creación de Ramas / Branches)<a class="headerlink" href="#paso-2-universos-paralelos-creacion-de-ramas-branches" title="Permalink to this heading">#</a></h3>
 <p>Nunca, <strong>nunca</strong> trabajamos directamente sobre la rama <code class="docutils literal notranslate"><span class="pre">main</span></code> (la versión oficial) cuando estamos colaborando. Si ambos editan <code class="docutils literal notranslate"><span class="pre">main</span></code> al mismo tiempo, el código colapsará. Para evitarlo, cada uno creará un “universo paralelo” (una copia exacta del código) donde experimentará sin afectar al otro.</p>
 <p><strong>Acciones de los Investigadores:</strong></p>
 <ul class="simple">
@@ -699,13 +708,13 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </section>
 <hr class="docutils" />
 <section id="paso-3-generacion-de-datos-escribiendo-codigo-python">
-<h3>Paso 3: Generación de Datos (Escribiendo Código Python)<a class="headerlink" href="#paso-3-generacion-de-datos-escribiendo-codigo-python" title="Link to this heading">#</a></h3>
+<h3>Paso 3: Generación de Datos (Escribiendo Código Python)<a class="headerlink" href="#paso-3-generacion-de-datos-escribiendo-codigo-python" title="Permalink to this heading">#</a></h3>
 <p>Es hora de hacer ciencia. Cada uno escribirá un pequeño script en Python que genere números aleatorios y los guarde. Como están en ramas distintas, pueden trabajar simultáneamente.</p>
 <p><strong>Acciones de los Investigadores:</strong></p>
 <ul>
 <li><p><strong>Astrónomo A:</strong> Crea un archivo llamado <code class="docutils literal notranslate"><span class="pre">estrella.py</span></code>. Escribe este código, guárdalo, añádelo a Git y haz el commit:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># estrella.py</span>
-<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 <span class="n">temperaturas</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Temperaturas estelares simuladas (K):&quot;</span><span class="p">,</span> <span class="n">temperaturas</span><span class="p">)</span>
 </pre></div>
@@ -714,7 +723,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </li>
 <li><p><strong>Astrónomo B:</strong> Crea un archivo llamado <code class="docutils literal notranslate"><span class="pre">planetas.py</span></code>. Escribe este código, guárdalo, añádelo a Git y haz el commit:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># planetas.py</span>
-<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 <span class="n">periodos</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">365</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Periodos orbitales simulados (días):&quot;</span><span class="p">,</span> <span class="n">periodos</span><span class="p">)</span>
 </pre></div>
@@ -728,7 +737,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </section>
 <hr class="docutils" />
 <section id="paso-4-subiendo-a-la-nube-el-comando-push">
-<h3>Paso 4: Subiendo a la Nube (El comando Push)<a class="headerlink" href="#paso-4-subiendo-a-la-nube-el-comando-push" title="Link to this heading">#</a></h3>
+<h3>Paso 4: Subiendo a la Nube (El comando Push)<a class="headerlink" href="#paso-4-subiendo-a-la-nube-el-comando-push" title="Permalink to this heading">#</a></h3>
 <p>Ahora debemos enviar nuestras ramas locales al servidor de GitHub para que el resto del equipo pueda verlas.</p>
 <p><strong>Acciones de los Investigadores:</strong></p>
 <ul class="simple">
@@ -743,7 +752,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </section>
 <hr class="docutils" />
 <section id="paso-5-revision-de-pares-crear-pull-requests">
-<h3>Paso 5: Revisión de Pares (Crear Pull Requests)<a class="headerlink" href="#paso-5-revision-de-pares-crear-pull-requests" title="Link to this heading">#</a></h3>
+<h3>Paso 5: Revisión de Pares (Crear Pull Requests)<a class="headerlink" href="#paso-5-revision-de-pares-crear-pull-requests" title="Permalink to this heading">#</a></h3>
 <p>Un <strong>Pull Request (PR)</strong> no es un comando de la terminal; es una función de la página web de GitHub. Es una solicitud formal que dice: <em>“Hola equipo, he terminado mi rama. Por favor, revisen mi código y, si está bien, intégrenlo a la rama oficial <code class="docutils literal notranslate"><span class="pre">main</span></code>”</em>.</p>
 <p><strong>Acciones de los Investigadores:</strong></p>
 <ul class="simple">
@@ -758,7 +767,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </section>
 <hr class="docutils" />
 <section id="paso-6-la-fusion-merge-pull-request">
-<h3>Paso 6: La Fusión (Merge Pull Request)<a class="headerlink" href="#paso-6-la-fusion-merge-pull-request" title="Link to this heading">#</a></h3>
+<h3>Paso 6: La Fusión (Merge Pull Request)<a class="headerlink" href="#paso-6-la-fusion-merge-pull-request" title="Permalink to this heading">#</a></h3>
 <p>Es hora de unir el trabajo de ambos en la rama oficial. En ciencia, los investigadores revisan el trabajo del otro.</p>
 <p><strong>Acciones de los Investigadores:</strong></p>
 <ul class="simple">
@@ -771,7 +780,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </section>
 <hr class="docutils" />
 <section id="paso-7-sincronizacion-final-cerrando-el-ciclo-local">
-<h3>Paso 7: Sincronización Final (Cerrando el ciclo local)<a class="headerlink" href="#paso-7-sincronizacion-final-cerrando-el-ciclo-local" title="Link to this heading">#</a></h3>
+<h3>Paso 7: Sincronización Final (Cerrando el ciclo local)<a class="headerlink" href="#paso-7-sincronizacion-final-cerrando-el-ciclo-local" title="Permalink to this heading">#</a></h3>
 <p>La nube está actualizada y tiene el proyecto completo, pero ¡las computadoras locales de ustedes están desactualizadas! La computadora de A no tiene los planetas, y la de B no tiene la estrella. Hay que traer el código fusionado de vuelta a casa.</p>
 <p><strong>Acciones de los Investigadores:</strong></p>
 <ul class="simple">
@@ -788,9 +797,9 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </section>
 </section>
 <section id="ejercio-de-clase-para-consola-de-comandos-y-herramientas-de-git-y-github-parte-i-trabajo-individual">
-<h2>Ejercio de clase para consola de comandos y herramientas de git y Github. Parte I: Trabajo Individual<a class="headerlink" href="#ejercio-de-clase-para-consola-de-comandos-y-herramientas-de-git-y-github-parte-i-trabajo-individual" title="Link to this heading">#</a></h2>
+<h2>Ejercio de clase para consola de comandos y herramientas de git y Github. Parte I: Trabajo Individual<a class="headerlink" href="#ejercio-de-clase-para-consola-de-comandos-y-herramientas-de-git-y-github-parte-i-trabajo-individual" title="Permalink to this heading">#</a></h2>
 <section id="ejercicio-1-el-pipeline-reproducible">
-<h3>Ejercicio 1: “El Pipeline Reproducible”<a class="headerlink" href="#ejercicio-1-el-pipeline-reproducible" title="Link to this heading">#</a></h3>
+<h3>Ejercicio 1: “El Pipeline Reproducible”<a class="headerlink" href="#ejercicio-1-el-pipeline-reproducible" title="Permalink to this heading">#</a></h3>
 <p>Has encontrado un catálogo en línea con datos de supernovas históricas. Quieres crear un entorno de trabajo local, descargar los datos, filtrarlos por tipo (ej. Tipo Ia, usadas para medir distancias cosmológicas) y guardar el resultado. Todo esto debe quedar registrado en Git, <strong>pero sin subir el catálogo pesado original</strong>.</p>
 <ol class="arabic simple">
 <li><p>Abre tu terminal, crea una carpeta llamada <code class="docutils literal notranslate"><span class="pre">proyecto_supernovas</span></code> y entra en ella.</p></li>
@@ -802,7 +811,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </ol>
 </section>
 <section id="ejercicio-2-documentacion-y-despliegue-en-la-nube">
-<h3>Ejercicio 2: “Documentación y Despliegue en la Nube”<a class="headerlink" href="#ejercicio-2-documentacion-y-despliegue-en-la-nube" title="Link to this heading">#</a></h3>
+<h3>Ejercicio 2: “Documentación y Despliegue en la Nube”<a class="headerlink" href="#ejercicio-2-documentacion-y-despliegue-en-la-nube" title="Permalink to this heading">#</a></h3>
 <p>Tu análisis local fue un éxito. Ahora necesitas respaldarlo en GitHub para que tu supervisor pueda ver los resultados, pero él necesita entender qué comandos usaste para generar el archivo candidatas_Ia.txt.</p>
 <ol class="arabic simple">
 <li><p>Crea un archivo llamado <code class="docutils literal notranslate"><span class="pre">README.md</span></code> usando el comando echo desde la terminal. Debe contener un título y una breve explicación de que usaste grep, cut y sort para filtrar el catálogo.</p></li>
@@ -814,9 +823,9 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </section>
 </section>
 <section id="parte-ii-trabajo-en-parejas">
-<h2>Parte II: Trabajo en Parejas<a class="headerlink" href="#parte-ii-trabajo-en-parejas" title="Link to this heading">#</a></h2>
+<h2>Parte II: Trabajo en Parejas<a class="headerlink" href="#parte-ii-trabajo-en-parejas" title="Permalink to this heading">#</a></h2>
 <section id="ejercicio-3-colaboracion-en-el-script-de-procesamiento">
-<h3>Ejercicio 3: “Colaboración en el Script de Procesamiento”<a class="headerlink" href="#ejercicio-3-colaboracion-en-el-script-de-procesamiento" title="Link to this heading">#</a></h3>
+<h3>Ejercicio 3: “Colaboración en el Script de Procesamiento”<a class="headerlink" href="#ejercicio-3-colaboracion-en-el-script-de-procesamiento" title="Permalink to this heading">#</a></h3>
 <p>En lugar de escribir comandos sueltos, el Astrónomo A ha creado un script de Bash automatizado (un archivo <code class="docutils literal notranslate"><span class="pre">.sh</span></code>) en un repositorio compartido. El Astrónomo B debe clonar el repositorio y mejorar el script añadiendo herramientas estadísticas como wc.</p>
 <p><strong>Astrónomo A</strong>: Crea un repositorio en GitHub llamado pipeline_colaborativo con un README. Invita al Astrónomo B como colaborador. Clona el repo en tu terminal, crea un archivo llamado procesar.sh que contenga echo “Iniciando descarga…”, haz commit y haz push.</p>
 <p><strong>Astrónomo B</strong>: Acepta la invitación y clona el repositorio en tu computadora.</p>
@@ -825,7 +834,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 <p><strong>Astrónomo B</strong>: Haz commit de tus cambios y sube tu rama a GitHub (git push origin mejora_estadistica).</p>
 </section>
 <section id="ejercicio-4-revision-cientifica-y-fusion-pull-request">
-<h3>Ejercicio 4: “Revisión Científica y Fusión (Pull Request)”<a class="headerlink" href="#ejercicio-4-revision-cientifica-y-fusion-pull-request" title="Link to this heading">#</a></h3>
+<h3>Ejercicio 4: “Revisión Científica y Fusión (Pull Request)”<a class="headerlink" href="#ejercicio-4-revision-cientifica-y-fusion-pull-request" title="Permalink to this heading">#</a></h3>
 <p>El Astrónomo (B) ha propuesto una mejora al código. El Astrónomo (A) debe revisar que los comandos de terminal añadidos sean correctos antes de integrarlos al flujo de trabajo principal del observatorio.</p>
 <p><strong>Astrónomo B</strong>: En GitHub, abre un Pull Request (PR) desde tu rama mejora_estadistica hacia main. Deja un comentario explicando qué comandos añadiste.</p>
 <p><strong>Astrónomo A</strong>: Entra a GitHub, revisa el código en la pestaña Files changed del PR. Asegúrate de que el uso de wc -l sea correcto.</p>
@@ -842,13 +851,13 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </section>
 </section>
 <section id="ejercicio-avanzado-la-caza-de-jupiteres-frios-y-calientes">
-<h2>Ejercicio Avanzado: “La Caza de Júpiteres Fríos y Calientes”<a class="headerlink" href="#ejercicio-avanzado-la-caza-de-jupiteres-frios-y-calientes" title="Link to this heading">#</a></h2>
+<h2>Ejercicio Avanzado: “La Caza de Júpiteres Fríos y Calientes”<a class="headerlink" href="#ejercicio-avanzado-la-caza-de-jupiteres-frios-y-calientes" title="Permalink to this heading">#</a></h2>
 <p>Descubrir planetas como la Tierra es difícil, pero descubrir gigantes gaseosos lejanos a su estrella (“Júpiteres Fríos”) también tiene sus retos. Tienen periodos orbitales muy largos, por lo que debes observar la estrella durante años para ver un solo tránsito o ciclo de velocidad radial.</p>
 <p>En este ejercicio, descargarás un catálogo real de exoplanetas. Escribirás un script (un “pipeline”) en la terminal que filtre matemáticamente la base de datos para responder a esta pregunta: <strong>¿Cuál es el método de descubrimiento más exitoso para encontrar exoplanetas de periodo largo (más de 300 días) que estén relativamente cerca de nuestro sistema solar (a menos de 50 parsecs)?</strong></p>
 <p>Luego, usarás el control de versiones para proponer un análisis alternativo (“Júpiteres Calientes”) usando ramas en GitHub.</p>
 <hr class="docutils" />
 <section id="fase-1-entorno-seguro-y-obtencion-de-datos">
-<h3>Fase 1: Entorno Seguro y Obtención de Datos<a class="headerlink" href="#fase-1-entorno-seguro-y-obtencion-de-datos" title="Link to this heading">#</a></h3>
+<h3>Fase 1: Entorno Seguro y Obtención de Datos<a class="headerlink" href="#fase-1-entorno-seguro-y-obtencion-de-datos" title="Permalink to this heading">#</a></h3>
 <p>Un buen científico de datos nunca rastrea archivos pesados en Git. Primero, preparamos la bóveda.</p>
 <ol class="arabic">
 <li><p>Crea un directorio llamado <code class="docutils literal notranslate"><span class="pre">censo_exoplanetario</span></code> e inicializa Git.</p></li>
@@ -860,7 +869,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </ol>
 </section>
 <section id="fase-2-mineria-matematica-con-awk-el-pipeline-principal">
-<h3>Fase 2: Minería Matemática con awk (El Pipeline Principal)<a class="headerlink" href="#fase-2-mineria-matematica-con-awk-el-pipeline-principal" title="Link to this heading">#</a></h3>
+<h3>Fase 2: Minería Matemática con awk (El Pipeline Principal)<a class="headerlink" href="#fase-2-mineria-matematica-con-awk-el-pipeline-principal" title="Permalink to this heading">#</a></h3>
 <p>Ahora escribiremos nuestro análisis en un script de Bash para que sea reproducible.</p>
 <ol class="arabic simple">
 <li><p>Crea un archivo llamado <code class="docutils literal notranslate"><span class="pre">analisis_frios.sh.</span></code></p></li>
@@ -878,7 +887,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 <p>Crea el repositorio en GitHub, conéctalo a tu entorno local y haz push de la rama main.</p>
 </section>
 <section id="fase-3-la-hipotesis-alternativa-branches-y-pull-requests">
-<h3>Fase 3: La Hipótesis Alternativa (Branches y Pull Requests)<a class="headerlink" href="#fase-3-la-hipotesis-alternativa-branches-y-pull-requests" title="Link to this heading">#</a></h3>
+<h3>Fase 3: La Hipótesis Alternativa (Branches y Pull Requests)<a class="headerlink" href="#fase-3-la-hipotesis-alternativa-branches-y-pull-requests" title="Permalink to this heading">#</a></h3>
 <p>Tu supervisor aprueba tu trabajo, pero te hace una pregunta: “¿Y si cambiamos los parámetros de búsqueda para encontrar Júpiteres Calientes (periodo orbital MENOR a 10 días) usando el mismo script?”.</p>
 <p>No debes modificar la rama main porque romperías el análisis de Júpiteres Fríos. Debes crear una “realidad alternativa” (Branch).</p>
 <ol class="arabic simple">
@@ -896,12 +905,12 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </section>
 </section>
 <section id="ejercicio-final-de-la-clase-ciencia-abierta-peer-review-y-control-de-calidad">
-<h2>Ejercicio Final de la clase: “Ciencia Abierta, Peer Review y Control de Calidad”<a class="headerlink" href="#ejercicio-final-de-la-clase-ciencia-abierta-peer-review-y-control-de-calidad" title="Link to this heading">#</a></h2>
+<h2>Ejercicio Final de la clase: “Ciencia Abierta, Peer Review y Control de Calidad”<a class="headerlink" href="#ejercicio-final-de-la-clase-ciencia-abierta-peer-review-y-control-de-calidad" title="Permalink to this heading">#</a></h2>
 <p>En la astronomía de la era del Big Data, las agencias espaciales publican bases de datos con cientos de miles de registros. Sin embargo, estos catálogos crudos contienen valores nulos, mediciones fallidas o errores instrumentales.</p>
 <p>Ustedes son un equipo de investigación. El <strong>Investigador Principal (IP)</strong> se encargará de la <em>Ingeniería de Datos</em> (ingesta y limpieza de la base elegida). El <strong>Co-Investigador (Co-I)</strong> realizará un <em>Análisis Estadístico</em> rápido. Finalmente, mediante revisión por pares (Peer Review), detectarán un problema de calidad de datos específico de su misión y lo solucionarán de forma conjunta.</p>
 <p><em>Instrucciones Previas:</em> Formen parejas, decidan sus roles (IP y Co-I) y elijan <strong>UNA</strong> base de datos de la siguiente tabla para desarrollar todo el ejercicio.</p>
 <section id="catalogo-de-misiones-para-el-proyecto">
-<h3>Catálogo de Misiones para el Proyecto<a class="headerlink" href="#catalogo-de-misiones-para-el-proyecto" title="Link to this heading">#</a></h3>
+<h3>Catálogo de Misiones para el Proyecto<a class="headerlink" href="#catalogo-de-misiones-para-el-proyecto" title="Permalink to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Misión / Base de Datos</p></th>
@@ -948,7 +957,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </section>
 <hr class="docutils" />
 <section id="paso-1-creacion-del-repositorio">
-<h3>Paso 1: Creación del Repositorio<a class="headerlink" href="#paso-1-creacion-del-repositorio" title="Link to this heading">#</a></h3>
+<h3>Paso 1: Creación del Repositorio<a class="headerlink" href="#paso-1-creacion-del-repositorio" title="Permalink to this heading">#</a></h3>
 <p><strong>IP</strong></p>
 <ol class="arabic simple">
 <li><p>En GitHub, crea un repositorio público llamado <code class="docutils literal notranslate"><span class="pre">proyecto_astronomia_abierta</span></code>.</p></li>
@@ -958,7 +967,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </ol>
 </section>
 <section id="paso2-ingesta-de-la-base-de-datos-publica">
-<h3>Paso2: Ingesta de la Base de Datos Pública<a class="headerlink" href="#paso2-ingesta-de-la-base-de-datos-publica" title="Link to this heading">#</a></h3>
+<h3>Paso2: Ingesta de la Base de Datos Pública<a class="headerlink" href="#paso2-ingesta-de-la-base-de-datos-publica" title="Permalink to this heading">#</a></h3>
 <p><strong>IP</strong></p>
 <ol class="arabic simple">
 <li><p>Vas a descargar el archivo masivo, pero protegerás tu Git para no colapsarlo.</p></li>
@@ -966,7 +975,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </ol>
 </section>
 <section id="paso-3-limpieza-inicial-pipeline-cli">
-<h3>Paso 3: Limpieza Inicial (Pipeline CLI)<a class="headerlink" href="#paso-3-limpieza-inicial-pipeline-cli" title="Link to this heading">#</a></h3>
+<h3>Paso 3: Limpieza Inicial (Pipeline CLI)<a class="headerlink" href="#paso-3-limpieza-inicial-pipeline-cli" title="Permalink to this heading">#</a></h3>
 <p><strong>IP</strong></p>
 <ol class="arabic simple">
 <li><p>Las bases de datos suelen traer encabezados o comentarios. Usa un pipeline básico para quitar cualquier comentario que empiece con # (si lo hay) y guarda el resultado en un archivo llamado datos_trabajo.csv (este sí lo subiremos a Git).</p></li>
@@ -974,7 +983,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </ol>
 </section>
 <section id="paso-4-analisis-estadistico-basico">
-<h3>Paso 4: Análisis Estadístico Básico<a class="headerlink" href="#paso-4-analisis-estadistico-basico" title="Link to this heading">#</a></h3>
+<h3>Paso 4: Análisis Estadístico Básico<a class="headerlink" href="#paso-4-analisis-estadistico-basico" title="Permalink to this heading">#</a></h3>
 <p><strong>Co-I</strong></p>
 <ol class="arabic simple">
 <li><p>Acepta la invitación en GitHub, abre tu terminal y clona el repositorio. (Si ya lo habías clonado, haz git pull origin main).</p></li>
@@ -984,7 +993,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </ol>
 </section>
 <section id="paso-5-presentacion-de-resultados-pull-request">
-<h3>Paso 5: Presentación de Resultados (Pull Request)<a class="headerlink" href="#paso-5-presentacion-de-resultados-pull-request" title="Link to this heading">#</a></h3>
+<h3>Paso 5: Presentación de Resultados (Pull Request)<a class="headerlink" href="#paso-5-presentacion-de-resultados-pull-request" title="Permalink to this heading">#</a></h3>
 <p><strong>Co-I</strong></p>
 <ol class="arabic simple">
 <li><p>Guarda tu reporte en Git y súbelo a la nube en tu propia rama.</p></li>
@@ -992,7 +1001,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </ol>
 </section>
 <section id="paso-6-revision-por-pares-y-control-de-calidad-reformas">
-<h3>Paso 6: Revisión por Pares y Control de Calidad (Reformas)<a class="headerlink" href="#paso-6-revision-por-pares-y-control-de-calidad-reformas" title="Link to this heading">#</a></h3>
+<h3>Paso 6: Revisión por Pares y Control de Calidad (Reformas)<a class="headerlink" href="#paso-6-revision-por-pares-y-control-de-calidad-reformas" title="Permalink to this heading">#</a></h3>
 <p><strong>IP</strong></p>
 <ol class="arabic simple">
 <li><p>Entras a GitHub a revisar el PR de tu colega. Revisas la tabla de la misión y te das cuenta de un problema científico crítico indicado en la “Columna de Calidad DQ”. ¡La estadística del Co-I incluyó registros corruptos, nulos o faltantes en esa variable física vital!</p></li>
@@ -1005,7 +1014,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </ol>
 </section>
 <section id="paso-7-segunda-revision">
-<h3>Paso 7: Segunda Revisión<a class="headerlink" href="#paso-7-segunda-revision" title="Link to this heading">#</a></h3>
+<h3>Paso 7: Segunda Revisión<a class="headerlink" href="#paso-7-segunda-revision" title="Permalink to this heading">#</a></h3>
 <p><strong>Co-I</strong></p>
 <ol class="arabic simple">
 <li><p>En tu terminal, actualiza tu rama para ver los cambios del IP.</p></li>
@@ -1019,7 +1028,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
 </ol>
 </section>
 <section id="paso-8-entrega-de-la-version-final">
-<h3>Paso 8: Entrega de la Versión Final<a class="headerlink" href="#paso-8-entrega-de-la-version-final" title="Link to this heading">#</a></h3>
+<h3>Paso 8: Entrega de la Versión Final<a class="headerlink" href="#paso-8-entrega-de-la-version-final" title="Permalink to this heading">#</a></h3>
 <p><strong>IP y/o Co-I</strong></p>
 <ol class="arabic simple">
 <li><p>En la página del Pull Request en GitHub, haz clic en “Merge pull request” y confirma la fusión.</p></li>
@@ -1085,8 +1094,7 @@ En este proyecto, van a simular datos para un nuevo sistema planetario. El Astr�
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1178,7 +1186,7 @@ By Esteban Silva Villa y Germán Chaparro Molano
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>
@@ -1202,8 +1210,8 @@ By Esteban Silva Villa y Germán Chaparro Molano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
