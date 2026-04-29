@@ -184,6 +184,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 9: Astropy: Unidades y Coordenadas</a></li>
+
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
@@ -381,6 +386,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clase 9: Astropy: Unidades y Coordenadas</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-astropy"><strong>Introducción a Astropy</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constantes-fisicas-astropy-constants"><strong>Constantes Físicas (<code class="docutils literal notranslate"><span class="pre">astropy.constants</span></code>)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidades-y-cantidades-astropy-units"><strong>Unidades y Cantidades (<code class="docutils literal notranslate"><span class="pre">astropy.units</span></code>)</strong></a></li>
@@ -395,6 +401,27 @@ document.write(`
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#usando-coordinates-y-table-para-combinar-y-comparar-catalogos">Usando <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> y <code class="docutils literal notranslate"><span class="pre">table</span></code> para combinar y comparar catálogos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extender-el-espectro-de-observacion-optico-ir">1. Extender el Espectro de Observación (Óptico + IR)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identificar-poblaciones-estelares">2. Identificar Poblaciones Estelares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#censo-de-masa-estelar">3. Censo de Masa Estelar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limpieza-del-campo-estrellas-vs-galaxias">4. Limpieza del campo (Estrellas vs Galaxias)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-estadistica">5. Validación Estadística</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-vs-r-k-diagrama-color-magnitud">1.  $r$ vs. $r-K$ (Diagrama color-magnitud)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#g-r-vs-r-k-diagrama-color-color">2. $g-r$ vs. $r-K$ (Diagrama color-color)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-hcg-7">Diagnóstico de HCG 7</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-sdss-g-r">1. Qué aporta SDSS ($g, r$)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-2mass-k">2. Qué aporta 2MASS ($K$)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">Ejercicio</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejercicio</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ejercicio</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -534,21 +561,15 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 <p>Astropy puede hacer conversión de unidades muy eficientemente a través del método <code class="docutils literal notranslate"><span class="pre">.to()</span></code> aplicado a un objeto <code class="docutils literal notranslate"><span class="pre">Quantity</span></code>. También hay atajos como los métodos <code class="docutils literal notranslate"><span class="pre">.cgs</span></code> <code class="docutils literal notranslate"><span class="pre">.si</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">measurement</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">h</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+<span class="n">measurement</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">h</span>
 <span class="n">measurement</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">measurement</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">h</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">measurement</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;u&#39; is not defined
-</pre></div>
-</div>
+<div class="output text_latex math notranslate nohighlight">
+\[2.7777778 \; \mathrm{\frac{m}{s}}\]</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -557,6 +578,10 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 <span class="n">flux</span><span class="o">.</span><span class="n">cgs</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[1 \times 10^{-22} \; \mathrm{\frac{g}{s^{2}}}\]</div>
 </div>
 </div>
 <p>Astropy incluye equivalencias para casi cualquier situación donde dos unidades no son físicamente la misma dimensión, pero están vinculadas por una ley física o un modelo estándar. Se usan con el alias, o sea <code class="docutils literal notranslate"><span class="pre">u.spectral()</span></code> como argumento del método de conversión <code class="docutils literal notranslate"><span class="pre">.to()</span></code></p>
@@ -609,6 +634,20 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">energia</span> <span class="o">=</span> <span class="n">lambda_uv</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">eV</span><span class="p">,</span> <span class="n">equivalencies</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">())</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">numero_de_onda</span> <span class="o">=</span> <span class="n">lambda_uv</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**-</span><span class="mi">1</span><span class="p">,</span> <span class="n">equivalencies</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">())</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longitud de onda: </span><span class="si">{</span><span class="n">lambda_verde</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Frecuencia: </span><span class="si">{</span><span class="n">frecuencia</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Energía: </span><span class="si">{</span><span class="n">energia</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;lambda_verde&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 <p>Astropy puede descomponer unidades, reconocer unidades en texto plano, extraer valores, unidades de objetos <code class="docutils literal notranslate"><span class="pre">Quantity</span></code> o representar unidades en strings para latex. También puede revisar equivalencia dimensional.</p>
 <div class="cell docutils container">
@@ -641,24 +680,11 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;$\\mathrm{\\frac{m^{2}\\,kg}{s^{2}}}$&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freq</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">erg</span> <span class="o">/</span> <span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span><span class="p">)</span>
 <span class="p">(</span><span class="n">freq</span><span class="o">.</span><span class="n">unit</span><span class="p">)</span><span class="o">.</span><span class="n">is_equivalent</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">Jy</span><span class="p">)</span>                <span class="c1"># False</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Ejercicio: Determine la longitud galáctica en ángulo horario a la que apunta el cenit en este momento en Medellín.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -712,12 +738,6 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
-    (9.81625, 0.88806)&gt;
-</pre></div>
-</div>
-</div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> también acepta coordenadas formateadas como <code class="docutils literal notranslate"><span class="pre">strings</span></code> ya sea como  <code class="docutils literal notranslate"><span class="pre">strings</span></code> separados para RA/DEC o como un <code class="docutils literal notranslate"><span class="pre">string</span></code> simple. Si las unidades no vienen en el <code class="docutils literal notranslate"><span class="pre">string</span></code> original, usted tiene que especificarlas.</p>
 <div class="cell docutils container">
@@ -726,22 +746,10 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
-    (354.81625, 0.88806)&gt;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SkyCoord</span><span class="p">(</span><span class="s1">&#39;0:39:15.9 0:53:17.016&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">),</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
-    (9.81625, 0.88806)&gt;
 </pre></div>
 </div>
 </div>
@@ -755,23 +763,11 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
-    (9.81625, 0.88805556)&gt;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Black_Hole</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s1">&#39;Sgr A*&#39;</span><span class="p">)</span>
 <span class="n">Black_Hole</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
-    (266.41681662, -29.00782497)&gt;
 </pre></div>
 </div>
 </div>
@@ -783,22 +779,12 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(astropy.coordinates.angles.core.Longitude,
- astropy.coordinates.angles.core.Latitude)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">dec</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[0^\circ53{}^\prime17.000016{}^{\prime\prime}\]</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -807,19 +793,10 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[9^\circ48{}^\prime58.5{}^{\prime\prime}\]</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">hour</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.05920370400000001)
 </pre></div>
 </div>
 </div>
@@ -840,11 +817,6 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;HCG7_SDSS_cutout.jpg&#39;, &lt;http.client.HTTPMessage at 0x7f037c649130&gt;)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -855,11 +827,6 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ra=9.81625&amp;dec=0.88805556&amp;width=1024&amp;height=1024&amp;scale=0.703125&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>Ahora miremos la imagen.</p>
 <div class="cell docutils container">
@@ -867,9 +834,6 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;HCG7_SDSS_cutout.jpg&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/f89ce8d7d061f414aea508bb8f00264325309ec4b0d40b5a6d6188a078470eac.jpg" src="_images/f89ce8d7d061f414aea508bb8f00264325309ec4b0d40b5a6d6188a078470eac.jpg" />
 </div>
 </div>
 <p>¡Bonito!</p>
@@ -886,22 +850,10 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (Galactic): (l, b) in deg
-    (116.47556718, -61.83099914)&gt;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
-    (9.81625, 0.88805556)&gt;
 </pre></div>
 </div>
 </div>
@@ -958,11 +910,6 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AltAz Frame (obstime=2015-12-21 01:00:00.000, location=(1966985.0948135238, -6053757.644176692, 442126.472079737) m, pressure=0.0 hPa, temperature=0.0 deg_C, relative_humidity=0.0, obswl=1.0 micron)&gt;
-</pre></div>
-</div>
-</div>
 </div>
 <p>Ahora transformamos nuestro <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> en ICRS a <code class="docutils literal notranslate"><span class="pre">AltAz</span></code> para encontrar la ubicación en el cielo.</p>
 <div class="cell docutils container">
@@ -998,6 +945,312 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </div>
 </section>
 </section>
+</section>
+<section id="usando-coordinates-y-table-para-combinar-y-comparar-catalogos">
+<h1>Usando <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> y <code class="docutils literal notranslate"><span class="pre">table</span></code> para combinar y comparar catálogos<a class="headerlink" href="#usando-coordinates-y-table-para-combinar-y-comparar-catalogos" title="Permalink to this heading">#</a></h1>
+<p>Vamos a hacer un análisis multi-longitud de onda para caracterizar los objetos del grupo de galaxias HCG 7 (Hickson Compact Group 7).</p>
+<p>Vamos a cruzar los datos en el óptico de SDSS con los de IR de 2MASS para:</p>
+<section id="extender-el-espectro-de-observacion-optico-ir">
+<h2>1. Extender el Espectro de Observación (Óptico + IR)<a class="headerlink" href="#extender-el-espectro-de-observacion-optico-ir" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>SDSS (Sloan Digital Sky Survey):</strong> Principalmente en el espectro visible. Rastrea luz de las estrellas jóvenes (en banda corta $g$ vs. banda larga $r$) y la estructura gaseosa.</p></li>
+<li><p><strong>2MASS (Two Micron All Sky Survey):</strong> Datos en el infrarrojo cercano (bandas J, H, K). Permite ver a través del polvo interestelar y observar la luz de estrellas viejas y evolucionadas, que representan la mayor parte de la masa estelar de una galaxia.</p></li>
+</ul>
+</section>
+<section id="identificar-poblaciones-estelares">
+<h2>2. Identificar Poblaciones Estelares<a class="headerlink" href="#identificar-poblaciones-estelares" title="Permalink to this heading">#</a></h2>
+<p>Al combinar ambos catálogos, se pueden calcular colores que mezclan ambas bandas (por ejemplo, entre una magnitud óptica de SDSS y una infrarroja de 2MASS). Esto ayuda a distinguir entre:</p>
+<ul class="simple">
+<li><p><strong>Galaxias con formación estelar activa:</strong> (más brillantes en el azul/óptico).</p></li>
+<li><p><strong>Galaxias “pasivas” o elípticas:</strong> (dominadas por estrellas rojas, muy brillantes en el infrarrojo).</p></li>
+</ul>
+</section>
+<section id="censo-de-masa-estelar">
+<h2>3. Censo de Masa Estelar<a class="headerlink" href="#censo-de-masa-estelar" title="Permalink to this heading">#</a></h2>
+<p>El objetivo de buscar la contraparte en 2MASS de las galaxias detectadas por SDSS es obtener una estimación más precisa de la masa total de las galaxias del grupo HCG 7, ya que la emisión en el infrarrojo cercano está muy correlacionada con la masa estelar total.</p>
+</section>
+<section id="limpieza-del-campo-estrellas-vs-galaxias">
+<h2>4. Limpieza del campo (Estrellas vs Galaxias)<a class="headerlink" href="#limpieza-del-campo-estrellas-vs-galaxias" title="Permalink to this heading">#</a></h2>
+<p>En campos densos, es fácil confundir una estrella de nuestra propia galaxia con una galaxia lejana. El cross-matching permite verificar si un objeto detectado como “borroso” en el óptico tiene las características de una fuente puntual o extendida en el infrarrojo, ayudando a confirmar que los miembros identificados realmente pertenecen al grupo galáctico estudiado.</p>
+</section>
+<section id="validacion-estadistica">
+<h2>5. Validación Estadística<a class="headerlink" href="#validacion-estadistica" title="Permalink to this heading">#</a></h2>
+<p>Se calcula la distancia entre los vecinos más cercanos y se compara con una distribución aleatoria para demostrar que las coincidencias entre SDSS y 2MASS no son espurias, sino que estamos observando físicamente el mismo objeto en dos longitudes de onda distintas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">urllib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">IPython.display</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">SkyCoord</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy</span><span class="w"> </span><span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Table</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al final de la sección anterior, encontramos que HCG7 está en SDSS, lo que significa que podemos descargar catálogos de objetos directamente desde SDSS. Más adelante, combinaremos este catálogo con otro catálogo que cubra el mismo campo, permitiéndonos hacer gráficas combinando ambos catálogos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hcg7_center</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s1">&#39;Hcg 7&#39;</span><span class="p">)</span>
+<span class="n">hcg7_center</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vamos a entrar a la base de datos SQL de SDSS usando el paquete <a class="reference external" href="https://astroquery.readthedocs.org">astroquery</a>.  This will require an internet connection and a working install of astroquery. Si usted no tiene este paquete, puede ignorar las próximas dos celdas, porque los archivos de datos están en el repositorio. Dependiendo de su versión de <code class="docutils literal notranslate"><span class="pre">astroquery</span></code>, puede que aparezca un Warning, que podemos ignorar sin problema.</p>
+<p>En esta URL encontramos algunas opciones que se pueden poner en el query
+http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=description+PhotoObj+V</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.sdss</span><span class="w"> </span><span class="kn">import</span> <span class="n">SDSS</span>
+<span class="n">sdss</span> <span class="o">=</span> <span class="n">SDSS</span><span class="o">.</span><span class="n">query_region</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="n">hcg7_center</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">40</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="p">,</span>
+                         <span class="n">spectro</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#</span>
+                         <span class="n">photoobj_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">,</span><span class="s1">&#39;dec&#39;</span><span class="p">,</span><span class="s1">&#39;u&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Los <em>queries</em> hechos a <code class="docutils literal notranslate"><span class="pre">astroquery</span></code> nos devuelve un objeto <a class="reference external" href="http://docs.astropy.org/en/stable/table/index.html"><code class="docutils literal notranslate"><span class="pre">astropy.table.Table</span></code></a>.  Podemos trabajar con este objeto sin guardar nada en disco, pero en esta ocasión si lo haremos. De esta manera, al cerrar la sesión y volver, usted no tiene que hacer un <em>query</em> de nuevo.</p>
+<p>(Esto no funcionará si usted no corrió la celda anterior. No hay problema, simplemente vaya a la celda que tiene <code class="docutils literal notranslate"><span class="pre">Table.read</span></code> y use la copia de esta tabla, incluida en el repositorio.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdss</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;HCG7_SDSS_photo.dat&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span><span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si usted no tiene internet, simplemente puede leer la tabla desde Python corriendo la siguiente celda. Si usted hizo el query anterior, usted puede ignorar esta instrucción, dado que la tabla ya está almacenada en memoria como la variable llamada <code class="docutils literal notranslate"><span class="pre">sdss</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdss</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;HCG7_SDSS_photo.dat&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora tenemos un catálogo de objetos que obtuvimos de SDSS. Supongamos que usted tiene su propio catálogo de objetos en el mismo campo para compararlo con el de SDSS. En este caso usaremos un catálogo extraído de <a class="reference external" href="http://www.ipac.caltech.edu/2mass/">2MASS</a>.  Vamos a cargar este catálogo (que está en el repositorio) a Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>https://github.com/saint-germain/astropy/raw/refs/heads/master/HCG7_2MASS.tbl
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correr en caso de que el query as SDSS falle</span>
+<span class="o">!</span>wget<span class="w"> </span>https://github.com/saint-germain/astropy/raw/refs/heads/master/HCG7_SDSS_photo.dat
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">twomass</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;HCG7_2MASS.tbl&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdss</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;HCG7_SDSS_photo.dat&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para combinar los catálogos, necesitamos objetos <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code>. Vamos a contruirlos a partir de las tablas que cargamos. Esto resulta ser directo: tomamos las columnas <code class="docutils literal notranslate"><span class="pre">ra</span></code> y <code class="docutils literal notranslate"><span class="pre">dec</span></code> de la tabla y se las damos al constructor <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> constructor.  Primero hagamos una inspección de las tablas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdss</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">twomass</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ya que tenemos las columnas de <code class="docutils literal notranslate"><span class="pre">ra</span></code> y <code class="docutils literal notranslate"><span class="pre">dec</span></code> podemos usarlas para crear nuestros <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code>s.</p>
+<p>No es necesario crear un <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> para cada fila en la tabla. En vez de esto, aprovechamos que <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> recibe <em>arrays</em> de valores de coordenadas, ya sean <code class="docutils literal notranslate"><span class="pre">Quantity</span></code>s, listas de <em>strings</em>, columnas de <code class="docutils literal notranslate"><span class="pre">Table</span></code>s, etc., y <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> hará las operaciones tranquilamente elemento a elemento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coo_sdss</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">sdss</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">sdss</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+<span class="n">coo_twomass</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">twomass</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">],</span> <span class="n">twomass</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coo_twomass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hay una diferencia sutil. Para SDSS tuvimos que dar unidades, pero no para 2MASS. Esto es porque la tabla de 2MASS tiene unidades asociadas a las columnas, mientras que SDSS no tiene unidades.</p>
+<p>Ahora usamos el método <code class="docutils literal notranslate"><span class="pre">SkyCoord.match_to_catalog_sky</span></code> para combinar ambos catálogos. El orden importa: combinamos 2MASS sobre SDSS porque hay muchas más entradas en SDSS, de manera que es probable que casi todos los objetos de 2MASS están en SDSS y no al revés.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_sdss</span><span class="p">,</span> <span class="n">d2d_sdss</span><span class="p">,</span> <span class="n">d3d_sdss</span> <span class="o">=</span> <span class="n">coo_twomass</span><span class="o">.</span><span class="n">match_to_catalog_sky</span><span class="p">(</span><span class="n">coo_sdss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">idx</span></code> da los índices de <code class="docutils literal notranslate"><span class="pre">coo_sdss</span></code> que se ajustan mejor a SDSS, mientras <code class="docutils literal notranslate"><span class="pre">d2d</span></code> y <code class="docutils literal notranslate"><span class="pre">d3d</span></code> son las distancias en cielo y en espacio real entre posibles coincidencias. En nuestro caso ignoraremos <code class="docutils literal notranslate"><span class="pre">d3d</span></code> porque no dimos información sobre la distancia a lo largo de la línea de visión. En cambio <code class="docutils literal notranslate"><span class="pre">d2d</span></code> nos da un buen diagnóstico de las posibles coincidencias:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">d2d_sdss</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Separation [arcsec]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ok, todos están dentro de un arcosegundo, lo cual es prometedor. Pero, ¿estamos seguros de que no es sólo que cualquier objeto tendría coincidencias dentro de un segundo de arco? Vamos a comprobarlo comparando con un conjunto de puntos aleatorios.</p>
+<p>Primero creamos un conjunto de puntos uniformemente aleatorios (con un tamaño que coincida con <code class="docutils literal notranslate"><span class="pre">coo_twomass</span></code>) que cubran el mismo rango de RA/Decs que hay en <code class="docutils literal notranslate"><span class="pre">coo_sdss</span></code>. Esto lo haremos con el método <code class="docutils literal notranslate"><span class="pre">ptp()</span></code> (peak-to-peak), que es equivalente a tomar la diferencia entre el valor máximo y mínimo de un arreglo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ras_sim</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coo_twomass</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">coo_sdss</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">coo_sdss</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span> <span class="o">+</span> <span class="n">coo_sdss</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">decs_sim</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coo_twomass</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">coo_sdss</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">coo_sdss</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span> <span class="o">+</span> <span class="n">coo_sdss</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">ras_sim</span><span class="p">,</span> <span class="n">decs_sim</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observemos que no es necesario especificar explícitamente las unidades para <code class="docutils literal notranslate"><span class="pre">ras_sim</span></code> y <code class="docutils literal notranslate"><span class="pre">decs_sim</span></code>, porque ya son objetos con unidad <code class="docutils literal notranslate"><span class="pre">Angle</span></code> porque fueron creados desde <code class="docutils literal notranslate"><span class="pre">coo_sdss.ra</span></code>y <code class="docutils literal notranslate"><span class="pre">coo_sdss.dec</span></code>.</p>
+<p>Ahora creamos un objeto <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> a partir de estos puntos y lo cotejamos con <code class="docutils literal notranslate"><span class="pre">coo_sdss</span></code> tal y como hicimos anteriormente para 2MASS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coo_simulated</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ras_sim</span><span class="p">,</span> <span class="n">decs_sim</span><span class="p">)</span>
+<span class="n">idx_sim</span><span class="p">,</span> <span class="n">d2d_sim</span><span class="p">,</span> <span class="n">d3d_sim</span> <span class="o">=</span> <span class="n">coo_simulated</span><span class="o">.</span><span class="n">match_to_catalog_sky</span><span class="p">(</span><span class="n">coo_sdss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">d2d_sim</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Simulated&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">d2d_sdss</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2MASS&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;separation [arcsec]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Muy bien, parece que las fuentes colocadas al azar están a un minuto de arco de distancia, así que probablemente podemos confiar en que nuestras primeras coincidencias (que estaban a un segundo de arco) son válidas.</p>
+<p>Ahora podemos calcular cosas como colores que combinen la fotometría de SDSS y 2MASS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rmag</span> <span class="o">=</span> <span class="n">sdss</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">][</span><span class="n">idx_sdss</span><span class="p">]</span>
+<span class="n">grcolor</span> <span class="o">=</span> <span class="n">sdss</span><span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">][</span><span class="n">idx_sdss</span><span class="p">]</span> <span class="o">-</span> <span class="n">rmag</span>
+<span class="n">rKcolor</span> <span class="o">=</span> <span class="n">rmag</span> <span class="o">-</span> <span class="n">twomass</span><span class="p">[</span><span class="s1">&#39;k_m_ext&#39;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rKcolor</span><span class="p">,</span> <span class="n">rmag</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;r-K&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="c1">#mags go backwards!</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rKcolor</span><span class="p">,</span> <span class="n">rmag</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;r-K&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;g-r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="r-vs-r-k-diagrama-color-magnitud">
+<h2>1.  $r$ vs. $r-K$ (Diagrama color-magnitud)<a class="headerlink" href="#r-vs-r-k-diagrama-color-magnitud" title="Permalink to this heading">#</a></h2>
+<p>Relación entre la masa estelar y la historia de formación estelar.</p>
+<ul class="simple">
+<li><p>Los puntos en la parte superior izquierda (más brillantes en $r$, más azules en $r-K$) representan espirales grandes como HCG 7a y 7c. Aún tienen suficiente gas para mantener poblaciones estelares más “azules” (jóvenes) y aportan la mayor cantidad de masa al grupo.</p></li>
+<li><p>El grupo de puntos entre $r = 16$ y $r = 18$ que son bastante rojos ($r-K \approx 3.3$ a $3.8$) probablemente corresponde a los miembros más pequeños y a aquellos ya “apagados” (quenched), como HCG 7b y 7d.</p></li>
+</ul>
+</section>
+<section id="g-r-vs-r-k-diagrama-color-color">
+<h2>2. $g-r$ vs. $r-K$ (Diagrama color-color)<a class="headerlink" href="#g-r-vs-r-k-diagrama-color-color" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A medida que las galaxias se vuelven más rojas en el óptico ($g-r$), también lo hacen en óptico–IR ($r-K$). Esto implica que ambos colores trazan las mismas tendencias</p></li>
+<li><p>Hay un “salto”: escasez relativa de puntos en la parte media del eje $g-r$ (alrededor de $15.5$ a $16.5$). Este es el famoso “valle verde”. Una vez que una galaxia empieza a perder su gas debido a interacciones de marea con sus vecinas, no permanece “verde” por mucho tiempo: se mueve rápidamente hacia la secuencia roja, donde experimenta <em>quenching</em> (el grupo en la parte superior derecha).</p></li>
+<li><p>Como los puntos formen una secuencia estrecha, la metalicidad entre estas galaxias es relativamente similar, y el principal factor que impulsa las diferencias de color es la edad de la población estelar junto con el cese abrupto de la formación estelar.</p></li>
+</ul>
+</section>
+<section id="diagnostico-de-hcg-7">
+<h2>Diagnóstico de HCG 7<a class="headerlink" href="#diagnostico-de-hcg-7" title="Permalink to this heading">#</a></h2>
+<p>Si este fuera un grupo “joven” de galaxias que apenas se están ensamblando por primera vez, se verían muchos más puntos en la esquina inferior izquierda del diagrama color-magnitud (galaxias con formación estelar activa pero pocas estrellas viejas).</p>
+<p>La “cola” de galaxias rojas y débiles indica que el entorno está despojando eficientemente el gas de los miembros más pequeños, transformándolos en galaxias S0 pasivas, mientras que las espirales más grandes probablemente sean las siguientes candidatas para este proceso de <em>quenching</em> a medida que continúan interactuando.</p>
+</section>
+<section id="resumen">
+<h2>Resumen<a class="headerlink" href="#resumen" title="Permalink to this heading">#</a></h2>
+<p>Si solo se usa SDSS, se puede confundir una galaxia espiral polvorienta (joven) con una galaxia elíptica vieja. Si solo se usa 2MASS, no sería posible distinguir si una galaxia está formando estrellas activamente o si simplemente es muy masiva. Al combinarlos en el diagrama $(g-r)$ vs. $(r-K)$ se determina cuánto gas le queda a las galaxias de HCG 7 para seguir formando estrellas.</p>
+</section>
+<section id="que-aporta-sdss-g-r">
+<h2>1. Qué aporta SDSS ($g, r$)<a class="headerlink" href="#que-aporta-sdss-g-r" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Sensibilidad a estrellas jóvenes:</strong> Las bandas $g$ (“azul”) y $r$ (“roja”) están dominadas por la luz de estrellas jóvenes y masivas. Si una galaxia en HCG 7 tiene incluso una pequeña cantidad de formación estelar reciente (como los brazos espirales en NGC 192), aparecerá en las bandas de SDSS.</p></li>
+<li><p><strong>Sensibilidad al polvo:</strong> Observaciones en el óptico son susceptibles a la extinción por polvo. El color $g-r$ puede parecer más “rojo” no porque las estrellas sean viejas, sino porque el polvo está bloqueando la luz azul (extinción selectiva).</p></li>
+<li><p><strong>Morfología:</strong> SDSS tiene una resolución angular mucho mayor que 2MASS, lo que permite ver los brazos espirales y las distorsiones de marea que indican el estado de interacción del grupo.</p></li>
+</ul>
+</section>
+<section id="que-aporta-2mass-k">
+<h2>2. Qué aporta 2MASS ($K$)<a class="headerlink" href="#que-aporta-2mass-k" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Trazador de masa estelar:</strong> La banda $K$ ($2.2,\mu\text{m}$) es relativamente poco afectada por el polvo y por la presencia de estrellas jóvenes (azules) de vida corta. Traza las estrellas viejas y de baja masa que constituyen la mayor parte de la masa de una galaxia.</p></li>
+<li><p><strong>El índice $r-K$:</strong> Al restar la magnitud $K$ de 2MASS a la magnitud $r$ de SDSS, se compara la masa total (K) con la población estelar de edad intermedia (r).</p></li>
+<li><p><strong>Enfriamento (quenching):</strong> Si una galaxia es brillante en 2MASS pero débil en SDSS, se sabe que es una galaxia masiva que ha dejado completamente de formar estrellas (una elíptica o S0 “roja y muerta”).</p></li>
+</ul>
+</section>
+</section>
+<section id="ejercicio">
+<h1>Ejercicio<a class="headerlink" href="#ejercicio" title="Permalink to this heading">#</a></h1>
+<p>Encuentre los horarios de cada día durante los cuales el Centro Galáctico es visible desde Medellín durante los próximos dos meses.</p>
+</section>
+<section id="id1">
+<h1>Ejercicio<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>Usando la función <code class="docutils literal notranslate"><span class="pre">astropy.coordinates.get_sun</span></code> junto con la clase <code class="docutils literal notranslate"><span class="pre">astropy.time.Time</span></code> haga un analema completo del Sol a las 3 pm visto desde Medellín.</p>
+</section>
+<section id="id2">
+<h1>Ejercicio<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h1>
+<p>Usando la función <code class="docutils literal notranslate"><span class="pre">astropy.coordinates.get_constellation</span></code> y construyendo una malla de coordenadas galácticas con $\Delta l,\Delta b=2$ deg, genere una lista con las constelaciones que quedan a menos de 10 grados de latitud galáctica del plano galáctico.</p>
+</section>
+<section id="id3">
+<h1>Ejercicio<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h1>
+<p>Calcule el valor del coeficiente de Einstein A para la transición rotacional 1 a 0 del CO (dipolo eléctrico $\mu=0.112$ Debye, constante rotacional $B=1.922$ cm^-1 - número de onda) y para el CS ($\mu=1.96$ Debye, $B=0.817$ cm^-1) usando la siguiente fórmula (use $J=0$):</p>
+<p>$$A = \frac{64\pi^4}{3hc^3} \mu^2 \frac{J + 1}{2J + 3} \nu^3;\quad \nu=B(J+1)$$</p>
+<p>Ayuda: También se puede usar la conversión 1 Debye = 1e-18 cm^5/2 g^1/2 s^-1</p>
+<p>Compare con el resultado de un query a la Leiden Atomic and Molecular Database, aprovechando el ejemplo siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.lamda</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lamda</span>
+
+<span class="n">collrates</span><span class="p">,</span> <span class="n">radtransitions</span><span class="p">,</span> <span class="n">enlevels</span> <span class="o">=</span> <span class="n">Lamda</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">mol</span><span class="o">=</span><span class="s1">&#39;co&#39;</span><span class="p">)</span>
+<span class="n">j1_0</span> <span class="o">=</span> <span class="n">radtransitions</span><span class="p">[</span><span class="n">radtransitions</span><span class="p">[</span><span class="s1">&#39;Upper&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># Index 2 is J=1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">j1_0</span><span class="p">[</span><span class="s1">&#39;EinsteinA&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1064,6 +1317,7 @@ $$R_s = \frac{2GM}{c^2}$$</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clase 9: Astropy: Unidades y Coordenadas</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-astropy"><strong>Introducción a Astropy</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constantes-fisicas-astropy-constants"><strong>Constantes Físicas (<code class="docutils literal notranslate"><span class="pre">astropy.constants</span></code>)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidades-y-cantidades-astropy-units"><strong>Unidades y Cantidades (<code class="docutils literal notranslate"><span class="pre">astropy.units</span></code>)</strong></a></li>
@@ -1078,6 +1332,27 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#usando-coordinates-y-table-para-combinar-y-comparar-catalogos">Usando <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> y <code class="docutils literal notranslate"><span class="pre">table</span></code> para combinar y comparar catálogos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extender-el-espectro-de-observacion-optico-ir">1. Extender el Espectro de Observación (Óptico + IR)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identificar-poblaciones-estelares">2. Identificar Poblaciones Estelares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#censo-de-masa-estelar">3. Censo de Masa Estelar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limpieza-del-campo-estrellas-vs-galaxias">4. Limpieza del campo (Estrellas vs Galaxias)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-estadistica">5. Validación Estadística</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-vs-r-k-diagrama-color-magnitud">1.  $r$ vs. $r-K$ (Diagrama color-magnitud)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#g-r-vs-r-k-diagrama-color-color">2. $g-r$ vs. $r-K$ (Diagrama color-color)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-hcg-7">Diagnóstico de HCG 7</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-sdss-g-r">1. Qué aporta SDSS ($g, r$)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-2mass-k">2. Qué aporta 2MASS ($K$)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">Ejercicio</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejercicio</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ejercicio</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>

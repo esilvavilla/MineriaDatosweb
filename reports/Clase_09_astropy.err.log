@@ -15,16 +15,31 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-measurement = 10*u.km/u.h
-measurement.to(u.m/u.s)
+import astropy.units as u
+
+lambda_uv = 91.2 * u.nm
+
+# Con equivalencies=u.spectral() Astropy usa E = h * c / lambda
+frecuencia = lambda_uv.to(u.GHz, equivalencies=u.spectral())
+energia = lambda_uv.to(u.eV, equivalencies=u.spectral())
+numero_de_onda = lambda_uv.to(u.cm**-1, equivalencies=u.spectral())
+
+print(f"Longitud de onda: {lambda_verde}")
+print(f"Frecuencia: {frecuencia:.2f}")
+print(f"Energía: {energia:.2e}")
+print(f"Número de onda (lambda^-1): {numero_de_onda:.2f}")
+
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[1], line 1[0m
-[0;32m----> 1[0m measurement [38;5;241m=[39m [38;5;241m10[39m[38;5;241m*[39m[43mu[49m[38;5;241m.[39mkm[38;5;241m/[39mu[38;5;241m.[39mh
-[1;32m      2[0m measurement[38;5;241m.[39mto(u[38;5;241m.[39mm[38;5;241m/[39mu[38;5;241m.[39ms)
+Cell [0;32mIn[3], line 10[0m
+[1;32m      7[0m energia [38;5;241m=[39m lambda_uv[38;5;241m.[39mto(u[38;5;241m.[39meV, equivalencies[38;5;241m=[39mu[38;5;241m.[39mspectral())
+[1;32m      8[0m numero_de_onda [38;5;241m=[39m lambda_uv[38;5;241m.[39mto(u[38;5;241m.[39mcm[38;5;241m*[39m[38;5;241m*[39m[38;5;241m-[39m[38;5;241m1[39m, equivalencies[38;5;241m=[39mu[38;5;241m.[39mspectral())
+[0;32m---> 10[0m [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mLongitud de onda: [39m[38;5;132;01m{[39;00m[43mlambda_verde[49m[38;5;132;01m}[39;00m[38;5;124m"[39m)
+[1;32m     11[0m [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mFrecuencia: [39m[38;5;132;01m{[39;00mfrecuencia[38;5;132;01m:[39;00m[38;5;124m.2f[39m[38;5;132;01m}[39;00m[38;5;124m"[39m)
+[1;32m     12[0m [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mEnergía: [39m[38;5;132;01m{[39;00menergia[38;5;132;01m:[39;00m[38;5;124m.2e[39m[38;5;132;01m}[39;00m[38;5;124m"[39m)
 
-[0;31mNameError[0m: name 'u' is not defined
+[0;31mNameError[0m: name 'lambda_verde' is not defined
 
