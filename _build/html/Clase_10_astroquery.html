@@ -1,0 +1,2049 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Clase 10: Bases de datos astronómicas y Astroquery &#8212; Minería de datos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_10_astroquery';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Proyecto 1er mes" href="Proyecto%201er%20mes.html" />
+    <link rel="prev" title="Clase 9: Astropy: Unidades y Coordenadas" href="Clase_09_astropy.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
+    <script>document.write(`<img src="_static/UdeA.png" class="logo__image only-dark" alt="Minería de datos - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Minería de datos para el pregrado de Astronomía UdeA
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Clase_01_INTROyCLI.html">Clase 1: La Consola de Comandos (Bash)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_02_GIT-HUB.html">Clase 2: Introducción a herramientas de control de versiones Git y Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_03_PythonCientifico.html">Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_04_SQL_Intro.html">Clase 4: Introducción a SQL y Bases de Datos Relacionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_05_ADQL_Intro.html">Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_06_ADQL_Intro2.html">Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_09_astropy.html">Clase 9: Astropy: Unidades y Coordenadas</a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 10: Bases de datos astronómicas y Astroquery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FClase_10_astroquery.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Clase_10_astroquery.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Clase 10: Bases de datos astronómicas y Astroquery</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bases-de-datos-comunmente-usadas-en-astronomia"><strong>Bases de datos comúnmente usadas en astronomía</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simbad-set-of-identifications-measurements-and-bibliography-for-astronomical-data"><strong>SIMBAD (Set of Identifications, Measurements and Bibliography for Astronomical Data)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vizier-catalogue-service"><strong>VizieR (Catalogue Service)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ned-nasa-ipac-extragalactic-database"><strong>NED (NASA/IPAC Extragalactic Database)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jpl-exoplanet-archive-nasa"><strong>JPL Exoplanet Archive (NASA)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exoplanet-eu-the-extrasolar-planets-encyclopaedia"><strong>Exoplanet.eu (The Extrasolar Planets Encyclopaedia)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nasa-jpl-horizons"><strong>NASA JPL Horizons</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mast-mikulski-archive-for-space-telescopes"><strong>MAST (Mikulski Archive for Space Telescopes)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esa-sky-gaia-archive"><strong>ESA Sky / Gaia Archive</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eso-science-archive-facility-european-southern-observatory"><strong>ESO Science Archive Facility (European Southern Observatory)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nrao-archive-national-radio-astronomy-observatory"><strong>NRAO Archive (National Radio Astronomy Observatory)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ads-nasa-sao-astrophysics-data-system"><strong>ADS (NASA/SAO Astrophysics Data System)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arxiv-preprint-server"><strong>arXiv (Preprint Server)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-servicios"><strong>Otros servicios</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dss-online-digitized-sky-survey"><strong>DSS (Online Digitized Sky Survey)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hla-hubble-legacy-archive"><strong>HLA (Hubble Legacy Archive)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#irsa-infrared-science-archive"><strong>IRSA (Infrared Science Archive)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-two-micron-all-sky-survey"><strong>2MASS (Two Micron All Sky Survey)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hsa-herschel-science-archive"><strong>HSA (Herschel Science Archive)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heasarc-high-energy-astrophysics-archive-research-center"><strong>HEASARC (High Energy Astrophysics Archive Research Center)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-legacy-archive-for-microwave-background-data-analysis"><strong>LAMBDA (Legacy Archive for Microwave Background Data Analysis)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pds-planetary-data-system"><strong>PDS (Planetary Data System)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sdss-sloan-digital-sky-survey"><strong>SDSS (Sloan Digital Sky Survey)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desi-dark-energy-spectroscopic-instrument-data-release"><strong>DESI (Dark Energy Spectroscopic Instrument) Data Release</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#noirlab-data-archive-national-optical-infrared-astronomy-research-laboratory"><strong>NOIRLab Data Archive (National Optical-Infrared Astronomy Research Laboratory)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bases-de-datos-espectrales"><strong>Bases de datos espectrales</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#splatalogue-spectral-line-atlas-of-interstellar-molecules"><strong>Splatalogue (Spectral Line Atlas of Interstellar Molecules)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cdms-cologne-database-for-molecular-spectroscopy"><strong>CDMS (Cologne Database for Molecular Spectroscopy)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitran-high-resolution-transmission-molecular-absorption-database"><strong>HITRAN (High-Resolution Transmission Molecular Absorption Database)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atomic-line-list"><strong>Atomic Line List</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explorando-gaia-con-astroquery-y-el-servicio-tap">Explorando Gaia con Astroquery y el servicio TAP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revisando-inconsistencias-en-otras-bases-de-datos">Revisando inconsistencias en otras bases de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatizando-una-busqueda-de-gaia">Automatizando una búsqueda de Gaia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas-votable-y-wcs">Tablas (Votable) y WCS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consultando-lineas-espectrales-moleculares">Consultando líneas espectrales moleculares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-herramientas">Otras herramientas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-transitorios-astronomicos">Eventos transitorios astronómicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-escala-de-distancias">La escala de distancias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-angular-galactico-vs-redshift">Tamaño angular galáctico vs. redshift</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="clase-10-bases-de-datos-astronomicas-y-astroquery">
+<h1>Clase 10: Bases de datos astronómicas y Astroquery<a class="headerlink" href="#clase-10-bases-de-datos-astronomicas-y-astroquery" title="Permalink to this heading">#</a></h1>
+<p><strong>Astroquery</strong> es una colección de herramientas en Python diseñadas para facilitar el acceso a datos astronómicos alojados en archivos y servicios web de todo el mundo. En lugar de descargar manualmente archivos desde sitios web individuales, Astroquery permite buscar, filtrar y descargar catálogos, imágenes y espectros directamente desde Python.</p>
+<p>Cada servicio (como SIMBAD, VizieR o MAST) tiene su propio módulo dentro de la librería, y cada módulo, por ser desarrollado de forma independiente, puede tener distintos niveles de documentación/funcionalidad. <a class="reference external" href="https://astroquery.readthedocs.io/en/latest/">Lista de módulos</a>.</p>
+<p>Casi todas las consultas realizadas con Astroquery devuelven los datos en formato de <code class="docutils literal notranslate"><span class="pre">astropy.table.Table</span></code>. Los datos descargados pueden luego ser procesados con las herramientas de Astropy.</p>
+<p>Está en constante actualización y puede estar incompleto (p. ej. el caso de ExoMol).</p>
+<section id="bases-de-datos-comunmente-usadas-en-astronomia">
+<h2><strong>Bases de datos comúnmente usadas en astronomía</strong><a class="headerlink" href="#bases-de-datos-comunmente-usadas-en-astronomia" title="Permalink to this heading">#</a></h2>
+<section id="simbad-set-of-identifications-measurements-and-bibliography-for-astronomical-data">
+<h3><strong><a class="reference external" href="http://simbad.u-strasbg.fr/simbad/">SIMBAD</a> (Set of Identifications, Measurements and Bibliography for Astronomical Data)</strong><a class="headerlink" href="#simbad-set-of-identifications-measurements-and-bibliography-for-astronomical-data" title="Permalink to this heading">#</a></h3>
+<p>Provee <strong>identificación y bibliografía de objetos astronómicos</strong> fuera del Sistema Solar. Permite saber que un mismo objeto tiene nombres distintos en diferentes catálogos. Además de coordenadas, proporciona datos básicos (flujos, tipos espectrales, paralajes) y listas de artículos científicos donde se menciona cada objeto. También identifica la pertenencia de un objeto a un grupo (p. ej. un cúmulo).</p>
+</section>
+<section id="vizier-catalogue-service">
+<h3><strong><a class="reference external" href="https://vizier.cds.unistra.fr/">VizieR</a> (Catalogue Service)</strong><a class="headerlink" href="#vizier-catalogue-service" title="Permalink to this heading">#</a></h3>
+<p>Repositorio de <strong>catálogos astronómicos y tablas de datos</strong> publicados en revistas científicas. SIMBAD se centra en objetos individuales mientras que VizieR se centra en tablas con catálogos completos. Permite realizar búsquedas complejas dentro de miles de catálogos (como Gaia, SDSS o 2MASS) y filtrar datos por columnas específicas (magnitud, edad, metalicidad, etc.).</p>
+</section>
+<section id="ned-nasa-ipac-extragalactic-database">
+<h3><strong><a class="reference external" href="https://ned.ipac.caltech.edu/">NED</a> (NASA/IPAC Extragalactic Database)</strong><a class="headerlink" href="#ned-nasa-ipac-extragalactic-database" title="Permalink to this heading">#</a></h3>
+<p>Base de datos especializada en <strong>objetos extragalácticos</strong> (galaxias, cuásares, supernovas). Proporciona datos multi-longitud de onda, corrimientos al rojo (redshifts) y diámetros. También entrega distancias extragalácticas independientes de redshifts (NED-D).</p>
+</section>
+<section id="jpl-exoplanet-archive-nasa">
+<h3><strong><a class="reference external" href="https://exoplanetarchive.ipac.caltech.edu/">JPL Exoplanet Archive</a> (NASA)</strong><a class="headerlink" href="#jpl-exoplanet-archive-nasa" title="Permalink to this heading">#</a></h3>
+<p>Archivo oficial de la NASA para el estudio de planetas fuera del Sistema Solar y sus estrellas anfitrionas. Contiene los <strong>parámetros planetarios confirmados</strong> y los datos de misiones como Kepler, K2 y TESS. Ofrece herramientas de visualización y series temporales (curvas de luz) para caracterizar tránsitos planetarios.</p>
+</section>
+<section id="exoplanet-eu-the-extrasolar-planets-encyclopaedia">
+<h3><strong><a class="reference external" href="http://exoplanet.eu/">Exoplanet.eu</a> (The Extrasolar Planets Encyclopaedia)</strong><a class="headerlink" href="#exoplanet-eu-the-extrasolar-planets-encyclopaedia" title="Permalink to this heading">#</a></h3>
+<p>Base de datos del Observatorio de París, es una de las bases de datos de exoplanetas más antiguas y completas. Se diferencia por ser muy inclusiva, listando tanto <strong>planetas confirmados como candidatos</strong>.</p>
+</section>
+<section id="nasa-jpl-horizons">
+<h3><strong><a class="reference external" href="https://ssd.jpl.nasa.gov/horizons/">NASA JPL Horizons</a></strong><a class="headerlink" href="#nasa-jpl-horizons" title="Permalink to this heading">#</a></h3>
+<p>Sistema de <strong>efemérides de alta precisión</strong> para todos los cuerpos del Sistema Solar (planetas, lunas, asteroides, cometas y naves espaciales). Calcula posiciones y velocidades en el tiempo para determinar la posición exacta de un cuerpo del Sistema Solar en una fecha y hora específicas.</p>
+</section>
+<section id="mast-mikulski-archive-for-space-telescopes">
+<h3><strong><a class="reference external" href="https://archive.stsci.edu/">MAST</a> (Mikulski Archive for Space Telescopes)</strong><a class="headerlink" href="#mast-mikulski-archive-for-space-telescopes" title="Permalink to this heading">#</a></h3>
+<p>Repositorio de la NASA para datos de <strong>telescopios espaciales</strong> en óptico, UV e IR. Aloja los datos de Hubble (HST), James Webb (JWST), TESS, Kepler, etc. Aquí se encuentran los datos “crudos” y reducidos de los principales telescopios espaciales.</p>
+</section>
+<section id="esa-sky-gaia-archive">
+<h3><strong><a class="reference external" href="https://sky.esa.int/">ESA Sky</a> / <a class="reference external" href="https://gea.esac.esa.int/archive/">Gaia Archive</a></strong><a class="headerlink" href="#esa-sky-gaia-archive" title="Permalink to this heading">#</a></h3>
+<p>Portal de acceso a las misiones de la Agencia Espacial Europea. Incluye el <strong>Gaia Archive</strong>, que contiene el catálogo más preciso de astrometría (posiciones, paralajes y movimientos propios) de más de mil millones de estrellas.</p>
+</section>
+<section id="eso-science-archive-facility-european-southern-observatory">
+<h3><strong><a class="reference external" href="http://archive.eso.org/cms.html">ESO Science Archive Facility</a> (European Southern Observatory)</strong><a class="headerlink" href="#eso-science-archive-facility-european-southern-observatory" title="Permalink to this heading">#</a></h3>
+<p>Da acceso a los datos recopilados por los telescopios de la ESO en Chile, incluyendo el <strong>VLT (Very Large Telescope)</strong>, <strong>ALMA</strong> (en conjunto con otros socios) y los telescopios de rastreo <strong>VST</strong> y <strong>VISTA</strong>. Ofrece tanto datos científicos crudos como productos procesados de alta calidad.</p>
+</section>
+<section id="nrao-archive-national-radio-astronomy-observatory">
+<h3><strong><a class="reference external" href="https://archive.nrao.edu/archive/advquery.jsp">NRAO Archive</a> (National Radio Astronomy Observatory)</strong><a class="headerlink" href="#nrao-archive-national-radio-astronomy-observatory" title="Permalink to this heading">#</a></h3>
+<p>Permite acceder a los datos de <strong>radio interferómetros</strong> como el VLA (Very Large Array) y ALMA. Proporciona visibilidades (datos crudos de interferometría) e imágenes reconstruidas.</p>
+</section>
+<section id="ads-nasa-sao-astrophysics-data-system">
+<h3><strong><a class="reference external" href="https://ui.adsabs.harvard.edu/">ADS</a> (NASA/SAO Astrophysics Data System)</strong><a class="headerlink" href="#ads-nasa-sao-astrophysics-data-system" title="Permalink to this heading">#</a></h3>
+<p>Base de datos de <strong>literatura científica</strong>. Indexa casi todos los artículos de astronomía y física del mundo. Su integración con Astroquery permite buscar bibliografía y, en muchos casos, extraer tablas de datos vinculadas a los artículos. Requiere un API token para interactuar con astroquery.</p>
+</section>
+<section id="arxiv-preprint-server">
+<h3><strong><a class="reference external" href="https://arxiv.org/archive/astro-ph">arXiv</a> (Preprint Server)</strong><a class="headerlink" href="#arxiv-preprint-server" title="Permalink to this heading">#</a></h3>
+<p>Repositorio de acceso abierto para <strong>preprints de artículos científicos</strong> en las áreas de física, astronomía, matemáticas y computación. Permite compartir descubrimientos de manera inmediata, meses antes de que sean publicados en revistas tradicionales. En astronomía, casi todo artículo relevante aparece primero en la sección astro-ph.</p>
+</section>
+</section>
+<section id="otros-servicios">
+<h2><strong>Otros servicios</strong><a class="headerlink" href="#otros-servicios" title="Permalink to this heading">#</a></h2>
+<section id="dss-online-digitized-sky-survey">
+<h3><strong><a class="reference external" href="https://archive.stsci.edu/dss/">DSS</a> (Online Digitized Sky Survey)</strong><a class="headerlink" href="#dss-online-digitized-sky-survey" title="Permalink to this heading">#</a></h3>
+<p>Provee digitalizaciones de las placas fotográficas del cielo obtenidas por los observatorios de Palomar y UK Schmidt.</p>
+</section>
+<section id="hla-hubble-legacy-archive">
+<h3><strong><a class="reference external" href="https://hla.stsci.edu/">HLA</a> (Hubble Legacy Archive)</strong><a class="headerlink" href="#hla-hubble-legacy-archive" title="Permalink to this heading">#</a></h3>
+<p>Versión optimizada del archivo del Telescopio Espacial Hubble. Ofrece productos de datos “listos para la ciencia” (combinados y calibrados), además de herramientas de visualización interactiva para inspeccionar rápidamente las observaciones del HST.</p>
+</section>
+<section id="irsa-infrared-science-archive">
+<h3><strong><a class="reference external" href="https://irsa.ipac.caltech.edu/">IRSA</a> (Infrared Science Archive)</strong><a class="headerlink" href="#irsa-infrared-science-archive" title="Permalink to this heading">#</a></h3>
+<p>El repositorio principal de la NASA para datos en el <strong>infrarrojo y submilimétrico</strong>. Aloja datos de misiones como Spitzer, WISE, NEOWISE y Planck, siendo el lugar de referencia para estudiar el medio interestelar y objetos oscurecidos por polvo.</p>
+</section>
+<section id="mass-two-micron-all-sky-survey">
+<h3><strong><a class="reference external" href="https://irsa.ipac.caltech.edu/Missions/2mass.html">2MASS</a> (Two Micron All Sky Survey)</strong><a class="headerlink" href="#mass-two-micron-all-sky-survey" title="Permalink to this heading">#</a></h3>
+<p>Catálogo y archivo de imágenes del mapeo de todo el cielo en las bandas J, H y Ks. Es una herramienta esencial para la identificación de estrellas frías, enanas marrones y para “ver” a través de la extinción galáctica hacia el centro de la Vía Láctea.</p>
+</section>
+<section id="hsa-herschel-science-archive">
+<h3><strong><a class="reference external" href="https://archives.esac.esa.int/hsa/whsa/">HSA</a> (Herschel Science Archive)</strong><a class="headerlink" href="#hsa-herschel-science-archive" title="Permalink to this heading">#</a></h3>
+<p>Contiene todas las observaciones del Observatorio Espacial Herschel de la ESA. Proporciona datos en el infrarrojo lejano, siendo la última misión en décadas en observar en estas longitudes de onda.</p>
+</section>
+<section id="heasarc-high-energy-astrophysics-archive-research-center">
+<h3><strong><a class="reference external" href="https://heasarc.gsfc.nasa.gov/">HEASARC</a> (High Energy Astrophysics Archive Research Center)</strong><a class="headerlink" href="#heasarc-high-energy-astrophysics-archive-research-center" title="Permalink to this heading">#</a></h3>
+<p>Es el archivo central de la NASA para la <strong>astronomía de altas energías</strong> (Rayos X y Rayos Gamma), además de radiación de fondo de microondas. Incluye datos de misiones como Chandra, XMM-Newton, Swift y Fermi.</p>
+</section>
+<section id="lambda-legacy-archive-for-microwave-background-data-analysis">
+<h3><strong><a class="reference external" href="https://lambda.gsfc.nasa.gov/">LAMBDA</a> (Legacy Archive for Microwave Background Data Analysis)</strong><a class="headerlink" href="#lambda-legacy-archive-for-microwave-background-data-analysis" title="Permalink to this heading">#</a></h3>
+<p>Repositorio especializado en datos de la <strong>Radiación de Fondo de Microondas (CMB)</strong>. Contiene los mapas y productos de misiones importantes para la cosmología y estudios de la Vía Láctea como COBE, WMAP y Planck.</p>
+</section>
+<section id="pds-planetary-data-system">
+<h3><strong><a class="reference external" href="https://pds.nasa.gov/">PDS</a> (Planetary Data System)</strong><a class="headerlink" href="#pds-planetary-data-system" title="Permalink to this heading">#</a></h3>
+<p>El archivo oficial de la NASA para todos los datos de <strong>misiones planetarias</strong>. Incluye imágenes, espectros y mediciones de in-situ de Marte, Júpiter, Saturno y otros cuerpos del Sistema Solar recopilados por sondas y landers.</p>
+</section>
+<section id="sdss-sloan-digital-sky-survey">
+<h3><strong><a class="reference external" href="https://www.sdss.org/">SDSS</a> (Sloan Digital Sky Survey)</strong><a class="headerlink" href="#sdss-sloan-digital-sky-survey" title="Permalink to this heading">#</a></h3>
+<p>Imágenes multi-banda y espectros para millones de galaxias, cuásares y estrellas. Es la base de gran parte de la cartografía moderna del universo a gran escala.</p>
+</section>
+<section id="desi-dark-energy-spectroscopic-instrument-data-release">
+<h3><strong><a class="reference external" href="https://data.desi.lbl.gov/doc/">DESI</a> (Dark Energy Spectroscopic Instrument) Data Release</strong><a class="headerlink" href="#desi-dark-energy-spectroscopic-instrument-data-release" title="Permalink to this heading">#</a></h3>
+<p>Experimento espectroscópico de energía oscura. Busca medir la historia de expansión del universo y la naturaleza de la energía oscura mediante el mapeo de 40 millones de galaxias y cuásares. Proporciona espectros de alta precisión para estudiar las Oscilaciones Acústicas de Bariones (BAO) y el crecimiento de estructuras a gran escala.</p>
+</section>
+<section id="noirlab-data-archive-national-optical-infrared-astronomy-research-laboratory">
+<h3><strong><a class="reference external" href="https://astroarchive.noirlab.edu/">NOIRLab Data Archive</a> (National Optical-Infrared Astronomy Research Laboratory)</strong><a class="headerlink" href="#noirlab-data-archive-national-optical-infrared-astronomy-research-laboratory" title="Permalink to this heading">#</a></h3>
+<p>Base de datos de los observatorios financiados por la NSF en EE. UU., incluyendo <strong>Cerro Tololo (CTIO)</strong>, <strong>Kitt Peak (KPNO)</strong> y el <strong>Observatorio Gemini</strong>. Aloja los datos de mapeos masivos como el DES (Dark Energy Survey) y es el futuro hogar de los datos del Observatorio Vera C. Rubin.</p>
+</section>
+</section>
+<section id="bases-de-datos-espectrales">
+<h2><strong>Bases de datos espectrales</strong><a class="headerlink" href="#bases-de-datos-espectrales" title="Permalink to this heading">#</a></h2>
+<section id="splatalogue-spectral-line-atlas-of-interstellar-molecules">
+<h3><strong><a class="reference external" href="https://splatalogue.online/">Splatalogue</a> (Spectral Line Atlas of Interstellar Molecules)</strong><a class="headerlink" href="#splatalogue-spectral-line-atlas-of-interstellar-molecules" title="Permalink to this heading">#</a></h3>
+<p>Base de datos exhaustiva para la <strong>espectroscopía molecular rotacional</strong>, diseñada específicamente para la radioastronomía y astronomía submilimétrica. Consolida datos de diversos catálogos para facilitar la identificación de líneas moleculares en observaciones de interferómetros como ALMA o el VLA.</p>
+</section>
+<section id="cdms-cologne-database-for-molecular-spectroscopy">
+<h3><strong><a class="reference external" href="https://cdms.astro.uni-koeln.de/">CDMS</a> (Cologne Database for Molecular Spectroscopy)</strong><a class="headerlink" href="#cdms-cologne-database-for-molecular-spectroscopy" title="Permalink to this heading">#</a></h3>
+<p>Provee una compilación de frecuencias de transición molecular y parámetros espectroscópicos para átomos y moléculas de interés astrofísico. Se usa para modelar la emisión y absorción de gases en el medio interestelar y atmósferas estelares.</p>
+</section>
+<section id="hitran-high-resolution-transmission-molecular-absorption-database">
+<h3><strong><a class="reference external" href="https://hitran.org/">HITRAN</a> (High-Resolution Transmission Molecular Absorption Database)</strong><a class="headerlink" href="#hitran-high-resolution-transmission-molecular-absorption-database" title="Permalink to this heading">#</a></h3>
+<p>Repositorio de parámetros espectroscópicos de alta resolución utilizado para predecir y simular la <strong>transmisión y emisión de luz en atmósferas</strong>. Se usa para las ciencias atmosféricas terrestres y también para astroquímica en el medio interestelar, en discos formadores de planetas y en exoplanetas.</p>
+</section>
+<section id="atomic-line-list">
+<h3><strong><a class="reference external" href="https://www.pa.uky.edu/~peter/atomic/">Atomic Line List</a></strong><a class="headerlink" href="#atomic-line-list" title="Permalink to this heading">#</a></h3>
+<p>Base de datos diseñada para la identificación de <strong>líneas de emisión y absorción atómica</strong>. Permite buscar transiciones en un rango amplio de longitudes de onda, proporcionando niveles de energía y probabilidades de transición para el análisis de espectros estelares y nebulosas.</p>
+</section>
+</section>
+<section id="explorando-gaia-con-astroquery-y-el-servicio-tap">
+<h2>Explorando Gaia con Astroquery y el servicio TAP<a class="headerlink" href="#explorando-gaia-con-astroquery-y-el-servicio-tap" title="Permalink to this heading">#</a></h2>
+<p><strong>TAP, o Table Access Protocol</strong> es un estándar establecido por la IVOA (International Virtual Observatory Alliance) que define cómo consultar tablas de datos astronómicos en un servidor remoto. TAP permite realizar <em>queries</em> utilizando ADQL (Astronomical Data Query Language), siempre y cuando cada servicio lo soporte.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>astroquery
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: astroquery in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (0.4.11)
+Requirement already satisfied: numpy&gt;=1.20 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (2.2.6)
+Requirement already satisfied: astropy&gt;=5.0 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (6.1.7)
+Requirement already satisfied: requests&gt;=2.19 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (2.33.1)
+Requirement already satisfied: beautifulsoup4&gt;=4.8 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (4.14.3)
+Requirement already satisfied: html5lib&gt;=0.999 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (1.1)
+Requirement already satisfied: keyring&gt;=15.0 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (25.7.0)
+Requirement already satisfied: pyvo&gt;=1.5 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (1.8.1)
+Requirement already satisfied: pyerfa&gt;=2.0.1.1 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astropy&gt;=5.0-&gt;astroquery) (2.0.1.5)
+Requirement already satisfied: astropy-iers-data&gt;=0.2024.10.28.0.34.7 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astropy&gt;=5.0-&gt;astroquery) (0.2026.4.27.1.3.2)
+Requirement already satisfied: PyYAML&gt;=3.13 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astropy&gt;=5.0-&gt;astroquery) (6.0.3)
+Requirement already satisfied: packaging&gt;=19.0 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astropy&gt;=5.0-&gt;astroquery) (26.2)
+Requirement already satisfied: soupsieve&gt;=1.6.1 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.8-&gt;astroquery) (2.8.3)
+Requirement already satisfied: typing-extensions&gt;=4.0.0 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.8-&gt;astroquery) (4.15.0)
+Requirement already satisfied: six&gt;=1.9 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from html5lib&gt;=0.999-&gt;astroquery) (1.17.0)
+Requirement already satisfied: webencodings in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from html5lib&gt;=0.999-&gt;astroquery) (0.5.1)
+Requirement already satisfied: importlib_metadata&gt;=4.11.4 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from keyring&gt;=15.0-&gt;astroquery) (8.8.0)
+Requirement already satisfied: jaraco.classes in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from keyring&gt;=15.0-&gt;astroquery) (3.4.0)
+Requirement already satisfied: jaraco.functools in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from keyring&gt;=15.0-&gt;astroquery) (4.4.0)
+Requirement already satisfied: jaraco.context in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from keyring&gt;=15.0-&gt;astroquery) (6.1.2)
+Requirement already satisfied: zipp&gt;=3.20 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from importlib_metadata&gt;=4.11.4-&gt;keyring&gt;=15.0-&gt;astroquery) (3.23.1)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (3.4.7)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (3.13)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.26 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2.6.3)
+Requirement already satisfied: certifi&gt;=2023.5.7 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2026.4.22)
+Requirement already satisfied: more-itertools in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.classes-&gt;keyring&gt;=15.0-&gt;astroquery) (11.0.2)
+Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.context-&gt;keyring&gt;=15.0-&gt;astroquery) (1.2.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.gaia</span><span class="w"> </span><span class="kn">import</span> <span class="n">Gaia</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>In preparation for Gaia DR4, the Gaia archive is in evolution. Unfortunately, it may be unstable at times and particular types of queries may time out. Please consider registering for a user account (https://www.cosmos.esa.int/web/gaia-users/register). For questions or advice, please contact the Gaia helpdesk (https://www.cosmos.esa.int/web/gaia/gaia-helpdesk).
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tables</span> <span class="o">=</span> <span class="n">Gaia</span><span class="o">.</span><span class="n">load_tables</span><span class="p">(</span><span class="n">only_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="p">(</span><span class="n">tables</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">get_qualified_name</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Retrieving tables... [astroquery.utils.tap.core]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Parsing tables... [astroquery.utils.tap.core]
+INFO: Done. [astroquery.utils.tap.core]
+external.apassdr9
+external.catwise2020
+external.gaiadr2_astrophysical_parameters
+external.gaiadr2_geometric_distance
+external.gaiaedr3_distance
+external.gaiaedr3_gcns_main_1
+external.gaiaedr3_gcns_rejected_1
+external.gaiaedr3_spurious
+external.gaia_eso_survey
+external.galex_ais
+external.lamost_dr9_lrs
+external.lamost_dr9_mrs
+external.ravedr5_com
+external.ravedr5_dr5
+external.ravedr5_gra
+external.ravedr5_on
+external.ravedr6
+external.sdssdr13_photoprimary
+external.skymapperdr1_master
+external.skymapperdr2_master
+external.tmass_xsc
+external.xgboost_table1
+external.xgboost_table2
+gaiadr1.aux_qso_icrf2_match
+gaiadr1.ext_phot_zero_point
+gaiadr1.allwise_best_neighbour
+gaiadr1.allwise_neighbourhood
+gaiadr1.gsc23_best_neighbour
+gaiadr1.gsc23_neighbourhood
+gaiadr1.ppmxl_best_neighbour
+gaiadr1.ppmxl_neighbourhood
+gaiadr1.sdss_dr9_best_neighbour
+gaiadr1.sdss_dr9_neighbourhood
+gaiadr1.tmass_best_neighbour
+gaiadr1.tmass_neighbourhood
+gaiadr1.ucac4_best_neighbour
+gaiadr1.ucac4_neighbourhood
+gaiadr1.urat1_best_neighbour
+gaiadr1.urat1_neighbourhood
+gaiadr1.cepheid
+gaiadr1.phot_variable_time_series_gfov
+gaiadr1.phot_variable_time_series_gfov_statistical_parameters
+gaiadr1.rrlyrae
+gaiadr1.variable_summary
+gaiadr1.allwise_original_valid
+gaiadr1.gsc23_original_valid
+gaiadr1.ppmxl_original_valid
+gaiadr1.sdssdr9_original_valid
+gaiadr1.tmass_original_valid
+gaiadr1.ucac4_original_valid
+gaiadr1.urat1_original_valid
+gaiadr1.gaia_source
+gaiadr1.tgas_source
+gaiadr2.aux_allwise_agn_gdr2_cross_id
+gaiadr2.aux_iers_gdr2_cross_id
+gaiadr2.aux_sso_orbit_residuals
+gaiadr2.aux_sso_orbits
+gaiadr2.dr1_neighbourhood
+gaiadr2.allwise_best_neighbour
+gaiadr2.allwise_neighbourhood
+gaiadr2.apassdr9_best_neighbour
+gaiadr2.apassdr9_neighbourhood
+gaiadr2.gsc23_best_neighbour
+gaiadr2.gsc23_neighbourhood
+gaiadr2.hipparcos2_best_neighbour
+gaiadr2.hipparcos2_neighbourhood
+gaiadr2.panstarrs1_best_neighbour
+gaiadr2.panstarrs1_neighbourhood
+gaiadr2.ppmxl_best_neighbour
+gaiadr2.ppmxl_neighbourhood
+gaiadr2.ravedr5_best_neighbour
+gaiadr2.ravedr5_neighbourhood
+gaiadr2.sdssdr9_best_neighbour
+gaiadr2.sdssdr9_neighbourhood
+gaiadr2.tmass_best_neighbour
+gaiadr2.tmass_neighbourhood
+gaiadr2.tycho2_best_neighbour
+gaiadr2.tycho2_neighbourhood
+gaiadr2.urat1_best_neighbour
+gaiadr2.urat1_neighbourhood
+gaiadr2.sso_observation
+gaiadr2.sso_source
+gaiadr2.vari_cepheid
+gaiadr2.vari_classifier_class_definition
+gaiadr2.vari_classifier_definition
+gaiadr2.vari_classifier_result
+gaiadr2.vari_long_period_variable
+gaiadr2.vari_rotation_modulation
+gaiadr2.vari_rrlyrae
+gaiadr2.vari_short_timescale
+gaiadr2.vari_time_series_statistics
+gaiadr2.panstarrs1_original_valid
+gaiadr2.gaia_source
+gaiadr2.ruwe
+gaiadr3.gaia_source
+gaiadr3.gaia_source_lite
+gaiadr3.astrophysical_parameters
+gaiadr3.astrophysical_parameters_supp
+gaiadr3.oa_neuron_information
+gaiadr3.oa_neuron_xp_spectra
+gaiadr3.total_galactic_extinction_map
+gaiadr3.total_galactic_extinction_map_opt
+gaiadr3.commanded_scan_law
+gaiadr3.allwise_best_neighbour
+gaiadr3.allwise_neighbourhood
+gaiadr3.apassdr9_best_neighbour
+gaiadr3.apassdr9_join
+gaiadr3.apassdr9_neighbourhood
+gaiadr3.dr2_neighbourhood
+gaiadr3.gsc23_best_neighbour
+gaiadr3.gsc23_join
+gaiadr3.gsc23_neighbourhood
+gaiadr3.hipparcos2_best_neighbour
+gaiadr3.hipparcos2_neighbourhood
+gaiadr3.panstarrs1_best_neighbour
+gaiadr3.panstarrs1_join
+gaiadr3.panstarrs1_neighbourhood
+gaiadr3.ravedr5_best_neighbour
+gaiadr3.ravedr5_join
+gaiadr3.ravedr5_neighbourhood
+gaiadr3.ravedr6_best_neighbour
+gaiadr3.ravedr6_join
+gaiadr3.ravedr6_neighbourhood
+gaiadr3.sdssdr13_best_neighbour
+gaiadr3.sdssdr13_join
+gaiadr3.sdssdr13_neighbourhood
+gaiadr3.skymapperdr2_best_neighbour
+gaiadr3.skymapperdr2_join
+gaiadr3.skymapperdr2_neighbourhood
+gaiadr3.tmass_psc_xsc_best_neighbour
+gaiadr3.tmass_psc_xsc_join
+gaiadr3.tmass_psc_xsc_neighbourhood
+gaiadr3.tycho2tdsc_merge_best_neighbour
+gaiadr3.tycho2tdsc_merge_neighbourhood
+gaiadr3.urat1_best_neighbour
+gaiadr3.urat1_neighbourhood
+gaiadr3.galaxy_candidates
+gaiadr3.galaxy_catalogue_name
+gaiadr3.qso_candidates
+gaiadr3.qso_catalogue_name
+gaiadr3.nss_acceleration_astro
+gaiadr3.nss_non_linear_spectro
+gaiadr3.nss_two_body_orbit
+gaiadr3.nss_vim_fl
+gaiadr3.binary_masses
+gaiadr3.chemical_cartography
+gaiadr3.gold_sample_carbon_stars
+gaiadr3.gold_sample_fgkm_stars
+gaiadr3.gold_sample_oba_stars
+gaiadr3.gold_sample_solar_analogues
+gaiadr3.gold_sample_spss
+gaiadr3.gold_sample_ucd
+gaiadr3.sso_orbits
+gaiadr3.synthetic_photometry_gspc
+gaiadr3.vari_spurious_signals
+gaiadr3.agn_cross_id
+gaiadr3.frame_rotator_source
+gaiadr3.gaia_crf3_xm
+gaiadr3.alerts_mixedin_sourceids
+gaiadr3.science_alerts
+gaiadr3.gaia_source_simulation
+gaiadr3.gaia_universe_model
+gaiadr3.sso_observation
+gaiadr3.sso_reflectance_spectrum
+gaiadr3.sso_source
+gaiadr3.xp_summary
+gaiadr3.vari_agn
+gaiadr3.vari_cepheid
+gaiadr3.vari_classifier_class_definition
+gaiadr3.vari_classifier_definition
+gaiadr3.vari_classifier_result
+gaiadr3.vari_compact_companion
+gaiadr3.vari_eclipsing_binary
+gaiadr3.vari_epoch_radial_velocity
+gaiadr3.vari_long_period_variable
+gaiadr3.vari_microlensing
+gaiadr3.vari_ms_oscillator
+gaiadr3.vari_planetary_transit
+gaiadr3.vari_planetary_transit_13june2022
+gaiadr3.vari_rad_vel_statistics
+gaiadr3.vari_rotation_modulation
+gaiadr3.vari_rrlyrae
+gaiadr3.vari_short_timescale
+gaiadr3.vari_summary
+gaiadr3.tycho2tdsc_merge
+gaiaedr3.gaia_source
+gaiaedr3.agn_cross_id
+gaiaedr3.commanded_scan_law
+gaiaedr3.dr2_neighbourhood
+gaiaedr3.frame_rotator_source
+gaiaedr3.allwise_best_neighbour
+gaiaedr3.allwise_neighbourhood
+gaiaedr3.apassdr9_best_neighbour
+gaiaedr3.apassdr9_join
+gaiaedr3.apassdr9_neighbourhood
+gaiaedr3.gsc23_best_neighbour
+gaiaedr3.gsc23_join
+gaiaedr3.gsc23_neighbourhood
+gaiaedr3.hipparcos2_best_neighbour
+gaiaedr3.hipparcos2_neighbourhood
+gaiaedr3.panstarrs1_best_neighbour
+gaiaedr3.panstarrs1_join
+gaiaedr3.panstarrs1_neighbourhood
+gaiaedr3.ravedr5_best_neighbour
+gaiaedr3.ravedr5_join
+gaiaedr3.ravedr5_neighbourhood
+gaiaedr3.sdssdr13_best_neighbour
+gaiaedr3.sdssdr13_join
+gaiaedr3.sdssdr13_neighbourhood
+gaiaedr3.skymapperdr2_best_neighbour
+gaiaedr3.skymapperdr2_join
+gaiaedr3.skymapperdr2_neighbourhood
+gaiaedr3.tmass_psc_xsc_best_neighbour
+gaiaedr3.tmass_psc_xsc_join
+gaiaedr3.tmass_psc_xsc_neighbourhood
+gaiaedr3.tycho2tdsc_merge_best_neighbour
+gaiaedr3.tycho2tdsc_merge_neighbourhood
+gaiaedr3.urat1_best_neighbour
+gaiaedr3.urat1_neighbourhood
+gaiaedr3.gaia_source_simulation
+gaiaedr3.gaia_universe_model
+gaiaedr3.tycho2tdsc_merge
+gaiafpr.crowded_field_source
+gaiafpr.lens_candidates
+gaiafpr.lens_catalogue_name
+gaiafpr.lens_observation
+gaiafpr.lens_outlier
+gaiafpr.sso_observation
+gaiafpr.sso_source
+gaiafpr.interstellar_medium_params
+gaiafpr.interstellar_medium_spectra
+gaiafpr.vari_epoch_radial_velocity
+gaiafpr.vari_long_period_variable
+gaiafpr.vari_rad_vel_statistics
+public.hipparcos
+public.hipparcos_newreduction
+public.hubble_sc
+public.igsl_source
+public.igsl_source_catalog_ids
+public.tycho2
+public.dual
+tap_config.coord_sys
+tap_config.properties
+tap_schema.columns
+tap_schema.key_columns
+tap_schema.keys
+tap_schema.schemas
+tap_schema.tables
+</pre></div>
+</div>
+</div>
+</div>
+<p>Antes de empezar con Gaia, investiguemos un poco sobre nuestro cúmulo globular de interés https://en.wikipedia.org/wiki/NGC_2808</p>
+<p>Exploremos https://archive.eso.org/dss/dss para mirar cómo se construye un query basado en URL.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">urllib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">IPython.display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy</span><span class="w"> </span><span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">SkyCoord</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gc_name</span><span class="o">=</span><span class="s1">&#39;ngc2808&#39;</span>
+
+<span class="n">im_arcmin</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">cutoutbaseurl</span> <span class="o">=</span> <span class="s1">&#39;https://archive.eso.org/dss/dss/image&#39;</span>
+<span class="n">endurl</span> <span class="o">=</span> <span class="s1">&#39;&amp;Sky-Survey=DSS2-red&amp;mime-type=download-gif&amp;statsmode=WEBFORM&#39;</span>
+<span class="n">query_string</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+                                     <span class="n">name</span><span class="o">=</span><span class="n">gc_name</span><span class="p">,</span>
+                                     <span class="n">x</span><span class="o">=</span><span class="n">im_arcmin</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">im_arcmin</span>
+                                          <span class="p">))</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">cutoutbaseurl</span> <span class="o">+</span> <span class="s1">&#39;?&#39;</span> <span class="o">+</span> <span class="n">query_string</span> <span class="o">+</span> <span class="n">endurl</span>
+
+<span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;NGC2808_DSS2_cutout.jpg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;NGC2808_DSS2_cutout.jpg&#39;, &lt;http.client.HTTPMessage at 0x1170f90c0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;NGC2808_DSS2_cutout.jpg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4817f58dbf457364bd03a2fedf7c9b00d5009ded523111396fad561842b4bffc.jpg" src="_images/4817f58dbf457364bd03a2fedf7c9b00d5009ded523111396fad561842b4bffc.jpg" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ngc2808_center</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="o">.</span><span class="n">from_name</span><span class="p">(</span><span class="s1">&#39;ngc 2808&#39;</span><span class="p">)</span>
+<span class="n">ngc2808_center</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;SkyCoord (ICRS): (ra, dec) in deg
+    (138.012917, -64.8635)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># estimamos el ancho angular del cúmulo</span>
+<span class="n">ang_diam</span> <span class="o">=</span> <span class="mi">13</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="o">+</span><span class="mf">0.8</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span>
+<span class="n">ang_diam</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[0.21688889\mathrm{{}^{\circ}}\]</div>
+</div>
+</div>
+<p>Vamos a hacer un query para Gaia que va a ser un <em>cone search</em>.
+https://en.wikipedia.org/wiki/Kepler_space_telescope#/media/File:LombergA1024.jpg
+https://gaia.aip.de/cms/services/cone-search/</p>
+<p>Si hacemos un cone search normal, dado el número de fuentes de Gaia, se tomará mucho tiempo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job1</span> <span class="o">=</span> <span class="n">Gaia</span><span class="o">.</span><span class="n">launch_job_async</span><span class="p">(</span><span class="s2">&quot;SELECT * </span><span class="se">\</span>
+<span class="s2">FROM gaiadr3.gaia_source </span><span class="se">\</span>
+<span class="s2">WHERE CONTAINS(POINT(&#39;ICRS&#39;,gaiadr3.gaia_source.ra,gaiadr3.gaia_source.dec), </span><span class="se">\</span>
+<span class="s2">    CIRCLE(&#39;ICRS&#39;,138.01291667,-64.8635,0.22))=1&quot;</span><span class="p">,</span> <span class="n">dump_to_file</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">job1</span> <span class="o">=</span> <span class="n">Gaia</span><span class="o">.</span><span class="n">launch_job_async</span><span class="p">(</span><span class="s2">&quot;SELECT * </span><span class="se">\</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="s2"> FROM gaiadr3.gaia_source </span><span class="se">\</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="s2"> WHERE CONTAINS(POINT(&#39;ICRS&#39;,gaiadr3.gaia_source.ra,gaiadr3.gaia_source.dec), </span><span class="se">\</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span><span class="s2">     CIRCLE(&#39;ICRS&#39;,138.01291667,-64.8635,0.22))=1&quot;</span><span class="p">,</span> <span class="n">dump_to_file</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/astroquery/gaia/core.py:1154,</span> in <span class="ni">GaiaClass.launch_job_async</span><span class="nt">(self, query, name, output_file, output_format, verbose, dump_to_file, background, upload_resource, upload_table_name, autorun)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1113</span> <span class="k">def</span><span class="w"> </span><span class="nf">launch_job_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1114</span>                      <span class="n">output_format</span><span class="o">=</span><span class="s2">&quot;votable_gzip&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1115</span>                      <span class="n">dump_to_file</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1116</span>                      <span class="n">upload_resource</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">upload_table_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1117</span>                      <span class="n">autorun</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1118</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Launches an asynchronous job</span>
+<span class="g g-Whitespace">   </span><span class="mi">1119</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1120</span><span class="sd">     Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1152</span><span class="sd">     A Job object</span>
+<span class="g g-Whitespace">   </span><span class="mi">1153</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1154</span>     <span class="k">return</span> <span class="n">TapPlus</span><span class="o">.</span><span class="n">launch_job_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1155</span>                                     <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1156</span>                                     <span class="n">output_file</span><span class="o">=</span><span class="n">output_file</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1157</span>                                     <span class="n">output_format</span><span class="o">=</span><span class="n">output_format</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1158</span>                                     <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1159</span>                                     <span class="n">dump_to_file</span><span class="o">=</span><span class="n">dump_to_file</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1160</span>                                     <span class="n">background</span><span class="o">=</span><span class="n">background</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1161</span>                                     <span class="n">upload_resource</span><span class="o">=</span><span class="n">upload_resource</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1162</span>                                     <span class="n">upload_table_name</span><span class="o">=</span><span class="n">upload_table_name</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1163</span>                                     <span class="n">autorun</span><span class="o">=</span><span class="n">autorun</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1164</span>                                     <span class="n">format_with_results_compressed</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;votable_gzip&#39;</span><span class="p">,))</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/astroquery/utils/tap/core.py:478,</span> in <span class="ni">Tap.launch_job_async</span><span class="nt">(self, query, name, output_file, output_format, verbose, dump_to_file, background, upload_resource, upload_table_name, autorun, maxrec, format_with_results_compressed)</span>
+<span class="g g-Whitespace">    </span><span class="mi">476</span> <span class="c1"># saveResults or getResults will block (not background)</span>
+<span class="g g-Whitespace">    </span><span class="mi">477</span> <span class="k">if</span> <span class="n">dump_to_file</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">478</span>     <span class="n">job</span><span class="o">.</span><span class="n">save_results</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">479</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span>     <span class="n">job</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/astroquery/utils/tap/model/job.py:305,</span> in <span class="ni">Job.save_results</span><span class="nt">(self, verbose)</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span> <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saving results to: </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">305</span> <span class="bp">self</span><span class="o">.</span><span class="n">connHandler</span><span class="o">.</span><span class="n">dump_to_file</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/astroquery/utils/tap/conn/tapconn.py:516,</span> in <span class="ni">TapConn.dump_to_file</span><span class="nt">(self, output, response)</span>
+<span class="g g-Whitespace">    </span><span class="mi">514</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">515</span>     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">516</span>         <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">517</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">518</span>             <span class="k">break</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/http/client.py:471,</span> in <span class="ni">HTTPResponse.read</span><span class="nt">(self, amt)</span>
+<span class="g g-Whitespace">    </span><span class="mi">468</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">amt</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">469</span>     <span class="c1"># clip the read to the &quot;end of response&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">470</span>     <span class="n">amt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span>
+<span class="ne">--&gt; </span><span class="mi">471</span> <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">amt</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">472</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span> <span class="ow">and</span> <span class="n">amt</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">473</span>     <span class="c1"># Ideally, we would raise IncompleteRead if the content-length</span>
+<span class="g g-Whitespace">    </span><span class="mi">474</span>     <span class="c1"># wasn&#39;t satisfied, but it might break compatibility.</span>
+<span class="g g-Whitespace">    </span><span class="mi">475</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_close_conn</span><span class="p">()</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/socket.py:717,</span> in <span class="ni">SocketIO.readinto</span><span class="nt">(self, b)</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">716</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">717</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">718</span>     <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">719</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_occurred</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/ssl.py:1307,</span> in <span class="ni">SSLSocket.recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1303</span>     <span class="k">if</span> <span class="n">flags</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1304</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1305</span>           <span class="s2">&quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+<span class="g g-Whitespace">   </span><span class="mi">1306</span>           <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1307</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1308</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1309</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">nbytes</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/ssl.py:1163,</span> in <span class="ni">SSLSocket.read</span><span class="nt">(self, len, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1161</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1162</span>     <span class="k">if</span> <span class="n">buffer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1163</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1164</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1165</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vamos a hacer un cone search truncado para ahorrarnos tiempo. Estimemos el rango de paralajes para truncar el cono de búsqueda.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meanpar</span><span class="o">=</span><span class="mf">0.112</span> <span class="c1"># Vasiliev 2021 edr3 https://arxiv.org/pdf/2102.09568.pdf 1e-2 error</span>
+<span class="n">dist</span><span class="o">=</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">kpc</span><span class="o">/</span><span class="n">meanpar</span>
+<span class="n">dist</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Estimemos el tamaño “a ojo” del cúmulo globular, para truncar nuestro cone search para un tamaño mucho mayor con tranquilidad.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_gc</span><span class="o">=</span><span class="p">(</span><span class="n">dist</span><span class="o">*</span><span class="n">ang_diam</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">kpc</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span><span class="p">)</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">rad</span>
+<span class="n">r_gc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prange</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">kpc</span> <span class="c1"># tomemos un rango amplio para truncar el cono de búsqueda</span>
+<span class="n">parmax</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">dist</span><span class="o">-</span><span class="n">prange</span><span class="p">)</span>
+<span class="n">parmax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parmin</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">dist</span><span class="o">+</span><span class="n">prange</span><span class="p">)</span>
+<span class="n">parmin</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job2</span> <span class="o">=</span> <span class="n">Gaia</span><span class="o">.</span><span class="n">launch_job_async</span><span class="p">(</span><span class="s2">&quot;SELECT * </span><span class="se">\</span>
+<span class="s2">FROM gaiadr3.gaia_source </span><span class="se">\</span>
+<span class="s2">WHERE CONTAINS(POINT(&#39;ICRS&#39;,gaiadr3.gaia_source.ra,gaiadr3.gaia_source.dec),CIRCLE(&#39;ICRS&#39;,138.01291667,-64.8635,0.22))=1 </span><span class="se">\</span>
+<span class="s2">AND abs(parallax)&gt;0.106 </span><span class="se">\</span>
+<span class="s2">AND abs(parallax)&lt;0.119;&quot;</span><span class="p">,</span> <span class="n">dump_to_file</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span> <span class="o">=</span> <span class="n">job2</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;source_id&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">],</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">,</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">,</span><span class="mi">1000</span><span class="o">/</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;parallax&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;ra (deg)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;dec (deg)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;r (pc)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="mi">1000</span><span class="o">/</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;parallax&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;parallax&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">1000</span><span class="o">/</span><span class="n">parmin</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">1000</span><span class="o">/</span><span class="n">parmax</span><span class="o">.</span><span class="n">value</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Query sin ADQL explícito: https://astroquery.readthedocs.io/en/latest/gaia/gaia.html</p>
+<p>Ahora vamos a hacer un diagrama H-R de este cúmulo usando las magnitudes medidas por Gaia.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bp_rp</span> <span class="o">=</span> <span class="n">j</span><span class="p">[</span><span class="s1">&#39;bp_rp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">mg</span> <span class="o">=</span> <span class="n">j</span><span class="p">[</span><span class="s1">&#39;phot_g_mean_mag&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filt</span><span class="o">=~</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">mg</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">bp_rp</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+<span class="p">(</span><span class="o">~</span><span class="n">filt</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">bp_rp</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">filt</span><span class="p">]</span>
+<span class="n">y</span><span class="o">=</span><span class="n">mg</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">filt</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$G_</span><span class="si">{BP}</span><span class="s1"> - G_</span><span class="si">{RP}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$M_G$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Diagrama HR para NGC 2808&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>https://www.researchgate.net/figure/The-observed-and-modeled-color-magnitude-diagrams-of-the-globular-cluster-NGC-2808-Yi_fig5_305273888</p>
+</section>
+<section id="revisando-inconsistencias-en-otras-bases-de-datos">
+<h2>Revisando inconsistencias en otras bases de datos<a class="headerlink" href="#revisando-inconsistencias-en-otras-bases-de-datos" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.simbad</span><span class="w"> </span><span class="kn">import</span> <span class="n">Simbad</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">customSimbad</span> <span class="o">=</span> <span class="n">Simbad</span><span class="p">()</span>
+
+<span class="n">customSimbad</span><span class="o">.</span><span class="n">get_votable_fields</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">customSimbad</span><span class="o">.</span><span class="n">add_votable_fields</span><span class="p">(</span><span class="s1">&#39;plx_value&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_table</span> <span class="o">=</span> <span class="n">customSimbad</span><span class="o">.</span><span class="n">query_object</span><span class="p">(</span><span class="s2">&quot;NGC 2808&quot;</span><span class="p">)</span>
+<span class="n">result_table</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_table</span><span class="p">[</span><span class="s1">&#39;plx_value&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dist</span><span class="o">=</span><span class="mi">1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">kpc</span><span class="o">/</span><span class="p">(</span><span class="n">result_table</span><span class="p">[</span><span class="s1">&#39;plx_value&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">dist</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="automatizando-una-busqueda-de-gaia">
+<h2>Automatizando una búsqueda de Gaia<a class="headerlink" href="#automatizando-una-busqueda-de-gaia" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.simbad</span><span class="w"> </span><span class="kn">import</span> <span class="n">Simbad</span>
+
+<span class="c1"># Optional: include extra hierarchy information</span>
+<span class="n">custom_simbad</span> <span class="o">=</span> <span class="n">Simbad</span><span class="p">()</span>
+<span class="n">custom_simbad</span><span class="o">.</span><span class="n">TIMEOUT</span> <span class="o">=</span> <span class="mi">120</span>
+
+<span class="c1"># Query the children of NAME LCC</span>
+<span class="n">children</span> <span class="o">=</span> <span class="n">custom_simbad</span><span class="o">.</span><span class="n">query_hierarchy</span><span class="p">(</span>
+    <span class="s2">&quot;NAME LCC&quot;</span><span class="p">,</span>
+    <span class="n">hierarchy</span><span class="o">=</span><span class="s2">&quot;children&quot;</span><span class="p">,</span>
+    <span class="n">detailed_hierarchy</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">children</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">children</span><span class="o">.</span><span class="n">colnames</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">votable</span> <span class="o">=</span> <span class="n">from_table</span><span class="p">(</span><span class="n">children</span><span class="p">)</span>
+
+<span class="c1"># Write to the specified file</span>
+<span class="n">writeto</span><span class="p">(</span><span class="n">votable</span><span class="p">,</span> <span class="s2">&quot;lcc_simbad_votable.xml&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">children</span><span class="p">)</span><span class="si">}</span><span class="s2"> stars found and saved to &#39;lcc_simbad_votable.xml&#39;.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.io.votable</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_single_table</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">votable</span> <span class="o">=</span> <span class="n">parse_single_table</span><span class="p">(</span><span class="s2">&quot;lcc_simbad_votable.xml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first</span><span class="o">=</span><span class="s2">&quot;SELECT * </span><span class="se">\</span>
+<span class="s2">    FROM gaiadr3.gaia_source </span><span class="se">\</span>
+<span class="s2">    WHERE &quot;</span>
+<span class="n">stor</span><span class="o">=</span><span class="s2">&quot;OR &quot;</span>
+<span class="n">last</span><span class="o">=</span>    <span class="s2">&quot;AND abs(parallax)&gt;3.69 ;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">0.1</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coun</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">votable</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">],</span><span class="n">votable</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">]):</span>
+    <span class="n">quer</span><span class="o">=</span><span class="s2">&quot;CONTAINS(POINT(&#39;ICRS&#39;,gaiadr3.gaia_source.ra,gaiadr3.gaia_source.dec),CIRCLE(&#39;ICRS&#39;,</span><span class="si">%f</span><span class="s2">,</span><span class="si">%f</span><span class="s2">,0.00166))=1 &quot;</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">coun</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">mainq</span><span class="o">=</span><span class="n">first</span><span class="o">+</span><span class="n">quer</span>
+    <span class="k">if</span> <span class="n">coun</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">mainq</span><span class="o">+=</span><span class="n">stor</span><span class="o">+</span><span class="n">quer</span>
+    <span class="n">coun</span><span class="o">+=</span><span class="mi">1</span>
+<span class="n">mainq</span><span class="o">+=</span><span class="n">last</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mainq</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coun</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">job3</span><span class="o">=</span><span class="n">Gaia</span><span class="o">.</span><span class="n">launch_job_async</span><span class="p">(</span><span class="n">mainq</span><span class="p">,</span> <span class="n">dump_to_file</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span> <span class="o">=</span> <span class="n">job3</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;source_id&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span><span class="o">=</span><span class="n">j</span><span class="p">[</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;parallax&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;lcc.dat&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span><span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Table</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">coord</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tablelcc</span><span class="o">=</span><span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;lcc.dat&#39;</span><span class="p">,</span><span class="nb">format</span><span class="o">=</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+<span class="n">tablelcc</span><span class="o">=</span><span class="n">tablelcc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">tablelcc</span><span class="p">[</span><span class="s1">&#39;parallax&#39;</span><span class="p">])]</span>
+<span class="n">tablelcc</span><span class="o">=</span><span class="n">tablelcc</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">tablelcc</span><span class="p">[</span><span class="s1">&#39;radial_velocity&#39;</span><span class="p">])]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tablelcc</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">tablelcc</span><span class="p">[</span><span class="s1">&#39;pmdec&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">tablelcc</span><span class="p">[</span><span class="s1">&#39;pmra&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">astrosol</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>
+    <span class="n">x</span><span class="o">=</span><span class="mi">1000</span><span class="o">/</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;parallax&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span>
+    <span class="n">y</span><span class="o">=</span><span class="mi">1000</span><span class="o">/</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;parallax&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span>
+    <span class="n">z</span><span class="o">=</span><span class="mi">1000</span><span class="o">/</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;parallax&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span>
+    <span class="n">vx</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">vy</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">vz</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">xa</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">ya</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">za</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="p">)):</span>
+        <span class="n">mdec</span><span class="o">=</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">mra</span><span class="o">=</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">mpar</span><span class="o">=</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;parallax&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">mpmra</span><span class="o">=</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;pmra&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">mpmdec</span><span class="o">=</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;pmdec&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">mvr</span><span class="o">=</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;radial_velocity&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">c1</span> <span class="o">=</span> <span class="n">coord</span><span class="o">.</span><span class="n">ICRS</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="n">mra</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="n">mdec</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span>
+                    <span class="n">distance</span><span class="o">=</span><span class="p">(</span><span class="n">mpar</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">pc</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">parallax</span><span class="p">()),</span>
+                    <span class="n">pm_ra_cosdec</span><span class="o">=</span><span class="n">mpmra</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">yr</span><span class="p">,</span>
+                    <span class="n">pm_dec</span><span class="o">=</span><span class="n">mpmdec</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">mas</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">yr</span><span class="p">,</span>
+                    <span class="n">radial_velocity</span><span class="o">=</span><span class="n">mvr</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">gc1</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">coord</span><span class="o">.</span><span class="n">Galactocentric</span><span class="p">())</span>
+        <span class="n">vx</span><span class="o">+=</span><span class="p">[</span><span class="n">gc1</span><span class="o">.</span><span class="n">v_x</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+        <span class="n">vy</span><span class="o">+=</span><span class="p">[</span><span class="n">gc1</span><span class="o">.</span><span class="n">v_y</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+        <span class="n">vz</span><span class="o">+=</span><span class="p">[</span><span class="n">gc1</span><span class="o">.</span><span class="n">v_z</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+        <span class="n">xa</span><span class="o">+=</span><span class="p">[</span><span class="n">gc1</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+        <span class="n">ya</span><span class="o">+=</span><span class="p">[</span><span class="n">gc1</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+        <span class="n">za</span><span class="o">+=</span><span class="p">[</span><span class="n">gc1</span><span class="o">.</span><span class="n">z</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+    <span class="n">vx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vx</span><span class="p">)</span>
+    <span class="n">vy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vy</span><span class="p">)</span>
+    <span class="n">vz</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vz</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">vx</span><span class="p">,</span><span class="n">vy</span><span class="p">,</span><span class="n">vz</span><span class="p">,</span><span class="n">xa</span><span class="p">,</span><span class="n">ya</span><span class="p">,</span><span class="n">za</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lccas</span><span class="o">=</span><span class="n">astrosol</span><span class="p">(</span><span class="n">tablelcc</span><span class="p">)</span>
+<span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">z2</span><span class="p">,</span><span class="n">vx2</span><span class="p">,</span><span class="n">vy2</span><span class="p">,</span><span class="n">vz2</span><span class="p">,</span><span class="n">xa2</span><span class="p">,</span><span class="n">ya2</span><span class="p">,</span><span class="n">za2</span><span class="o">=</span><span class="n">lccas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">norm</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">xa2</span><span class="p">,</span><span class="n">ya2</span><span class="p">,</span><span class="n">za2</span><span class="p">,</span><span class="n">vx2</span><span class="o">/</span><span class="n">norm</span><span class="p">,</span><span class="n">vy2</span><span class="o">/</span><span class="n">norm</span><span class="p">,</span><span class="n">vz2</span><span class="o">/</span><span class="n">norm</span><span class="p">,</span><span class="n">arrow_length_ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x (pc)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y (pc)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z (pc)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ejercicio: Calcular la edad cinématica de LCC estimando el momento de máximo acercamiento entre las estrellas de LCC.</p>
+</section>
+<section id="tablas-votable-y-wcs">
+<h2>Tablas (Votable) y WCS<a class="headerlink" href="#tablas-votable-y-wcs" title="Permalink to this heading">#</a></h2>
+<p>VOTABLE es un estándar de formato basado en XML diseñado específicamente para el intercambio de datos tabulares dentro de la comunidad astronómica, bajo la supervisión de la IVOA (International Virtual Observatory Alliance). A diferencia de archivos CSV convencionales, un archivo VOTABLE permite incluir metadatos enriquecidos que describen las unidades, los sistemas de coordenadas y la procedencia de la información.</p>
+<p>Ejemplo: Exploración de datos xml en formato Votable: el caso de las estrellas en el grupo móvil Lower Centaurus Crux (LCC).</p>
+<p>Ir a SIMBAD, buscar “lcc”, children objects, descargar Votable</p>
+<p>Enlace:
+http://simbad.u-strasbg.fr/simbad/sim-id?Ident=NAME%20LCC&amp;NbIdent=query_hlinks&amp;Coord=12%2019-57.1&amp;parents=1&amp;children=1938&amp;submit=children&amp;siblings=19&amp;hlinksdisplay=h_all</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.io.votable</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_single_table</span>
+<span class="n">votable</span> <span class="o">=</span> <span class="n">parse_single_table</span><span class="p">(</span><span class="s2">&quot;lcc_simbad_votable.xml&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">votable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">votable</span><span class="p">[</span><span class="s1">&#39;RA_d&#39;</span><span class="p">],</span><span class="n">votable</span><span class="p">[</span><span class="s1">&#39;DEC_d&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;RA&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Dec&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las coordenadas mundiales (World Coordinates) sirven para ubicar una medida en un espacio de parámetros multidimensional. Un Sistema de Coordenadas Mundiales (WCS en inglés) especifica las coordenadas físicas, o mundiales (WC en inglés), que se adjuntan a cada píxel o spaxel de una imagen o matriz de $N$ dimensiones. Se ha desarrollado un elaborado conjunto de normas y convenciones para el formato FITS (Flexible Image Transport System) (Wells et al. 1981). Un ejemplo típico de WCS es la especificación de la Ascensión Recta (AR) y la Declinación (Dec) en el cielo asociada a una determinada ubicación de píxel o vóxel en una imagen celeste bidimensional (Greisen y Calabretta 2002; Calabretta y Greisen 2002).</p>
+<p>Hay dos formas principales de inicializar un objeto WCS: con un diccionario de Python (o un objeto tipo diccionario, como la cabecera de un archivo FITS) o con listas de Python. En este ejemplo, inicializaremos un objeto astropy.wcs.WCS con dos dimensiones, como sería necesario para representar una imagen.</p>
+<p>Adaptado y traducido de https://learn.astropy.org/tutorials/celestial_coords1.html</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.wcs</span><span class="w"> </span><span class="kn">import</span> <span class="n">WCS</span>
+<span class="c1"># world coordinate system https://learn.astropy.org/tutorials/celestial_coords1.html</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wcs_input_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;CTYPE1&#39;</span><span class="p">:</span> <span class="s1">&#39;RA&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CUNIT1&#39;</span><span class="p">:</span> <span class="s1">&#39;deg&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CTYPE2&#39;</span><span class="p">:</span> <span class="s1">&#39;DEC&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CUNIT2&#39;</span><span class="p">:</span> <span class="s1">&#39;deg&#39;</span>
+<span class="p">}</span>
+<span class="n">wcs_helix</span> <span class="o">=</span> <span class="n">WCS</span><span class="p">(</span><span class="n">wcs_input_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wcs_helix</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">wcs_helix</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">votable</span><span class="p">[</span><span class="s1">&#39;RA_d&#39;</span><span class="p">],</span><span class="n">votable</span><span class="p">[</span><span class="s1">&#39;DEC_d&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;RA&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Dec&#39;</span><span class="p">)</span>
+<span class="n">overlay</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_coords_overlay</span><span class="p">(</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
+<span class="n">overlay</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">wcs_helix</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">votable</span><span class="p">[</span><span class="s1">&#39;RA_d&#39;</span><span class="p">],</span><span class="n">votable</span><span class="p">[</span><span class="s1">&#39;DEC_d&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;RA&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Dec&#39;</span><span class="p">)</span>
+<span class="n">overlay</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_coords_overlay</span><span class="p">(</span><span class="s1">&#39;galactic&#39;</span><span class="p">)</span>
+<span class="n">overlay</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;dotted&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="consultando-lineas-espectrales-moleculares">
+<h2>Consultando líneas espectrales moleculares<a class="headerlink" href="#consultando-lineas-espectrales-moleculares" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.linelists.cdms</span><span class="w"> </span><span class="kn">import</span> <span class="n">CDMS</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">min_frequency</span><span class="o">=</span><span class="mf">241.67</span>
+<span class="n">max_frequency</span><span class="o">=</span><span class="mf">241.91</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">CDMS</span><span class="o">.</span><span class="n">query_lines</span><span class="p">(</span><span class="n">min_frequency</span><span class="o">=</span> <span class="n">min_frequency</span><span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
+                            <span class="n">max_frequency</span><span class="o">=</span><span class="n">max_frequency</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">GHz</span><span class="p">,</span>
+                            <span class="n">min_strength</span><span class="o">=-</span><span class="mi">500</span><span class="p">,</span>
+                            <span class="n">molecule</span><span class="o">=</span><span class="s2">&quot;032504 CH3OH, vt=0-2&quot;</span><span class="p">,</span>
+                            <span class="n">get_query_payload</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">temperature_for_intensity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="otras-herramientas">
+<h2>Otras herramientas<a class="headerlink" href="#otras-herramientas" title="Permalink to this heading">#</a></h2>
+<p>A veces hay otras mejores herramientas que astroquery, por ejemplo para buscar curvas de luz exoplanetarias.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>lightkurve
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">lightkurve</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lk</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Search for light curve data</span>
+<span class="n">search_result</span> <span class="o">=</span> <span class="n">lk</span><span class="o">.</span><span class="n">search_lightcurve</span><span class="p">(</span><span class="s2">&quot;HD 209458&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">search_result</span><span class="p">)</span>
+
+<span class="c1"># Download first available light curve</span>
+<span class="n">lc</span> <span class="o">=</span> <span class="n">search_result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
+
+<span class="c1"># Clean and normalize</span>
+<span class="n">lc</span> <span class="o">=</span> <span class="n">lc</span><span class="o">.</span><span class="n">remove_nans</span><span class="p">()</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
+
+<span class="c1"># Plot</span>
+<span class="n">lc</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;HD 209458 Light Curve&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">lightkurve</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lk</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.timeseries</span><span class="w"> </span><span class="kn">import</span> <span class="n">LombScargle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># ------------------------------------------------------------</span>
+<span class="c1"># Download light curve</span>
+<span class="c1"># ------------------------------------------------------------</span>
+
+<span class="n">lc</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">lk</span><span class="o">.</span><span class="n">search_lightcurve</span><span class="p">(</span><span class="s2">&quot;HD 209458&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">download</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">remove_nans</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># ------------------------------------------------------------</span>
+<span class="c1"># Prepare arrays</span>
+<span class="c1"># ------------------------------------------------------------</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="n">lc</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">value</span>
+<span class="n">flux</span> <span class="o">=</span> <span class="n">lc</span><span class="o">.</span><span class="n">flux</span><span class="o">.</span><span class="n">value</span>
+
+<span class="c1"># Remove long-term trends (optional but helpful)</span>
+<span class="n">flux</span> <span class="o">=</span> <span class="n">flux</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">flux</span><span class="p">)</span>
+
+<span class="c1"># ------------------------------------------------------------</span>
+<span class="c1"># Lomb-Scargle periodogram</span>
+<span class="c1"># ------------------------------------------------------------</span>
+
+<span class="n">frequency</span><span class="p">,</span> <span class="n">power</span> <span class="o">=</span> <span class="n">LombScargle</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">flux</span><span class="p">)</span><span class="o">.</span><span class="n">autopower</span><span class="p">()</span>
+
+<span class="c1"># Convert frequency -&gt; period</span>
+<span class="n">period</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">frequency</span>
+
+<span class="c1"># Best period</span>
+<span class="n">best_period</span> <span class="o">=</span> <span class="mf">3.524</span> <span class="c1"># take the first large one, by eye</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best period: </span><span class="si">{</span><span class="n">best_period</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> days&quot;</span><span class="p">)</span>
+
+<span class="c1"># ------------------------------------------------------------</span>
+<span class="c1"># Plot periodogram</span>
+<span class="c1"># ------------------------------------------------------------</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">period</span><span class="p">,</span> <span class="n">power</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Period [days]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Power&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Lomb-Scargle Periodogram&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">best_period</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># ------------------------------------------------------------</span>
+<span class="c1"># Phase-fold light curve</span>
+<span class="c1"># ------------------------------------------------------------</span>
+
+<span class="n">phase</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span> <span class="o">%</span> <span class="n">best_period</span><span class="p">)</span> <span class="o">/</span> <span class="n">best_period</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">phase</span><span class="p">,</span> <span class="n">flux</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Phase&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Normalized Flux&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Folded Light Curve (P = </span><span class="si">{</span><span class="n">best_period</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> d)&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="eventos-transitorios-astronomicos">
+<h2>Eventos transitorios astronómicos<a class="headerlink" href="#eventos-transitorios-astronomicos" title="Permalink to this heading">#</a></h2>
+<p><strong>Open Astronomy Catalogs (Astrocats)</strong> es un proyecto de acceso abierto que centraliza y unifica datos dinámicos de eventos transitorios astronómicos, como supernovas, kilonovas y eventos de disrupción de marea (TDE). Recolecta fotometría y espectroscopía de diversas fuentes (literatura científica, telescopios y encuestas automáticas). Tiene una API (Application Programming Interface)  sencilla de libre acceso que entrega los datos en formato JSON para facilitar su análisis computacional. Su objetivo principal es democratizar el acceso a los datos de “astronomía de dominio temporal”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://astrocats.space/api/SN2011FE/photometry/time+magnitude+band&quot;</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="n">phot</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;SN2011FE&quot;</span><span class="p">][</span><span class="s2">&quot;photometry&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>JSON (JavaScript Object Notation) es el formato en el que llegan los datos desde el servidor de Open Astronomy Catalogs (astrocats.space). JSON es un formato de texto ligero para el intercambio de datos. Aunque su nombre menciona JavaScript, es independiente del lenguaje y se ha convertido en el estándar de la industria (reemplazando casi totalmente al XML) porque es muy fácil de leer tanto para humanos como para máquinas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Table</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+
+<span class="c1"># Filter out rows where magnitude is an empty string or cannot be converted</span>
+<span class="n">cleaned_phot</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">phot</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">entry</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># Try converting magnitude to float</span>
+        <span class="n">cleaned_phot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="c1"># Skip entries with invalid magnitude</span>
+        <span class="k">continue</span>
+
+<span class="c1"># Convert the cleaned list of photometry data to an Astropy Table</span>
+<span class="n">phot_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="n">cleaned_phot</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;magnitude&#39;</span><span class="p">,</span> <span class="s1">&#39;band&#39;</span><span class="p">])</span>
+
+<span class="c1"># Convert time and magnitude columns to appropriate data types and units</span>
+<span class="n">phot_table</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">phot_table</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">d</span>
+<span class="n">phot_table</span><span class="p">[</span><span class="s1">&#39;magnitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">phot_table</span><span class="p">[</span><span class="s1">&#39;magnitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">mag</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">phot_table</span><span class="o">.</span><span class="n">info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter for &#39;V&#39; band magnitudes</span>
+<span class="n">v_band_data</span> <span class="o">=</span> <span class="n">phot_table</span><span class="p">[</span><span class="n">phot_table</span><span class="p">[</span><span class="s1">&#39;band&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;V&#39;</span><span class="p">]</span>
+
+<span class="c1"># Plot the V-band light curve</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">v_band_data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">v_band_data</span><span class="p">[</span><span class="s1">&#39;magnitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;V band&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time (MJD)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Magnitude (V band)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;SN 2014J Light Curve (V band)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the brightest V-band magnitude (lowest numerical value)</span>
+<span class="n">peak_vmag</span> <span class="o">=</span> <span class="n">v_band_data</span><span class="p">[</span><span class="s1">&#39;magnitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+
+<span class="c1"># Assume a typical absolute magnitude for a Type Ia supernova</span>
+<span class="c1"># This is a common value, but can vary slightly depending on calibration</span>
+<span class="n">absolute_magnitude_ia</span> <span class="o">=</span> <span class="o">-</span><span class="mf">19.3</span>
+
+<span class="c1"># Calculate the distance using the distance modulus formula: m - M = 5 log10(d) - 5</span>
+<span class="c1"># where d is in parsecs (pc)</span>
+<span class="n">distance_pc</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">((</span><span class="n">peak_vmag</span> <span class="o">-</span> <span class="n">absolute_magnitude_ia</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">distance_kpc</span> <span class="o">=</span> <span class="n">distance_pc</span> <span class="o">/</span> <span class="mi">1000</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Brightest V-band apparent magnitude (m): </span><span class="si">{</span><span class="n">peak_vmag</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mag&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Assumed absolute magnitude for Type Ia supernova (M): </span><span class="si">{</span><span class="n">absolute_magnitude_ia</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> mag&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated distance: </span><span class="si">{</span><span class="n">distance_kpc</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> kpc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ejercicio: Use los datos de la banda B para estimar la extinción y corregir la determinación de distancia. Asuma un índice de color intrínseco para las SN tipo Ia de (B-V)_0 = 0.0.</p>
+<section id="la-escala-de-distancias">
+<h3>La escala de distancias<a class="headerlink" href="#la-escala-de-distancias" title="Permalink to this heading">#</a></h3>
+<p>Para este ejercicio use la información en la base de datos de NED-D (se descarga en el siguiente wget). Para los diez principales métodos de determinación de distancia en NED-D, reporte el rango estadístico de la distancia que estima cada método.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>https://ned.ipac.caltech.edu/Archive/Distances/NED30.5.1-D-17.1.2-20200415.csv
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">NEDD_FILE</span> <span class="o">=</span> <span class="s2">&quot;NED30.5.1-D-17.1.2-20200415.csv&quot;</span>
+<span class="n">nedd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">NEDD_FILE</span><span class="p">,</span>
+    <span class="n">skiprows</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="c1"># Skip initial metadata rows</span>
+    <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">nedd</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nedd</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;Notes&quot;</span><span class="p">]</span>
+<span class="n">nedd</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="tamano-angular-galactico-vs-redshift">
+<h2>Tamaño angular galáctico vs. redshift<a class="headerlink" href="#tamano-angular-galactico-vs-redshift" title="Permalink to this heading">#</a></h2>
+<p>En un universo en expansión, el diámetro angular de una galaxia distante disminuye con el corrimiento al rojo $z$ al principio, pero alcanza un mínimo (típicamente alrededor de $z \approx 1.5$) y luego comienza a aumentar de nuevo debido a la interacción entre el tiempo de viaje de la luz y la escala del universo.</p>
+<p>Cuando observamos una galaxia con un corrimiento al rojo muy alto, la estamos viendo tal como era en el pasado distante, cuando el universo era mucho más pequeño y la galaxia estaba físicamente más cerca de nuestra ubicación. Debido a que el tamaño angular está determinado por el diámetro físico de la galaxia en relación con su distancia en el momento en que se emitió la luz, estas galaxias antiguas y “más cercanas” subtienden un ángulo mayor en el cielo que las galaxias más recientes que emitieron su luz cuando el universo ya se había expandido significativamente.</p>
+<p>Esto se puede pensar como que cada galaxia ocupaba una “porción” más grande del cielo disponible en esa era. Para cuando esa luz llega a nosotros, el universo se ha expandido, pero el ángulo que la luz subtendía originalmente ya estaba “fijado” en el momento de la emisión.</p>
+<p>Para visualizar esto, revisaremos un artículo clásico que evidencia este efecto con datos de núcleos activos de galaxias obtenidos a través de interferometría. Vaya al enlace de ADS, busque los datos asociados al servicio CDS. Vaya al enlace de Vizier y encuentre el nombre de la tabla “VLBI angular size - z” for 330 sources (330 rows)” del catálogo correspondiente.</p>
+<p>Bibcode (ADS): <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1999A%26A...342..378G/abstract">1999A%26A…342..378G</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.vizier</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vizier</span>
+
+<span class="c1"># Increase the row limit if the table is large (default is 50 rows)</span>
+<span class="n">Vizier</span><span class="o">.</span><span class="n">ROW_LIMIT</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="c1"># Define the catalog identifier and the specific table</span>
+<span class="c1">#catalog_id = &quot;nombre de la tabla&quot;</span>
+
+<span class="c1"># Fetch the table</span>
+<span class="c1">#catalogs = Vizier.get_catalogs(catalog_id)</span>
+
+<span class="c1"># Vizier.get_catalogs returns a TableList object.</span>
+<span class="c1"># We access the first (and in this case, only) table in that list.</span>
+<span class="c1">#table_1 = catalogs[0]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La curvatura global del universo determina cómo divergen o convergen las trayectorias de la luz, lo que afecta el tamaño angular observado de las galaxias. En modelos cosmológicos con curvatura positiva (un universo cerrado), las líneas de luz convergen como los meridianos en un globo, haciendo que los objetos parezcan aún más grandes de lo que dicta la expansión. Por el contrario, en modelos con curvatura negativa o plana (como el modelo $\Lambda$CDM), la evolución del diámetro angular depende de la competencia entre la expansión y el contenido de materia y energía oscura. Así, medir el ángulo subtendido por objetos de tamaño conocido —como las oscilaciones acústicas de bariones o cúmulos de galaxias— es una de las pruebas fundamentales para determinar la geometría del universo y la densidad total de sus componentes ($\Omega_0$).</p>
+<p>Usando el código siguiente, haga una gráfica de redshift vs. tamaño angular promediando de a sqrt(N) galaxias (N = número de galaxias en la muestra) con (opcional) barras de error de 1-sigma. Debe resultar similar a la Fig. 5 del paper.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.cosmology</span><span class="w"> </span><span class="kn">import</span> <span class="n">LambdaCDM</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">z_model</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">standard_ruler</span> <span class="o">=</span> <span class="mi">25</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">kpc</span>
+<span class="n">H0</span> <span class="o">=</span> <span class="mi">70</span>
+
+<span class="c1"># Definimos casos físicamente representativos</span>
+<span class="c1"># q0 = parámetro de deceleración</span>
+<span class="c1"># Om0 = parámetro de densidad de materia (oscura y visible)</span>
+<span class="c1"># Ode0 = parámetro de densidad de la energía oscura</span>
+<span class="n">casos</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;q0&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="s1">&#39;Om0&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;Ode0&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Steady-state / De Sitter&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;q0&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.55</span><span class="p">,</span><span class="s1">&#39;Om0&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;Ode0&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Actual (Lambda-CDM)&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;q0&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;Om0&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;Ode0&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Einstein-De Sitter (Plano)&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;q0&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;Om0&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;Ode0&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Big Crunch (Cerrado)&#39;</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">casos</span><span class="p">:</span>
+    <span class="c1"># Usamos LambdaCDM para permitir universos no planos (Om0 + Ode0 != 1)</span>
+    <span class="n">cosmo</span> <span class="o">=</span> <span class="n">LambdaCDM</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="n">H0</span><span class="p">,</span> <span class="n">Om0</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;Om0&#39;</span><span class="p">],</span> <span class="n">Ode0</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;Ode0&#39;</span><span class="p">])</span>
+
+    <span class="n">da_model</span> <span class="o">=</span> <span class="n">cosmo</span><span class="o">.</span><span class="n">angular_diameter_distance</span><span class="p">(</span><span class="n">z_model</span><span class="p">)</span>
+    <span class="n">theta_model</span> <span class="o">=</span> <span class="p">(</span><span class="n">standard_ruler</span> <span class="o">/</span> <span class="n">da_model</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">arcsec</span><span class="p">,</span> <span class="n">equivalencies</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">dimensionless_angles</span><span class="p">())</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z_model</span><span class="p">,</span> <span class="n">theta_model</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$q_0 = </span><span class="si">{</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;q0&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">$ (</span><span class="si">{</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Redshift (z)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Angular Size (mas)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Avanzado: Use SIMBAD para visualizar en la misma escala imágenes de distintas galaxias de la muestra disminuyendo de tamaño y luego aumentando de tamaño luego de z&gt;1.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Clase_09_astropy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Clase 9: Astropy: Unidades y Coordenadas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Proyecto%201er%20mes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Proyecto 1er mes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bases-de-datos-comunmente-usadas-en-astronomia"><strong>Bases de datos comúnmente usadas en astronomía</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simbad-set-of-identifications-measurements-and-bibliography-for-astronomical-data"><strong>SIMBAD (Set of Identifications, Measurements and Bibliography for Astronomical Data)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vizier-catalogue-service"><strong>VizieR (Catalogue Service)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ned-nasa-ipac-extragalactic-database"><strong>NED (NASA/IPAC Extragalactic Database)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jpl-exoplanet-archive-nasa"><strong>JPL Exoplanet Archive (NASA)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exoplanet-eu-the-extrasolar-planets-encyclopaedia"><strong>Exoplanet.eu (The Extrasolar Planets Encyclopaedia)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nasa-jpl-horizons"><strong>NASA JPL Horizons</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mast-mikulski-archive-for-space-telescopes"><strong>MAST (Mikulski Archive for Space Telescopes)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esa-sky-gaia-archive"><strong>ESA Sky / Gaia Archive</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eso-science-archive-facility-european-southern-observatory"><strong>ESO Science Archive Facility (European Southern Observatory)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nrao-archive-national-radio-astronomy-observatory"><strong>NRAO Archive (National Radio Astronomy Observatory)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ads-nasa-sao-astrophysics-data-system"><strong>ADS (NASA/SAO Astrophysics Data System)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arxiv-preprint-server"><strong>arXiv (Preprint Server)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-servicios"><strong>Otros servicios</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dss-online-digitized-sky-survey"><strong>DSS (Online Digitized Sky Survey)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hla-hubble-legacy-archive"><strong>HLA (Hubble Legacy Archive)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#irsa-infrared-science-archive"><strong>IRSA (Infrared Science Archive)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-two-micron-all-sky-survey"><strong>2MASS (Two Micron All Sky Survey)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hsa-herschel-science-archive"><strong>HSA (Herschel Science Archive)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heasarc-high-energy-astrophysics-archive-research-center"><strong>HEASARC (High Energy Astrophysics Archive Research Center)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lambda-legacy-archive-for-microwave-background-data-analysis"><strong>LAMBDA (Legacy Archive for Microwave Background Data Analysis)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pds-planetary-data-system"><strong>PDS (Planetary Data System)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sdss-sloan-digital-sky-survey"><strong>SDSS (Sloan Digital Sky Survey)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desi-dark-energy-spectroscopic-instrument-data-release"><strong>DESI (Dark Energy Spectroscopic Instrument) Data Release</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#noirlab-data-archive-national-optical-infrared-astronomy-research-laboratory"><strong>NOIRLab Data Archive (National Optical-Infrared Astronomy Research Laboratory)</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bases-de-datos-espectrales"><strong>Bases de datos espectrales</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#splatalogue-spectral-line-atlas-of-interstellar-molecules"><strong>Splatalogue (Spectral Line Atlas of Interstellar Molecules)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cdms-cologne-database-for-molecular-spectroscopy"><strong>CDMS (Cologne Database for Molecular Spectroscopy)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitran-high-resolution-transmission-molecular-absorption-database"><strong>HITRAN (High-Resolution Transmission Molecular Absorption Database)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atomic-line-list"><strong>Atomic Line List</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explorando-gaia-con-astroquery-y-el-servicio-tap">Explorando Gaia con Astroquery y el servicio TAP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revisando-inconsistencias-en-otras-bases-de-datos">Revisando inconsistencias en otras bases de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatizando-una-busqueda-de-gaia">Automatizando una búsqueda de Gaia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tablas-votable-y-wcs">Tablas (Votable) y WCS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consultando-lineas-espectrales-moleculares">Consultando líneas espectrales moleculares</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-herramientas">Otras herramientas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eventos-transitorios-astronomicos">Eventos transitorios astronómicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-escala-de-distancias">La escala de distancias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-angular-galactico-vs-redshift">Tamaño angular galáctico vs. redshift</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Esteban Silva Villa y Germán Chaparro Molano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
