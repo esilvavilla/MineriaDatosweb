@@ -603,7 +603,9 @@ Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /opt/homebrew/C
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (3.13)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.26 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2.6.3)
 Requirement already satisfied: certifi&gt;=2023.5.7 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2026.4.22)
-Requirement already satisfied: more-itertools in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.classes-&gt;keyring&gt;=15.0-&gt;astroquery) (11.0.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: more-itertools in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.classes-&gt;keyring&gt;=15.0-&gt;astroquery) (11.0.2)
 Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.context-&gt;keyring&gt;=15.0-&gt;astroquery) (1.2.0)
 </pre></div>
 </div>
@@ -634,7 +636,9 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Parsing tables... [astroquery.utils.tap.core]
-INFO: Done. [astroquery.utils.tap.core]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: Done. [astroquery.utils.tap.core]
 external.apassdr9
 external.catwise2020
 external.gaiadr2_astrophysical_parameters
@@ -917,7 +921,7 @@ tap_schema.tables
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;NGC2808_DSS2_cutout.jpg&#39;, &lt;http.client.HTTPMessage at 0x1170f90c0&gt;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;NGC2808_DSS2_cutout.jpg&#39;, &lt;http.client.HTTPMessage at 0x11e758fd0&gt;)
 </pre></div>
 </div>
 </div>
@@ -1012,50 +1016,21 @@ https://gaia.aip.de/cms/services/cone-search/</p>
 <span class="g g-Whitespace">    </span><span class="mi">479</span> <span class="k">else</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">480</span>     <span class="n">job</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
 
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/astroquery/utils/tap/model/job.py:305,</span> in <span class="ni">Job.save_results</span><span class="nt">(self, verbose)</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span> <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saving results to: </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">305</span> <span class="bp">self</span><span class="o">.</span><span class="n">connHandler</span><span class="o">.</span><span class="n">dump_to_file</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/astroquery/utils/tap/model/job.py:281,</span> in <span class="ni">Job.save_results</span><span class="nt">(self, verbose)</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No results to save&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">280</span>     <span class="c1"># Async</span>
+<span class="ne">--&gt; </span><span class="mi">281</span>     <span class="bp">self</span><span class="o">.</span><span class="n">wait_for_job_end</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span>     <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connHandler</span><span class="o">.</span><span class="n">execute_tapget</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span>         <span class="sa">f</span><span class="s2">&quot;async/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">jobid</span><span class="si">}</span><span class="s2">/results/result&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">284</span>     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
 
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/astroquery/utils/tap/conn/tapconn.py:516,</span> in <span class="ni">TapConn.dump_to_file</span><span class="nt">(self, output, response)</span>
-<span class="g g-Whitespace">    </span><span class="mi">514</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">515</span>     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">516</span>         <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">517</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">518</span>             <span class="k">break</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/http/client.py:471,</span> in <span class="ni">HTTPResponse.read</span><span class="nt">(self, amt)</span>
-<span class="g g-Whitespace">    </span><span class="mi">468</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">amt</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">469</span>     <span class="c1"># clip the read to the &quot;end of response&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">470</span>     <span class="n">amt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span>
-<span class="ne">--&gt; </span><span class="mi">471</span> <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">amt</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">472</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span> <span class="ow">and</span> <span class="n">amt</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">473</span>     <span class="c1"># Ideally, we would raise IncompleteRead if the content-length</span>
-<span class="g g-Whitespace">    </span><span class="mi">474</span>     <span class="c1"># wasn&#39;t satisfied, but it might break compatibility.</span>
-<span class="g g-Whitespace">    </span><span class="mi">475</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_close_conn</span><span class="p">()</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/socket.py:717,</span> in <span class="ni">SocketIO.readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">715</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">716</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">717</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">718</span>     <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">719</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_occurred</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/ssl.py:1307,</span> in <span class="ni">SSLSocket.recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1303</span>     <span class="k">if</span> <span class="n">flags</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1304</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1305</span>           <span class="s2">&quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
-<span class="g g-Whitespace">   </span><span class="mi">1306</span>           <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1307</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1308</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1309</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">nbytes</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
-
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/ssl.py:1163,</span> in <span class="ni">SSLSocket.read</span><span class="nt">(self, len, buffer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1161</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1162</span>     <span class="k">if</span> <span class="n">buffer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1163</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1164</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1165</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/astroquery/utils/tap/model/job.py:338,</span> in <span class="ni">Job.wait_for_job_end</span><span class="nt">(self, verbose)</span>
+<span class="g g-Whitespace">    </span><span class="mi">335</span>         <span class="k">break</span>
+<span class="g g-Whitespace">    </span><span class="mi">336</span>     <span class="c1"># PENDING, QUEUED, EXECUTING, COMPLETED, ERROR, ABORTED, UNKNOWN,</span>
+<span class="g g-Whitespace">    </span><span class="mi">337</span>     <span class="c1"># HELD, SUSPENDED, ARCHIVED:</span>
+<span class="ne">--&gt; </span><span class="mi">338</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">339</span> <span class="k">return</span> <span class="n">currentResponse</span><span class="p">,</span> <span class="n">lphase</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1256,6 +1231,7 @@ https://gaia.aip.de/cms/services/cone-search/</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.simbad</span><span class="w"> </span><span class="kn">import</span> <span class="n">Simbad</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.io.votable</span><span class="w"> </span><span class="kn">import</span> <span class="n">from_table</span><span class="p">,</span><span class="n">writeto</span>
 
 <span class="c1"># Optional: include extra hierarchy information</span>
 <span class="n">custom_simbad</span> <span class="o">=</span> <span class="n">Simbad</span><span class="p">()</span>
@@ -1877,7 +1853,42 @@ http://simbad.u-strasbg.fr/simbad/sim-id?Ident=NAME%20LCC&amp;NbIdent=query_hlin
 </div>
 </div>
 </div>
-<p>Avanzado: Use SIMBAD para visualizar en la misma escala imágenes de distintas galaxias de la muestra disminuyendo de tamaño y luego aumentando de tamaño luego de z&gt;1.</p>
+<p>Es posible tener una versión más actualizada de esa gráfica con datos modernos de SIMBAD.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.simbad</span><span class="w"> </span><span class="kn">import</span> <span class="n">Simbad</span>
+
+<span class="n">custom_simbad</span> <span class="o">=</span> <span class="n">Simbad</span><span class="p">()</span>
+<span class="n">custom_simbad</span><span class="o">.</span><span class="n">ROW_LIMIT</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="n">custom_simbad</span><span class="o">.</span><span class="n">add_votable_fields</span><span class="p">(</span>
+    <span class="s2">&quot;dim&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;otype&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ra(d)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dec(d)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;z_value&quot;</span>
+<span class="p">)</span>
+
+<span class="n">result_table</span> <span class="o">=</span> <span class="n">custom_simbad</span><span class="o">.</span><span class="n">query_bibobj</span><span class="p">(</span><span class="s2">&quot;1999A&amp;A...342..378G&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result_table</span><span class="o">.</span><span class="n">colnames</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_data</span> <span class="o">=</span> <span class="n">result_table</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">result_table</span><span class="p">[</span><span class="s1">&#39;galdim_majaxis&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1e-2</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">result_table</span><span class="p">[</span><span class="s1">&#39;rvz_redshift&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="c1"># redo plot using filtered_data</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
