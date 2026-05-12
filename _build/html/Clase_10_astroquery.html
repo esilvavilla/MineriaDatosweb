@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_10_astroquery';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Proyecto 1er mes" href="Proyecto%201er%20mes.html" />
+    <link rel="next" title="Clase 10: Manejo de archivos FITS" href="Clase_11_fits.html" />
     <link rel="prev" title="Clase 9: Astropy: Unidades y Coordenadas" href="Clase_09_astropy.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -190,6 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 10: Bases de datos astronómicas y Astroquery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 10: Manejo de archivos FITS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
@@ -603,9 +604,7 @@ Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /opt/homebrew/C
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (3.13)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.26 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2.6.3)
 Requirement already satisfied: certifi&gt;=2023.5.7 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2026.4.22)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: more-itertools in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.classes-&gt;keyring&gt;=15.0-&gt;astroquery) (11.0.2)
+Requirement already satisfied: more-itertools in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.classes-&gt;keyring&gt;=15.0-&gt;astroquery) (11.0.2)
 Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.context-&gt;keyring&gt;=15.0-&gt;astroquery) (1.2.0)
 </pre></div>
 </div>
@@ -921,7 +920,7 @@ tap_schema.tables
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;NGC2808_DSS2_cutout.jpg&#39;, &lt;http.client.HTTPMessage at 0x11e758fd0&gt;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;NGC2808_DSS2_cutout.jpg&#39;, &lt;http.client.HTTPMessage at 0x11caf9210&gt;)
 </pre></div>
 </div>
 </div>
@@ -1434,7 +1433,7 @@ https://gaia.aip.de/cms/services/cone-search/</p>
 </section>
 <section id="tablas-votable-y-wcs">
 <h2>Tablas (Votable) y WCS<a class="headerlink" href="#tablas-votable-y-wcs" title="Permalink to this heading">#</a></h2>
-<p>VOTABLE es un estándar de formato basado en XML diseñado específicamente para el intercambio de datos tabulares dentro de la comunidad astronómica, bajo la supervisión de la IVOA (International Virtual Observatory Alliance). A diferencia de archivos CSV convencionales, un archivo VOTABLE permite incluir metadatos enriquecidos que describen las unidades, los sistemas de coordenadas y la procedencia de la información.</p>
+<p>VOTABLE es un estándar de formato basado en XML diseñado específicamente para el intercambio de datos tabulares dentro de la comunidad astronómica, bajo la supervisión de la IVOA (International Virtual Observatory Alliance). Un archivo VOTABLE permite incluir metadatos enriquecidos que describen las unidades, los sistemas de coordenadas y la procedencia de la información.</p>
 <p>Ejemplo: Exploración de datos xml en formato Votable: el caso de las estrellas en el grupo móvil Lower Centaurus Crux (LCC).</p>
 <p>Ir a SIMBAD, buscar “lcc”, children objects, descargar Votable</p>
 <p>Enlace:
@@ -1932,11 +1931,11 @@ http://simbad.u-strasbg.fr/simbad/sim-id?Ident=NAME%20LCC&amp;NbIdent=query_hlin
       </div>
     </a>
     <a class="right-next"
-       href="Proyecto%201er%20mes.html"
+       href="Clase_11_fits.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Proyecto 1er mes</p>
+        <p class="prev-next-title">Clase 10: Manejo de archivos FITS</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
