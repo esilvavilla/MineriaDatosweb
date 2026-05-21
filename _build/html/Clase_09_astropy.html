@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_09_astropy';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Proyecto 1er mes" href="Proyecto%201er%20mes.html" />
+    <link rel="next" title="Clase 10: Bases de datos astronómicas y Astroquery" href="Clase_10_astroquery.html" />
     <link rel="prev" title="Clase 8: Gran Repaso de Minería de Datos Astronómicos" href="Clase_08_Rsumen.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,11 +184,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 9: Astropy: Unidades y Coordenadas</a></li>
-
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="Clase_10_astroquery.html">Clase 10: Bases de datos astronómicas y Astroquery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_12_Aprendizaje_No_Supervisado.html">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
@@ -386,7 +384,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clase 9: Astropy: Unidades y Coordenadas</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-astropy"><strong>Introducción a Astropy</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constantes-fisicas-astropy-constants"><strong>Constantes Físicas (<code class="docutils literal notranslate"><span class="pre">astropy.constants</span></code>)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidades-y-cantidades-astropy-units"><strong>Unidades y Cantidades (<code class="docutils literal notranslate"><span class="pre">astropy.units</span></code>)</strong></a></li>
@@ -400,28 +397,25 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-a-coordenadas-altaz">Cambio a coordenadas AltAz</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usando-coordinates-y-table-para-combinar-y-comparar-catalogos">Usando <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> y <code class="docutils literal notranslate"><span class="pre">table</span></code> para combinar y comparar catálogos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extender-el-espectro-de-observacion-optico-ir">1. Extender el Espectro de Observación (Óptico + IR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identificar-poblaciones-estelares">2. Identificar Poblaciones Estelares</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#censo-de-masa-estelar">3. Censo de Masa Estelar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limpieza-del-campo-estrellas-vs-galaxias">4. Limpieza del campo (Estrellas vs Galaxias)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-estadistica">5. Validación Estadística</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#usando-coordinates-y-table-para-combinar-y-comparar-catalogos">Usando <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> y <code class="docutils literal notranslate"><span class="pre">table</span></code> para combinar y comparar catálogos</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extender-el-espectro-de-observacion-optico-ir">1. Extender el Espectro de Observación (Óptico + IR)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identificar-poblaciones-estelares">2. Identificar Poblaciones Estelares</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#censo-de-masa-estelar">3. Censo de Masa Estelar</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limpieza-del-campo-estrellas-vs-galaxias">4. Limpieza del campo (Estrellas vs Galaxias)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-estadistica">5. Validación Estadística</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-vs-r-k-diagrama-color-magnitud">1.  $r$ vs. $r-K$ (Diagrama color-magnitud)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#g-r-vs-r-k-diagrama-color-color">2. $g-r$ vs. $r-K$ (Diagrama color-color)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-hcg-7">Diagnóstico de HCG 7</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-sdss-g-r">1. Qué aporta SDSS ($g, r$)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-2mass-k">2. Qué aporta 2MASS ($K$)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ejercicio</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">Ejercicio</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejercicio</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ejercicio</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -945,20 +939,19 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </div>
 </section>
 </section>
-</section>
 <section id="usando-coordinates-y-table-para-combinar-y-comparar-catalogos">
-<h1>Usando <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> y <code class="docutils literal notranslate"><span class="pre">table</span></code> para combinar y comparar catálogos<a class="headerlink" href="#usando-coordinates-y-table-para-combinar-y-comparar-catalogos" title="Permalink to this heading">#</a></h1>
+<h2>Usando <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> y <code class="docutils literal notranslate"><span class="pre">table</span></code> para combinar y comparar catálogos<a class="headerlink" href="#usando-coordinates-y-table-para-combinar-y-comparar-catalogos" title="Permalink to this heading">#</a></h2>
 <p>Vamos a hacer un análisis multi-longitud de onda para caracterizar los objetos del grupo de galaxias HCG 7 (Hickson Compact Group 7).</p>
 <p>Vamos a cruzar los datos en el óptico de SDSS con los de IR de 2MASS para:</p>
 <section id="extender-el-espectro-de-observacion-optico-ir">
-<h2>1. Extender el Espectro de Observación (Óptico + IR)<a class="headerlink" href="#extender-el-espectro-de-observacion-optico-ir" title="Permalink to this heading">#</a></h2>
+<h3>1. Extender el Espectro de Observación (Óptico + IR)<a class="headerlink" href="#extender-el-espectro-de-observacion-optico-ir" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>SDSS (Sloan Digital Sky Survey):</strong> Principalmente en el espectro visible. Rastrea luz de las estrellas jóvenes (en banda corta $g$ vs. banda larga $r$) y la estructura gaseosa.</p></li>
 <li><p><strong>2MASS (Two Micron All Sky Survey):</strong> Datos en el infrarrojo cercano (bandas J, H, K). Permite ver a través del polvo interestelar y observar la luz de estrellas viejas y evolucionadas, que representan la mayor parte de la masa estelar de una galaxia.</p></li>
 </ul>
 </section>
 <section id="identificar-poblaciones-estelares">
-<h2>2. Identificar Poblaciones Estelares<a class="headerlink" href="#identificar-poblaciones-estelares" title="Permalink to this heading">#</a></h2>
+<h3>2. Identificar Poblaciones Estelares<a class="headerlink" href="#identificar-poblaciones-estelares" title="Permalink to this heading">#</a></h3>
 <p>Al combinar ambos catálogos, se pueden calcular colores que mezclan ambas bandas (por ejemplo, entre una magnitud óptica de SDSS y una infrarroja de 2MASS). Esto ayuda a distinguir entre:</p>
 <ul class="simple">
 <li><p><strong>Galaxias con formación estelar activa:</strong> (más brillantes en el azul/óptico).</p></li>
@@ -966,15 +959,15 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </ul>
 </section>
 <section id="censo-de-masa-estelar">
-<h2>3. Censo de Masa Estelar<a class="headerlink" href="#censo-de-masa-estelar" title="Permalink to this heading">#</a></h2>
+<h3>3. Censo de Masa Estelar<a class="headerlink" href="#censo-de-masa-estelar" title="Permalink to this heading">#</a></h3>
 <p>El objetivo de buscar la contraparte en 2MASS de las galaxias detectadas por SDSS es obtener una estimación más precisa de la masa total de las galaxias del grupo HCG 7, ya que la emisión en el infrarrojo cercano está muy correlacionada con la masa estelar total.</p>
 </section>
 <section id="limpieza-del-campo-estrellas-vs-galaxias">
-<h2>4. Limpieza del campo (Estrellas vs Galaxias)<a class="headerlink" href="#limpieza-del-campo-estrellas-vs-galaxias" title="Permalink to this heading">#</a></h2>
+<h3>4. Limpieza del campo (Estrellas vs Galaxias)<a class="headerlink" href="#limpieza-del-campo-estrellas-vs-galaxias" title="Permalink to this heading">#</a></h3>
 <p>En campos densos, es fácil confundir una estrella de nuestra propia galaxia con una galaxia lejana. El cross-matching permite verificar si un objeto detectado como “borroso” en el óptico tiene las características de una fuente puntual o extendida en el infrarrojo, ayudando a confirmar que los miembros identificados realmente pertenecen al grupo galáctico estudiado.</p>
 </section>
 <section id="validacion-estadistica">
-<h2>5. Validación Estadística<a class="headerlink" href="#validacion-estadistica" title="Permalink to this heading">#</a></h2>
+<h3>5. Validación Estadística<a class="headerlink" href="#validacion-estadistica" title="Permalink to this heading">#</a></h3>
 <p>Se calcula la distancia entre los vecinos más cercanos y se compara con una distribución aleatoria para demostrar que las coincidencias entre SDSS y 2MASS no son espurias, sino que estamos observando físicamente el mismo objeto en dos longitudes de onda distintas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1180,6 +1173,7 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 </div>
 </div>
 </section>
+</section>
 <section id="r-vs-r-k-diagrama-color-magnitud">
 <h2>1.  $r$ vs. $r-K$ (Diagrama color-magnitud)<a class="headerlink" href="#r-vs-r-k-diagrama-color-magnitud" title="Permalink to this heading">#</a></h2>
 <p>Relación entre la masa estelar y la historia de formación estelar.</p>
@@ -1221,21 +1215,20 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 <li><p><strong>Enfriamento (quenching):</strong> Si una galaxia es brillante en 2MASS pero débil en SDSS, se sabe que es una galaxia masiva que ha dejado completamente de formar estrellas (una elíptica o S0 “roja y muerta”).</p></li>
 </ul>
 </section>
-</section>
 <section id="ejercicio">
-<h1>Ejercicio<a class="headerlink" href="#ejercicio" title="Permalink to this heading">#</a></h1>
+<h2>Ejercicio<a class="headerlink" href="#ejercicio" title="Permalink to this heading">#</a></h2>
 <p>Encuentre los horarios de cada día durante los cuales el Centro Galáctico es visible desde Medellín durante los próximos dos meses.</p>
 </section>
 <section id="id1">
-<h1>Ejercicio<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<h2>Ejercicio<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>Usando la función <code class="docutils literal notranslate"><span class="pre">astropy.coordinates.get_sun</span></code> junto con la clase <code class="docutils literal notranslate"><span class="pre">astropy.time.Time</span></code> haga un analema completo del Sol a las 3 pm visto desde Medellín.</p>
 </section>
 <section id="id2">
-<h1>Ejercicio<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h1>
+<h2>Ejercicio<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>Usando la función <code class="docutils literal notranslate"><span class="pre">astropy.coordinates.get_constellation</span></code> y construyendo una malla de coordenadas galácticas con $\Delta l,\Delta b=2$ deg, genere una lista con las constelaciones que quedan a menos de 10 grados de latitud galáctica del plano galáctico.</p>
 </section>
 <section id="id3">
-<h1>Ejercicio<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h1>
+<h2>Ejercicio<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>Calcule el valor del coeficiente de Einstein A para la transición rotacional 1 a 0 del CO (dipolo eléctrico $\mu=0.112$ Debye, constante rotacional $B=1.922$ cm^-1 - número de onda) y para el CS ($\mu=1.96$ Debye, $B=0.817$ cm^-1) usando la siguiente fórmula (use $J=0$):</p>
 <p>$$A = \frac{64\pi^4}{3hc^3} \mu^2 \frac{J + 1}{2J + 3} \nu^3;\quad \nu=B(J+1)$$</p>
 <p>Ayuda: También se puede usar la conversión 1 Debye = 1e-18 cm^5/2 g^1/2 s^-1</p>
@@ -1251,6 +1244,7 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 </div>
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1293,11 +1287,11 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
       </div>
     </a>
     <a class="right-next"
-       href="Proyecto%201er%20mes.html"
+       href="Clase_10_astroquery.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Proyecto 1er mes</p>
+        <p class="prev-next-title">Clase 10: Bases de datos astronómicas y Astroquery</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1317,7 +1311,6 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clase 9: Astropy: Unidades y Coordenadas</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion-a-astropy"><strong>Introducción a Astropy</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constantes-fisicas-astropy-constants"><strong>Constantes Físicas (<code class="docutils literal notranslate"><span class="pre">astropy.constants</span></code>)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unidades-y-cantidades-astropy-units"><strong>Unidades y Cantidades (<code class="docutils literal notranslate"><span class="pre">astropy.units</span></code>)</strong></a></li>
@@ -1331,28 +1324,25 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-a-coordenadas-altaz">Cambio a coordenadas AltAz</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usando-coordinates-y-table-para-combinar-y-comparar-catalogos">Usando <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> y <code class="docutils literal notranslate"><span class="pre">table</span></code> para combinar y comparar catálogos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extender-el-espectro-de-observacion-optico-ir">1. Extender el Espectro de Observación (Óptico + IR)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identificar-poblaciones-estelares">2. Identificar Poblaciones Estelares</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#censo-de-masa-estelar">3. Censo de Masa Estelar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limpieza-del-campo-estrellas-vs-galaxias">4. Limpieza del campo (Estrellas vs Galaxias)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-estadistica">5. Validación Estadística</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#usando-coordinates-y-table-para-combinar-y-comparar-catalogos">Usando <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> y <code class="docutils literal notranslate"><span class="pre">table</span></code> para combinar y comparar catálogos</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extender-el-espectro-de-observacion-optico-ir">1. Extender el Espectro de Observación (Óptico + IR)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identificar-poblaciones-estelares">2. Identificar Poblaciones Estelares</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#censo-de-masa-estelar">3. Censo de Masa Estelar</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limpieza-del-campo-estrellas-vs-galaxias">4. Limpieza del campo (Estrellas vs Galaxias)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-estadistica">5. Validación Estadística</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-vs-r-k-diagrama-color-magnitud">1.  $r$ vs. $r-K$ (Diagrama color-magnitud)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#g-r-vs-r-k-diagrama-color-color">2. $g-r$ vs. $r-K$ (Diagrama color-color)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-hcg-7">Diagnóstico de HCG 7</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-sdss-g-r">1. Qué aporta SDSS ($g, r$)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-2mass-k">2. Qué aporta 2MASS ($K$)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejercicio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ejercicio</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">Ejercicio</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejercicio</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ejercicio</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
