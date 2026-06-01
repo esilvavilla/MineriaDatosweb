@@ -522,63 +522,22 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 <p>El objetivo de una Máquina de Vectores de Soporte (SVM) es encontrar el hiperplano óptimo que separa los puntos de datos pertenecientes a diferentes clases. “Óptimo” significa el hiperplano con el mayor margen, es decir, la máxima distancia posible entre el hiperplano y los puntos de datos de las distintas clases. Este enfoque de maximización del margen hace que las SVM sean robustas y eficaces. Los puntos de datos más cercanos al hiperplano, que determinan la posición del margen, se denominan vectores de soporte (support vectors). <a class="reference external" href="https://scikit-learn.org/stable/modules/svm.html">Visualización</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>https://github.com/Maximilian-Koch/tutorials/raw/refs/heads/main/datascience/SVM%20from%20scratch/astronomy.csv
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-06-01 11:02:40--  https://github.com/Maximilian-Koch/tutorials/raw/refs/heads/main/datascience/SVM%20from%20scratch/astronomy.csv
-Resolving github.com (github.com)... 
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="kn">import</span>
+<span class="w">          </span><span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140.82.113.3
-Connecting to github.com (github.com)|140.82.113.3|:443... 
-</pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>connected.
-</pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>302 Found
-Location: https://raw.githubusercontent.com/Maximilian-Koch/tutorials/refs/heads/main/datascience/SVM%20from%20scratch/astronomy.csv [following]
---2026-06-01 11:02:41--  https://raw.githubusercontent.com/Maximilian-Koch/tutorials/refs/heads/main/datascience/SVM%20from%20scratch/astronomy.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.108.133, 185.199.111.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
-HTTP request sent, awaiting response... 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
-Length: 16655862 (16M) [text/plain]
-Saving to: ‘astronomy.csv.1’
-
-
-astronomy.csv.1       0%[                    ]       0  --.-KB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>astronomy.csv.1      13%[=&gt;                  ]   2.22M  11.1MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>astronomy.csv.1      28%[====&gt;               ]   4.45M  11.1MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>astronomy.csv.1      42%[=======&gt;            ]   6.69M  11.1MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>astronomy.csv.1      56%[==========&gt;         ]   8.93M  11.1MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>astronomy.csv.1      70%[=============&gt;      ]  11.18M  11.1MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>astronomy.csv.1      84%[===============&gt;    ]  13.43M  11.2MB/s               
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>astronomy.csv.1      98%[==================&gt; ]  15.68M  11.2MB/s               
-astronomy.csv.1     100%[===================&gt;]  15.88M  11.2MB/s    in 1.4s    
-
-2026-06-01 11:02:42 (11.2 MB/s) - ‘astronomy.csv.1’ saved [16655862/16655862]
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>https://github.com/Maximilian-Koch/tutorials/raw/refs/heads/main/datascience/SVM%20from%20scratch/astronomy.csv
 </pre></div>
 </div>
 </div>
@@ -599,170 +558,12 @@ astronomy.csv.1     100%[===================&gt;]  15.88M  11.2MB/s    in 1.4s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>obj_ID</th>
-      <th>alpha</th>
-      <th>delta</th>
-      <th>u</th>
-      <th>g</th>
-      <th>r</th>
-      <th>i</th>
-      <th>z</th>
-      <th>run_ID</th>
-      <th>rerun_ID</th>
-      <th>cam_col</th>
-      <th>field_ID</th>
-      <th>spec_obj_ID</th>
-      <th>class</th>
-      <th>redshift</th>
-      <th>plate</th>
-      <th>MJD</th>
-      <th>fiber_ID</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1.237661e+18</td>
-      <td>135.689107</td>
-      <td>32.494632</td>
-      <td>23.87882</td>
-      <td>22.27530</td>
-      <td>20.39501</td>
-      <td>19.16573</td>
-      <td>18.79371</td>
-      <td>3606</td>
-      <td>301</td>
-      <td>2</td>
-      <td>79</td>
-      <td>6.543777e+18</td>
-      <td>GALAXY</td>
-      <td>0.634794</td>
-      <td>5812</td>
-      <td>56354</td>
-      <td>171</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.237665e+18</td>
-      <td>144.826101</td>
-      <td>31.274185</td>
-      <td>24.77759</td>
-      <td>22.83188</td>
-      <td>22.58444</td>
-      <td>21.16812</td>
-      <td>21.61427</td>
-      <td>4518</td>
-      <td>301</td>
-      <td>5</td>
-      <td>119</td>
-      <td>1.176014e+19</td>
-      <td>GALAXY</td>
-      <td>0.779136</td>
-      <td>10445</td>
-      <td>58158</td>
-      <td>427</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1.237661e+18</td>
-      <td>142.188790</td>
-      <td>35.582444</td>
-      <td>25.26307</td>
-      <td>22.66389</td>
-      <td>20.60976</td>
-      <td>19.34857</td>
-      <td>18.94827</td>
-      <td>3606</td>
-      <td>301</td>
-      <td>2</td>
-      <td>120</td>
-      <td>5.152200e+18</td>
-      <td>GALAXY</td>
-      <td>0.644195</td>
-      <td>4576</td>
-      <td>55592</td>
-      <td>299</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1.237663e+18</td>
-      <td>338.741038</td>
-      <td>-0.402828</td>
-      <td>22.13682</td>
-      <td>23.77656</td>
-      <td>21.61162</td>
-      <td>20.50454</td>
-      <td>19.25010</td>
-      <td>4192</td>
-      <td>301</td>
-      <td>3</td>
-      <td>214</td>
-      <td>1.030107e+19</td>
-      <td>GALAXY</td>
-      <td>0.932346</td>
-      <td>9149</td>
-      <td>58039</td>
-      <td>775</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1.237680e+18</td>
-      <td>345.282593</td>
-      <td>21.183866</td>
-      <td>19.43718</td>
-      <td>17.58028</td>
-      <td>16.49747</td>
-      <td>15.97711</td>
-      <td>15.54461</td>
-      <td>8102</td>
-      <td>301</td>
-      <td>3</td>
-      <td>137</td>
-      <td>6.891865e+18</td>
-      <td>GALAXY</td>
-      <td>0.116123</td>
-      <td>6121</td>
-      <td>56187</td>
-      <td>842</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store the original class labels for later use</span>
 <span class="n">orig_class</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">orig_class</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    GALAXY
-1    GALAXY
-2    GALAXY
-3    GALAXY
-4    GALAXY
-Name: class, dtype: object
 </pre></div>
 </div>
 </div>
@@ -775,112 +576,6 @@ Name: class, dtype: object
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>alpha</th>
-      <th>delta</th>
-      <th>u</th>
-      <th>g</th>
-      <th>r</th>
-      <th>i</th>
-      <th>z</th>
-      <th>redshift</th>
-      <th>plate</th>
-      <th>MJD</th>
-      <th>fiber_ID</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>135.689107</td>
-      <td>32.494632</td>
-      <td>23.87882</td>
-      <td>22.27530</td>
-      <td>20.39501</td>
-      <td>19.16573</td>
-      <td>18.79371</td>
-      <td>0.634794</td>
-      <td>5812</td>
-      <td>56354</td>
-      <td>171</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>144.826101</td>
-      <td>31.274185</td>
-      <td>24.77759</td>
-      <td>22.83188</td>
-      <td>22.58444</td>
-      <td>21.16812</td>
-      <td>21.61427</td>
-      <td>0.779136</td>
-      <td>10445</td>
-      <td>58158</td>
-      <td>427</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>142.188790</td>
-      <td>35.582444</td>
-      <td>25.26307</td>
-      <td>22.66389</td>
-      <td>20.60976</td>
-      <td>19.34857</td>
-      <td>18.94827</td>
-      <td>0.644195</td>
-      <td>4576</td>
-      <td>55592</td>
-      <td>299</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>338.741038</td>
-      <td>-0.402828</td>
-      <td>22.13682</td>
-      <td>23.77656</td>
-      <td>21.61162</td>
-      <td>20.50454</td>
-      <td>19.25010</td>
-      <td>0.932346</td>
-      <td>9149</td>
-      <td>58039</td>
-      <td>775</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>345.282593</td>
-      <td>21.183866</td>
-      <td>19.43718</td>
-      <td>17.58028</td>
-      <td>16.49747</td>
-      <td>15.97711</td>
-      <td>15.54461</td>
-      <td>0.116123</td>
-      <td>6121</td>
-      <td>56187</td>
-      <td>842</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>Las columnas son los “features” que el algoritmo usará para la clasificación. Dado que los datos tienen escalas distintas, es mejor estandarizarlos.</p>
 <div class="cell docutils container">
@@ -915,11 +610,6 @@ Name: class, dtype: object
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10000
-</pre></div>
-</div>
-</div>
 </div>
 <p>Nuestro primer clasificador simplemente tratará de distinguir entre estrellas/no-estrellas (agrupando galaxias y cuásares en una sola etiqueta).</p>
 <div class="cell docutils container">
@@ -929,12 +619,6 @@ Name: class, dtype: object
 <span class="n">binary_df</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">binary_df</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;GALAXY&#39;</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;STAR&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;QSO&#39;</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">})</span>
 <span class="c1">#80/20 train-test split - manual</span>
 <span class="n">binary_train</span><span class="p">,</span> <span class="n">binary_test</span> <span class="o">=</span> <span class="n">binary_df</span><span class="p">[:</span><span class="mi">8000</span><span class="p">],</span> <span class="n">binary_df</span><span class="p">[</span><span class="mi">8000</span><span class="p">:]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/2y/t3gprvl52s75ccs56z7ml0s80000gn/T/ipykernel_24040/4242788541.py:3: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option(&#39;future.no_silent_downcasting&#39;, True)`
-  binary_df[&#39;class&#39;] = binary_df[&#39;class&#39;].replace({&#39;GALAXY&#39;:-1, &#39;STAR&#39;:1, &#39;QSO&#39;:-1})
 </pre></div>
 </div>
 </div>
@@ -1034,10 +718,6 @@ Name: class, dtype: object
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/227726e13888a278d8d26ad3bd018eca60d0188e7749478e589adfa6a8fd24d6.png" src="_images/227726e13888a278d8d26ad3bd018eca60d0188e7749478e589adfa6a8fd24d6.png" />
-<img alt="_images/60f1a14696225b1e9e0355a506d164bc020230583a554fe9211bde9e266c7ff0.png" src="_images/60f1a14696225b1e9e0355a506d164bc020230583a554fe9211bde9e266c7ff0.png" />
-</div>
 </div>
 </section>
 <section id="falsos-verdaderos-positivos-negativos">
@@ -1080,12 +760,6 @@ F_1 =
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F1-score (Train): 0.9677
-F1-score (Test): 0.9585
-</pre></div>
-</div>
-</div>
 </div>
 <section id="feature-importance-importancia-de-variables">
 <h3>Feature Importance (Importancia de Variables)<a class="headerlink" href="#feature-importance-importancia-de-variables" title="Permalink to this heading">#</a></h3>
@@ -1115,31 +789,6 @@ F1-score (Test): 0.9585
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feature Importances (Absolute Weights):
-redshift    24.572943
-u            0.479027
-MJD          0.147531
-z            0.139114
-plate        0.104003
-i            0.040427
-r            0.034570
-delta        0.018282
-fiber_ID     0.017041
-g            0.016018
-alpha        0.002191
-dtype: float64
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/2y/t3gprvl52s75ccs56z7ml0s80000gn/T/ipykernel_24040/1769717404.py:15: FutureWarning: 
-
-Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
-
-  sns.barplot(x=feature_importance_sorted.values, y=feature_importance_sorted.index, palette=&#39;viridis&#39;)
-</pre></div>
-</div>
-<img alt="_images/41d5c25abd15e0e43f7c948b03d06cd8ac620a3557726f12d66ae2928d4149c3.png" src="_images/41d5c25abd15e0e43f7c948b03d06cd8ac620a3557726f12d66ae2928d4149c3.png" />
 </div>
 </div>
 </section>
@@ -1191,13 +840,6 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/80137aa93f0ae017d3e8c739f4d425c788006e0973d79ef92b6c644f111fe01b.png" src="_images/80137aa93f0ae017d3e8c739f4d425c788006e0973d79ef92b6c644f111fe01b.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC for Training Set: 0.9964
-AUC for Test Set: 0.9945
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="analisis-de-las-curvas-de-precision-recall">
@@ -1228,13 +870,6 @@ AUC for Test Set: 0.9945
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average Precision for Training Set: </span><span class="si">{</span><span class="n">ap_train</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average Precision for Test Set: </span><span class="si">{</span><span class="n">ap_test</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/88df6cf34595c59a066330d9e3ef23d2049fc7cd4facfd5d5cc31ff8b4e46aba.png" src="_images/88df6cf34595c59a066330d9e3ef23d2049fc7cd4facfd5d5cc31ff8b4e46aba.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Precision for Training Set: 0.9711
-Average Precision for Test Set: 0.9537
 </pre></div>
 </div>
 </div>
@@ -1275,32 +910,6 @@ Average Precision for Test Set: 0.9537
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Multiclass SVM Classification Report (Test Set) ---&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_multi</span><span class="p">,</span> <span class="n">predictions_test_multi</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Multiclass SVM Classification Report (Training Set) ---
-              precision    recall  f1-score   support
-
-      GALAXY       0.96      0.96      0.96      4816
-         QSO       0.96      0.88      0.91      1583
-        STAR       0.92      1.00      0.96      1601
-
-    accuracy                           0.95      8000
-   macro avg       0.95      0.95      0.94      8000
-weighted avg       0.95      0.95      0.95      8000
-
-
---- Multiclass SVM Classification Report (Test Set) ---
-              precision    recall  f1-score   support
-
-      GALAXY       0.97      0.95      0.96      1275
-         QSO       0.95      0.89      0.92       332
-        STAR       0.90      1.00      0.95       393
-
-    accuracy                           0.95      2000
-   macro avg       0.94      0.95      0.94      2000
-weighted avg       0.95      0.95      0.95      2000
 </pre></div>
 </div>
 </div>
@@ -1351,15 +960,6 @@ weighted avg       0.95      0.95      0.95      2000
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/111abadcfeae26a419606fc2930f1d17c13a8b6eb3954c51f95ac7f192d08267.png" src="_images/111abadcfeae26a419606fc2930f1d17c13a8b6eb3954c51f95ac7f192d08267.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC for each class:
-Class GALAXY: 0.9381
-Class QSO: 0.9778
-Class STAR: 0.9943
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="importancia-de-variables-en-svm-multiclase">
@@ -1393,31 +993,6 @@ Class STAR: 0.9943
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feature Importances for Multiclass SVM (Sum of Absolute Coefficients):
-redshift    29.060018
-u            3.586718
-g            3.270577
-r            2.133163
-i            1.962464
-z            1.090545
-plate        0.605540
-MJD          0.476094
-delta        0.152632
-alpha        0.052643
-fiber_ID     0.014386
-dtype: float64
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/2y/t3gprvl52s75ccs56z7ml0s80000gn/T/ipykernel_24040/3978924218.py:17: FutureWarning: 
-
-Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
-
-  sns.barplot(x=feature_importance_multi_sorted.values, y=feature_importance_multi_sorted.index, palette=&#39;viridis&#39;)
-</pre></div>
-</div>
-<img alt="_images/947704ee323191d8e6fb08bf6b8a4b444706ccaeb08f8d536ab913e8b7c5d4f4.png" src="_images/947704ee323191d8e6fb08bf6b8a4b444706ccaeb08f8d536ab913e8b7c5d4f4.png" />
-</div>
 </div>
 </section>
 <section id="clasificacion-mediante-arboles-de-decision">
@@ -1440,34 +1015,6 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Decision Tree Classification Report (Test Set) ---&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_multi</span><span class="p">,</span> <span class="n">predictions_test_dt</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Decision Tree Classification Report (Training Set) ---
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
-
-      GALAXY       1.00      1.00      1.00      4816
-         QSO       1.00      1.00      1.00      1583
-        STAR       1.00      1.00      1.00      1601
-
-    accuracy                           1.00      8000
-   macro avg       1.00      1.00      1.00      8000
-weighted avg       1.00      1.00      1.00      8000
-
-
---- Decision Tree Classification Report (Test Set) ---
-              precision    recall  f1-score   support
-
-      GALAXY       0.98      0.97      0.97      1275
-         QSO       0.89      0.93      0.91       332
-        STAR       0.99      1.00      0.99       393
-
-    accuracy                           0.97      2000
-   macro avg       0.96      0.96      0.96      2000
-weighted avg       0.97      0.97      0.97      2000
 </pre></div>
 </div>
 </div>
@@ -1497,31 +1044,6 @@ weighted avg       0.97      0.97      0.97      2000
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feature Importances for Decision Tree:
-redshift    0.873102
-g           0.036591
-u           0.036364
-z           0.009219
-fiber_ID    0.007411
-alpha       0.007307
-MJD         0.007020
-r           0.006823
-delta       0.006237
-i           0.005372
-plate       0.004554
-dtype: float64
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/2y/t3gprvl52s75ccs56z7ml0s80000gn/T/ipykernel_24040/2959764395.py:12: FutureWarning: 
-
-Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
-
-  sns.barplot(x=feature_importance_dt_sorted.values, y=feature_importance_dt_sorted.index, palette=&#39;viridis&#39;)
-</pre></div>
-</div>
-<img alt="_images/2c16eefb9b6170af6d34ceaa2dc166db834e0e9bfb8dc904321165e024f74552.png" src="_images/2c16eefb9b6170af6d34ceaa2dc166db834e0e9bfb8dc904321165e024f74552.png" />
-</div>
 </div>
 </section>
 <section id="clasificacion-mediante-random-forest">
@@ -1547,32 +1069,6 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Random Forest Classification Report (Training Set) ---
-              precision    recall  f1-score   support
-
-      GALAXY       1.00      1.00      1.00      4816
-         QSO       1.00      1.00      1.00      1583
-        STAR       1.00      1.00      1.00      1601
-
-    accuracy                           1.00      8000
-   macro avg       1.00      1.00      1.00      8000
-weighted avg       1.00      1.00      1.00      8000
-
-
---- Random Forest Classification Report (Test Set) ---
-              precision    recall  f1-score   support
-
-      GALAXY       0.98      0.98      0.98      1275
-         QSO       0.96      0.93      0.95       332
-        STAR       0.98      1.00      0.99       393
-
-    accuracy                           0.98      2000
-   macro avg       0.98      0.97      0.97      2000
-weighted avg       0.98      0.98      0.98      2000
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1590,12 +1086,6 @@ weighted avg       0.98      0.98      0.98      2000
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 800x600 with 0 Axes&gt;
-</pre></div>
-</div>
-<img alt="_images/3c6c43ec347832b7b20bc8ec8195379ae7d1aebd75e7b5dcb62fa3d749007559.png" src="_images/3c6c43ec347832b7b20bc8ec8195379ae7d1aebd75e7b5dcb62fa3d749007559.png" />
 </div>
 </div>
 </section>
@@ -1620,36 +1110,6 @@ weighted avg       0.98      0.98      0.98      2000
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Logistic Regression Classification Report (Test Set) ---&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_multi</span><span class="p">,</span> <span class="n">predictions_test_lr</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Logistic Regression Classification Report (Training Set) ---
-              precision    recall  f1-score   support
-
-      GALAXY       0.95      0.96      0.96      4816
-         QSO       0.96      0.86      0.91      1583
-        STAR       0.93      0.99      0.96      1601
-
-    accuracy                           0.95      8000
-   macro avg       0.95      0.94      0.94      8000
-weighted avg       0.95      0.95      0.95      8000
-
-
---- Logistic Regression Classification Report (Test Set) ---
-              precision    recall  f1-score   support
-
-      GALAXY       0.96      0.96      0.96      1275
-         QSO       0.94      0.88      0.91       332
-        STAR       0.91      0.99      0.95       393
-
-    accuracy                           0.95      2000
-   macro avg       0.94      0.94      0.94      2000
-weighted avg       0.95      0.95      0.95      2000
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: &#39;multi_class&#39; was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use &#39;multinomial&#39;. Leave it to its default value to avoid this warning.
-  warnings.warn(
 </pre></div>
 </div>
 </div>
@@ -1684,31 +1144,6 @@ weighted avg       0.95      0.95      0.95      2000
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feature Importances for Logistic Regression (Sum of Absolute Coefficients):
-redshift    34.189073
-u           10.644284
-g            7.169565
-r            4.190732
-i            3.751013
-z            2.656094
-MJD          1.597761
-plate        1.008712
-delta        0.260061
-fiber_ID     0.090847
-alpha        0.078052
-dtype: float64
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/2y/t3gprvl52s75ccs56z7ml0s80000gn/T/ipykernel_24040/942836711.py:16: FutureWarning: 
-
-Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
-
-  sns.barplot(x=feature_importance_lr_sorted.values, y=feature_importance_lr_sorted.index, palette=&#39;viridis&#39;)
-</pre></div>
-</div>
-<img alt="_images/1a373ce1779fc5eb8ae8d3a3c8efd4a4b15028bd7c077fd4d594cbbf7dc44b46.png" src="_images/1a373ce1779fc5eb8ae8d3a3c8efd4a4b15028bd7c077fd4d594cbbf7dc44b46.png" />
 </div>
 </div>
 </section>
@@ -1782,9 +1217,6 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/58fffabc9e4c528a04668c1b545cab787c727799fb5225d78588a1f70853cee2.png" src="_images/58fffabc9e4c528a04668c1b545cab787c727799fb5225d78588a1f70853cee2.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1799,12 +1231,6 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 800x600 with 0 Axes&gt;
-</pre></div>
-</div>
-<img alt="_images/e09b75f6521223babd61fe9005f0b769d3be7e7f542771e5d0b220a562b396d0.png" src="_images/e09b75f6521223babd61fe9005f0b769d3be7e7f542771e5d0b220a562b396d0.png" />
 </div>
 </div>
 </section>
