@@ -62,7 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_03_PythonCientifico';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -184,10 +185,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_09_astropy.html">Clase 9: Astropy: Unidades y Coordenadas</a></li>
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="Clase_10_astroquery.html">Clase 10: Bases de datos astronómicas y Astroquery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_12_Aprendizaje_No_Supervisado.html">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_13_Aprendizaje_Supervisado.html">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada_1.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
@@ -443,7 +445,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="clase-3-python-cientifico-numpy-pandas-matplotlib-seaborn">
+  <section class="tex2jax_ignore mathjax_ignore" id="clase-3-python-cientifico-numpy-pandas-matplotlib-seaborn">
 <h1>Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)<a class="headerlink" href="#clase-3-python-cientifico-numpy-pandas-matplotlib-seaborn" title="Permalink to this heading">#</a></h1>
 <section id="objetivos-de-hoy">
 <h2>Objetivos de hoy<a class="headerlink" href="#objetivos-de-hoy" title="Permalink to this heading">#</a></h2>
@@ -574,19 +576,19 @@ Estrellas en Secuencia Principal: 21638.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">datos</span> <span class="o">=</span> <span class="p">{</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="s1">&#39;Objeto&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;M31&#39;</span><span class="p">,</span> <span class="s1">&#39;M33&#39;</span><span class="p">,</span> <span class="s1">&#39;NGC104&#39;</span><span class="p">,</span> <span class="s1">&#39;NGC6752&#39;</span><span class="p">],</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="s1">&#39;Tipo&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Galaxia&#39;</span><span class="p">,</span> <span class="s1">&#39;Galaxia&#39;</span><span class="p">,</span> <span class="s1">&#39;Cúmulo&#39;</span><span class="p">,</span> <span class="s1">&#39;Cúmulo&#39;</span><span class="p">],</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="s1">&#39;Distancia_kpc&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">780</span><span class="p">,</span> <span class="mi">850</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">],</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="s1">&#39;Masa_Msol&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e12</span><span class="p">,</span> <span class="mf">5e10</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">2e5</span><span class="p">]</span> <span class="c1"># Notemos un dato faltante (NaN)</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="p">}</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El DF completo es:
+     Objeto     Tipo  Distancia_kpc     Masa_Msol
+0      M31  Galaxia          780.0  1.000000e+12
+1      M33  Galaxia          850.0  5.000000e+10
+2   NGC104   Cúmulo            4.5           NaN
+3  NGC6752   Cúmulo            4.0  2.000000e+05
 
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+----------
+
+El DF filtrado es:
+  Objeto     Tipo  Distancia_kpc     Masa_Msol
+0    M31  Galaxia          780.0  1.000000e+12
+1    M33  Galaxia          850.0  5.000000e+10
 </pre></div>
 </div>
 </div>
@@ -649,7 +651,7 @@ Estrellas en Secuencia Principal: 21638.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a1adc1a755fbc840dead8e3478978736a009e133342b95d1b405e131774e5721.png" src="_images/a1adc1a755fbc840dead8e3478978736a009e133342b95d1b405e131774e5721.png" />
+<img alt="_images/8b4c3bbf18c36232ec50fcc6d3f8be4cbba2fc563b6695c37b2305459877b17e.png" src="_images/8b4c3bbf18c36232ec50fcc6d3f8be4cbba2fc563b6695c37b2305459877b17e.png" />
 </div>
 </div>
 </section>
@@ -671,7 +673,7 @@ Estrellas en Secuencia Principal: 21638.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6cb7227e7633dc8ba9dcc5b01657c988ea43002d2040663687680445e6617023.png" src="_images/6cb7227e7633dc8ba9dcc5b01657c988ea43002d2040663687680445e6617023.png" />
+<img alt="_images/f16dbbb36d03ba8992177e52493d140bd9a1d543599982c5e44fb3fdc58ffa20.png" src="_images/f16dbbb36d03ba8992177e52493d140bd9a1d543599982c5e44fb3fdc58ffa20.png" />
 </div>
 </div>
 </section>
@@ -707,13 +709,7 @@ Estrellas en Secuencia Principal: 21638.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\o&#39;
-&lt;&gt;:16: SyntaxWarning: invalid escape sequence &#39;\o&#39;
-/tmp/ipykernel_11639/3859708014.py:16: SyntaxWarning: invalid escape sequence &#39;\o&#39;
-  ax.set_ylabel(&quot;Luminosidad ($L/L_\odot$)&quot;)
-</pre></div>
-</div>
-<img alt="_images/a2a429cde8db9fa0b7717542de11a432512bb6e78571e2e535d6291127e9a731.png" src="_images/a2a429cde8db9fa0b7717542de11a432512bb6e78571e2e535d6291127e9a731.png" />
+<img alt="_images/053e5f393c484b1ccbe815e376839c07692d980645be31be8f581564de2622e2.png" src="_images/053e5f393c484b1ccbe815e376839c07692d980645be31be8f581564de2622e2.png" />
 </div>
 </div>
 </section>
@@ -750,14 +746,14 @@ Estrellas en Secuencia Principal: 21638.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11639/2803461706.py:9: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/2y/t3gprvl52s75ccs56z7ml0s80000gn/T/ipykernel_23944/2803461706.py:9: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
   sns.violinplot(data=df_exo, x=&#39;Metodo&#39;, y=&#39;Masa_Tierra&#39;, palette=&#39;magma&#39;)
 </pre></div>
 </div>
-<img alt="_images/b6db5d30b5ee24da3e91f33d90bc4ca82eee5931ca49b9434cf31340aa89dedd.png" src="_images/b6db5d30b5ee24da3e91f33d90bc4ca82eee5931ca49b9434cf31340aa89dedd.png" />
+<img alt="_images/50e64b87cecb05e09e64eda781073db2c6856a6379b596e0c981eed9543b6bca.png" src="_images/50e64b87cecb05e09e64eda781073db2c6856a6379b596e0c981eed9543b6bca.png" />
 </div>
 </div>
 </section>
@@ -785,7 +781,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bc0544b62080aea6e170893f5028e07ba2a83b93fbe5a3d5f0ea7d908a2691dc.png" src="_images/bc0544b62080aea6e170893f5028e07ba2a83b93fbe5a3d5f0ea7d908a2691dc.png" />
+<img alt="_images/1f5a605b2fbde61d1cbe977ddc363df87f8f858964c9b1c945d90a1ac4e6818e.png" src="_images/1f5a605b2fbde61d1cbe977ddc363df87f8f858964c9b1c945d90a1ac4e6818e.png" />
 </div>
 </div>
 </section>

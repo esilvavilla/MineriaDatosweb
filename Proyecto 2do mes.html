@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Proyecto 2do mes';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -182,10 +184,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_09_astropy.html">Clase 9: Astropy: Unidades y Coordenadas</a></li>
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="Clase_10_astroquery.html">Clase 10: Bases de datos astronómicas y Astroquery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_12_Aprendizaje_No_Supervisado.html">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_13_Aprendizaje_Supervisado.html">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada_1.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Proyecto 2do mes</a></li>
@@ -397,7 +400,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="proyecto-2do-mes">
+  <section class="tex2jax_ignore mathjax_ignore" id="proyecto-2do-mes">
 <h1>Proyecto 2do mes<a class="headerlink" href="#proyecto-2do-mes" title="Permalink to this heading">#</a></h1>
 <p>Para continuar el proceso de evaluación de conocimientos, se propone a continuación un problema que pretende evaluar, de manera individual, lo aprendido hasta el momento.</p>
 <p>Así, se espera que se sigan los pasos descritos y se entregue un link de Github donde reposará la solución del proyecto.</p>
@@ -433,7 +436,7 @@ document.write(`
 <li><p>Conéctate a <code class="docutils literal notranslate"><span class="pre">arqueologia.db</span></code> y extrae los datos.</p></li>
 <li><p>Gráfica 1: Grafica el movimiento propio (<code class="docutils literal notranslate"><span class="pre">pmRA</span></code> en el eje X, <code class="docutils literal notranslate"><span class="pre">pmDE</span></code> en el eje Y) usando un Scatter Plot. Notarás una nube dispersa centrada en el origen (0,0) que es la Vía Láctea, y un “racimo” muy denso desplazado a un lado. <em>¡Ese racimo es Omega Centauri moviéndose como un enjambre!</em></p></li>
 <li><p>Filtro SQL Avanzado: Identifica a ojo (en tu gráfica) las coordenadas de ese “racimo” de movimiento propio. Modifica tu consulta para extraer <strong>únicamente</strong> las estrellas que pertenecen al racimo.</p></li>
-<li><p>Gráfica 2 (El Diagrama HR): Con las estrellas filtradas cinemáticamente, calcula el índice de color ($BP - RP$) y grafica el Diagrama Color-Magnitud ($Color$ vs $Gmag$ invertido).</p></li>
+<li><p>Gráfica 2 (El Diagrama HR): Con las estrellas filtradas cinemáticamente, calcula el índice de color (<span class="math notranslate nohighlight">\(BP - RP\)</span>) y grafica el Diagrama Color-Magnitud (<span class="math notranslate nohighlight">\(Color\)</span> vs <span class="math notranslate nohighlight">\(Gmag\)</span> invertido).</p></li>
 <li><p>Guarda ambas gráficas y súbelas al repositorio. Discute en el <code class="docutils literal notranslate"><span class="pre">README.md</span></code> cómo el diagrama HR se ve mucho más limpio al remover las estrellas “intrusas” usando SQL.</p></li>
 </ol>
 </section>

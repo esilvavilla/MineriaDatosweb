@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_07_SQLADQL_web';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -183,10 +185,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_09_astropy.html">Clase 9: Astropy: Unidades y Coordenadas</a></li>
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="Clase_10_astroquery.html">Clase 10: Bases de datos astronómicas y Astroquery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_12_Aprendizaje_No_Supervisado.html">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_13_Aprendizaje_Supervisado.html">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada_1.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
@@ -413,7 +416,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="clase-7-exploracion-de-datos-astronomicos-mediante-interfaces-graficas-guis">
+  <section class="tex2jax_ignore mathjax_ignore" id="clase-7-exploracion-de-datos-astronomicos-mediante-interfaces-graficas-guis">
 <h1>Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)<a class="headerlink" href="#clase-7-exploracion-de-datos-astronomicos-mediante-interfaces-graficas-guis" title="Permalink to this heading">#</a></h1>
 <section id="directorio-de-bases-de-datos-y-tablas-principales">
 <h2>1. Directorio de Bases de Datos y Tablas Principales<a class="headerlink" href="#directorio-de-bases-de-datos-y-tablas-principales" title="Permalink to this heading">#</a></h2>
@@ -598,10 +601,10 @@ Presenta un análisis de tus resultados en relación a las observaciones de los 
 <li><p><strong>Nivel Básico (Filtros Simples y Resolución)</strong></p></li>
 </ul>
 <ol class="arabic simple">
-<li><p><strong>El Cúmulo de Hércules:</strong> En VizieR (Gaia DR3), haz una búsqueda en cono centrada en <code class="docutils literal notranslate"><span class="pre">M13</span></code> con un radio de 0.5 grados. Selecciona las columnas <code class="docutils literal notranslate"><span class="pre">Gmag</span></code>, <code class="docutils literal notranslate"><span class="pre">BPmag</span></code>, <code class="docutils literal notranslate"><span class="pre">RPmag</span></code>. En Python, grafica el diagrama Color-Magnitud ($BP-RP$ vs $Gmag$).</p></li>
+<li><p><strong>El Cúmulo de Hércules:</strong> En VizieR (Gaia DR3), haz una búsqueda en cono centrada en <code class="docutils literal notranslate"><span class="pre">M13</span></code> con un radio de 0.5 grados. Selecciona las columnas <code class="docutils literal notranslate"><span class="pre">Gmag</span></code>, <code class="docutils literal notranslate"><span class="pre">BPmag</span></code>, <code class="docutils literal notranslate"><span class="pre">RPmag</span></code>. En Python, grafica el diagrama Color-Magnitud (<span class="math notranslate nohighlight">\(BP-RP\)</span> vs <span class="math notranslate nohighlight">\(Gmag\)</span>).</p></li>
 <li><p><strong>Mundos Acuáticos Teóricos:</strong> En el portal de la NASA, busca planetas con Radio Terrestre (<code class="docutils literal notranslate"><span class="pre">Planet</span> <span class="pre">Radius</span></code>) entre 1.5 y 2.5 (<code class="docutils literal notranslate"><span class="pre">&gt;1.5</span> <span class="pre">and</span> <span class="pre">&lt;2.5</span></code>), que orbiten una estrella tipo M (<code class="docutils literal notranslate"><span class="pre">Stellar</span> <span class="pre">Effective</span> <span class="pre">Temp</span></code> <code class="docutils literal notranslate"><span class="pre">&lt;4000</span></code>). Descarga el CSV y grafica Masa vs Radio.</p></li>
 <li><p><strong>El Carnet de Identidad de Sirio:</strong> Entra a SIMBAD. Busca la estrella <code class="docutils literal notranslate"><span class="pre">Sirius</span></code>. En tu <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, anota su tipo espectral exacto, su magnitud en la banda V, y cuántas referencias bibliográficas tiene publicadas.</p></li>
-<li><p><strong>Galaxias Cercanas:</strong> En el SkyServer de SDSS, usa el formulario SQL para extraer el redshift (<code class="docutils literal notranslate"><span class="pre">z</span></code>) de 5000 galaxias (<code class="docutils literal notranslate"><span class="pre">class='GALAXY'</span></code>) donde $z &lt; 0.05$. Haz un histograma en Python.</p></li>
+<li><p><strong>Galaxias Cercanas:</strong> En el SkyServer de SDSS, usa el formulario SQL para extraer el redshift (<code class="docutils literal notranslate"><span class="pre">z</span></code>) de 5000 galaxias (<code class="docutils literal notranslate"><span class="pre">class='GALAXY'</span></code>) donde <span class="math notranslate nohighlight">\(z &lt; 0.05\)</span>. Haz un histograma en Python.</p></li>
 </ol>
 <ul class="simple">
 <li><p><strong>Nivel Intermedio (Filtros Múltiples y Misiones Especiales)</strong></p></li>

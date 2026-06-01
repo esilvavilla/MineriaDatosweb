@@ -62,7 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_09_astropy';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -187,6 +188,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_10_astroquery.html">Clase 10: Bases de datos astronómicas y Astroquery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_12_Aprendizaje_No_Supervisado.html">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_13_Aprendizaje_Supervisado.html">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada_1.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
@@ -405,12 +409,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-estadistica">5. Validación Estadística</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-vs-r-k-diagrama-color-magnitud">1.  $r$ vs. $r-K$ (Diagrama color-magnitud)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#g-r-vs-r-k-diagrama-color-color">2. $g-r$ vs. $r-K$ (Diagrama color-color)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-vs-r-k-diagrama-color-magnitud">1.  <span class="math notranslate nohighlight">\(r\)</span> vs. <span class="math notranslate nohighlight">\(r-K\)</span> (Diagrama color-magnitud)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#g-r-vs-r-k-diagrama-color-color">2. <span class="math notranslate nohighlight">\(g-r\)</span> vs. <span class="math notranslate nohighlight">\(r-K\)</span> (Diagrama color-color)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-hcg-7">Diagnóstico de HCG 7</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-sdss-g-r">1. Qué aporta SDSS ($g, r$)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-2mass-k">2. Qué aporta 2MASS ($K$)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-sdss-g-r">1. Qué aporta SDSS (<span class="math notranslate nohighlight">\(g, r\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-2mass-k">2. Qué aporta 2MASS (<span class="math notranslate nohighlight">\(K\)</span>)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">Ejercicio</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejercicio</a></li>
@@ -426,7 +430,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="clase-9-astropy-unidades-y-coordenadas">
+  <section class="tex2jax_ignore mathjax_ignore" id="clase-9-astropy-unidades-y-coordenadas">
 <h1>Clase 9: Astropy: Unidades y Coordenadas<a class="headerlink" href="#clase-9-astropy-unidades-y-coordenadas" title="Permalink to this heading">#</a></h1>
 <p>Adaptado de http://www.astropy.org/astropy-tutorials/Coordinates.html</p>
 <section id="introduccion-a-astropy">
@@ -443,7 +447,7 @@ document.write(`
 <li><p><strong>Constants:</strong> Valores físicos estandarizados.</p></li>
 <li><p><strong>Units:</strong> Gestión, conversión de unidades físicas.</p></li>
 <li><p><strong>Tables:</strong> Manejo de catálogos con metadatos y unidades.</p></li>
-<li><p><strong>WCS (World Coordinate System):</strong> Estándar (contenido en el <em>header</em> de los archivos FITS) que define la transformación matemática entre las coordenadas de píxeles $(x, y)$ y las coordenadas astronómicas $(RA, Dec)$.</p></li>
+<li><p><strong>WCS (World Coordinate System):</strong> Estándar (contenido en el <em>header</em> de los archivos FITS) que define la transformación matemática entre las coordenadas de píxeles <span class="math notranslate nohighlight">\((x, y)\)</span> y las coordenadas astronómicas <span class="math notranslate nohighlight">\((RA, Dec)\)</span>.</p></li>
 <li><p>Compatibilidad con <code class="docutils literal notranslate"><span class="pre">astroquery</span></code>, librería de acceso a múltiples bases de datos.</p></li>
 </ul>
 </li>
@@ -457,7 +461,7 @@ document.write(`
 <li><p><strong>Objetos <code class="docutils literal notranslate"><span class="pre">Quantity</span></code>:</strong> Las constantes ya vienen con sus unidades asociadas.</p></li>
 </ul>
 <p><strong>Ejemplo de uso:</strong>
-$$R_s = \frac{2GM}{c^2}$$</p>
+$<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">G</span><span class="p">,</span> <span class="n">M_sun</span><span class="p">,</span> <span class="n">c</span>
 
 <span class="n">R_s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">G</span> <span class="o">*</span> <span class="n">M_sun</span><span class="p">)</span> <span class="o">/</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span>
@@ -479,8 +483,8 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 <li><p>Permite hacer conversiones y simplificaciones sin errores manuales.</p></li>
 <li><p>También permite conversiones entre unidades que no son dimensionalmente iguales pero tienen una relación física:</p>
 <ul>
-<li><p><strong>Espectrales:</strong> Energía $\leftrightarrow$ Frecuencia $\leftrightarrow$ Longitud de onda.</p></li>
-<li><p><strong>Astrofísicas:</strong> Paralaje $\leftrightarrow$ Distancia.</p></li>
+<li><p><strong>Espectrales:</strong> Energía <span class="math notranslate nohighlight">\(\leftrightarrow\)</span> Frecuencia <span class="math notranslate nohighlight">\(\leftrightarrow\)</span> Longitud de onda.</p></li>
+<li><p><strong>Astrofísicas:</strong> Paralaje <span class="math notranslate nohighlight">\(\leftrightarrow\)</span> Distancia.</p></li>
 </ul>
 </li>
 </ul>
@@ -528,7 +532,7 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 <ul class="simple">
 <li><p>Objetos <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code>, que unifican posiciones, sistemas de referencia y distancias.</p></li>
 <li><p>Sistemas de referencia/coordenados: ICRS (estándar), FK5, Galáctico, AltAz (local), entre otros.</p></li>
-<li><p>Convierte entre coordenadas ecuatoriales (RA/Dec), alt-az o galácticas ($l, b$).</p></li>
+<li><p>Convierte entre coordenadas ecuatoriales (RA/Dec), alt-az o galácticas (<span class="math notranslate nohighlight">\(l, b\)</span>).</p></li>
 <li><p>Permite calcular la distancia angular en el cielo entre dos objetos.</p></li>
 <li><p><strong>Cross-matching:</strong> Encontrar qué objetos de un catálogo A coinciden con el catálogo B dentro de un radio determinado (ej. 1 arcsec).</p></li>
 <li><p>Permite calcular la masa de aire para observaciones.</p></li>
@@ -588,24 +592,24 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral()</span></code></p></td>
-<td class="text-left"><p>$\lambda, \nu, E, cm^{-1}$</p></td>
-<td class="text-left"><p>Ninguno (usa $h$ y $c$)</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\lambda, \nu, E, cm^{-1}\)</span></p></td>
+<td class="text-left"><p>Ninguno (usa <span class="math notranslate nohighlight">\(h\)</span> y <span class="math notranslate nohighlight">\(c\)</span>)</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">parallax()</span></code></p></td>
-<td class="text-left"><p>Ángulo ($arcsec$) y Distancia ($pc$)</p></td>
+<td class="text-left"><p>Ángulo (<span class="math notranslate nohighlight">\(arcsec\)</span>) y Distancia (<span class="math notranslate nohighlight">\(pc\)</span>)</p></td>
 <td class="text-left"><p>Ninguno (geometría)</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">doppler_x()</span></code></p></td>
-<td class="text-left"><p>Velocidad y $\lambda$ o $\nu$</p></td>
-<td class="text-left"><p>$\lambda_0$ o $\nu_0$ (reposo)</p></td>
+<td class="text-left"><p>Velocidad y <span class="math notranslate nohighlight">\(\lambda\)</span> o <span class="math notranslate nohighlight">\(\nu\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\lambda_0\)</span> o <span class="math notranslate nohighlight">\(\nu_0\)</span> (reposo)</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mass_energy()</span></code></p></td>
 <td class="text-left"><p>Masa y Energía</p></td>
-<td class="text-left"><p>Ninguno (usa $c^2$)</p></td>
+<td class="text-left"><p>Ninguno (usa <span class="math notranslate nohighlight">\(c^2\)</span>)</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">spectral_density()</span></code></p></td>
-<td class="text-left"><p>$Jy$ y $erg \cdot s^{-1} \cdot cm^{-2} \cdot \text{\AA}^{-1}$</p></td>
-<td class="text-left"><p>$\lambda$ o $\nu$ de observación</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(Jy\)</span> y <span class="math notranslate nohighlight">\(erg \cdot s^{-1} \cdot cm^{-2} \cdot \text{\AA}^{-1}\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\lambda\)</span> o <span class="math notranslate nohighlight">\(\nu\)</span> de observación</p></td>
 </tr>
 </tbody>
 </table>
@@ -946,7 +950,7 @@ $$R_s = \frac{2GM}{c^2}$$</p>
 <section id="extender-el-espectro-de-observacion-optico-ir">
 <h3>1. Extender el Espectro de Observación (Óptico + IR)<a class="headerlink" href="#extender-el-espectro-de-observacion-optico-ir" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>SDSS (Sloan Digital Sky Survey):</strong> Principalmente en el espectro visible. Rastrea luz de las estrellas jóvenes (en banda corta $g$ vs. banda larga $r$) y la estructura gaseosa.</p></li>
+<li><p><strong>SDSS (Sloan Digital Sky Survey):</strong> Principalmente en el espectro visible. Rastrea luz de las estrellas jóvenes (en banda corta <span class="math notranslate nohighlight">\(g\)</span> vs. banda larga <span class="math notranslate nohighlight">\(r\)</span>) y la estructura gaseosa.</p></li>
 <li><p><strong>2MASS (Two Micron All Sky Survey):</strong> Datos en el infrarrojo cercano (bandas J, H, K). Permite ver a través del polvo interestelar y observar la luz de estrellas viejas y evolucionadas, que representan la mayor parte de la masa estelar de una galaxia.</p></li>
 </ul>
 </section>
@@ -1175,18 +1179,18 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 </section>
 </section>
 <section id="r-vs-r-k-diagrama-color-magnitud">
-<h2>1.  $r$ vs. $r-K$ (Diagrama color-magnitud)<a class="headerlink" href="#r-vs-r-k-diagrama-color-magnitud" title="Permalink to this heading">#</a></h2>
+<h2>1.  <span class="math notranslate nohighlight">\(r\)</span> vs. <span class="math notranslate nohighlight">\(r-K\)</span> (Diagrama color-magnitud)<a class="headerlink" href="#r-vs-r-k-diagrama-color-magnitud" title="Permalink to this heading">#</a></h2>
 <p>Relación entre la masa estelar y la historia de formación estelar.</p>
 <ul class="simple">
-<li><p>Los puntos en la parte superior izquierda (más brillantes en $r$, más azules en $r-K$) representan espirales grandes como HCG 7a y 7c. Aún tienen suficiente gas para mantener poblaciones estelares más “azules” (jóvenes) y aportan la mayor cantidad de masa al grupo.</p></li>
-<li><p>El grupo de puntos entre $r = 16$ y $r = 18$ que son bastante rojos ($r-K \approx 3.3$ a $3.8$) probablemente corresponde a los miembros más pequeños y a aquellos ya “apagados” (quenched), como HCG 7b y 7d.</p></li>
+<li><p>Los puntos en la parte superior izquierda (más brillantes en <span class="math notranslate nohighlight">\(r\)</span>, más azules en <span class="math notranslate nohighlight">\(r-K\)</span>) representan espirales grandes como HCG 7a y 7c. Aún tienen suficiente gas para mantener poblaciones estelares más “azules” (jóvenes) y aportan la mayor cantidad de masa al grupo.</p></li>
+<li><p>El grupo de puntos entre <span class="math notranslate nohighlight">\(r = 16\)</span> y <span class="math notranslate nohighlight">\(r = 18\)</span> que son bastante rojos (<span class="math notranslate nohighlight">\(r-K \approx 3.3\)</span> a <span class="math notranslate nohighlight">\(3.8\)</span>) probablemente corresponde a los miembros más pequeños y a aquellos ya “apagados” (quenched), como HCG 7b y 7d.</p></li>
 </ul>
 </section>
 <section id="g-r-vs-r-k-diagrama-color-color">
-<h2>2. $g-r$ vs. $r-K$ (Diagrama color-color)<a class="headerlink" href="#g-r-vs-r-k-diagrama-color-color" title="Permalink to this heading">#</a></h2>
+<h2>2. <span class="math notranslate nohighlight">\(g-r\)</span> vs. <span class="math notranslate nohighlight">\(r-K\)</span> (Diagrama color-color)<a class="headerlink" href="#g-r-vs-r-k-diagrama-color-color" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>A medida que las galaxias se vuelven más rojas en el óptico ($g-r$), también lo hacen en óptico–IR ($r-K$). Esto implica que ambos colores trazan las mismas tendencias</p></li>
-<li><p>Hay un “salto”: escasez relativa de puntos en la parte media del eje $g-r$ (alrededor de $15.5$ a $16.5$). Este es el famoso “valle verde”. Una vez que una galaxia empieza a perder su gas debido a interacciones de marea con sus vecinas, no permanece “verde” por mucho tiempo: se mueve rápidamente hacia la secuencia roja, donde experimenta <em>quenching</em> (el grupo en la parte superior derecha).</p></li>
+<li><p>A medida que las galaxias se vuelven más rojas en el óptico (<span class="math notranslate nohighlight">\(g-r\)</span>), también lo hacen en óptico–IR (<span class="math notranslate nohighlight">\(r-K\)</span>). Esto implica que ambos colores trazan las mismas tendencias</p></li>
+<li><p>Hay un “salto”: escasez relativa de puntos en la parte media del eje <span class="math notranslate nohighlight">\(g-r\)</span> (alrededor de <span class="math notranslate nohighlight">\(15.5\)</span> a <span class="math notranslate nohighlight">\(16.5\)</span>). Este es el famoso “valle verde”. Una vez que una galaxia empieza a perder su gas debido a interacciones de marea con sus vecinas, no permanece “verde” por mucho tiempo: se mueve rápidamente hacia la secuencia roja, donde experimenta <em>quenching</em> (el grupo en la parte superior derecha).</p></li>
 <li><p>Como los puntos formen una secuencia estrecha, la metalicidad entre estas galaxias es relativamente similar, y el principal factor que impulsa las diferencias de color es la edad de la población estelar junto con el cese abrupto de la formación estelar.</p></li>
 </ul>
 </section>
@@ -1197,21 +1201,21 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 </section>
 <section id="resumen">
 <h2>Resumen<a class="headerlink" href="#resumen" title="Permalink to this heading">#</a></h2>
-<p>Si solo se usa SDSS, se puede confundir una galaxia espiral polvorienta (joven) con una galaxia elíptica vieja. Si solo se usa 2MASS, no sería posible distinguir si una galaxia está formando estrellas activamente o si simplemente es muy masiva. Al combinarlos en el diagrama $(g-r)$ vs. $(r-K)$ se determina cuánto gas le queda a las galaxias de HCG 7 para seguir formando estrellas.</p>
+<p>Si solo se usa SDSS, se puede confundir una galaxia espiral polvorienta (joven) con una galaxia elíptica vieja. Si solo se usa 2MASS, no sería posible distinguir si una galaxia está formando estrellas activamente o si simplemente es muy masiva. Al combinarlos en el diagrama <span class="math notranslate nohighlight">\((g-r)\)</span> vs. <span class="math notranslate nohighlight">\((r-K)\)</span> se determina cuánto gas le queda a las galaxias de HCG 7 para seguir formando estrellas.</p>
 </section>
 <section id="que-aporta-sdss-g-r">
-<h2>1. Qué aporta SDSS ($g, r$)<a class="headerlink" href="#que-aporta-sdss-g-r" title="Permalink to this heading">#</a></h2>
+<h2>1. Qué aporta SDSS (<span class="math notranslate nohighlight">\(g, r\)</span>)<a class="headerlink" href="#que-aporta-sdss-g-r" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Sensibilidad a estrellas jóvenes:</strong> Las bandas $g$ (“azul”) y $r$ (“roja”) están dominadas por la luz de estrellas jóvenes y masivas. Si una galaxia en HCG 7 tiene incluso una pequeña cantidad de formación estelar reciente (como los brazos espirales en NGC 192), aparecerá en las bandas de SDSS.</p></li>
-<li><p><strong>Sensibilidad al polvo:</strong> Observaciones en el óptico son susceptibles a la extinción por polvo. El color $g-r$ puede parecer más “rojo” no porque las estrellas sean viejas, sino porque el polvo está bloqueando la luz azul (extinción selectiva).</p></li>
+<li><p><strong>Sensibilidad a estrellas jóvenes:</strong> Las bandas <span class="math notranslate nohighlight">\(g\)</span> (“azul”) y <span class="math notranslate nohighlight">\(r\)</span> (“roja”) están dominadas por la luz de estrellas jóvenes y masivas. Si una galaxia en HCG 7 tiene incluso una pequeña cantidad de formación estelar reciente (como los brazos espirales en NGC 192), aparecerá en las bandas de SDSS.</p></li>
+<li><p><strong>Sensibilidad al polvo:</strong> Observaciones en el óptico son susceptibles a la extinción por polvo. El color <span class="math notranslate nohighlight">\(g-r\)</span> puede parecer más “rojo” no porque las estrellas sean viejas, sino porque el polvo está bloqueando la luz azul (extinción selectiva).</p></li>
 <li><p><strong>Morfología:</strong> SDSS tiene una resolución angular mucho mayor que 2MASS, lo que permite ver los brazos espirales y las distorsiones de marea que indican el estado de interacción del grupo.</p></li>
 </ul>
 </section>
 <section id="que-aporta-2mass-k">
-<h2>2. Qué aporta 2MASS ($K$)<a class="headerlink" href="#que-aporta-2mass-k" title="Permalink to this heading">#</a></h2>
+<h2>2. Qué aporta 2MASS (<span class="math notranslate nohighlight">\(K\)</span>)<a class="headerlink" href="#que-aporta-2mass-k" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Trazador de masa estelar:</strong> La banda $K$ ($2.2,\mu\text{m}$) es relativamente poco afectada por el polvo y por la presencia de estrellas jóvenes (azules) de vida corta. Traza las estrellas viejas y de baja masa que constituyen la mayor parte de la masa de una galaxia.</p></li>
-<li><p><strong>El índice $r-K$:</strong> Al restar la magnitud $K$ de 2MASS a la magnitud $r$ de SDSS, se compara la masa total (K) con la población estelar de edad intermedia (r).</p></li>
+<li><p><strong>Trazador de masa estelar:</strong> La banda <span class="math notranslate nohighlight">\(K\)</span> (<span class="math notranslate nohighlight">\(2.2\,\mu\text{m}\)</span>) es relativamente poco afectada por el polvo y por la presencia de estrellas jóvenes (azules) de vida corta. Traza las estrellas viejas y de baja masa que constituyen la mayor parte de la masa de una galaxia.</p></li>
+<li><p><strong>El índice <span class="math notranslate nohighlight">\(r-K\)</span>:</strong> Al restar la magnitud <span class="math notranslate nohighlight">\(K\)</span> de 2MASS a la magnitud <span class="math notranslate nohighlight">\(r\)</span> de SDSS, se compara la masa total (K) con la población estelar de edad intermedia (r).</p></li>
 <li><p><strong>Enfriamento (quenching):</strong> Si una galaxia es brillante en 2MASS pero débil en SDSS, se sabe que es una galaxia masiva que ha dejado completamente de formar estrellas (una elíptica o S0 “roja y muerta”).</p></li>
 </ul>
 </section>
@@ -1225,12 +1229,13 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 </section>
 <section id="id2">
 <h2>Ejercicio<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<p>Usando la función <code class="docutils literal notranslate"><span class="pre">astropy.coordinates.get_constellation</span></code> y construyendo una malla de coordenadas galácticas con $\Delta l,\Delta b=2$ deg, genere una lista con las constelaciones que quedan a menos de 10 grados de latitud galáctica del plano galáctico.</p>
+<p>Usando la función <code class="docutils literal notranslate"><span class="pre">astropy.coordinates.get_constellation</span></code> y construyendo una malla de coordenadas galácticas con <span class="math notranslate nohighlight">\(\Delta l,\Delta b=2\)</span> deg, genere una lista con las constelaciones que quedan a menos de 10 grados de latitud galáctica del plano galáctico.</p>
 </section>
 <section id="id3">
 <h2>Ejercicio<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
-<p>Calcule el valor del coeficiente de Einstein A para la transición rotacional 1 a 0 del CO (dipolo eléctrico $\mu=0.112$ Debye, constante rotacional $B=1.922$ cm^-1 - número de onda) y para el CS ($\mu=1.96$ Debye, $B=0.817$ cm^-1) usando la siguiente fórmula (use $J=0$):</p>
-<p>$$A = \frac{64\pi^4}{3hc^3} \mu^2 \frac{J + 1}{2J + 3} \nu^3;\quad \nu=B(J+1)$$</p>
+<p>Calcule el valor del coeficiente de Einstein A para la transición rotacional 1 a 0 del CO (dipolo eléctrico <span class="math notranslate nohighlight">\(\mu=0.112\)</span> Debye, constante rotacional <span class="math notranslate nohighlight">\(B=1.922\)</span> cm^-1 - número de onda) y para el CS (<span class="math notranslate nohighlight">\(\mu=1.96\)</span> Debye, <span class="math notranslate nohighlight">\(B=0.817\)</span> cm^-1) usando la siguiente fórmula (use <span class="math notranslate nohighlight">\(J=0\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[A = \frac{64\pi^4}{3hc^3} \mu^2 \frac{J + 1}{2J + 3} \nu^3;\quad \nu=B(J+1)\]</div>
 <p>Ayuda: También se puede usar la conversión 1 Debye = 1e-18 cm^5/2 g^1/2 s^-1</p>
 <p>Compare con el resultado de un query a la Leiden Atomic and Molecular Database, aprovechando el ejemplo siguiente:</p>
 <div class="cell docutils container">
@@ -1332,12 +1337,12 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validacion-estadistica">5. Validación Estadística</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-vs-r-k-diagrama-color-magnitud">1.  $r$ vs. $r-K$ (Diagrama color-magnitud)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#g-r-vs-r-k-diagrama-color-color">2. $g-r$ vs. $r-K$ (Diagrama color-color)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-vs-r-k-diagrama-color-magnitud">1.  <span class="math notranslate nohighlight">\(r\)</span> vs. <span class="math notranslate nohighlight">\(r-K\)</span> (Diagrama color-magnitud)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#g-r-vs-r-k-diagrama-color-color">2. <span class="math notranslate nohighlight">\(g-r\)</span> vs. <span class="math notranslate nohighlight">\(r-K\)</span> (Diagrama color-color)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-hcg-7">Diagnóstico de HCG 7</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen">Resumen</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-sdss-g-r">1. Qué aporta SDSS ($g, r$)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-2mass-k">2. Qué aporta 2MASS ($K$)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-sdss-g-r">1. Qué aporta SDSS (<span class="math notranslate nohighlight">\(g, r\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-aporta-2mass-k">2. Qué aporta 2MASS (<span class="math notranslate nohighlight">\(K\)</span>)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio">Ejercicio</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ejercicio</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejercicio</a></li>

@@ -183,10 +183,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_09_astropy.html">Clase 9: Astropy: Unidades y Coordenadas</a></li>
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="Clase_10_astroquery.html">Clase 10: Bases de datos astronómicas y Astroquery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_12_Aprendizaje_No_Supervisado.html">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_13_Aprendizaje_Supervisado.html">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada_1.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
@@ -417,7 +418,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="clase-1-la-consola-de-comandos-bash">
+  <section class="tex2jax_ignore mathjax_ignore" id="clase-1-la-consola-de-comandos-bash">
 <h1>Clase 1: La Consola de Comandos (Bash)<a class="headerlink" href="#clase-1-la-consola-de-comandos-bash" title="Permalink to this heading">#</a></h1>
 <section id="objetivos-del-curso">
 <h2>Objetivos del curso<a class="headerlink" href="#objetivos-del-curso" title="Permalink to this heading">#</a></h2>
@@ -512,7 +513,7 @@ https://events.asiaa.sinica.edu.tw/school/20170904/talk/djorgovski1.pdf</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/germanchaparro/Downloads/MineriaDatosweb
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 283336
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>total 318048
 -rw-r--r--   1 germanchaparro  staff    61M Apr 27 13:30 2mass.csv
 -rw-r--r--   1 germanchaparro  staff    19K Apr 27 13:30 Clase_01_INTROyCLI.ipynb
 -rw-r--r--   1 germanchaparro  staff    37K Apr 27 13:30 Clase_02_GIT-HUB.ipynb
@@ -522,9 +523,14 @@ https://events.asiaa.sinica.edu.tw/school/20170904/talk/djorgovski1.pdf</p>
 -rw-r--r--   1 germanchaparro  staff    17K Apr 27 13:30 Clase_06_ADQL_Intro2.ipynb
 -rw-r--r--   1 germanchaparro  staff    12K Apr 27 13:30 Clase_07_SQLADQL_web.ipynb
 -rw-r--r--   1 germanchaparro  staff    13K Apr 27 13:30 Clase_08_Rsumen.ipynb
--rw-r--r--@  1 germanchaparro  staff    52K Apr 28 21:34 Clase_09_astropy.ipynb
--rw-r--r--@  1 germanchaparro  staff    57K May  4 10:47 Clase_10_astroquery.ipynb
+-rw-r--r--@  1 germanchaparro  staff    52K May 20 22:22 Clase_09_astropy.ipynb
+-rw-r--r--@  1 germanchaparro  staff    58K May 12 09:09 Clase_10_astroquery.ipynb
+-rw-r--r--@  1 germanchaparro  staff    62K May 20 22:23 Clase_11_fits.ipynb
+-rw-r--r--@  1 germanchaparro  staff    48K May 28 11:00 Clase_12_Aprendizaje_No_Supervisado.ipynb
+-rw-r--r--@  1 germanchaparro  staff    50K Jun  1 10:38 Clase_13_Aprendizaje_Supervisado.ipynb
+-rw-r--r--@  1 germanchaparro  staff    47K Jun  1 10:58 Clase_14_Clasificacion_Supervisada_1.ipynb
 -rw-r--r--   1 germanchaparro  staff   6.2K Apr 27 13:30 Fireball_And_Bolide_Reports_rows.csv
+-rw-r--r--@  1 germanchaparro  staff   629K May 12 11:22 NGC2808_DSS2_cutout.jpg
 -rw-r--r--   1 germanchaparro  staff    36M Apr 27 13:30 PS_2026.03.02_04.48.37.csv
 -rw-r--r--   1 germanchaparro  staff   199B Apr 27 13:30 Proyecto 1er mes - Entrega.gform
 -rw-r--r--   1 germanchaparro  staff   4.9K Apr 27 13:30 Proyecto 1er mes.ipynb
@@ -532,20 +538,21 @@ https://events.asiaa.sinica.edu.tw/school/20170904/talk/djorgovski1.pdf</p>
 -rw-r--r--   1 germanchaparro  staff   7.1K Apr 27 13:30 Proyecto 2do mes.ipynb
 -rw-r--r--   1 germanchaparro  staff    20B Apr 27 13:30 README.md
 -rw-r--r--   1 germanchaparro  staff   1.0M Apr 27 13:30 UdeA.png
-drwxrwxr-x@  5 germanchaparro  staff   160B Apr 27 13:01 <span class=" -Color -Color-Blue">_build</span>
--rw-r--r--   1 germanchaparro  staff   1.2K Apr 27 13:30 _config.yml
--rw-rw-r--@  1 germanchaparro  staff   417B Apr 27 13:05 _toc.yml
--rw-r--r--@  1 germanchaparro  staff   128B Apr 27 13:42 catalogo_pequeno.csv
+drwxrwxr-x@  6 germanchaparro  staff   192B Jun  1 08:47 <span class=" -Color -Color-Blue">_build</span>
+-rw-r--r--@  1 germanchaparro  staff   1.2K Jun  1 11:00 _config.yml
+-rw-rw-r--@  1 germanchaparro  staff   597B Jun  1 10:34 _toc.yml
+-rw-r--r--@  1 germanchaparro  staff    16M Jun  1 10:58 astronomy.csv
+-rw-r--r--@  1 germanchaparro  staff   128B May  4 10:47 catalogo_pequeno.csv
 drwxr-xr-x@  2 germanchaparro  staff    64B Apr 27 13:22 <span class=" -Color -Color-Blue">datos_astronomia</span>
 -rw-r--r--   1 germanchaparro  staff   3.2M Apr 27 13:30 exoplanet_confirm_and_candidates.csv
 -rwxr-xr-x   1 germanchaparro  staff    32M Apr 27 13:30 <span class=" -Color -Color-Red">hyg_v38.csv</span>
-drwxr-xr-x  23 germanchaparro  staff   736B Apr 27 13:30 <span class=" -Color -Color-Blue">imagenes</span>
+drwxr-xr-x  24 germanchaparro  staff   768B May 20 13:05 <span class=" -Color -Color-Blue">imagenes</span>
 -rw-r--r--   1 germanchaparro  staff   1.4K Apr 27 13:30 intro.md
 -rw-r--r--   1 germanchaparro  staff   282B Apr 27 13:30 objetos_messier.csv
 -rw-r--r--   1 germanchaparro  staff   288B Apr 27 13:30 observacion_jueves.txt
 -rw-r--r--   1 germanchaparro  staff   2.0K Apr 27 13:30 ran_gen_data.sh
 -rw-r--r--   1 germanchaparro  staff    30B Apr 27 13:30 requirements.txt
--rw-r--r--@  1 germanchaparro  staff   4.0M Apr 27 13:42 server_data_large.csv
+-rw-r--r--@  1 germanchaparro  staff   4.0M May  4 10:47 server_data_large.csv
 </pre></div>
 </div>
 </div>
@@ -590,10 +597,10 @@ drwxr-xr-x  23 germanchaparro  staff   736B Apr 27 13:30 <span class=" -Color -C
 📝 Líneas totales:   100001
 🔍 Primeras 5 líneas:
 ID,Tipo,Mag,Prob,RA,DEC
-1,Ruido,14.21,47,15:26:45,+58:55:13
-2,Supernova,16.58,28,07:52:42,-58:00:20
-3,Supernova,19.77,10,19:08:02,+78:24:57
-4,Quasar,12.70,94,04:45:09,+26:24:36
+1,Supernova,19.26,8,12:55:11,-86:19:25
+2,Ruido,12.52,99,02:11:34,+85:43:02
+3,Variable_Star,12.82,100,01:07:02,-39:36:02
+4,Supernova,17.86,43,09:50:09,-02:23:04
 </pre></div>
 </div>
 </div>
@@ -605,16 +612,16 @@ ID,Tipo,Mag,Prob,RA,DEC
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99979 12.04
-99982 14.77
-99983 12.95
-99987 12.54
-99991 12.47
-99993 12.61
-99994 14.28
-99997 13.12
-99998 13.28
-100000 14.78
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99972 14.99
+99976 13.64
+99977 13.10
+99980 14.38
+99984 12.19
+99987 12.93
+99991 12.28
+99992 12.90
+99993 14.12
+99999 12.62
 </pre></div>
 </div>
 </div>
