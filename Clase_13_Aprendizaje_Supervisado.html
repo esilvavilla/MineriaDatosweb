@@ -188,6 +188,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_12_Aprendizaje_No_Supervisado.html">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
@@ -385,9 +387,36 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clase 13: Aprendizaje de Máquina (Supervisado)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-exacta-del-problema-de-minimizacion-regresion-lineal-ideal">Solución exacta del problema de minimización - regresión lineal ideal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostracion">Demostración</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#minimos-cuadrados-ponderados-wls-incorporando-errores">Mínimos Cuadrados Ponderados (WLS): Incorporando Errores</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-polinomial-de-grado-n-mediante-minimos-cuadrados">Ajuste Polinomial de Grado $n$ mediante Mínimos Cuadrados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepto-train-validation-test-sets">Concepto: Train / Validation / Test Sets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-set">Training set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-set">Validation set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-set">Test set</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#en-validacion-de-modelos">En validación de modelos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#out-of-bag-oob">Out-of-bag (OOB)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-leave-one-out-jackknife">Método leave-one-out (<em>jackknife</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia-con-bootstrap">Diferencia con bootstrap</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estudio-de-curvas-de-luz-de-transientes-mantra">Estudio de curvas de luz de transientes - MANTRA</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-processes-gp">Gaussian Processes (GP)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-ejemplo-de-gp">Visualización de ejemplo de GP</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice-propagacion-de-errores-e-intervalos-de-confianza">Apéndice - Propagación de Errores e Intervalos de Confianza</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-en-python">Implementación en Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalo-de-confianza-para-un-ajuste-lineal">Intervalo de confianza para un ajuste lineal</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -408,7 +437,7 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span>
 
-<span class="n">ESTACION_ELDORADO</span> <span class="o">=</span> <span class="s2">&quot;80222099999&quot;</span>  <span class="c1"># ID global de la estación (WMO)</span>
+<span class="n">ESTACION</span> <span class="o">=</span> <span class="s2">&quot;80110099999&quot;</span>  <span class="c1"># ID global de la estación (WMO) EOH en Medellin</span>
 <span class="n">AÑO_INICIO</span> <span class="o">=</span> <span class="mi">1965</span>
 <span class="n">AÑO_FIN</span> <span class="o">=</span> <span class="mi">2025</span>
 
@@ -420,7 +449,7 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Iniciando descarga de datos desde la NOAA...&quot;</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">anio</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">AÑO_INICIO</span><span class="p">,</span> <span class="n">AÑO_FIN</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BASE_URL</span><span class="si">}{</span><span class="n">anio</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">ESTACION_ELDORADO</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BASE_URL</span><span class="si">}{</span><span class="n">anio</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">ESTACION</span><span class="si">}</span><span class="s2">.csv&quot;</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Realizamos la petición para el año específico</span>
@@ -465,8 +494,8 @@ document.write(`
     <span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 
     <span class="c1"># Guardar a un archivo CSV local</span>
-    <span class="n">df_mensual</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;temperatura_mensual_eldorado_1980_2025.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Archivo guardado como: &#39;temperatura_mensual_eldorado.csv&#39;&quot;</span><span class="p">)</span>
+    <span class="n">df_mensual</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;temperatura_mensual.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Archivo guardado como: &#39;temperatura_mensual.csv&#39;&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">df_mensual</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">No se pudo descargar ningún dato.&quot;</span><span class="p">)</span>
@@ -526,35 +555,144 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Solución exacta del problema de minimización - regresión lineal ideal:</p>
+<section id="solucion-exacta-del-problema-de-minimizacion-regresion-lineal-ideal">
+<h2>Solución exacta del problema de minimización - regresión lineal ideal<a class="headerlink" href="#solucion-exacta-del-problema-de-minimizacion-regresion-lineal-ideal" title="Permalink to this heading">#</a></h2>
+<p>Dado un conjunto de $m$ observaciones experimentales, queremos modelar la relación entre una variable dependiente e independiente a través de una línea recta (o un hiperplano en dimensiones mayores). El sistema sobredeterminado se plantea matricialmente como:</p>
 <p>$$\begin{equation}
-Ax \approx y
+A\theta \approx y
 \end{equation}$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b9572608-6b01-4c7b-a1cf-ba8e51b527d1">
-<span class="eqno">(1)<a class="headerlink" href="#equation-b9572608-6b01-4c7b-a1cf-ba8e51b527d1" title="Permalink to this equation">#</a></span>\[\begin{equation}
-\hat{x} = \arg\min_{x} \|Ax - y\|_2^2
-\end{equation}\]</div>
-<p>$$\hat{x} = \left(A^{T}A\right)^{-1}A^{T}y
-$$</p>
-<p><strong>Demostración:</strong></p>
-<p>$$\hat{x} = \arg\min_x |Ax - y|_2^2 \
-J(x) = |Ax - y|_2^2 \
-J(x) = (Ax - y)^T(Ax - y) \
-J(x) = x^T A^T A y - 2 y^T A x + y^T y \
-\nabla_x J(x) = 2A^T A x - 2A^T y \
-0 = 2A^T A x - 2A^T y \
-A^T A x = A^T y \
-x = (A^T A)^{-1} A^T y$$</p>
+<p>Para una regresión lineal simple con $n$ datos:</p>
+<p>$$\begin{pmatrix}
+x_1 &amp; 1 \
+x_2 &amp; 1 \
+\vdots &amp; \vdots \
+x_n &amp; 1
+\end{pmatrix}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-eccb1606-3974-416b-8ee3-7f6bd03eaf6c">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eccb1606-3974-416b-8ee3-7f6bd03eaf6c" title="Permalink to this equation">#</a></span>\[\begin{pmatrix}
+m_{\text{pendiente}} \\
+b_{\text{intercepto}}
+\end{pmatrix}\]</div>
+<p>\approx
+\begin{pmatrix}
+y_1 \
+y_2 \
+\vdots \
+y_n
+\end{pmatrix}$$</p>
+<ul class="simple">
+<li><p><strong>$A$ (Matriz de diseño, dimensión $n \times 2$):</strong> Estructura que organiza nuestros datos conocidos. Cada fila es una observación. La primera columna contiene los datos independientes ($x_{\text{dato}}$) que ponderan a la pendiente, y la segunda columna es un vector de unos ($\mathbf{1}$) cuya función es mantener el intercepto constante para todas las ecuaciones.</p></li>
+<li><p><strong>$\theta$ (Vector de parámetros, dimensión $2 \times 1$):</strong> Es el vector de incógnitas ocultas que deseamos descubrir de forma óptima (la pendiente y el punto de corte).</p></li>
+<li><p><strong>$y$ (Vector de observaciones, dimensión $n \times 1$):</strong> Contiene los valores medidos de la variable dependiente.</p></li>
+</ul>
+<p>Buscamos el estimador óptimo $\hat{\theta}$ que minimiza la norma euclidiana al cuadrado del residuo (la diferencia entre el modelo $A\theta$ y los datos reales $y$):</p>
+<p>$$\begin{equation}
+\hat{\theta} = \arg\min_{\theta} |A\theta - y|_2^2
+\end{equation}$$</p>
+<p>La solución analítica exacta está dada por:</p>
+<p>$$\hat{\theta} = \left(A^{T}A\right)^{-1}A^{T}y$$</p>
+</section>
+<hr class="docutils" />
+<section id="demostracion">
+<h2>Demostración<a class="headerlink" href="#demostracion" title="Permalink to this heading">#</a></h2>
+<p>Definimos la función de costo o funcional de error $J(\theta)$ como la norma $L_2$ al cuadrado del vector de residuos:</p>
+<p>$$J(\theta) = |A\theta - y|_2^2$$</p>
+<p>Utilizando las propiedades del producto punto y la transposición de matrices, expresamos la norma al cuadrado como el producto interno del vector de residuos consigo mismo:</p>
+<p>$$J(\theta) = (A\theta - y)^T(A\theta - y)$$</p>
+<p>Expandimos el producto distributivamente, manteniendo estrictamente el orden de las operaciones matriciales:</p>
+<p>$$J(\theta) = (\theta^T A^T - y^T)(A\theta - y)$$</p>
+<p>$$J(\theta) = \theta^T A^T A \theta - \theta^T A^T y - y^T A \theta + y^T y$$</p>
+<p>Dado que el término $\theta^T A^T y$ resulta en un escalar (dimensión $1 \times 1$), es idéntico a su propia transpuesta. Al transponerlo obtenemos:</p>
+<p>$$(\theta^T A^T y)^T = y^T (A^T \theta)^T = y^T A \theta$$</p>
+<p>Como ambos términos centrales son equivalentes, los agrupamos en uno solo:</p>
+<p>$$J(\theta) = \theta^T A^T A \theta - 2 y^T A \theta + y^T y$$</p>
+<p>Para encontrar el mínimo global del funcional, calculamos el gradiente de $J(\theta)$ respecto al vector de parámetros $\theta$ ($\nabla_\theta$). Para ello, aplicamos las siguientes identidades del cálculo matricial:</p>
+<ol class="arabic simple">
+<li><p>$\nabla_\theta (\theta^T M \theta) = 2M\theta$ (válido debido a que la matriz kernel $M = A^T A$ es simétrica por definición: $(A^T A)^T = A^T A$).</p></li>
+<li><p>$\nabla_\theta (v^T \theta) = v$, lo que transforma el término lineal en: $\nabla_\theta (2 (A^T y)^T \theta) = 2A^T y$.</p></li>
+<li><p>El término $y^T y$ no depende de $\theta$, por lo que su derivada es cero.</p></li>
+</ol>
+<p>Aplicando el gradiente término a término:</p>
+<p>$$\nabla_\theta J(\theta) = 2A^T A \theta - 2A^T y$$</p>
+<p>Igualamos el gradiente al vector nulo ($0$) para localizar el punto crítico que minimiza el error:</p>
+<p>$$0 = 2A^T A \hat{\theta} - 2A^T y$$</p>
+<p>Dividimos toda la expresión entre 2 y reordenamos los términos, llegando a las llamadas <strong>ecuaciones normales</strong>:</p>
+<p>$$A^T A \hat{\theta} = A^T y$$</p>
+<p>Finalmente, asumiendo que las columnas de la matriz de diseño $A$ son linealmente independientes, la matriz cuadrada $A^T A$ es de rango completo y, por lo tanto, invertible. Multiplicamos por la izquierda por su inversa $(A^T A)^{-1}$ para despejar el estimador óptimo:</p>
+<p>$$\hat{\theta} = (A^T A)^{-1} A^T y$$</p>
+</section>
+</section>
+<section id="minimos-cuadrados-ponderados-wls-incorporando-errores">
+<h1>Mínimos Cuadrados Ponderados (WLS): Incorporando Errores<a class="headerlink" href="#minimos-cuadrados-ponderados-wls-incorporando-errores" title="Permalink to this heading">#</a></h1>
+<p>Si cada observación $y_i$ tiene una incertidumbre conocida asociada $\sigma_i$ (desviación estándar del error), queremos minimizar la suma de los residuos normalizados por su propio error (el estadístico $\chi^2$):</p>
+<p>$$\chi^2(\theta) = \sum_{i=1}^{m} \left( \frac{(A\theta)_i - y_i}{\sigma_i} \right)^2$$</p>
+<p>Para operar esto matricialmente, definimos una matriz de pesos/ponderación diagonal $W$ de dimensión $n \times n$. Cada elemento de la diagonal es el recíproco de la varianza del error de ese dato:</p>
+<p>$$W = \begin{pmatrix}
+1/\sigma_1^2 &amp; 0 &amp; \cdots &amp; 0 \
+0 &amp; 1/\sigma_2^2 &amp; \cdots &amp; 0 \
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+0 &amp; 0 &amp; \cdots &amp; 1/\sigma_n^2
+\end{pmatrix}$$</p>
+<p>Pre-multiplicamos todo nuestro sistema original por una matriz “raíz” $C$ (no hay que calcularla en el algoritmo, es sólo para la demostración), tal que $C^T C = W$. Como $W$ es diagonal, simplemente calculamos $C$ sacando la raíz cuadrada de cada término (es decir, el recíproco de la barra de error $1/\sigma_i$):</p>
+<p>$$C = \begin{pmatrix}
+1/\sigma_1 &amp; 0 &amp; \cdots &amp; 0 \
+0 &amp; 1/\sigma_2 &amp; \cdots &amp; 0 \
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+0 &amp; 0 &amp; \cdots &amp; 1/\sigma_n
+\end{pmatrix}$$</p>
+<p>Multiplicamos nuestro sistema original $A\theta \approx y$ por la izquierda por $C$, definiendo una <strong>nueva matriz de diseño modificada ($A_w$)</strong> y un <strong>nuevo vector de datos modificado ($y_w$)</strong>:</p>
+<p>$$A_w = CA = \begin{pmatrix}
+x_1/\sigma_1 &amp; 1/\sigma_1 \
+x_2/\sigma_2 &amp; 1/\sigma_2 \
+\vdots &amp; \vdots \
+x_m/\sigma_n &amp; 1/\sigma_n
+\end{pmatrix}, \quad y_w = Cy = \begin{pmatrix}
+y_1/\sigma_1 \
+y_2/\sigma_2 \
+\vdots \
+y_n/\sigma_mn
+\end{pmatrix}$$</p>
+<p>Como puedes ver, <strong>cada fila de la matriz de diseño y del vector $y$ se divide por su respectivo error $\sigma_i$</strong>.</p>
+<p>Al aplicar la misma demostración analítica sobre el sistema modificado $A_w \theta \approx y_w$, la solución óptima resulta en:</p>
+<p>$$\hat{\theta} = \left(A_w^T A_w\right)^{-1} A_w^T y_w$$</p>
+<p>Sustituyendo $A_w = CA$ y $y_w = Cy$, y recordando que $C^T C = W$, la ecuación se reduce a la famosa fórmula de mínimos cuadrados ponderados:</p>
+<p>$$\hat{\theta} = \left(A^T W A\right)^{-1} A^T W y$$</p>
+<section id="ajuste-polinomial-de-grado-n-mediante-minimos-cuadrados">
+<h2>Ajuste Polinomial de Grado $n$ mediante Mínimos Cuadrados<a class="headerlink" href="#ajuste-polinomial-de-grado-n-mediante-minimos-cuadrados" title="Permalink to this heading">#</a></h2>
+<p>Aunque el modelo pase de una línea recta a una curva, <strong>el aparato matemático y la solución exacta de la demostración no cambian</strong>. El problema sigue siendo lineal respecto a los parámetros $\theta$.</p>
+<p>La solución óptima sigue siendo:
+$$\hat{\theta} = (A^T A)^{-1} A^T y$$</p>
+<p>El único cambio radica en la construcción de la <strong>Matriz de Diseño $A$</strong> , la cual ahora incorpora las potencias de los datos independientes $x$.</p>
+<p>Para ajustar un polinomio de grado $m$ del tipo $y = \theta_m x^m + \theta_{m-1} x^{m-1} + \dots + \theta_1 x + \theta_0$ a partir de $m$ datos, el sistema $A\theta \approx y$ se define como:</p>
+<p>$$\begin{pmatrix}
+x_1^m &amp; x_1^{m-1} &amp; \cdots &amp; x_1 &amp; 1 \
+x_2^m &amp; x_2^{m-1} &amp; \cdots &amp; x_2 &amp; 1 \
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \
+x_n^m &amp; x_n^{m-1} &amp; \cdots &amp; x_n &amp; 1
+\end{pmatrix}</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ac5c8b95-8b4d-4244-8c94-58e0e98d5491">
+<span class="eqno">(3)<a class="headerlink" href="#equation-ac5c8b95-8b4d-4244-8c94-58e0e98d5491" title="Permalink to this equation">#</a></span>\[\begin{pmatrix}
+\theta_m \\
+\theta_{m-1} \\
+\vdots \\
+\theta_1 \\
+\theta_0
+\end{pmatrix}\]</div>
+<p>\approx
+\begin{pmatrix}
+y_1 \
+y_2 \
+\vdots \
+y_n
+\end{pmatrix}$$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
 
-<span class="c1"># Prepare data for regression</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">df_mensual</span><span class="p">[</span><span class="s1">&#39;AÑO_MES_NUM&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df_mensual</span><span class="p">[</span><span class="s1">&#39;TEMP_C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
-<span class="c1"># Add a column of ones for the intercept term (matrix A)</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))])</span><span class="o">.</span><span class="n">T</span>
 
 
@@ -630,7 +768,7 @@ x = (A^T A)^{-1} A^T y$$</p>
 </div>
 </div>
 </div>
-<p>Ahora calculemos manualmente el <a class="reference external" href="https://en.wikipedia.org/wiki/Confidence_interval">intervalo de confianza</a>.</p>
+<p>Ahora calculemos manualmente el <a class="reference external" href="https://en.wikipedia.org/wiki/Confidence_interval">intervalo de confianza</a> (ver Apéndice). Para un ajuste lineal, la ecuación de las bandas de confianza describe una hipérbola.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">slope_linregress</span><span class="p">,</span> <span class="n">intercept_linregress</span><span class="p">,</span> <span class="n">r_value</span><span class="p">,</span> <span class="n">p_value</span><span class="p">,</span> <span class="n">std_err</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -686,9 +824,7 @@ x = (A^T A)^{-1} A^T y$$</p>
 <p>Cambiemos el rango de tiempo para ver lo que ocurre con la calidad del ajuste.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mdates</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
 
 <span class="c1"># filter df_mensual for the years 2005-2010</span>
@@ -740,10 +876,135 @@ x = (A^T A)^{-1} A^T y$$</p>
 </div>
 </div>
 </div>
+</section>
+<section id="concepto-train-validation-test-sets">
+<h2>Concepto: Train / Validation / Test Sets<a class="headerlink" href="#concepto-train-validation-test-sets" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Los datos suelen dividirse en subconjuntos con funciones distintas durante el entrenamiento y evaluación de modelos.</p></li>
+</ul>
+<hr class="docutils" />
+<section id="training-set">
+<h3>Training set<a class="headerlink" href="#training-set" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Conjunto utilizado para ajustar el modelo.</p></li>
+<li><p>El algoritmo aprende parámetros usando estos datos.</p></li>
+<li><p>Ejemplo:</p>
+<ul>
+<li><p>pesos de una red neuronal,</p></li>
+<li><p>centroides en clustering,</p></li>
+<li><p>coeficientes de regresión.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="validation-set">
+<h3>Validation set<a class="headerlink" href="#validation-set" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Conjunto utilizado para evaluar configuraciones del modelo durante el desarrollo.</p></li>
+<li><p>Se usa para:</p>
+<ul>
+<li><p>ajustar hiperparámetros,</p></li>
+<li><p>comparar modelos,</p></li>
+<li><p>detectar sobreajuste.</p></li>
+</ul>
+</li>
+<li><p>No debe utilizarse para el ajuste final de parámetros.</p></li>
+<li><p>No siempre se usa.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="test-set">
+<h3>Test set<a class="headerlink" href="#test-set" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Conjunto reservado para evaluación final.</p></li>
+<li><p>Simula datos completamente no vistos.</p></li>
+<li><p>Se utiliza una sola vez al final para estimar desempeño real del modelo.</p></li>
+<li><p>Si la regresión es continua, simplemente puede ser muestras de las variables independientes (p. ej. un <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> de un eje).</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Conjunto</p></th>
+<th class="head"><p>Propósito</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Training</p></td>
+<td><p>Aprender parámetros</p></td>
+</tr>
+<tr class="row-odd"><td><p>Validation</p></td>
+<td><p>Ajustar hiperparámetros y seleccionar modelos</p></td>
+</tr>
+<tr class="row-even"><td><p>Test</p></td>
+<td><p>Evaluación final</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Usualmente se toma la proporción train/test como 80/20.</p>
+</section>
+</section>
+<section id="bootstrapping">
+<h2>Bootstrapping<a class="headerlink" href="#bootstrapping" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Técnica de remuestreo utilizada para estimar incertidumbre, estabilidad y error fuera de muestra (<em>out-of-sample error</em>).</p></li>
+<li><p>Consiste en generar múltiples datasets re-muestreando aleatoriamente los datos originales con reemplazo.</p></li>
+<li><p>Cada muestra bootstrap tiene el mismo tamaño que el dataset original, pero algunos puntos pueden repetirse y otros quedar excluidos.</p></li>
+<li><p>Es como hacer muchas particiones train/test para estimar la robustez del modelo.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="en-validacion-de-modelos">
+<h2>En validación de modelos<a class="headerlink" href="#en-validacion-de-modelos" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Se genera una muestra bootstrap.</p></li>
+<li><p>El modelo se ajusta usando esa muestra.</p></li>
+<li><p>Se evalúa el desempeño sobre los datos no seleccionados (<em>out-of-bag samples</em>).</p></li>
+<li><p>El proceso se repite muchas veces.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="out-of-bag-oob">
+<h2>Out-of-bag (OOB)<a class="headerlink" href="#out-of-bag-oob" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Aproximadamente un ( \sim 36% ) de los datos queda fuera de cada muestra bootstrap.</p></li>
+<li><p>Esos datos actúan como conjunto de validación natural.</p></li>
+<li><p>Permiten estimar error fuera de muestra sin separar explícitamente un test set fijo.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="metodo-leave-one-out-jackknife">
+<h2>Método leave-one-out (<em>jackknife</em>)<a class="headerlink" href="#metodo-leave-one-out-jackknife" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Se elimina un dato del conjunto.</p></li>
+<li><p>El estimador se recalcula usando los datos restantes.</p></li>
+<li><p>El proceso se repite para todos los datos.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="diferencia-con-bootstrap">
+<h2>Diferencia con bootstrap<a class="headerlink" href="#diferencia-con-bootstrap" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Método</p></th>
+<th class="head"><p>Remuestreo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bootstrap normal</p></td>
+<td><p>Con reemplazo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jackknife</p></td>
+<td><p>Eliminando datos</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 <section id="estudio-de-curvas-de-luz-de-transientes-mantra">
 <h2>Estudio de curvas de luz de transientes - MANTRA<a class="headerlink" href="#estudio-de-curvas-de-luz-de-transientes-mantra" title="Permalink to this heading">#</a></h2>
 <p>El proyecto <a class="reference external" href="https://arxiv.org/abs/2006.13163">MANTRA</a> produjo curvas de luz de eventos transitorios astronómicos del Catalina Real-Time
-Transient Survey (CRTS), cubriendo 33000 sq deg del cielo desde 2007, usando datos de Mt. Lemmon Survey (MLS), Catalina Sky Survey (CSS), Siding Spring Survey (SSS). Cada uno de los 4869 eventos transitorios en MANTRA ha sido asociado a algún tipo de evento astronómico por un ser humano. Vamos a tratar de hacer un clasificador supervisado de eventos transitorios.</p>
+Transient Survey (CRTS), cubriendo 33000 sq deg del cielo desde 2007, usando datos de Mt. Lemmon Survey (MLS), Catalina Sky Survey (CSS), Siding Spring Survey (SSS). Cada uno de los 4869 eventos transitorios en MANTRA ha sido asociado a algún tipo de evento astronómico por un ser humano.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfla</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/MachineLearningUniandes/MANTRA/raw/master/data/lightcurves/transient_labels.csv&quot;</span><span class="p">)</span>
@@ -752,8 +1013,8 @@ Transient Survey (CRTS), cubriendo 33000 sq deg del cielo desde 2007, usando dat
 </div>
 </div>
 </div>
-<p>Ordene de mayor a menor los tipos de eventos transitorios en esta base de datos.</p>
-<p>Inspeccionemos una curva de luz</p>
+<p><strong>Ejercicio</strong>: Ordene de mayor a menor los tipos de eventos transitorios en esta base de datos.</p>
+<p>Inspeccionemos un par cualquiera de curvas de luz. Notemos que hay muchos datos faltantes, y que son distintos para distintos eventos. Adicionalmente, cada curva de luz tiene una cantidad distinta de datos. Esto significa que no podemos simplemente pasar todas las curvas por un solo algoritmo, sino que tenemos que hacer un pre-procesamiento intensivo antes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
@@ -790,23 +1051,116 @@ Transient Survey (CRTS), cubriendo 33000 sq deg del cielo desde 2007, usando dat
 <h2>Gaussian Processes (GP)<a class="headerlink" href="#gaussian-processes-gp" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Modelo probabilístico no paramétrico para regresión y clasificación.</p></li>
+<li><p>Un Gaussian Process es una colección de variables aleatorias indexadas por (x), tal que cualquier subconjunto finito tiene distribución gaussiana conjunta.</p></li>
 <li><p>En lugar de aprender una función explícita, define una distribución sobre funciones.</p></li>
 <li><p>Cualquier conjunto finito de puntos tiene una distribución conjunta gaussiana.</p></li>
 <li><p>La inferencia se basa en una función de covarianza (<em>kernel</em>) que controla similitud entre puntos.</p></li>
+<li><p>Si dos puntos, correspondientes a datos observados están cerca (según la escala del kernel), la covarianza es alta. Esto hace que la incertidumbre  (varianza de la distribución posterior) para “interpolar” o “extrapolar” se reduce en el entorno de los puntos. Lejos de esos puntos, o si los puntos están lejos entre sí, la covarianza es baja y la incertidumbre en la predicción permanece alta.</p></li>
 <li><p>El kernel incorpora supuestos sobre suavidad, periodicidad o escala de variación.</p></li>
-<li><p>Un Gaussian Process es una colección de variables aleatorias indexadas por (x), tal que cualquier subconjunto finito tiene distribución gaussiana conjunta.</p></li>
+<li><p>Tutorial interactivo: <a class="reference external" href="https://annkristinbalve.github.io/an-interactive-Gaussian-process-tutorial/">Enlace</a>.</p></li>
+</ul>
+</section>
+<section id="visualizacion-de-ejemplo-de-gp">
+<h2>Visualización de ejemplo de GP<a class="headerlink" href="#visualizacion-de-ejemplo-de-gp" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>El trabajo del Kernel:</strong> El <code class="docutils literal notranslate"><span class="pre">rbf_kernel</span></code> determina qué tan suaves son las líneas. Si disminuyes el <code class="docutils literal notranslate"><span class="pre">length_scale</span></code>, las líneas se volverán mucho más onduladas (con más curvas); si lo aumentas, se volverán mucho más suaves.</p></li>
+<li><p><strong>El Prior (Distribución a priori):</strong> Nota cómo el gráfico de la izquierda muestra curvas suaves, pero estas vagan sin rumbo fijo alrededor de una media de 0.</p></li>
+<li><p><strong>La Posterior (Distribución a posteriori):</strong> En el gráfico de la derecha, en el momento en que se le dan los puntos de entrenamiento rojos al GP (Proceso Gaussiano), todas las funciones aleatorias generadas se ven obligadas a pasar exactamente a través de esos puntos. Nota cómo la banda gris de incertidumbre se reduce a cero justo en los puntos de datos y se vuelve más ancha cuando se aleja de ellos.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># 1. Define the RBF Kernel (Your provided function)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rbf_kernel</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sigma_f</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Squared Exponential (RBF) kernel</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Using np.subtract.outer or broadcasting to get pairwise squared distances</span>
+    <span class="n">sqdist</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">x2</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">sigma_f</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">sqdist</span> <span class="o">/</span> <span class="n">length_scale</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># 2. Setup the test inputs (the X axis where we want to plot our functions)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Compute the covariance matrix for the test points (Prior Covariance)</span>
+<span class="n">K_ss</span> <span class="o">=</span> <span class="n">rbf_kernel</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">length_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sigma_f</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># The mean before seeing any data is just zeros</span>
+<span class="n">mu_prior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># --- PART 1: Sampling from the Prior ---</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Draw 3 random samples (functions) from the prior distribution</span>
+<span class="n">prior_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mu_prior</span><span class="p">,</span> <span class="n">K_ss</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">prior_samples</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Sample </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;GP Prior (Before seeing data)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># --- PART 2: Conditioning on Training Data (Posterior) ---</span>
+<span class="c1"># Let&#39;s define 3 known data points (Training data)</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+
+<span class="c1"># Compute the rest of the required covariance matrices</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">rbf_kernel</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
+<span class="n">K_s</span> <span class="o">=</span> <span class="n">rbf_kernel</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Apply the standard Gaussian Process conditioning formulas</span>
+<span class="c1"># Mean: mu = K_s^T * K^-1 * y_train</span>
+<span class="c1"># Covariance: Sigma = K_ss - K_s^T * K^-1 * K_s</span>
+<span class="n">K_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="c1"># inv(K)</span>
+
+<span class="n">mu_posterior</span> <span class="o">=</span> <span class="n">K_s</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">K_inv</span> <span class="o">@</span> <span class="n">y_train</span>
+<span class="n">Sigma_posterior</span> <span class="o">=</span> <span class="n">K_ss</span> <span class="o">-</span> <span class="p">(</span><span class="n">K_s</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">K_inv</span> <span class="o">@</span> <span class="n">K_s</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Draw 3 random samples from the posterior distribution</span>
+<span class="n">posterior_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mu_posterior</span><span class="p">,</span> <span class="n">Sigma_posterior</span> <span class="o">+</span> <span class="mf">1e-6</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">posterior_samples</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="c1"># Plot the mean prediction and the actual data points</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">mu_posterior</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mean Prediction&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Data&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot the 95% confidence interval (2 standard deviations)</span>
+<span class="n">uncertainty</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Sigma_posterior</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">mu_posterior</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">uncertainty</span><span class="p">,</span> <span class="n">mu_posterior</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">uncertainty</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;95% Confidence&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;GP Posterior (After seeing data)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora vamos a usar una combinación de distintos <a class="reference external" href="https://ekamperi.github.io/mathematics/2021/03/30/gaussian-process-regression.html">tipos de kernels</a> para ajustar nuestras curvas de luz.</p>
+<ul class="simple">
+<li><p>Tendencia global (RBF): El componente RBF con escala de 1000 se encarga de modelar la tendencia macroscópica o de fondo de los datos (por ejemplo, el crecimiento lento a lo largo de meses).</p></li>
+<li><p>Detalles locales (RationalQuadratic): El componente cuadrático racional se encarga de capturar los detalles, las fluctuaciones y los patrones más complejos o ruidosos a pequeña y mediana escala (por ejemplo, variaciones diarias).</p></li>
+<li><p>Amplitud (ConstantKernel): Ajusta la escala vertical para que el rango de las predicciones coincida con el rango de los datos reales.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.gaussian_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianProcessRegressor</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.gaussian_process</span><span class="w"> </span><span class="kn">import</span> <span class="n">kernels</span> <span class="k">as</span> <span class="n">k</span>
 
-<span class="c1"># Prepare data for GPR</span>
-<span class="c1"># Reshape MJD to a 2D array as required by scikit-learn</span>
+<span class="c1"># Reshape MJD to a 2D array</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">MJD</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">curve</span><span class="o">.</span><span class="n">Mag</span><span class="o">.</span><span class="n">values</span>
 
-<span class="c1"># Define the kernel as specified by the user</span>
 <span class="n">kernel</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">RationalQuadratic</span><span class="p">(</span><span class="n">length_scale_bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">1e-7</span><span class="p">,</span> <span class="mf">1e5</span><span class="p">))</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">ConstantKernel</span><span class="p">()</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">RBF</span><span class="p">(</span><span class="n">length_scale</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 
 <span class="c1"># Initialize Gaussian Process Regressor</span>
@@ -836,6 +1190,82 @@ Transient Survey (CRTS), cubriendo 33000 sq deg del cielo desde 2007, usando dat
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="apendice-propagacion-de-errores-e-intervalos-de-confianza">
+<h1>Apéndice - Propagación de Errores e Intervalos de Confianza<a class="headerlink" href="#apendice-propagacion-de-errores-e-intervalos-de-confianza" title="Permalink to this heading">#</a></h1>
+<p>Cuando las incertidumbres reales de la población ($\sigma$) son desconocidas, se estiman a posteriori utilizando la varianza de los residuos del ajuste. Al introducir esta estimación, la variable estandarizada adquiere una variabilidad adicional, lo que obliga a reemplazar la distribución Normal por la <strong>distribución $t$ de Student</strong>.</p>
+<p>Supongamos que realizamos un ajuste polinomial o lineal utilizando la matriz de diseño $A$ (dimensión $m \times n$, donde $m$ es el número de observaciones y $n$ es el número de parámetros a estimar). Tras encontrar $\hat{\theta} = (A^T A)^{-1} A^T y$, calculamos el vector de residuos:</p>
+<p>$$\hat{\epsilon} = y - A\hat{\theta}$$</p>
+<p>La varianza residual del modelo ($\sigma^2$) se estima dividiendo la suma de los residuos al cuadrado entre los <strong>grados de libertad</strong> del sistema ($dof = m - n$):</p>
+<p>$$s^2 = \frac{\hat{\epsilon}^T \hat{\epsilon}}{m - n} = \frac{|y - A\hat{\theta}|_2^2}{m - n}$$</p>
+<p>La matriz de covarianza estimada de los parámetros ($\Sigma_\theta$) se calcula entonces escalando la matriz del sistema por esta varianza muestral:</p>
+<p>$$\Sigma_\theta = s^2 (A^T A)^{-1}$$</p>
+<p>Las incertidumbres estándar estimadas para cada parámetro individual corresponden a la raíz cuadrada de la diagonal principal: $s_{\theta_i} = \sqrt{(\Sigma_\theta)_{ii}}$.</p>
+<p>Para construir el intervalo de confianza, analizamos la distribución estadística del estimador. Por el Teorema del Límite Central, sabemos que si los errores son normales, el estimador teórico estandarizado sigue una distribución normal:</p>
+<p>$$Z = \frac{\hat{\theta}<em>i - \theta_i}{\sigma</em>{\theta_i}} \sim {N}(0, 1)$$</p>
+<p>Por otro lado, la variable asociada a la estimación de la varianza muestral $s^2$ sigue una distribución Chi-cuadrado ($\chi^2$) dividida por sus grados de libertad:</p>
+<p>$$V = \frac{(m-n)s^2}{\sigma^2} \sim \chi^2(m-n) \implies \frac{s^2}{\sigma^2} = \frac{V}{m-n}$$</p>
+<p>Definimos una nueva variable aleatoria $T$ como el cociente entre la variable normal estándar $Z$ y la raíz cuadrada de la variable $\chi^2$ escalada. Matemáticamente, esta combinación define exactamente a la <strong>distribución $t$ de Student</strong>:</p>
+<p>$$T = \frac{Z}{\sqrt{\frac{V}{m-n}}}$$</p>
+<p>Sustituyendo las expresiones de $Z$ y del cociente de varianzas:</p>
+<p>$$T = \frac{\frac{\hat{\theta}<em>i - \theta_i}{\sigma \sqrt{((A^TA)^{-1})</em>{ii}}}}{\sqrt{\frac{s^2}{\sigma^2}}} = \frac{\frac{\hat{\theta}<em>i - \theta_i}{\sigma \sqrt{((A^TA)^{-1})</em>{ii}}}}{\frac{s}{\sigma}} = \frac{\hat{\theta}<em>i - \theta_i}{s \sqrt{((A^TA)^{-1})</em>{ii}}}$$</p>
+<p>Dado que el denominador es precisamente la incertidumbre estándar estimada ($s_{\theta_i}$), llegamos a la variable estandarizada final:</p>
+<p>$$T = \frac{\hat{\theta}<em>i - \theta_i}{s</em>{\theta_i}} \sim t(m - n)$$</p>
+<p>La variable $T$ sigue una distribución $t$ de Student con $\nu = m - n$ grados de libertad.</p>
+<p>Definimos la probabilidad de que nuestra variable $T$ se encuentre confinada en una región simétrica delimitada por un valor crítico $t_{\text{crit}}$ para un nivel de confianza $1 - \alpha$:</p>
+<p>$$P\left( -t_{\text{crit}} \le T \le t_{\text{crit}} \right) = 1 - \alpha$$</p>
+<p>Sustituyendo la definición de $T$:</p>
+<p>$$P\left( -t_{\text{crit}} \le \frac{\hat{\theta}<em>i - \theta_i}{s</em>{\theta_i}} \le t_{\text{crit}} \right) = 1 - \alpha$$</p>
+<p>Multiplicamos toda la desigualdad por la incertidumbre estimada $s_{\theta_i}$:</p>
+<p>$$P\left( -t_{\text{crit}} \cdot s_{\theta_i} \le \hat{\theta}<em>i - \theta_i \le t</em>{\text{crit}} \cdot s_{\theta_i} \right) = 1 - \alpha$$</p>
+<p>Restamos el estimador calculado $\hat{\theta}_i$ en todos los miembros:</p>
+<p>$$P\left( -\hat{\theta}<em>i - t</em>{\text{crit}} \cdot s_{\theta_i} \le - \theta_i \le -\hat{\theta}<em>i + t</em>{\text{crit}} \cdot s_{\theta_i} \right) = 1 - \alpha$$</p>
+<p>Multiplicamos la desigualdad por $-1$ (invirtiendo el sentido de los operadores lógicos $\le$ a $\ge$):</p>
+<p>$$P\left( \hat{\theta}<em>i + t</em>{\text{crit}} \cdot s_{\theta_i} \ge \theta_i \ge \hat{\theta}<em>i - t</em>{\text{crit}} \cdot s_{\theta_i} \right) = 1 - \alpha$$</p>
+<p>Reordenando los límites de forma creciente, obtenemos el intervalo de confianza formal:</p>
+<p>$$P\left( \hat{\theta}<em>i - t</em>{\text{crit}} \cdot s_{\theta_i} \le \theta_i \le \hat{\theta}<em>i + t</em>{\text{crit}} \cdot s_{\theta_i} \right) = 1 - \alpha$$</p>
+<p>Esto demuestra que el parámetro real $\theta_i$ pertenece al intervalo $\hat{\theta}<em>i \pm t</em>{\text{crit}} \cdot s_{\theta_i}$ con una probabilidad exacta de $1-\alpha$.</p>
+<hr class="docutils" />
+<section id="implementacion-en-python">
+<h2>Implementación en Python<a class="headerlink" href="#implementacion-en-python" title="Permalink to this heading">#</a></h2>
+<p>Debido a la simetría de la distribución $t$, el área acumulada bajo la curva desde $-\infty$ hasta el límite crítico de la derecha ($t_{\text{crit}}$) debe integrar el área de confianza central más la cola izquierda ($\alpha/2$):</p>
+<p>$$\text{Área acumulada} = (1 - \alpha) + \frac{\alpha}{2} = \frac{2 - 2\alpha + \alpha}{2} = \frac{2 - \alpha}{2} = \frac{1 + (1 - \alpha)}{2}$$</p>
+<p>Llamando $C = 1 - \alpha$ al nivel de confianza expresado en fracción (ej. 0.95), evaluamos la función cuantil o inversa de la distribución acumulada (PPF) de Student:</p>
+<p>$$t_{\text{crit}} = F_t^{-1}\left(\frac{1 + C}{2}, , \nu = m - n\right)$$</p>
+<p>Lo que en código de Python se ejecuta de manera directa como:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="c1"># Grados de libertad = número de datos (m) - número de parámetros (n)</span>
+<span class="n">degrees_freedom</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_dato</span><span class="p">)</span> <span class="o">-</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Cálculo exacto del valor crítico t</span>
+<span class="n">t_critical</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">confidence_level</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">degrees_freedom</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="intervalo-de-confianza-para-un-ajuste-lineal">
+<h2>Intervalo de confianza para un ajuste lineal<a class="headerlink" href="#intervalo-de-confianza-para-un-ajuste-lineal" title="Permalink to this heading">#</a></h2>
+<p>Queremos predecir el valor de la recta en un punto arbitrario del eje independiente, al cual llamaremos $x_0$. La ecuación del modelo estimado es:</p>
+<p>$$\hat{y}(x_0) = \hat{\theta}_1 x_0 + \hat{\theta}_0$$</p>
+<p>Donde $\hat{\theta}_1$ es la pendiente y $\hat{\theta}_0$ es el intercepto calculados. Para construir el intervalo de confianza, necesitamos encontrar la varianza de esta predicción, $\text{Var}(\hat{y}(x_0))$.</p>
+<p>Aplicando las propiedades del operador varianza para la suma de dos variables aleatorias dependientes (ya que la pendiente y el intercepto se calculan a partir del mismo conjunto de datos y están correlacionados):</p>
+<p>$$\text{Var}(\hat{y}(x_0)) = \text{Var}(\hat{\theta}_1 x_0 + \hat{\theta}_0)$$</p>
+<p>$$\text{Var}(\hat{y}(x_0)) = x_0^2 \cdot \text{Var}(\hat{\theta}_1) + \text{Var}(\hat{\theta}_0) + 2x_0 \cdot \text{Cov}(\hat{\theta}_1, \hat{\theta}_0)$$</p>
+<p>Aquí queda explícita la naturaleza del problema: <strong>la varianza de la predicción depende directamente de $x_0^2$ y de $x_0$</strong>, lo que define matemáticamente una función cuadrática (una parábola en la varianza).</p>
+<p>En un ajuste sin ponderación, la matriz de diseño $A$ para $m$ datos contiene la columna de la variable independiente y la columna de unos. La matriz de covarianza de los parámetros está dada por $\Sigma_\theta = s^2 (A^T A)^{-1}$. Al resolver esta inversión matricial analíticamente en términos de la media muestral $\bar{x} = \frac{\sum x_i}{m}$, obtenemos los siguientes componentes:</p>
+<ul class="simple">
+<li><p><strong>Varianza de la pendiente:</strong> $\text{Var}(\hat{\theta}_1) = \frac{s^2}{\sum (x_i - \bar{x})^2}$</p></li>
+<li><p><strong>Varianza del intercepto:</strong> $\text{Var}(\hat{\theta}_0) = s^2 \left( \frac{1}{m} + \frac{\bar{x}^2}{\sum (x_i - \bar{x})^2} \right)$</p></li>
+<li><p><strong>Covarianza entre ambos:</strong> $\text{Cov}(\hat{\theta}_1, \hat{\theta}_0) = -\frac{s^2 \bar{x}}{\sum (x_i - \bar{x})^2}$</p></li>
+</ul>
+<p>Sustituyendo estos tres componentes en la ecuación de la varianza de la predicción y factorizando los términos comunes, la expresión se simplifica elegantemente a:</p>
+<p>$$\text{Var}(\hat{y}(x_0)) = s^2 \left( \frac{1}{m} + \frac{(x_0 - \bar{x})^2}{\sum (x_i - \bar{x})^2} \right)$$</p>
+<p>Dado que la incertidumbre estándar es la raíz cuadrada de la varianza, el intervalo de confianza formal para la recta en cualquier punto $x_0$ es:</p>
+<p>$$\text{IC}(x_0) = \hat{y}(x_0) \pm t_{\text{crit}} \cdot s \sqrt{\frac{1}{m} + \frac{(x_0 - \bar{x})^2}{\sum (x_i - \bar{x})^2}}$$</p>
+<ul class="simple">
+<li><p><strong>Efecto de Hipérbola:</strong> El término cuadrático $(x_0 - \bar{x})^2$ bajo la raíz cuadrada genera que las bandas de confianza tengan una geometría hiperbólica.</p></li>
+</ul>
 </section>
 </section>
 
@@ -903,9 +1333,36 @@ Transient Survey (CRTS), cubriendo 33000 sq deg del cielo desde 2007, usando dat
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clase 13: Aprendizaje de Máquina (Supervisado)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-exacta-del-problema-de-minimizacion-regresion-lineal-ideal">Solución exacta del problema de minimización - regresión lineal ideal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demostracion">Demostración</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#minimos-cuadrados-ponderados-wls-incorporando-errores">Mínimos Cuadrados Ponderados (WLS): Incorporando Errores</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ajuste-polinomial-de-grado-n-mediante-minimos-cuadrados">Ajuste Polinomial de Grado $n$ mediante Mínimos Cuadrados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepto-train-validation-test-sets">Concepto: Train / Validation / Test Sets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#training-set">Training set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-set">Validation set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-set">Test set</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bootstrapping">Bootstrapping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#en-validacion-de-modelos">En validación de modelos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#out-of-bag-oob">Out-of-bag (OOB)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-leave-one-out-jackknife">Método leave-one-out (<em>jackknife</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia-con-bootstrap">Diferencia con bootstrap</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estudio-de-curvas-de-luz-de-transientes-mantra">Estudio de curvas de luz de transientes - MANTRA</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-processes-gp">Gaussian Processes (GP)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-ejemplo-de-gp">Visualización de ejemplo de GP</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice-propagacion-de-errores-e-intervalos-de-confianza">Apéndice - Propagación de Errores e Intervalos de Confianza</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion-en-python">Implementación en Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intervalo-de-confianza-para-un-ajuste-lineal">Intervalo de confianza para un ajuste lineal</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>

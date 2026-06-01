@@ -19,7 +19,7 @@ import pandas as pd
 import requests
 from io import StringIO
 
-ESTACION_ELDORADO = "80222099999"  # ID global de la estación (WMO)
+ESTACION = "80110099999"  # ID global de la estación (WMO) EOH en Medellin
 AÑO_INICIO = 1965
 AÑO_FIN = 2025
 
@@ -31,7 +31,7 @@ datos_completos = []
 print("Iniciando descarga de datos desde la NOAA...")
 
 for anio in range(AÑO_INICIO, AÑO_FIN + 1):
-    url = f"{BASE_URL}{anio}/{ESTACION_ELDORADO}.csv"
+    url = f"{BASE_URL}{anio}/{ESTACION}.csv"
 
     try:
         # Realizamos la petición para el año específico
@@ -76,8 +76,8 @@ if datos_completos:
     }).reset_index()
 
     # Guardar a un archivo CSV local
-    df_mensual.to_csv("temperatura_mensual_eldorado_1980_2025.csv", index=False)
-    print(f"Archivo guardado como: 'temperatura_mensual_eldorado.csv'")
+    df_mensual.to_csv("temperatura_mensual.csv", index=False)
+    print(f"Archivo guardado como: 'temperatura_mensual.csv'")
     print(df_mensual.head())
 else:
     print("\nNo se pudo descargar ningún dato.")

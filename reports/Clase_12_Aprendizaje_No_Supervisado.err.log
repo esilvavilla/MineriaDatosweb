@@ -1,4 +1,15 @@
 Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 778, in _async_poll_for_reply
+    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 214, in ensure_async
+    result = await obj
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/jupyter_client/channels.py", line 316, in get_msg
+    raise Empty
+_queue.Empty
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
   File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
   File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
@@ -9,50 +20,18 @@ Traceback (most recent call last):
     return future.result()
   File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
     await self.async_execute_cell(
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
-    await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
-    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
-nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
-------------------
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.neighbors import KernelDensity
-from astropy.units import au, M_jup
-from astroquery.ipac.nexsci.nasa_exoplanet_archive import NasaExoplanetArchive
-
-
-columns = [
-    'pl_name',    # Exoplanet name
-    'pl_bmassj',  # Planetary mass (Jupiter mass)
-    'pl_orbsmax',  # Orbital semi-major axis (AU)
-    'st_met', # Stellar metallicity
-]
-
-table = NasaExoplanetArchive.query_criteria(
-    table='pscomppars', # Specify the table name (e.g., 'pscomppars' for composite planet parameters)
-    select=','.join(columns),
-    where='pl_bmassj is not null and pl_orbsmax is not null and pl_controv_flag = 0',
-    order='pl_name ASC' # Order by name y
-)
-
-print(f"Found {len(table)} exoplanets with reported mass and semi-major axis.")
-
-mass_values = np.array(table['pl_bmassj'].value)
-semimajor_axis_values = np.array(table['pl_orbsmax'].value)
-names_values = np.array(table['pl_name'].value)
-metal_values = np.array(table['st_met'].value)
-------------------
-
-
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[2], line 3[0m
-[1;32m      1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mnp[39;00m
-[1;32m      2[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mplt[39;00m
-[0;32m----> 3[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01msklearn[39;00m[38;5;21;01m.[39;00m[38;5;21;01mneighbors[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m KernelDensity
-[1;32m      4[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mastropy[39;00m[38;5;21;01m.[39;00m[38;5;21;01munits[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m au, M_jup
-[1;32m      5[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mastroquery[39;00m[38;5;21;01m.[39;00m[38;5;21;01mipac[39;00m[38;5;21;01m.[39;00m[38;5;21;01mnexsci[39;00m[38;5;21;01m.[39;00m[38;5;21;01mnasa_exoplanet_archive[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m NasaExoplanetArchive
-
-[0;31mModuleNotFoundError[0m: No module named 'sklearn'
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 1001, in async_execute_cell
+    exec_reply = await self.task_poll_for_reply
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 802, in _async_poll_for_reply
+    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 852, in _async_handle_timeout
+    raise CellTimeoutError.error_from_timeout_and_cell(
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
+The message was: Cell execution timed out.
+Here is a preview of the cell contents:
+-------------------
+['import numpy as np', 'import matplotlib.pyplot as plt', 'from sklearn.neighbors import KernelDensity', 'from astropy.units import au, M_jup', 'from astroquery.ipac.nexsci.nasa_exoplanet_archive import NasaExoplanetArchive']
+...
+['', "mass_values = np.array(table['pl_bmassj'].value)", "semimajor_axis_values = np.array(table['pl_orbsmax'].value)", "names_values = np.array(table['pl_name'].value)", "metal_values = np.array(table['st_met'].value)"]
+-------------------
 
