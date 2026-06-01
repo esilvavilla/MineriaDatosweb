@@ -62,6 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_11_fits';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -186,6 +188,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_10_astroquery.html">Clase 10: Bases de datos astronómicas y Astroquery</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 11: Manejo de archivos FITS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_12_Aprendizaje_No_Supervisado.html">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_13_Aprendizaje_Supervisado.html">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada_1.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
@@ -414,7 +419,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="clase-11-manejo-de-archivos-fits">
+  <section class="tex2jax_ignore mathjax_ignore" id="clase-11-manejo-de-archivos-fits">
 <h1>Clase 11: Manejo de archivos FITS<a class="headerlink" href="#clase-11-manejo-de-archivos-fits" title="Permalink to this heading">#</a></h1>
 <p>FITS (Flexible Image Transport System) es el formato de archivo estándar más utilizado en astronomía para el almacenamiento, la transmisión y la manipulación de datos científicos. Diseñado específicamente para ser independiente de la plataforma y duradero a largo plazo, un archivo FITS consta de una o más secciones que incluyen un encabezado (header) en texto legible con metadatos en formato <code class="docutils literal notranslate"><span class="pre">key</span></code>-<code class="docutils literal notranslate"><span class="pre">value</span></code>, seguido de datos binarios que pueden representar imágenes multidimensionales, espectros o tablas de datos. Este formato permite incluir información sobre las condiciones de observación, las coordenadas celestiales y la calibración.</p>
 <section id="visualizando-imagenes-en-archivos-fits">
@@ -648,7 +653,7 @@ http://simbad.u-strasbg.fr/simbad/sim-id?Ident=NAME%20LCC&amp;NbIdent=query_hlin
 </div>
 </div>
 </div>
-<p>Las coordenadas mundiales (World Coordinates) sirven para ubicar una medida en un espacio de parámetros multidimensional. Un Sistema de Coordenadas Mundiales (WCS en inglés) especifica las coordenadas físicas, o mundiales (WC en inglés), que se adjuntan a cada píxel o spaxel de una imagen o matriz de $N$ dimensiones. Se ha desarrollado un elaborado conjunto de normas y convenciones para el formato FITS (Flexible Image Transport System) (Wells et al. 1981). Un ejemplo típico de WCS es la especificación de la Ascensión Recta (AR) y la Declinación (Dec) en el cielo asociada a una determinada ubicación de píxel o vóxel en una imagen celeste bidimensional (Greisen y Calabretta 2002; Calabretta y Greisen 2002).</p>
+<p>Las coordenadas mundiales (World Coordinates) sirven para ubicar una medida en un espacio de parámetros multidimensional. Un Sistema de Coordenadas Mundiales (WCS en inglés) especifica las coordenadas físicas, o mundiales (WC en inglés), que se adjuntan a cada píxel o spaxel de una imagen o matriz de <span class="math notranslate nohighlight">\(N\)</span> dimensiones. Se ha desarrollado un elaborado conjunto de normas y convenciones para el formato FITS (Flexible Image Transport System) (Wells et al. 1981). Un ejemplo típico de WCS es la especificación de la Ascensión Recta (AR) y la Declinación (Dec) en el cielo asociada a una determinada ubicación de píxel o vóxel en una imagen celeste bidimensional (Greisen y Calabretta 2002; Calabretta y Greisen 2002).</p>
 <p>Hay dos formas principales de inicializar un objeto WCS: con un diccionario de Python (o un objeto tipo diccionario, como la cabecera de un archivo FITS) o con listas de Python. En este ejemplo, inicializaremos un objeto astropy.wcs.WCS con dos dimensiones, como sería necesario para representar una imagen.</p>
 <p>Adaptado y traducido de https://learn.astropy.org/tutorials/celestial_coords1.html</p>
 <div class="cell docutils container">

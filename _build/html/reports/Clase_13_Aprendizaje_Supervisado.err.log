@@ -1,4 +1,15 @@
 Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 778, in _async_poll_for_reply
+    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 214, in ensure_async
+    result = await obj
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/jupyter_client/channels.py", line 316, in get_msg
+    raise Empty
+_queue.Empty
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
   File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
   File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 1305, in execute
@@ -9,87 +20,18 @@ Traceback (most recent call last):
     return future.result()
   File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 705, in async_execute
     await self.async_execute_cell(
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 1058, in async_execute_cell
-    await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
-    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
-nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
-------------------
-import pandas as pd
-import requests
-from io import StringIO
-
-ESTACION = "80110099999"  # ID global de la estación (WMO) EOH en Medellin
-AÑO_INICIO = 1965
-AÑO_FIN = 2025
-
-# Base URL del repositorio GSOD de la NOAA (formato CSV)
-BASE_URL = "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/"
-
-datos_completos = []
-
-print("Iniciando descarga de datos desde la NOAA...")
-
-for anio in range(AÑO_INICIO, AÑO_FIN + 1):
-    url = f"{BASE_URL}{anio}/{ESTACION}.csv"
-
-    try:
-        # Realizamos la petición para el año específico
-        response = requests.get(url, timeout=10)
-
-        if response.status_code == 200:
-            # Leemos el CSV directamente desde la respuesta en memoria
-            df_anio = pd.read_csv(StringIO(response.text))
-            datos_completos.append(df_anio)
-            print(f"Año {anio}: Descargado con éxito.")
-        elif response.status_code == 404:
-            print(f"Año {anio}: No se encontraron datos (404).")
-        else:
-            print(f"Año {anio}: Error en el servidor (Código {response.status_code}).")
-
-    except Exception as e:
-        print(f"Año {anio}: Error en la conexión -> {e}")
-
-# Concatenamos todos los años en un solo DataFrame
-if datos_completos:
-    df_total = pd.concat(datos_completos, ignore_index=True)
-
-    # Convertir columna de fecha a formato datetime
-    df_total['DATE'] = pd.to_datetime(df_total['DATE'])
-
-    # --- PROCESAMIENTO Y CONVERSIÓN ---
-    # La NOAA entrega la temperatura en Fahrenheit ('TEMP'). La convertimos a Celsius.
-    df_total['TEMP_C'] = (df_total['TEMP'] - 32) * 5 / 9
-
-    # Agrupamos por año y mes para obtener la media mensual que solicitaste
-    df_total['AÑO_MES'] = df_total['DATE'].dt.to_period('M')
-
-    # Extraemos el promedio mensual de la temperatura media, máxima y mínima
-    # Nota: MAX y MIN también vienen originalmente en Fahrenheit.
-    df_total['MAX_C'] = (df_total['MAX'] - 32) * 5 / 9
-    df_total['MIN_C'] = (df_total['MIN'] - 32) * 5 / 9
-
-    df_mensual = df_total.groupby('AÑO_MES').agg({
-        'TEMP_C': 'mean',
-        'MAX_C': 'mean',
-        'MIN_C': 'mean'
-    }).reset_index()
-
-    # Guardar a un archivo CSV local
-    df_mensual.to_csv("temperatura_mensual.csv", index=False)
-    print(f"Archivo guardado como: 'temperatura_mensual.csv'")
-    print(df_mensual.head())
-else:
-    print("\nNo se pudo descargar ningún dato.")
-------------------
-
-
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[1], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mpandas[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mpd[39;00m
-[1;32m      2[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mrequests[39;00m
-[1;32m      3[0m [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;21;01mio[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m StringIO
-
-[0;31mModuleNotFoundError[0m: No module named 'pandas'
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 1001, in async_execute_cell
+    exec_reply = await self.task_poll_for_reply
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 802, in _async_poll_for_reply
+    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/nbclient/client.py", line 852, in _async_handle_timeout
+    raise CellTimeoutError.error_from_timeout_and_cell(
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
+The message was: Cell execution timed out.
+Here is a preview of the cell contents:
+-------------------
+['import pandas as pd', 'import requests', 'from io import StringIO', '', 'ESTACION = "80110099999"  # ID global de la estación (WMO) EOH en Medellin']
+...
+['    df_mensual.to_csv("temperatura_mensual.csv", index=False)', '    print(f"Archivo guardado como: \'temperatura_mensual.csv\'")', '    print(df_mensual.head())', 'else:', '    print("\\nNo se pudo descargar ningún dato.")']
+-------------------
 

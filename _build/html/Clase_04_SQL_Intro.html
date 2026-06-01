@@ -62,7 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_04_SQL_Intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -184,10 +185,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_09_astropy.html">Clase 9: Astropy: Unidades y Coordenadas</a></li>
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="Clase_10_astroquery.html">Clase 10: Bases de datos astronómicas y Astroquery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_12_Aprendizaje_No_Supervisado.html">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_13_Aprendizaje_Supervisado.html">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada_1.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
@@ -442,7 +444,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="clase-4-introduccion-a-sql-y-bases-de-datos-relacionales">
+  <section class="tex2jax_ignore mathjax_ignore" id="clase-4-introduccion-a-sql-y-bases-de-datos-relacionales">
 <h1>Clase 4: Introducción a SQL y Bases de Datos Relacionales<a class="headerlink" href="#clase-4-introduccion-a-sql-y-bases-de-datos-relacionales" title="Permalink to this heading">#</a></h1>
 <p>En la ciencia de datos astrofísica, la información rara vez vive en un solo archivo CSV. Los datos reales son masivos, complejos y están interconectados. En esta semana aprenderemos a <strong>diseñar, crear, consultar y graficar</strong> Bases de Datos Relacionales usando SQL (Structured Query Language) y Python.</p>
 <section id="el-concepto-relacional-sql-y-sqlite">

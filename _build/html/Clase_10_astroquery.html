@@ -62,11 +62,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_10_astroquery';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Clase 10: Manejo de archivos FITS" href="Clase_11_fits.html" />
+    <link rel="next" title="Clase 11: Manejo de archivos FITS" href="Clase_11_fits.html" />
     <link rel="prev" title="Clase 9: Astropy: Unidades y Coordenadas" href="Clase_09_astropy.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,13 +185,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_09_astropy.html">Clase 9: Astropy: Unidades y Coordenadas</a></li>
-
-
-
-
-
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 10: Bases de datos astronómicas y Astroquery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 10: Manejo de archivos FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_12_Aprendizaje_No_Supervisado.html">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_13_Aprendizaje_Supervisado.html">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada_1.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
@@ -446,7 +446,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="clase-10-bases-de-datos-astronomicas-y-astroquery">
+  <section class="tex2jax_ignore mathjax_ignore" id="clase-10-bases-de-datos-astronomicas-y-astroquery">
 <h1>Clase 10: Bases de datos astronómicas y Astroquery<a class="headerlink" href="#clase-10-bases-de-datos-astronomicas-y-astroquery" title="Permalink to this heading">#</a></h1>
 <p><strong>Astroquery</strong> es una colección de herramientas en Python diseñadas para facilitar el acceso a datos astronómicos alojados en archivos y servicios web de todo el mundo. En lugar de descargar manualmente archivos desde sitios web individuales, Astroquery permite buscar, filtrar y descargar catálogos, imágenes y espectros directamente desde Python.</p>
 <p>Cada servicio (como SIMBAD, VizieR o MAST) tiene su propio módulo dentro de la librería, y cada módulo, por ser desarrollado de forma independiente, puede tener distintos niveles de documentación/funcionalidad. <a class="reference external" href="https://astroquery.readthedocs.io/en/latest/">Lista de módulos</a>.</p>
@@ -580,7 +580,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: astroquery in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (0.4.11)
-Requirement already satisfied: numpy&gt;=1.20 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (2.2.6)
+Requirement already satisfied: numpy&gt;=1.20 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (2.2.5)
 Requirement already satisfied: astropy&gt;=5.0 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (6.1.7)
 Requirement already satisfied: requests&gt;=2.19 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (2.33.1)
 Requirement already satisfied: beautifulsoup4&gt;=4.8 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (4.14.3)
@@ -603,8 +603,10 @@ Requirement already satisfied: zipp&gt;=3.20 in /opt/homebrew/Caskroom/miniconda
 Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (3.4.7)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (3.13)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.26 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2.6.3)
-Requirement already satisfied: certifi&gt;=2023.5.7 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2026.4.22)
-Requirement already satisfied: more-itertools in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.classes-&gt;keyring&gt;=15.0-&gt;astroquery) (11.0.2)
+Requirement already satisfied: certifi&gt;=2023.5.7 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2026.5.20)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: more-itertools in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.classes-&gt;keyring&gt;=15.0-&gt;astroquery) (11.0.2)
 Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.context-&gt;keyring&gt;=15.0-&gt;astroquery) (1.2.0)
 </pre></div>
 </div>
@@ -920,7 +922,7 @@ tap_schema.tables
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;NGC2808_DSS2_cutout.jpg&#39;, &lt;http.client.HTTPMessage at 0x11caf9210&gt;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;NGC2808_DSS2_cutout.jpg&#39;, &lt;http.client.HTTPMessage at 0x10e6f99c0&gt;)
 </pre></div>
 </div>
 </div>
@@ -1015,21 +1017,50 @@ https://gaia.aip.de/cms/services/cone-search/</p>
 <span class="g g-Whitespace">    </span><span class="mi">479</span> <span class="k">else</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">480</span>     <span class="n">job</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
 
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/astroquery/utils/tap/model/job.py:281,</span> in <span class="ni">Job.save_results</span><span class="nt">(self, verbose)</span>
-<span class="g g-Whitespace">    </span><span class="mi">278</span>     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No results to save&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">279</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">280</span>     <span class="c1"># Async</span>
-<span class="ne">--&gt; </span><span class="mi">281</span>     <span class="bp">self</span><span class="o">.</span><span class="n">wait_for_job_end</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">282</span>     <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connHandler</span><span class="o">.</span><span class="n">execute_tapget</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span>         <span class="sa">f</span><span class="s2">&quot;async/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">jobid</span><span class="si">}</span><span class="s2">/results/result&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span>     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/astroquery/utils/tap/model/job.py:305,</span> in <span class="ni">Job.save_results</span><span class="nt">(self, verbose)</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span> <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saving results to: </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">305</span> <span class="bp">self</span><span class="o">.</span><span class="n">connHandler</span><span class="o">.</span><span class="n">dump_to_file</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
 
-<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/astroquery/utils/tap/model/job.py:338,</span> in <span class="ni">Job.wait_for_job_end</span><span class="nt">(self, verbose)</span>
-<span class="g g-Whitespace">    </span><span class="mi">335</span>         <span class="k">break</span>
-<span class="g g-Whitespace">    </span><span class="mi">336</span>     <span class="c1"># PENDING, QUEUED, EXECUTING, COMPLETED, ERROR, ABORTED, UNKNOWN,</span>
-<span class="g g-Whitespace">    </span><span class="mi">337</span>     <span class="c1"># HELD, SUSPENDED, ARCHIVED:</span>
-<span class="ne">--&gt; </span><span class="mi">338</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">339</span> <span class="k">return</span> <span class="n">currentResponse</span><span class="p">,</span> <span class="n">lphase</span>
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages/astroquery/utils/tap/conn/tapconn.py:516,</span> in <span class="ni">TapConn.dump_to_file</span><span class="nt">(self, output, response)</span>
+<span class="g g-Whitespace">    </span><span class="mi">514</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">515</span>     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">516</span>         <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">517</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">518</span>             <span class="k">break</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/http/client.py:471,</span> in <span class="ni">HTTPResponse.read</span><span class="nt">(self, amt)</span>
+<span class="g g-Whitespace">    </span><span class="mi">468</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">amt</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">469</span>     <span class="c1"># clip the read to the &quot;end of response&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">470</span>     <span class="n">amt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span>
+<span class="ne">--&gt; </span><span class="mi">471</span> <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">amt</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">472</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span> <span class="ow">and</span> <span class="n">amt</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">473</span>     <span class="c1"># Ideally, we would raise IncompleteRead if the content-length</span>
+<span class="g g-Whitespace">    </span><span class="mi">474</span>     <span class="c1"># wasn&#39;t satisfied, but it might break compatibility.</span>
+<span class="g g-Whitespace">    </span><span class="mi">475</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_close_conn</span><span class="p">()</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/socket.py:717,</span> in <span class="ni">SocketIO.readinto</span><span class="nt">(self, b)</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">716</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">717</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">718</span>     <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">719</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_occurred</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/ssl.py:1307,</span> in <span class="ni">SSLSocket.recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1303</span>     <span class="k">if</span> <span class="n">flags</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1304</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1305</span>           <span class="s2">&quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+<span class="g g-Whitespace">   </span><span class="mi">1306</span>           <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1307</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1308</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1309</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">nbytes</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
+
+<span class="nn">File /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/ssl.py:1163,</span> in <span class="ni">SSLSocket.read</span><span class="nt">(self, len, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1161</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1162</span>     <span class="k">if</span> <span class="n">buffer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1163</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1164</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1165</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1464,7 +1495,7 @@ http://simbad.u-strasbg.fr/simbad/sim-id?Ident=NAME%20LCC&amp;NbIdent=query_hlin
 </div>
 </div>
 </div>
-<p>Las coordenadas mundiales (World Coordinates) sirven para ubicar una medida en un espacio de parámetros multidimensional. Un Sistema de Coordenadas Mundiales (WCS en inglés) especifica las coordenadas físicas, o mundiales (WC en inglés), que se adjuntan a cada píxel o spaxel de una imagen o matriz de $N$ dimensiones. Se ha desarrollado un elaborado conjunto de normas y convenciones para el formato FITS (Flexible Image Transport System) (Wells et al. 1981). Un ejemplo típico de WCS es la especificación de la Ascensión Recta (AR) y la Declinación (Dec) en el cielo asociada a una determinada ubicación de píxel o vóxel en una imagen celeste bidimensional (Greisen y Calabretta 2002; Calabretta y Greisen 2002).</p>
+<p>Las coordenadas mundiales (World Coordinates) sirven para ubicar una medida en un espacio de parámetros multidimensional. Un Sistema de Coordenadas Mundiales (WCS en inglés) especifica las coordenadas físicas, o mundiales (WC en inglés), que se adjuntan a cada píxel o spaxel de una imagen o matriz de <span class="math notranslate nohighlight">\(N\)</span> dimensiones. Se ha desarrollado un elaborado conjunto de normas y convenciones para el formato FITS (Flexible Image Transport System) (Wells et al. 1981). Un ejemplo típico de WCS es la especificación de la Ascensión Recta (AR) y la Declinación (Dec) en el cielo asociada a una determinada ubicación de píxel o vóxel en una imagen celeste bidimensional (Greisen y Calabretta 2002; Calabretta y Greisen 2002).</p>
 <p>Hay dos formas principales de inicializar un objeto WCS: con un diccionario de Python (o un objeto tipo diccionario, como la cabecera de un archivo FITS) o con listas de Python. En este ejemplo, inicializaremos un objeto astropy.wcs.WCS con dos dimensiones, como sería necesario para representar una imagen.</p>
 <p>Adaptado y traducido de https://learn.astropy.org/tutorials/celestial_coords1.html</p>
 <div class="cell docutils container">
@@ -1780,7 +1811,7 @@ http://simbad.u-strasbg.fr/simbad/sim-id?Ident=NAME%20LCC&amp;NbIdent=query_hlin
 </section>
 <section id="tamano-angular-galactico-vs-redshift">
 <h2>Tamaño angular galáctico vs. redshift<a class="headerlink" href="#tamano-angular-galactico-vs-redshift" title="Permalink to this heading">#</a></h2>
-<p>En un universo en expansión, el diámetro angular de una galaxia distante disminuye con el corrimiento al rojo $z$ al principio, pero alcanza un mínimo (típicamente alrededor de $z \approx 1.5$) y luego comienza a aumentar de nuevo debido a la interacción entre el tiempo de viaje de la luz y la escala del universo.</p>
+<p>En un universo en expansión, el diámetro angular de una galaxia distante disminuye con el corrimiento al rojo <span class="math notranslate nohighlight">\(z\)</span> al principio, pero alcanza un mínimo (típicamente alrededor de <span class="math notranslate nohighlight">\(z \approx 1.5\)</span>) y luego comienza a aumentar de nuevo debido a la interacción entre el tiempo de viaje de la luz y la escala del universo.</p>
 <p>Cuando observamos una galaxia con un corrimiento al rojo muy alto, la estamos viendo tal como era en el pasado distante, cuando el universo era mucho más pequeño y la galaxia estaba físicamente más cerca de nuestra ubicación. Debido a que el tamaño angular está determinado por el diámetro físico de la galaxia en relación con su distancia en el momento en que se emitió la luz, estas galaxias antiguas y “más cercanas” subtienden un ángulo mayor en el cielo que las galaxias más recientes que emitieron su luz cuando el universo ya se había expandido significativamente.</p>
 <p>Esto se puede pensar como que cada galaxia ocupaba una “porción” más grande del cielo disponible en esa era. Para cuando esa luz llega a nosotros, el universo se ha expandido, pero el ángulo que la luz subtendía originalmente ya estaba “fijado” en el momento de la emisión.</p>
 <p>Para visualizar esto, revisaremos un artículo clásico que evidencia este efecto con datos de núcleos activos de galaxias obtenidos a través de interferometría. Vaya al enlace de ADS, busque los datos asociados al servicio CDS. Vaya al enlace de Vizier y encuentre el nombre de la tabla “VLBI angular size - z” for 330 sources (330 rows)” del catálogo correspondiente.</p>
@@ -1805,7 +1836,7 @@ http://simbad.u-strasbg.fr/simbad/sim-id?Ident=NAME%20LCC&amp;NbIdent=query_hlin
 </div>
 </div>
 </div>
-<p>La curvatura global del universo determina cómo divergen o convergen las trayectorias de la luz, lo que afecta el tamaño angular observado de las galaxias. En modelos cosmológicos con curvatura positiva (un universo cerrado), las líneas de luz convergen como los meridianos en un globo, haciendo que los objetos parezcan aún más grandes de lo que dicta la expansión. Por el contrario, en modelos con curvatura negativa o plana (como el modelo $\Lambda$CDM), la evolución del diámetro angular depende de la competencia entre la expansión y el contenido de materia y energía oscura. Así, medir el ángulo subtendido por objetos de tamaño conocido —como las oscilaciones acústicas de bariones o cúmulos de galaxias— es una de las pruebas fundamentales para determinar la geometría del universo y la densidad total de sus componentes ($\Omega_0$).</p>
+<p>La curvatura global del universo determina cómo divergen o convergen las trayectorias de la luz, lo que afecta el tamaño angular observado de las galaxias. En modelos cosmológicos con curvatura positiva (un universo cerrado), las líneas de luz convergen como los meridianos en un globo, haciendo que los objetos parezcan aún más grandes de lo que dicta la expansión. Por el contrario, en modelos con curvatura negativa o plana (como el modelo <span class="math notranslate nohighlight">\(\Lambda\)</span>CDM), la evolución del diámetro angular depende de la competencia entre la expansión y el contenido de materia y energía oscura. Así, medir el ángulo subtendido por objetos de tamaño conocido —como las oscilaciones acústicas de bariones o cúmulos de galaxias— es una de las pruebas fundamentales para determinar la geometría del universo y la densidad total de sus componentes (<span class="math notranslate nohighlight">\(\Omega_0\)</span>).</p>
 <p>Usando el código siguiente, haga una gráfica de redshift vs. tamaño angular promediando de a sqrt(N) galaxias (N = número de galaxias en la muestra) con (opcional) barras de error de 1-sigma. Debe resultar similar a la Fig. 5 del paper.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1935,7 +1966,7 @@ http://simbad.u-strasbg.fr/simbad/sim-id?Ident=NAME%20LCC&amp;NbIdent=query_hlin
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Clase 10: Manejo de archivos FITS</p>
+        <p class="prev-next-title">Clase 11: Manejo de archivos FITS</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

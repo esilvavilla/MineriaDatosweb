@@ -33,6 +33,7 @@ html:
 parse:
   myst_enable_extensions:
     - amsmath
+    - dollarmath
 
 sphinx:
   config:

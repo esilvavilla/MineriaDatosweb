@@ -62,7 +62,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_12_Aprendizaje_No_Supervisado';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -188,7 +189,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_13_Aprendizaje_Supervisado.html">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada_1.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
@@ -449,18 +450,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="clase-12-aprendizaje-de-maquina-no-supervisado">
+  <section class="tex2jax_ignore mathjax_ignore" id="clase-12-aprendizaje-de-maquina-no-supervisado">
 <h1>Clase 12: Aprendizaje de Máquina (No Supervisado)<a class="headerlink" href="#clase-12-aprendizaje-de-maquina-no-supervisado" title="Permalink to this heading">#</a></h1>
-<p>Construcción de algoritmos que aprenden una función de mapeo $$f(x)$$ a partir de datos $$x$$ para realizar predicciones o descubrir patrones. En la mayoría de casos, se hace a través de <em>optimización</em>, que es buscar encontrar la mejor solución posible según una función objetivo.</p>
+<p>Construcción de algoritmos que aprenden una función de mapeo $<span class="math notranslate nohighlight">\(f(x)\)</span><span class="math notranslate nohighlight">\( a partir de datos \)</span><span class="math notranslate nohighlight">\(x\)</span>$ para realizar predicciones o descubrir patrones. En la mayoría de casos, se hace a través de <em>optimización</em>, que es buscar encontrar la mejor solución posible según una función objetivo.</p>
 <section id="tres-enfoques-de-machine-learning">
 <h2>Tres enfoques de Machine Learning<a class="headerlink" href="#tres-enfoques-de-machine-learning" title="Permalink to this heading">#</a></h2>
 <p><strong>No supervisado (Exploratorio):</strong> Exploración de la estructura intrínseca o de las distribuciones de probabilidad dentro de datos sin etiquetas (<em>labels</em>).</p>
-<p><strong>Supervisado (Guiado):</strong> Aprendizaje a partir de datos previamente etiquetados $$x_i\to y_i.$$ Las etiquetas pueden ser categóricas o continuas (regresión).</p>
+<p><strong>Supervisado (Guiado):</strong> Aprendizaje a partir de datos previamente etiquetados $<span class="math notranslate nohighlight">\(x_i\to y_i.\)</span>$ Las etiquetas pueden ser categóricas o continuas (regresión).</p>
 <p><strong>Por refuerzo (Conductual):</strong> Optimización mediante prueba y error utilizando una función de recompensa.</p>
 </section>
 <section id="metodologias-y-algoritmos">
 <h2>Metodologías y algoritmos<a class="headerlink" href="#metodologias-y-algoritmos" title="Permalink to this heading">#</a></h2>
-<p><strong>No supervisado:</strong> Infiere la densidad de probabilidad subyacente $$P(x)$$ (<em>density estimation</em>) o la estructura geométrica latente (<em>dimensionality reduction</em>). Algoritmos típicos:</p>
+<p><strong>No supervisado:</strong> Infiere la densidad de probabilidad subyacente $<span class="math notranslate nohighlight">\(P(x)\)</span>$ (<em>density estimation</em>) o la estructura geométrica latente (<em>dimensionality reduction</em>). Algoritmos típicos:</p>
 <ul class="simple">
 <li><p>Kernel Density Estimation (DE)</p></li>
 <li><p>K-means (DE, clustering)</p></li>
@@ -477,7 +478,7 @@ document.write(`
 <li><p>Buscar objetos “raros” o anomalías (<em>outliers</em>) en catálogos astronómicos.</p></li>
 <li><p>Reducir dimensionalidad de espectros o cubos de datos.</p></li>
 </ul>
-<p><strong>Supervisado:</strong> Mapea entradas hacia objetivos conocidos minimizando una función de pérdida $$L(y, \hat{y}).$$  Algoritmos típicos:</p>
+<p><strong>Supervisado:</strong> Mapea entradas hacia objetivos conocidos minimizando una función de pérdida $<span class="math notranslate nohighlight">\(L(y, \hat{y}).\)</span>$  Algoritmos típicos:</p>
 <ul class="simple">
 <li><p>Regresión lineal</p></li>
 <li><p>Regresión logística</p></li>
@@ -673,7 +674,9 @@ Requirement already satisfied: pyerfa&gt;=2.0.1.1 in /opt/homebrew/Caskroom/mini
 Requirement already satisfied: astropy-iers-data&gt;=0.2024.10.28.0.34.7 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astropy&gt;=5.0-&gt;astroquery) (0.2026.4.27.1.3.2)
 Requirement already satisfied: PyYAML&gt;=3.13 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astropy&gt;=5.0-&gt;astroquery) (6.0.3)
 Requirement already satisfied: packaging&gt;=19.0 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astropy&gt;=5.0-&gt;astroquery) (26.2)
-Requirement already satisfied: soupsieve&gt;=1.6.1 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.8-&gt;astroquery) (2.8.3)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: soupsieve&gt;=1.6.1 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.8-&gt;astroquery) (2.8.3)
 Requirement already satisfied: typing-extensions&gt;=4.0.0 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.8-&gt;astroquery) (4.15.0)
 Requirement already satisfied: six&gt;=1.9 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from html5lib&gt;=0.999-&gt;astroquery) (1.17.0)
 Requirement already satisfied: webencodings in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from html5lib&gt;=0.999-&gt;astroquery) (0.5.1)
@@ -685,10 +688,8 @@ Requirement already satisfied: zipp&gt;=3.20 in /opt/homebrew/Caskroom/miniconda
 Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (3.4.7)
 Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (3.13)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.26 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2.6.3)
-Requirement already satisfied: certifi&gt;=2023.5.7 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2026.4.22)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: more-itertools in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.classes-&gt;keyring&gt;=15.0-&gt;astroquery) (11.0.2)
+Requirement already satisfied: certifi&gt;=2023.5.7 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2026.5.20)
+Requirement already satisfied: more-itertools in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.classes-&gt;keyring&gt;=15.0-&gt;astroquery) (11.0.2)
 Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.context-&gt;keyring&gt;=15.0-&gt;astroquery) (1.2.0)
 </pre></div>
 </div>
@@ -730,156 +731,7 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KernelDensity</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="kn">import</span> <span class="n">au</span><span class="p">,</span> <span class="n">M_jup</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.ipac.nexsci.nasa_exoplanet_archive</span><span class="w"> </span><span class="kn">import</span> <span class="n">NasaExoplanetArchive</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">73</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="c1"># `_distributor_init` allows distributors to run custom init code.</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span> <span class="c1"># For instance, for the Windows wheel, this is used to pre-load the</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="c1"># vcomp shared library runtime for OpenMP embedded in the sklearn/.libs</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">67</span> <span class="c1"># later is linked to the OpenMP runtime to make it possible to introspect</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="c1"># it and importing it first would fail if the OpenMP dll cannot be found.</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>  <span class="c1"># noqa: F401 E402</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="n">__check_build</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="n">_distributor_init</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">73</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">clone</span>  <span class="c1"># noqa: E402</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.utils._show_versions</span><span class="w"> </span><span class="kn">import</span> <span class="n">show_versions</span>  <span class="c1"># noqa: E402</span>
-<span class="g g-Whitespace">     </span><span class="mi">76</span> <span class="n">_submodules</span> <span class="o">=</span> <span class="p">[</span>
-<span class="g g-Whitespace">     </span><span class="mi">77</span>     <span class="s2">&quot;calibration&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">78</span>     <span class="s2">&quot;cluster&quot;</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span>     <span class="s2">&quot;compose&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="p">]</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config_context</span><span class="p">,</span> <span class="n">get_config</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">InconsistentVersionWarning</span>
-<span class="ne">---&gt; </span><span class="mi">19</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.utils._metadata_requests</span><span class="w"> </span><span class="kn">import</span> <span class="n">_MetadataRequester</span><span class="p">,</span> <span class="n">_routing_enabled</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.utils._missing</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_scalar_nan</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.utils._param_validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_parameter_constraints</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">9</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">metadata_routing</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._bunch</span><span class="w"> </span><span class="kn">import</span> <span class="n">Bunch</span>
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._chunking</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_batches</span><span class="p">,</span> <span class="n">gen_even_slices</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># Make _safe_indexing importable from here for backward compat as this particular</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="c1"># helper is considered semi-private and typically very useful for third-party</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># libraries that want to comply with scikit-learn&#39;s estimator API. In particular,</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># _safe_indexing was included in our public API documentation despite the leading</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># `_` in its name.</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._indexing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">_safe_indexing</span><span class="p">,</span>  <span class="c1"># noqa: F401</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">resample</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="n">shuffle</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="p">)</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="n">_chunking</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">11</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.._config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_config</span>
-<span class="ne">---&gt; </span><span class="mi">11</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._param_validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">validate_params</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="k">def</span><span class="w"> </span><span class="nf">chunk_generator</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span> <span class="n">chunksize</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Chunk generator, ``gen`` into lists of length ``chunksize``. The last</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span><span class="sd">     chunk may have a length less than ``chunksize``.&quot;&quot;&quot;</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="n">_param_validation</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">17</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">csr_matrix</span><span class="p">,</span> <span class="n">issparse</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.._config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config_context</span><span class="p">,</span> <span class="n">get_config</span>
-<span class="ne">---&gt; </span><span class="mi">17</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">_is_arraylike_not_scalar</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="k">class</span><span class="w"> </span><span class="nc">InvalidParameterError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Custom exception to be raised when the parameter of a class/method/function</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span><span class="sd">     does not have a valid type or value.</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span><span class="sd">     &quot;&quot;&quot;</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="n">validation</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">21</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_config</span> <span class="k">as</span> <span class="n">_get_config</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">from</span><span class="w"> </span><span class="nn">..exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataConversionWarning</span><span class="p">,</span> <span class="n">NotFittedError</span><span class="p">,</span> <span class="n">PositiveSpectrumWarning</span>
-<span class="ne">---&gt; </span><span class="mi">21</span> <span class="kn">from</span><span class="w"> </span><span class="nn">..utils._array_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">_asarray_with_order</span><span class="p">,</span> <span class="n">_is_numpy_namespace</span><span class="p">,</span> <span class="n">get_namespace</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="kn">from</span><span class="w"> </span><span class="nn">..utils.deprecation</span><span class="w"> </span><span class="kn">import</span> <span class="n">_deprecate_force_all_finite</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="kn">from</span><span class="w"> </span><span class="nn">..utils.fixes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ComplexWarning</span><span class="p">,</span> <span class="n">_preserve_dia_indices_dtype</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="n">_array_api</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">20</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">..externals</span><span class="w"> </span><span class="kn">import</span> <span class="n">array_api_extra</span> <span class="k">as</span> <span class="n">xpx</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">from</span><span class="w"> </span><span class="nn">..externals.array_api_compat</span><span class="w"> </span><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np_compat</span>
-<span class="ne">---&gt; </span><span class="mi">20</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.fixes</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_version</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="c1"># TODO: complete __all__</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;xpx&quot;</span><span class="p">]</span>  <span class="c1"># we import xpx here just to re-export it, need this to appease ruff</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">sklearn</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="n">fixes</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">16</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse.linalg</span>
-<span class="ne">---&gt; </span><span class="mi">16</span> <span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="k">try</span><span class="p">:</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">stats</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">653</span>
-<span class="g g-Whitespace">    </span><span class="mi">649</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._distribution_infrastructure</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">650</span>     <span class="n">make_distribution</span><span class="p">,</span> <span class="n">Mixture</span><span class="p">,</span> <span class="n">order_statistic</span><span class="p">,</span> <span class="n">truncate</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="nb">abs</span>
-<span class="g g-Whitespace">    </span><span class="mi">651</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">652</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._new_distributions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Normal</span><span class="p">,</span> <span class="n">Uniform</span>
-<span class="ne">--&gt; </span><span class="mi">653</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._mgc</span><span class="w"> </span><span class="kn">import</span> <span class="n">multiscale_graphcorr</span>
-<span class="g g-Whitespace">    </span><span class="mi">654</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._correlation</span><span class="w"> </span><span class="kn">import</span> <span class="n">chatterjeexi</span>
-<span class="g g-Whitespace">    </span><span class="mi">657</span> <span class="c1"># Deprecated namespaces, to be removed in v2.0.0</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">stats</span><span class="o">/</span><span class="n">_mgc</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">7</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy._lib._bunch</span><span class="w"> </span><span class="kn">import</span> <span class="n">_make_tuple_bunch</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">cdist</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">_measurements</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">_local_correlations</span>  <span class="c1"># type: ignore[import-not-found]</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">distributions</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">ndimage</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">156</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="sd"> =========================================================</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="sd"> Multidimensional image processing (:mod:`scipy.ndimage`)</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">119</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="c1"># Copyright (C) 2003-2005 Peter J. Verveer</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="c1">#</span>
-<span class="g g-Whitespace">    </span><span class="mi">124</span> <span class="c1"># Redistribution and use in source and binary forms, with or without</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">153</span> 
-<span class="g g-Whitespace">    </span><span class="mi">154</span> <span class="c1"># mypy: ignore-errors</span>
-<span class="ne">--&gt; </span><span class="mi">156</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._support_alternative_backends</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">    </span><span class="mi">158</span> <span class="c1"># adjust __all__ and do not leak implementation details</span>
-<span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_support_alternative_backends</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">ndimage</span><span class="o">/</span><span class="n">_support_alternative_backends</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">7</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy._lib._array_api</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">is_cupy</span><span class="p">,</span> <span class="n">is_jax</span><span class="p">,</span> <span class="n">scipy_namespace_for</span><span class="p">,</span> <span class="n">SCIPY_ARRAY_API</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._ndimage_api</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>   <span class="c1"># noqa: F403</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_ndimage_api</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_delegators</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">ndimage</span><span class="o">/</span><span class="n">_ndimage_api</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">9</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;This is the &#39;bare&#39; ndimage API.</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="sd"> </span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="sd"> This --- private! --- module only collects implementations of public ndimage API</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span><span class="sd"> re-exports decorated names to __init__.py</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._filters</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>    <span class="c1"># noqa: F403</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._fourier</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>   <span class="c1"># noqa: F403</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._interpolation</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>   <span class="c1"># noqa: F403</span>
-
-<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">homebrew</span><span class="o">/</span><span class="n">Caskroom</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">scipy</span><span class="o">/</span><span class="n">ndimage</span><span class="o">/</span><span class="n">_filters</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">39</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy._lib._util</span><span class="w"> </span><span class="kn">import</span> <span class="n">normalize_axis_index</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_ni_support</span>
-<span class="ne">---&gt; </span><span class="mi">39</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_nd_image</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_ni_docstrings</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_rank_filter_1d</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 5793 exoplanets with reported mass and semi-major axis.
 </pre></div>
 </div>
 </div>
@@ -911,6 +763,12 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;log Mass (Jupiter Masses)&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;log Mass (Jupiter Masses)&#39;)
+</pre></div>
+</div>
+<img alt="_images/50fc6e3a9479ecd8d4c7113a11ddca323a4adb71a27bab62a581f33b06eafdea.png" src="_images/50fc6e3a9479ecd8d4c7113a11ddca323a4adb71a27bab62a581f33b06eafdea.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -953,6 +811,9 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/6e84ab5b065203b8373e82bfc7b2cb6ce7774c6a594994271093e89aa2898a0e.png" src="_images/6e84ab5b065203b8373e82bfc7b2cb6ce7774c6a594994271093e89aa2898a0e.png" />
+</div>
 </div>
 <section id="ejemplo-de-validacion-cruzada-gridsearchcv">
 <h3>Ejemplo de validación cruzada: GridSearchCV<a class="headerlink" href="#ejemplo-de-validacion-cruzada-gridsearchcv" title="Permalink to this heading">#</a></h3>
@@ -962,11 +823,13 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 <li><p>Cada combinación se evalúa usando <em>cross-validation</em>.</p></li>
 <li><p>Selecciona la combinación con mejor desempeño promedio según una métrica (<code class="docutils literal notranslate"><span class="pre">scoring</span></code>). Para KDE, se busca minimizar el log-<em>likelihood</em> (verosimilitud),</p></li>
 </ul>
-<p>$$\log L(h) = \log \prod_{i=1}^{n} f(x_i \mid h) = \sum_{i=1}^{n} \log f(x_i \mid h)
-$$</p>
+<div class="math notranslate nohighlight">
+\[\log L(h) = \log \prod_{i=1}^{n} f(x_i \mid h) = \sum_{i=1}^{n} \log f(x_i \mid h)
+\]</div>
 <p>Para un kernel gaussiano,</p>
-<p>$$f(x_i \mid h) = \frac{1}{N \cdot h} \sum_{j=1}^{N} \frac{1}{\sqrt{2\pi}} \exp\left( -\frac{(x_i - x_j)^2}{2h^2} \right).
-$$</p>
+<div class="math notranslate nohighlight">
+\[f(x_i \mid h) = \frac{1}{N \cdot h} \sum_{j=1}^{N} \frac{1}{\sqrt{2\pi}} \exp\left( -\frac{(x_i - x_j)^2}{2h^2} \right).
+\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSearchCV</span>
@@ -1031,6 +894,12 @@ $$</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best bandwidth: 0.124
+</pre></div>
+</div>
+<img alt="_images/bd5e1b44ef4278201d5e5e69fa29a18c94a3e5d23bab4b846fd3520cb74fffae.png" src="_images/bd5e1b44ef4278201d5e5e69fa29a18c94a3e5d23bab4b846fd3520cb74fffae.png" />
 </div>
 </div>
 </section>
@@ -1109,6 +978,28 @@ $$</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/c309f53892a91cbabd957d7efa66e5493bdb1768871eadc0a04f5d87f6bafd21.png" src="_images/c309f53892a91cbabd957d7efa66e5493bdb1768871eadc0a04f5d87f6bafd21.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cluster 0
+Mean:
+[-1.01373183 -1.77981885]
+Covariance:
+[[0.16973912 0.07387139]
+ [0.07387139 0.1817889 ]]
+Weight:
+0.6547069917964242
+
+Cluster 1
+Mean:
+[-0.3553021   0.18458255]
+Covariance:
+[[1.02745111 0.28104515]
+ [0.28104515 0.37062087]]
+Weight:
+0.3452930082035757
+</pre></div>
+</div>
+</div>
 </div>
 <p>Veamos la probabilidad de pertenencia a un cluster para algún planeta aleatorio.</p>
 <div class="cell docutils container">
@@ -1129,6 +1020,15 @@ $$</p>
 
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Assigned cluster: </span><span class="si">{</span><span class="n">predicted_cluster</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">+</span><span class="s2">&quot; for planet &quot;</span><span class="o">+</span><span class="n">names_values</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cluster membership probabilities:
+Cluster 0: 0.9997
+Cluster 1: 0.0003
+
+Assigned cluster: 0 for planet Kepler-205 b
 </pre></div>
 </div>
 </div>
@@ -1187,6 +1087,9 @@ $$</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/f8e510720261b85859f0fc6c81e7f11e598fd34d0c2201fc6ee26cd69f31715b.png" src="_images/f8e510720261b85859f0fc6c81e7f11e598fd34d0c2201fc6ee26cd69f31715b.png" />
+</div>
 </div>
 <p>¡Podemos probar con muchos clusters!</p>
 <div class="cell docutils container">
@@ -1222,6 +1125,9 @@ $$</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8361b120e7c2ad7bad9d965739c76d307eba8d4d876d1a6c208133d0a3de369a.png" src="_images/8361b120e7c2ad7bad9d965739c76d307eba8d4d876d1a6c208133d0a3de369a.png" />
 </div>
 </div>
 </section>
@@ -1263,14 +1169,16 @@ $$</p>
 <li><p>Valores menores indican modelos preferibles.</p></li>
 <li><p>Se comparan únicamente entre modelos ajustados al mismo conjunto de datos, por lo tanto no son criterios absolutos sino relativos.</p></li>
 </ul>
-<p>$$\text{AIC} = 2k - 2\ln(L), $$
-$$\text{BIC} = k \ln(n) - 2\ln(L)
-$$</p>
+<div class="math notranslate nohighlight">
+\[\text{AIC} = 2k - 2\ln(L), \]</div>
+<div class="math notranslate nohighlight">
+\[\text{BIC} = k \ln(n) - 2\ln(L)
+\]</div>
 <p>Donde:</p>
 <ul class="simple">
-<li><p>$k$: Número de parámetros libres del modelo</p></li>
-<li><p>$n$: Número de puntos de datos.</p></li>
-<li><p>$L$: Valor maximizado de la verosimilitud (<em>likelihood</em>) del modelo.</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span>: Número de parámetros libres del modelo</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span>: Número de puntos de datos.</p></li>
+<li><p><span class="math notranslate nohighlight">\(L\)</span>: Valor maximizado de la verosimilitud (<em>likelihood</em>) del modelo.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1322,6 +1230,681 @@ $$</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best number of clusters according to BIC: 9
+</pre></div>
+</div>
+<img alt="_images/b534fa74ed48fe6cc9a87e4157d48f4d529de87f0902f64672ddb0482a63cd4e.png" src="_images/b534fa74ed48fe6cc9a87e4157d48f4d529de87f0902f64672ddb0482a63cd4e.png" />
+<div class="output text_html"><style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  display: none;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+
+.estimator-table summary {
+    padding: .5rem;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table td {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left;
+}
+
+.user-set td.value pre {
+    color:rgb(255, 94, 0) !important;
+    background-color: transparent !important;
+}
+
+.default td {
+    color: black;
+    text-align: left;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+</style><body><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GaussianMixture(n_components=9, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>GaussianMixture</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.mixture.GaussianMixture.html">?<span>Documentation for GaussianMixture</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                <table class="parameters-table">
+                  <tbody>
+                    
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('n_components',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">n_components&nbsp;</td>
+            <td class="value">9</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('covariance_type',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">covariance_type&nbsp;</td>
+            <td class="value">&#x27;full&#x27;</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('tol',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">tol&nbsp;</td>
+            <td class="value">0.001</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('reg_covar',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">reg_covar&nbsp;</td>
+            <td class="value">1e-06</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('max_iter',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">max_iter&nbsp;</td>
+            <td class="value">100</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('n_init',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">n_init&nbsp;</td>
+            <td class="value">1</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('init_params',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">init_params&nbsp;</td>
+            <td class="value">&#x27;kmeans&#x27;</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('weights_init',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">weights_init&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('means_init',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">means_init&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('precisions_init',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">precisions_init&nbsp;</td>
+            <td class="value">None</td>
+        </tr>
+    
+
+        <tr class="user-set">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('random_state',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">random_state&nbsp;</td>
+            <td class="value">42</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('warm_start',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">warm_start&nbsp;</td>
+            <td class="value">False</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('verbose',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">verbose&nbsp;</td>
+            <td class="value">0</td>
+        </tr>
+    
+
+        <tr class="default">
+            <td><i class="copy-paste-icon"
+                 onclick="copyToClipboard('verbose_interval',
+                          this.parentElement.nextElementSibling)"
+            ></i></td>
+            <td class="param">verbose_interval&nbsp;</td>
+            <td class="value">10</td>
+        </tr>
+    
+                  </tbody>
+                </table>
+            </details>
+        </div>
+    </div></div></div></div></div><script>function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const paramName = element.parentElement.nextElementSibling.textContent.trim();
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+</script></body></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1356,6 +1939,9 @@ $$</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/91ef017d61346d26275ee2200fa9a60c19b97d15c26de234881e46fbe149d021.png" src="_images/91ef017d61346d26275ee2200fa9a60c19b97d15c26de234881e46fbe149d021.png" />
 </div>
 </div>
 </section>
@@ -1472,6 +2058,9 @@ $$</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/3ab11448f9d90e199858e704005d930b6ca0e3dc67d2877ffc6495804c5e79a9.png" src="_images/3ab11448f9d90e199858e704005d930b6ca0e3dc67d2877ffc6495804c5e79a9.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1516,6 +2105,11 @@ $$</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 1195 exoplanets with reported radius and density.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1538,6 +2132,9 @@ $$</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/40a1a4ebad7e198ce3045beae1a0ad3c829f8b95a306239b5f29c24ab5589143.png" src="_images/40a1a4ebad7e198ce3045beae1a0ad3c829f8b95a306239b5f29c24ab5589143.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1622,6 +2219,13 @@ $$</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best number of components (BIC): 5
+</pre></div>
+</div>
+<img alt="_images/57ccbdf958ef803c9f6919c2cae9e5fe292f0313c7ddc5da4135886621a00efe.png" src="_images/57ccbdf958ef803c9f6919c2cae9e5fe292f0313c7ddc5da4135886621a00efe.png" />
+<img alt="_images/7e51481dca11ea67a18d2c6f4e921ba5270c79db679991c3fa2a039724b77ac3.png" src="_images/7e51481dca11ea67a18d2c6f4e921ba5270c79db679991c3fa2a039724b77ac3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1713,6 +2317,13 @@ $$</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best number of components (BIC): 5
+</pre></div>
+</div>
+<img alt="_images/7785a1a241a2cdcee9d4efa39cf14b0bdf4ffa68f571ebeee5f8f677e3632df1.png" src="_images/7785a1a241a2cdcee9d4efa39cf14b0bdf4ffa68f571ebeee5f8f677e3632df1.png" />
+<img alt="_images/d5ebce3507a0006d89676513db6ada430c748ad2d41cb8e60f4a9ba2d47cdeda.png" src="_images/d5ebce3507a0006d89676513db6ada430c748ad2d41cb8e60f4a9ba2d47cdeda.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1742,6 +2353,13 @@ $$</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/2y/t3gprvl52s75ccs56z7ml0s80000gn/T/ipykernel_24003/4255502184.py:22: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend()
+</pre></div>
+</div>
+<img alt="_images/a134e745e9c32afb8c01c2b5eb4710b79adde3b582546b20f2c329d22715d324.png" src="_images/a134e745e9c32afb8c01c2b5eb4710b79adde3b582546b20f2c329d22715d324.png" />
 </div>
 </div>
 </section>
@@ -1838,6 +2456,17 @@ $$</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Explained variance ratio:
+[0.87734087 0.12265913]
+
+Principal components:
+[[-0.70710678  0.70710678]
+ [ 0.70710678  0.70710678]]
+</pre></div>
+</div>
+<img alt="_images/c4d9a9e8815b306da967085d733141b55e04518ecead21af4cb3e8e9069af467.png" src="_images/c4d9a9e8815b306da967085d733141b55e04518ecead21af4cb3e8e9069af467.png" />
+</div>
 </div>
 <p><strong>Ejercicio</strong>: Revise los demás grupos y reporte para cuáles el PCA muestra que el primer componente cubre aproximadamente el 90% de varianza. ¿Cómo se interpretaría astrofísicamente cada uno de estos casos?</p>
 <p><strong>Ejercicio</strong>: Use la columna <code class="docutils literal notranslate"><span class="pre">st_met</span></code> para buscar la relación entre la masa y la metalicidad (estrellas con más metalicidad tienen más probabilidad de tener planetas gigantes, es decir con más de 10 masas terrestres). Puede usar KDE, GMM, PCA, etc.</p>
@@ -1848,27 +2477,30 @@ $$</p>
 <section id="apendice-la-matematica-del-analisis-de-componentes-principales-pca">
 <h2>Apéndice: La Matemática del Análisis de Componentes Principales (PCA)<a class="headerlink" href="#apendice-la-matematica-del-analisis-de-componentes-principales-pca" title="Permalink to this heading">#</a></h2>
 <p>PCA es un algoritmo basado en álgebra lineal en el que las componentes principales se identifican con los eigenvectores de la matriz de covarianza asociada a los datos.</p>
-<p>Empecemos con un conjunto de datos con $$n$$ observaciones y $$p$$ variables, organizado en una matriz (estandarizada)</p>
-<p>$$
+<p>Empecemos con un conjunto de datos con $<span class="math notranslate nohighlight">\(n\)</span><span class="math notranslate nohighlight">\( observaciones y \)</span><span class="math notranslate nohighlight">\(p\)</span>$ variables, organizado en una matriz (estandarizada)</p>
+<div class="math notranslate nohighlight">
+\[
 X \in \mathbb{R}^{n \times p}
-$$</p>
+\]</div>
 <p>PCA busca nuevas direcciones ortogonales en el espacio de variables a lo largo de las cuales la varianza de los datos es máxima.</p>
 <hr class="docutils" />
 <section id="matriz-de-covarianza">
 <h3>Matriz de Covarianza<a class="headerlink" href="#matriz-de-covarianza" title="Permalink to this heading">#</a></h3>
 <p>La matriz de covarianza es</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 C = \frac{1}{n-1} X^T X
-$$</p>
+\]</div>
 <p>y mide cómo varían conjuntamente las variables.</p>
 </section>
 <hr class="docutils" />
 <section id="eigenvectores-y-eigenvalores">
 <h3>Eigenvectores y Eigenvalores<a class="headerlink" href="#eigenvectores-y-eigenvalores" title="Permalink to this heading">#</a></h3>
 <p>PCA resuelve el problema de eigenvalores</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 C \mathbf{v} = \lambda \mathbf{v}
-$$</p>
+\]</div>
 <p>El eigenvector permanece invariante bajo la transformación dada por la matriz de covarianza, excepto por un factor de escala.</p>
 <p>El eigenvalor indica cuánta varianza existe a lo largo de esa dirección.</p>
 </section>
@@ -1888,24 +2520,26 @@ dirección ortogonal a la primera con la siguiente mayor varianza.</p></li>
 <hr class="docutils" />
 <section id="proyeccion">
 <h3>Proyección<a class="headerlink" href="#proyeccion" title="Permalink to this heading">#</a></h3>
-<p>Para reducir dimensionalidad, los datos se proyectan sobre los primeros $$k$$ eigenvectores:</p>
-<p>$$
+<p>Para reducir dimensionalidad, los datos se proyectan sobre los primeros $<span class="math notranslate nohighlight">\(k\)</span>$ eigenvectores:</p>
+<div class="math notranslate nohighlight">
+\[
 Z = X W
-$$</p>
+\]</div>
 <p>donde</p>
-<p>$$
-W =</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d28f600a-e32b-4371-95d9-6de02de275b1">
-<span class="eqno">(1)<a class="headerlink" href="#equation-d28f600a-e32b-4371-95d9-6de02de275b1" title="Permalink to this equation">#</a></span>\[\begin{bmatrix}
+<div class="math notranslate nohighlight">
+\[\begin{split}
+W =
+\begin{bmatrix}
 | &amp; | &amp; &amp; | \\
 \mathbf{v}_1 &amp; \mathbf{v}_2 &amp; \cdots &amp; \mathbf{v}_k \\
 | &amp; | &amp; &amp; |
-\end{bmatrix}\]</div>
-<p>$$</p>
+\end{bmatrix}
+\end{split}\]</div>
 <p>Entonces,</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 Z \in \mathbb{R}^{n \times k}
-$$</p>
+\]</div>
 <p>es la representación de baja dimensionalidad.</p>
 </section>
 <hr class="docutils" />
@@ -1922,10 +2556,11 @@ $$</p>
 <hr class="docutils" />
 <section id="varianza-explicada">
 <h3>Varianza Explicada<a class="headerlink" href="#varianza-explicada" title="Permalink to this heading">#</a></h3>
-<p>La fracción de varianza explicada por la componente $$i$$ es</p>
-<p>$$
+<p>La fracción de varianza explicada por la componente $<span class="math notranslate nohighlight">\(i\)</span>$ es</p>
+<div class="math notranslate nohighlight">
+\[
 \frac{\lambda_i}{\sum_j \lambda_j}
-$$</p>
+\]</div>
 <p>Eigenvalores grandes corresponden a estructuras importantes en los datos.</p>
 </section>
 </section>
