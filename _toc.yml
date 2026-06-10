@@ -17,7 +17,8 @@ chapters:
 - file: Clase_11_fits
 - file: Clase_12_Aprendizaje_No_Supervisado
 - file: Clase_13_Aprendizaje_Supervisado
-- file: Clase_14_Clasificacion_Supervisada_1
+- file: Clase_14_Clasificacion_Supervisada
+- file: Clase_15_Deep_Learning_1
 - file: Proyecto 1er mes
 - file: Proyecto 2do mes
 
