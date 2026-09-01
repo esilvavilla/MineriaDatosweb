@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Clase 12: Aprendizaje de Máquina (No Supervisado) &#8212; Minería de datos</title>
   
@@ -17,51 +16,50 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_12_Aprendizaje_No_Supervisado';</script>
@@ -71,6 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="prev" title="Clase 11: Manejo de archivos FITS" href="Clase_11_fits.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -86,19 +85,8 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -106,7 +94,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -114,8 +101,8 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -131,7 +118,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -161,11 +149,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
-    <script>document.write(`<img src="_static/UdeA.png" class="logo__image only-dark" alt="Minería de datos - Home"/>`);</script>
+    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -189,10 +184,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_13_Aprendizaje_Supervisado.html">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada_1.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="Clase_15_Deep_Learning_1.html">Clase 15: Deep Learning 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
 
     </div>
@@ -201,9 +196,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -222,9 +222,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -347,27 +347,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -451,16 +443,16 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="clase-12-aprendizaje-de-maquina-no-supervisado">
-<h1>Clase 12: Aprendizaje de Máquina (No Supervisado)<a class="headerlink" href="#clase-12-aprendizaje-de-maquina-no-supervisado" title="Permalink to this heading">#</a></h1>
+<h1>Clase 12: Aprendizaje de Máquina (No Supervisado)<a class="headerlink" href="#clase-12-aprendizaje-de-maquina-no-supervisado" title="Link to this heading">#</a></h1>
 <p>Construcción de algoritmos que aprenden una función de mapeo $<span class="math notranslate nohighlight">\(f(x)\)</span><span class="math notranslate nohighlight">\( a partir de datos \)</span><span class="math notranslate nohighlight">\(x\)</span>$ para realizar predicciones o descubrir patrones. En la mayoría de casos, se hace a través de <em>optimización</em>, que es buscar encontrar la mejor solución posible según una función objetivo.</p>
 <section id="tres-enfoques-de-machine-learning">
-<h2>Tres enfoques de Machine Learning<a class="headerlink" href="#tres-enfoques-de-machine-learning" title="Permalink to this heading">#</a></h2>
+<h2>Tres enfoques de Machine Learning<a class="headerlink" href="#tres-enfoques-de-machine-learning" title="Link to this heading">#</a></h2>
 <p><strong>No supervisado (Exploratorio):</strong> Exploración de la estructura intrínseca o de las distribuciones de probabilidad dentro de datos sin etiquetas (<em>labels</em>).</p>
 <p><strong>Supervisado (Guiado):</strong> Aprendizaje a partir de datos previamente etiquetados $<span class="math notranslate nohighlight">\(x_i\to y_i.\)</span>$ Las etiquetas pueden ser categóricas o continuas (regresión).</p>
 <p><strong>Por refuerzo (Conductual):</strong> Optimización mediante prueba y error utilizando una función de recompensa.</p>
 </section>
 <section id="metodologias-y-algoritmos">
-<h2>Metodologías y algoritmos<a class="headerlink" href="#metodologias-y-algoritmos" title="Permalink to this heading">#</a></h2>
+<h2>Metodologías y algoritmos<a class="headerlink" href="#metodologias-y-algoritmos" title="Link to this heading">#</a></h2>
 <p><strong>No supervisado:</strong> Infiere la densidad de probabilidad subyacente $<span class="math notranslate nohighlight">\(P(x)\)</span>$ (<em>density estimation</em>) o la estructura geométrica latente (<em>dimensionality reduction</em>). Algoritmos típicos:</p>
 <ul class="simple">
 <li><p>Kernel Density Estimation (DE)</p></li>
@@ -508,7 +500,7 @@ document.write(`
 <p><a class="reference external" href="https://www.emergentmind.com/topics/reinforcement-learning-for-telescope-operations%5D">Más información</a>.</p>
 </section>
 <section id="scikit-learn-sklearn">
-<h2>Scikit-learn (sklearn)<a class="headerlink" href="#scikit-learn-sklearn" title="Permalink to this heading">#</a></h2>
+<h2>Scikit-learn (sklearn)<a class="headerlink" href="#scikit-learn-sklearn" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Biblioteca de <em>machine learning</em> para Python. <a class="reference external" href="https://scikit-learn.org/stable/index.html">Documentación</a>.</p></li>
 <li><p>Tiene implementaciones de muchos algoritmos supervisados y no supervisados.</p></li>
@@ -525,9 +517,9 @@ document.write(`
 <p>Citación: Scikit-learn: Machine Learning in Python, Pedregosa et al., JMLR 12, pp. 2825-2830, 2011.</p>
 </section>
 <section id="glosario">
-<h2>Glosario<a class="headerlink" href="#glosario" title="Permalink to this heading">#</a></h2>
+<h2>Glosario<a class="headerlink" href="#glosario" title="Link to this heading">#</a></h2>
 <section id="hiperparametros">
-<h3>Hiperparámetros<a class="headerlink" href="#hiperparametros" title="Permalink to this heading">#</a></h3>
+<h3>Hiperparámetros<a class="headerlink" href="#hiperparametros" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Parámetros definidos antes del entrenamiento del modelo.</p></li>
 <li><p>Controlan cómo aprende el algoritmo.</p></li>
@@ -545,7 +537,7 @@ document.write(`
 </ul>
 </section>
 <section id="cross-validation">
-<h3>Cross-validation<a class="headerlink" href="#cross-validation" title="Permalink to this heading">#</a></h3>
+<h3>Cross-validation<a class="headerlink" href="#cross-validation" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Técnica de remuestreo para evaluar modelos, estimadores, o hiperparámetros usando subconjuntos distintos de los datos.</p></li>
 <li><p>Parte de los datos se excluye temporalmente del ajuste y luego se usa para evaluación.</p></li>
@@ -561,7 +553,7 @@ document.write(`
 </ul>
 </section>
 <section id="metricas">
-<h3>Métricas<a class="headerlink" href="#metricas" title="Permalink to this heading">#</a></h3>
+<h3>Métricas<a class="headerlink" href="#metricas" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Cantidad numérica utilizada para evaluar el desempeño de un modelo o estimador.</p></li>
 <li><p>Mide qué tan bien el modelo realiza una tarea específica.</p></li>
@@ -591,7 +583,7 @@ document.write(`
 </ul>
 </section>
 <section id="funcion-objetivo">
-<h3>Función objetivo<a class="headerlink" href="#funcion-objetivo" title="Permalink to this heading">#</a></h3>
+<h3>Función objetivo<a class="headerlink" href="#funcion-objetivo" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Función matemática que define qué significa “hacerlo bien”.</p></li>
 <li><p>El algoritmo intenta minimizarla o maximizarla.</p></li>
@@ -607,7 +599,7 @@ document.write(`
 </ul>
 </section>
 <section id="optimizacion">
-<h3>Optimización<a class="headerlink" href="#optimizacion" title="Permalink to this heading">#</a></h3>
+<h3>Optimización<a class="headerlink" href="#optimizacion" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Rama de las matemáticas y computación dedicada a encontrar la mejor solución posible según un criterio definido.</p></li>
 <li><p>Consiste en maximizar o minimizar una función objetivo.</p></li>
@@ -618,7 +610,7 @@ document.write(`
 </ul>
 </section>
 <section id="clustering">
-<h3>Clustering<a class="headerlink" href="#clustering" title="Permalink to this heading">#</a></h3>
+<h3>Clustering<a class="headerlink" href="#clustering" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Agrupamiento automático de datos similares sin etiquetas previas.</p></li>
 <li><p>Objetivo: encontrar estructuras o poblaciones ocultas.</p></li>
@@ -626,7 +618,7 @@ document.write(`
 </ul>
 </section>
 <section id="reduccion-de-dimensionalidad">
-<h3>Reducción de dimensionalidad<a class="headerlink" href="#reduccion-de-dimensionalidad" title="Permalink to this heading">#</a></h3>
+<h3>Reducción de dimensionalidad<a class="headerlink" href="#reduccion-de-dimensionalidad" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Técnicas para representar datos complejos usando menos variables.</p></li>
 <li><p>Busca conservar la información más importante.</p></li>
@@ -641,7 +633,7 @@ document.write(`
 </section>
 </section>
 <section id="distribucion-de-exoplanetas-kernel-density-estimation-kde">
-<h2>Distribución de Exoplanetas: Kernel Density Estimation (KDE)<a class="headerlink" href="#distribucion-de-exoplanetas-kernel-density-estimation-kde" title="Permalink to this heading">#</a></h2>
+<h2>Distribución de Exoplanetas: Kernel Density Estimation (KDE)<a class="headerlink" href="#distribucion-de-exoplanetas-kernel-density-estimation-kde" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Método no supervisado para estimar la distribución de probabilidad de un conjunto de datos.</p></li>
 <li><p>Convierte datos discretos en una función continua y suave de densidad.</p></li>
@@ -662,35 +654,28 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: astroquery in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (0.4.11)
-Requirement already satisfied: numpy&gt;=1.20 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (2.2.5)
-Requirement already satisfied: astropy&gt;=5.0 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (6.1.7)
-Requirement already satisfied: requests&gt;=2.19 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (2.33.1)
-Requirement already satisfied: beautifulsoup4&gt;=4.8 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (4.14.3)
-Requirement already satisfied: html5lib&gt;=0.999 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (1.1)
-Requirement already satisfied: keyring&gt;=15.0 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (25.7.0)
-Requirement already satisfied: pyvo&gt;=1.5 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astroquery) (1.8.1)
-Requirement already satisfied: pyerfa&gt;=2.0.1.1 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astropy&gt;=5.0-&gt;astroquery) (2.0.1.5)
-Requirement already satisfied: astropy-iers-data&gt;=0.2024.10.28.0.34.7 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astropy&gt;=5.0-&gt;astroquery) (0.2026.4.27.1.3.2)
-Requirement already satisfied: PyYAML&gt;=3.13 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astropy&gt;=5.0-&gt;astroquery) (6.0.3)
-Requirement already satisfied: packaging&gt;=19.0 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from astropy&gt;=5.0-&gt;astroquery) (26.2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: astroquery in /Users/esteban/anaconda3/lib/python3.9/site-packages (0.4.11)
+Requirement already satisfied: requests&gt;=2.19 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from astroquery) (2.32.3)
+Requirement already satisfied: keyring&gt;=15.0 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from astroquery) (23.4.0)
+Requirement already satisfied: astropy&gt;=5.0 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from astroquery) (5.0.4)
+Requirement already satisfied: beautifulsoup4&gt;=4.8 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from astroquery) (4.11.1)
+Requirement already satisfied: html5lib&gt;=0.999 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from astroquery) (1.1)
+Requirement already satisfied: pyvo&gt;=1.5 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from astroquery) (1.8)
+Requirement already satisfied: numpy&gt;=1.20 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from astroquery) (1.26.4)
+Requirement already satisfied: pyerfa&gt;=2.0 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from astropy&gt;=5.0-&gt;astroquery) (2.0.0)
+Requirement already satisfied: PyYAML&gt;=3.13 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from astropy&gt;=5.0-&gt;astroquery) (6.0)
+Requirement already satisfied: packaging&gt;=19.0 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from astropy&gt;=5.0-&gt;astroquery) (24.2)
+Requirement already satisfied: soupsieve&gt;1.2 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from beautifulsoup4&gt;=4.8-&gt;astroquery) (2.3.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: soupsieve&gt;=1.6.1 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.8-&gt;astroquery) (2.8.3)
-Requirement already satisfied: typing-extensions&gt;=4.0.0 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from beautifulsoup4&gt;=4.8-&gt;astroquery) (4.15.0)
-Requirement already satisfied: six&gt;=1.9 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from html5lib&gt;=0.999-&gt;astroquery) (1.17.0)
-Requirement already satisfied: webencodings in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from html5lib&gt;=0.999-&gt;astroquery) (0.5.1)
-Requirement already satisfied: importlib_metadata&gt;=4.11.4 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from keyring&gt;=15.0-&gt;astroquery) (8.8.0)
-Requirement already satisfied: jaraco.classes in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from keyring&gt;=15.0-&gt;astroquery) (3.4.0)
-Requirement already satisfied: jaraco.functools in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from keyring&gt;=15.0-&gt;astroquery) (4.4.0)
-Requirement already satisfied: jaraco.context in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from keyring&gt;=15.0-&gt;astroquery) (6.1.2)
-Requirement already satisfied: zipp&gt;=3.20 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from importlib_metadata&gt;=4.11.4-&gt;keyring&gt;=15.0-&gt;astroquery) (3.23.1)
-Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (3.4.7)
-Requirement already satisfied: idna&lt;4,&gt;=2.5 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (3.13)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.26 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2.6.3)
-Requirement already satisfied: certifi&gt;=2023.5.7 in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from requests&gt;=2.19-&gt;astroquery) (2026.5.20)
-Requirement already satisfied: more-itertools in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.classes-&gt;keyring&gt;=15.0-&gt;astroquery) (11.0.2)
-Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/miniconda/base/envs/jupyter-book/lib/python3.10/site-packages (from jaraco.context-&gt;keyring&gt;=15.0-&gt;astroquery) (1.2.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.9 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from html5lib&gt;=0.999-&gt;astroquery) (1.16.0)
+Requirement already satisfied: webencodings in /Users/esteban/anaconda3/lib/python3.9/site-packages (from html5lib&gt;=0.999-&gt;astroquery) (0.5.1)
+Requirement already satisfied: importlib-metadata&gt;=3.6 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from keyring&gt;=15.0-&gt;astroquery) (8.6.1)
+Requirement already satisfied: zipp&gt;=3.20 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from importlib-metadata&gt;=3.6-&gt;keyring&gt;=15.0-&gt;astroquery) (3.21.0)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from requests&gt;=2.19-&gt;astroquery) (3.3)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from requests&gt;=2.19-&gt;astroquery) (1.26.9)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from requests&gt;=2.19-&gt;astroquery) (2021.10.8)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /Users/esteban/anaconda3/lib/python3.9/site-packages (from requests&gt;=2.19-&gt;astroquery) (2.0.4)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
@@ -700,11 +685,11 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KernelDensity</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="kn">import</span> <span class="n">au</span><span class="p">,</span> <span class="n">M_jup</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.ipac.nexsci.nasa_exoplanet_archive</span><span class="w"> </span><span class="kn">import</span> <span class="n">NasaExoplanetArchive</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KernelDensity</span>
+<span class="kn">from</span> <span class="nn">astropy.units</span> <span class="kn">import</span> <span class="n">au</span><span class="p">,</span> <span class="n">M_jup</span>
+<span class="kn">from</span> <span class="nn">astroquery.ipac.nexsci.nasa_exoplanet_archive</span> <span class="kn">import</span> <span class="n">NasaExoplanetArchive</span>
 
 
 <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
@@ -731,7 +716,7 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 5793 exoplanets with reported mass and semi-major axis.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 5847 exoplanets with reported mass and semi-major axis.
 </pre></div>
 </div>
 </div>
@@ -768,12 +753,12 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;log Mass (Jupiter Masses)&#39;)
 </pre></div>
 </div>
-<img alt="_images/50fc6e3a9479ecd8d4c7113a11ddca323a4adb71a27bab62a581f33b06eafdea.png" src="_images/50fc6e3a9479ecd8d4c7113a11ddca323a4adb71a27bab62a581f33b06eafdea.png" />
+<img alt="_images/a1b4ff72ea86467b49dfb77ba09620e31396fa61710317194cfacc52d93129e6.png" src="_images/a1b4ff72ea86467b49dfb77ba09620e31396fa61710317194cfacc52d93129e6.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">gaussian_kde</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">gaussian_kde</span>
 
 <span class="c1"># Your scatter plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
@@ -812,11 +797,11 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6e84ab5b065203b8373e82bfc7b2cb6ce7774c6a594994271093e89aa2898a0e.png" src="_images/6e84ab5b065203b8373e82bfc7b2cb6ce7774c6a594994271093e89aa2898a0e.png" />
+<img alt="_images/7ff02d0632ca74106971af925e2e7ca6262c3e73d54fdab053f2f70008e1847b.png" src="_images/7ff02d0632ca74106971af925e2e7ca6262c3e73d54fdab053f2f70008e1847b.png" />
 </div>
 </div>
 <section id="ejemplo-de-validacion-cruzada-gridsearchcv">
-<h3>Ejemplo de validación cruzada: GridSearchCV<a class="headerlink" href="#ejemplo-de-validacion-cruzada-gridsearchcv" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplo de validación cruzada: GridSearchCV<a class="headerlink" href="#ejemplo-de-validacion-cruzada-gridsearchcv" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Método automático para buscar los mejores hiperparámetros de un modelo.</p></li>
 <li><p>Prueba múltiples combinaciones de hiperparámetros definidas por el usuario.</p></li>
@@ -832,8 +817,8 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSearchCV</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KernelDensity</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KernelDensity</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">log_semimajor_axis</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">log_mass</span><span class="p">)</span>
@@ -896,20 +881,165 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best bandwidth: 0.124
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">Input In [6],</span> in <span class="ni">&lt;cell line: 18&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">bandwidths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">KernelDensity</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">),</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="p">{</span><span class="s1">&#39;bandwidth&#39;</span><span class="p">:</span> <span class="n">bandwidths</span><span class="p">},</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">cv</span><span class="o">=</span><span class="mi">5</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">18</span> <span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="n">best_bw</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">[</span><span class="s1">&#39;bandwidth&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best bandwidth: </span><span class="si">{</span><span class="n">best_bw</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/sklearn/base.py:1389,</span> in <span class="ni">_fit_context.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(estimator, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1382</span>     <span class="n">estimator</span><span class="o">.</span><span class="n">_validate_params</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1384</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1385</span>     <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1386</span>         <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
+<span class="g g-Whitespace">   </span><span class="mi">1387</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1388</span> <span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1389</span>     <span class="k">return</span> <span class="n">fit_method</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/sklearn/model_selection/_search.py:1024,</span> in <span class="ni">BaseSearchCV.fit</span><span class="nt">(self, X, y, **params)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1018</span>     <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_results</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1019</span>         <span class="n">all_candidate_params</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">,</span> <span class="n">all_out</span><span class="p">,</span> <span class="n">all_more_results</span>
+<span class="g g-Whitespace">   </span><span class="mi">1020</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="k">return</span> <span class="n">results</span>
+<span class="ne">-&gt; </span><span class="mi">1024</span> <span class="bp">self</span><span class="o">.</span><span class="n">_run_search</span><span class="p">(</span><span class="n">evaluate_candidates</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1026</span> <span class="c1"># multimetric is determined here because in the case of a callable</span>
+<span class="g g-Whitespace">   </span><span class="mi">1027</span> <span class="c1"># self.scoring the return type is only known after calling</span>
+<span class="g g-Whitespace">   </span><span class="mi">1028</span> <span class="n">first_test_score</span> <span class="o">=</span> <span class="n">all_out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;test_scores&quot;</span><span class="p">]</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/sklearn/model_selection/_search.py:1571,</span> in <span class="ni">GridSearchCV._run_search</span><span class="nt">(self, evaluate_candidates)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1569</span> <span class="k">def</span> <span class="nf">_run_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evaluate_candidates</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1570</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Search all candidates in param_grid&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1571</span>     <span class="n">evaluate_candidates</span><span class="p">(</span><span class="n">ParameterGrid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_grid</span><span class="p">))</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/sklearn/model_selection/_search.py:970,</span> in <span class="ni">BaseSearchCV.fit.&lt;locals&gt;.evaluate_candidates</span><span class="nt">(candidate_params, cv, more_results)</span>
+<span class="g g-Whitespace">    </span><span class="mi">962</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">963</span>     <span class="nb">print</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">964</span>         <span class="s2">&quot;Fitting </span><span class="si">{0}</span><span class="s2"> folds for each of </span><span class="si">{1}</span><span class="s2"> candidates,&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">965</span>         <span class="s2">&quot; totalling </span><span class="si">{2}</span><span class="s2"> fits&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">966</span>             <span class="n">n_splits</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">,</span> <span class="n">n_candidates</span> <span class="o">*</span> <span class="n">n_splits</span>
+<span class="g g-Whitespace">    </span><span class="mi">967</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">968</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">970</span> <span class="n">out</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">971</span>     <span class="n">delayed</span><span class="p">(</span><span class="n">_fit_and_score</span><span class="p">)(</span>
+<span class="g g-Whitespace">    </span><span class="mi">972</span>         <span class="n">clone</span><span class="p">(</span><span class="n">base_estimator</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">973</span>         <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">974</span>         <span class="n">y</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">975</span>         <span class="n">train</span><span class="o">=</span><span class="n">train</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">976</span>         <span class="n">test</span><span class="o">=</span><span class="n">test</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">977</span>         <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">978</span>         <span class="n">split_progress</span><span class="o">=</span><span class="p">(</span><span class="n">split_idx</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">979</span>         <span class="n">candidate_progress</span><span class="o">=</span><span class="p">(</span><span class="n">cand_idx</span><span class="p">,</span> <span class="n">n_candidates</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">980</span>         <span class="o">**</span><span class="n">fit_and_score_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">981</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">982</span>     <span class="k">for</span> <span class="p">(</span><span class="n">cand_idx</span><span class="p">,</span> <span class="n">parameters</span><span class="p">),</span> <span class="p">(</span><span class="n">split_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">))</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">983</span>         <span class="nb">enumerate</span><span class="p">(</span><span class="n">candidate_params</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">984</span>         <span class="nb">enumerate</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">routed_params</span><span class="o">.</span><span class="n">splitter</span><span class="o">.</span><span class="n">split</span><span class="p">)),</span>
+<span class="g g-Whitespace">    </span><span class="mi">985</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">986</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">988</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">989</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">990</span>         <span class="s2">&quot;No fits were performed. &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">991</span>         <span class="s2">&quot;Was the CV iterator empty? &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">992</span>         <span class="s2">&quot;Were there no candidates?&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">993</span>     <span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/sklearn/utils/parallel.py:77,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="n">config</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="n">iterable_with_config</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span>     <span class="p">(</span><span class="n">_with_config</span><span class="p">(</span><span class="n">delayed_func</span><span class="p">,</span> <span class="n">config</span><span class="p">),</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="k">for</span> <span class="n">delayed_func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">iterable</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span> <span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">77</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">iterable_with_config</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/joblib/parallel.py:1986,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1984</span>     <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_sequential_output</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1985</span>     <span class="nb">next</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1986</span>     <span class="k">return</span> <span class="n">output</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_generator</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1988</span> <span class="c1"># Let&#39;s create an ID that uniquely identifies the current call. If the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1989</span> <span class="c1"># call is interrupted early and that the same instance is immediately</span>
+<span class="g g-Whitespace">   </span><span class="mi">1990</span> <span class="c1"># reused, this id will be used to prevent workers that were</span>
+<span class="g g-Whitespace">   </span><span class="mi">1991</span> <span class="c1"># concurrently finalizing a task from the previous call to run the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1992</span> <span class="c1"># callback.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1993</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/joblib/parallel.py:1914,</span> in <span class="ni">Parallel._get_sequential_output</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1912</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_batches</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1913</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_dispatched_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="ne">-&gt; </span><span class="mi">1914</span> <span class="n">res</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1915</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_completed_tasks</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1916</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_progress</span><span class="p">()</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/sklearn/utils/parallel.py:139,</span> in <span class="ni">_FuncWrapper.__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span> <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">139</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/sklearn/model_selection/_validation.py:888,</span> in <span class="ni">_fit_and_score</span><span class="nt">(estimator, X, y, scorer, train, test, verbose, parameters, fit_params, score_params, return_train_score, return_parameters, return_n_test_samples, return_times, return_estimator, split_progress, candidate_progress, error_score)</span>
+<span class="g g-Whitespace">    </span><span class="mi">885</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;fit_error&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">887</span> <span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+<span class="ne">--&gt; </span><span class="mi">888</span> <span class="n">test_scores</span> <span class="o">=</span> <span class="n">_score</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">889</span>     <span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">scorer</span><span class="p">,</span> <span class="n">score_params_test</span><span class="p">,</span> <span class="n">error_score</span>
+<span class="g g-Whitespace">    </span><span class="mi">890</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">891</span> <span class="n">score_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">-</span> <span class="n">fit_time</span>
+<span class="g g-Whitespace">    </span><span class="mi">892</span> <span class="k">if</span> <span class="n">return_train_score</span><span class="p">:</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/sklearn/model_selection/_validation.py:947,</span> in <span class="ni">_score</span><span class="nt">(estimator, X_test, y_test, scorer, score_params, error_score)</span>
+<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span>     <span class="k">if</span> <span class="n">y_test</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">947</span>         <span class="n">scores</span> <span class="o">=</span> <span class="n">scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="o">**</span><span class="n">score_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">948</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">949</span>         <span class="n">scores</span> <span class="o">=</span> <span class="n">scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="o">**</span><span class="n">score_params</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/sklearn/metrics/_scorer.py:472,</span> in <span class="ni">_PassthroughScorer.__call__</span><span class="nt">(self, estimator, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">470</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">471</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Method that wraps estimator.score&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">472</span>     <span class="k">return</span> <span class="n">estimator</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/sklearn/neighbors/_kde.py:306,</span> in <span class="ni">KernelDensity.score</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">287</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Compute the total log-likelihood under the model.</span>
+<span class="g g-Whitespace">    </span><span class="mi">288</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span><span class="sd">     Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span><span class="sd">         data.</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">306</span>     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/sklearn/neighbors/_kde.py:274,</span> in <span class="ni">KernelDensity.score_samples</span><span class="nt">(self, X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span>     <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">sum_weight</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span> <span class="n">atol_N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atol</span> <span class="o">*</span> <span class="n">N</span>
+<span class="ne">--&gt; </span><span class="mi">274</span> <span class="n">log_density</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">kernel_density</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span>     <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span>     <span class="n">h</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bandwidth_</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span>     <span class="n">kernel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>     <span class="n">atol</span><span class="o">=</span><span class="n">atol_N</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span>     <span class="n">rtol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rtol</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">280</span>     <span class="n">breadth_first</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">breadth_first</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">281</span>     <span class="n">return_log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span> <span class="n">log_density</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">284</span> <span class="k">return</span> <span class="n">log_density</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
-<img alt="_images/bd5e1b44ef4278201d5e5e69fa29a18c94a3e5d23bab4b846fd3520cb74fffae.png" src="_images/bd5e1b44ef4278201d5e5e69fa29a18c94a3e5d23bab4b846fd3520cb74fffae.png" />
 </div>
 </div>
 </section>
 <section id="alternativa-visual-seaborn">
-<h3>Alternativa visual: Seaborn<a class="headerlink" href="#alternativa-visual-seaborn" title="Permalink to this heading">#</a></h3>
+<h3>Alternativa visual: Seaborn<a class="headerlink" href="#alternativa-visual-seaborn" title="Link to this heading">#</a></h3>
 <p>La librería <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> tiene herramientas de visualización de densidad como <code class="docutils literal notranslate"><span class="pre">kdeplot</span></code> y <code class="docutils literal notranslate"><span class="pre">distplot</span></code>. Pruebe a hacer los plots anteriores con esas herramientas.</p>
 </section>
 </section>
 <section id="distribucion-de-exoplanetas-gaussian-mixture-models-gmm">
-<h2>Distribución de Exoplanetas: Gaussian Mixture Models (GMM)<a class="headerlink" href="#distribucion-de-exoplanetas-gaussian-mixture-models-gmm" title="Permalink to this heading">#</a></h2>
+<h2>Distribución de Exoplanetas: Gaussian Mixture Models (GMM)<a class="headerlink" href="#distribucion-de-exoplanetas-gaussian-mixture-models-gmm" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Modelo probabilístico que representa los datos como una combinación de múltiples distribuciones gaussianas con distintas restricciones sobre la covarianza entre los datos. <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/mixture/plot_gmm_covariances.html">Más información</a>.</p></li>
 <li><p>Cada gaussiana describe una posible población o componente dentro de los datos.</p></li>
@@ -923,7 +1053,7 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 <li><p>Alternativa: <em>K-means clustering</em>.</p></li>
 </ul>
 <section id="algoritmo-optimizacion-expectation-maximization-em">
-<h3>Algoritmo optimización: <em>Expectation-Maximization</em> (EM)<a class="headerlink" href="#algoritmo-optimizacion-expectation-maximization-em" title="Permalink to this heading">#</a></h3>
+<h3>Algoritmo optimización: <em>Expectation-Maximization</em> (EM)<a class="headerlink" href="#algoritmo-optimizacion-expectation-maximization-em" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Inicializar parámetros de las gaussianas.</p></li>
 <li><p>Calcular probabilidades de pertenencia de cada punto a cada componente (<em>Expectation step</em>).</p></li>
@@ -932,7 +1062,7 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.mixture</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianMixture</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
 
 <span class="n">gmm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span>
     <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -978,28 +1108,6 @@ Requirement already satisfied: backports.tarfile in /opt/homebrew/Caskroom/minic
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/c309f53892a91cbabd957d7efa66e5493bdb1768871eadc0a04f5d87f6bafd21.png" src="_images/c309f53892a91cbabd957d7efa66e5493bdb1768871eadc0a04f5d87f6bafd21.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cluster 0
-Mean:
-[-1.01373183 -1.77981885]
-Covariance:
-[[0.16973912 0.07387139]
- [0.07387139 0.1817889 ]]
-Weight:
-0.6547069917964242
-
-Cluster 1
-Mean:
-[-0.3553021   0.18458255]
-Covariance:
-[[1.02745111 0.28104515]
- [0.28104515 0.37062087]]
-Weight:
-0.3452930082035757
-</pre></div>
-</div>
-</div>
 </div>
 <p>Veamos la probabilidad de pertenencia a un cluster para algún planeta aleatorio.</p>
 <div class="cell docutils container">
@@ -1020,15 +1128,6 @@ Weight:
 
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Assigned cluster: </span><span class="si">{</span><span class="n">predicted_cluster</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">+</span><span class="s2">&quot; for planet &quot;</span><span class="o">+</span><span class="n">names_values</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cluster membership probabilities:
-Cluster 0: 0.9997
-Cluster 1: 0.0003
-
-Assigned cluster: 0 for planet Kepler-205 b
 </pre></div>
 </div>
 </div>
@@ -1087,9 +1186,6 @@ Assigned cluster: 0 for planet Kepler-205 b
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/f8e510720261b85859f0fc6c81e7f11e598fd34d0c2201fc6ee26cd69f31715b.png" src="_images/f8e510720261b85859f0fc6c81e7f11e598fd34d0c2201fc6ee26cd69f31715b.png" />
-</div>
 </div>
 <p>¡Podemos probar con muchos clusters!</p>
 <div class="cell docutils container">
@@ -1126,14 +1222,11 @@ Assigned cluster: 0 for planet Kepler-205 b
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/8361b120e7c2ad7bad9d965739c76d307eba8d4d876d1a6c208133d0a3de369a.png" src="_images/8361b120e7c2ad7bad9d965739c76d307eba8d4d876d1a6c208133d0a3de369a.png" />
-</div>
 </div>
 </section>
 </section>
 <section id="information-criteria">
-<h2>Information Criteria<a class="headerlink" href="#information-criteria" title="Permalink to this heading">#</a></h2>
+<h2>Information Criteria<a class="headerlink" href="#information-criteria" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Métricas estadísticas utilizadas para comparar modelos.</p></li>
 <li><p>Evalúan calidad del ajuste vs. complejidad del modelo.</p></li>
@@ -1147,16 +1240,16 @@ Assigned cluster: 0 for planet Kepler-205 b
 </li>
 </ul>
 <section id="criterios-comunes">
-<h3>Criterios comunes<a class="headerlink" href="#criterios-comunes" title="Permalink to this heading">#</a></h3>
+<h3>Criterios comunes<a class="headerlink" href="#criterios-comunes" title="Link to this heading">#</a></h3>
 <section id="aic-akaike-information-criterion">
-<h4>AIC — Akaike Information Criterion<a class="headerlink" href="#aic-akaike-information-criterion" title="Permalink to this heading">#</a></h4>
+<h4>AIC — Akaike Information Criterion<a class="headerlink" href="#aic-akaike-information-criterion" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Favorece buen ajuste predictivo.</p></li>
 <li><p>Penalización moderada por complejidad.</p></li>
 </ul>
 </section>
 <section id="bic-bayesian-information-criterion">
-<h4>BIC — Bayesian Information Criterion<a class="headerlink" href="#bic-bayesian-information-criterion" title="Permalink to this heading">#</a></h4>
+<h4>BIC — Bayesian Information Criterion<a class="headerlink" href="#bic-bayesian-information-criterion" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Penaliza más fuertemente modelos complejos.</p></li>
 <li><p>Tiende a favorecer modelos más simples.</p></li>
@@ -1164,7 +1257,7 @@ Assigned cluster: 0 for planet Kepler-205 b
 </section>
 </section>
 <section id="interpretacion">
-<h3>Interpretación<a class="headerlink" href="#interpretacion" title="Permalink to this heading">#</a></h3>
+<h3>Interpretación<a class="headerlink" href="#interpretacion" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Valores menores indican modelos preferibles.</p></li>
 <li><p>Se comparan únicamente entre modelos ajustados al mismo conjunto de datos, por lo tanto no son criterios absolutos sino relativos.</p></li>
@@ -1230,681 +1323,6 @@ Assigned cluster: 0 for planet Kepler-205 b
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best number of clusters according to BIC: 9
-</pre></div>
-</div>
-<img alt="_images/b534fa74ed48fe6cc9a87e4157d48f4d529de87f0902f64672ddb0482a63cd4e.png" src="_images/b534fa74ed48fe6cc9a87e4157d48f4d529de87f0902f64672ddb0482a63cd4e.png" />
-<div class="output text_html"><style>#sk-container-id-1 {
-  /* Definition of color scheme common for light and dark mode */
-  --sklearn-color-text: #000;
-  --sklearn-color-text-muted: #666;
-  --sklearn-color-line: gray;
-  /* Definition of color scheme for unfitted estimators */
-  --sklearn-color-unfitted-level-0: #fff5e6;
-  --sklearn-color-unfitted-level-1: #f6e4d2;
-  --sklearn-color-unfitted-level-2: #ffe0b3;
-  --sklearn-color-unfitted-level-3: chocolate;
-  /* Definition of color scheme for fitted estimators */
-  --sklearn-color-fitted-level-0: #f0f8ff;
-  --sklearn-color-fitted-level-1: #d4ebff;
-  --sklearn-color-fitted-level-2: #b3dbfd;
-  --sklearn-color-fitted-level-3: cornflowerblue;
-
-  /* Specific color for light theme */
-  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
-  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-icon: #696969;
-
-  @media (prefers-color-scheme: dark) {
-    /* Redefinition of color scheme for dark theme */
-    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
-    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-icon: #878787;
-  }
-}
-
-#sk-container-id-1 {
-  color: var(--sklearn-color-text);
-}
-
-#sk-container-id-1 pre {
-  padding: 0;
-}
-
-#sk-container-id-1 input.sk-hidden--visually {
-  border: 0;
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-#sk-container-id-1 div.sk-dashed-wrapped {
-  border: 1px dashed var(--sklearn-color-line);
-  margin: 0 0.4em 0.5em 0.4em;
-  box-sizing: border-box;
-  padding-bottom: 0.4em;
-  background-color: var(--sklearn-color-background);
-}
-
-#sk-container-id-1 div.sk-container {
-  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
-     but bootstrap.min.css set `[hidden] { display: none !important; }`
-     so we also need the `!important` here to be able to override the
-     default hidden behavior on the sphinx rendered scikit-learn.org.
-     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
-  display: inline-block !important;
-  position: relative;
-}
-
-#sk-container-id-1 div.sk-text-repr-fallback {
-  display: none;
-}
-
-div.sk-parallel-item,
-div.sk-serial,
-div.sk-item {
-  /* draw centered vertical line to link estimators */
-  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
-  background-size: 2px 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-/* Parallel-specific style estimator block */
-
-#sk-container-id-1 div.sk-parallel-item::after {
-  content: "";
-  width: 100%;
-  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
-  flex-grow: 1;
-}
-
-#sk-container-id-1 div.sk-parallel {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  background-color: var(--sklearn-color-background);
-  position: relative;
-}
-
-#sk-container-id-1 div.sk-parallel-item {
-  display: flex;
-  flex-direction: column;
-}
-
-#sk-container-id-1 div.sk-parallel-item:first-child::after {
-  align-self: flex-end;
-  width: 50%;
-}
-
-#sk-container-id-1 div.sk-parallel-item:last-child::after {
-  align-self: flex-start;
-  width: 50%;
-}
-
-#sk-container-id-1 div.sk-parallel-item:only-child::after {
-  width: 0;
-}
-
-/* Serial-specific style estimator block */
-
-#sk-container-id-1 div.sk-serial {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--sklearn-color-background);
-  padding-right: 1em;
-  padding-left: 1em;
-}
-
-
-/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
-clickable and can be expanded/collapsed.
-- Pipeline and ColumnTransformer use this feature and define the default style
-- Estimators will overwrite some part of the style using the `sk-estimator` class
-*/
-
-/* Pipeline and ColumnTransformer style (default) */
-
-#sk-container-id-1 div.sk-toggleable {
-  /* Default theme specific background. It is overwritten whether we have a
-  specific estimator or a Pipeline/ColumnTransformer */
-  background-color: var(--sklearn-color-background);
-}
-
-/* Toggleable label */
-#sk-container-id-1 label.sk-toggleable__label {
-  cursor: pointer;
-  display: flex;
-  width: 100%;
-  margin-bottom: 0;
-  padding: 0.5em;
-  box-sizing: border-box;
-  text-align: center;
-  align-items: start;
-  justify-content: space-between;
-  gap: 0.5em;
-}
-
-#sk-container-id-1 label.sk-toggleable__label .caption {
-  font-size: 0.6rem;
-  font-weight: lighter;
-  color: var(--sklearn-color-text-muted);
-}
-
-#sk-container-id-1 label.sk-toggleable__label-arrow:before {
-  /* Arrow on the left of the label */
-  content: "▸";
-  float: left;
-  margin-right: 0.25em;
-  color: var(--sklearn-color-icon);
-}
-
-#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
-  color: var(--sklearn-color-text);
-}
-
-/* Toggleable content - dropdown */
-
-#sk-container-id-1 div.sk-toggleable__content {
-  display: none;
-  text-align: left;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content pre {
-  margin: 0.2em;
-  border-radius: 0.25em;
-  color: var(--sklearn-color-text);
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content.fitted pre {
-  /* unfitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
-  /* Expand drop-down */
-  display: block;
-  width: 100%;
-  overflow: visible;
-}
-
-#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
-  content: "▾";
-}
-
-/* Pipeline/ColumnTransformer-specific style */
-
-#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator-specific style */
-
-/* Colorize estimator box */
-#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-#sk-container-id-1 div.sk-label label.sk-toggleable__label,
-#sk-container-id-1 div.sk-label label {
-  /* The background is the default theme color */
-  color: var(--sklearn-color-text-on-default-background);
-}
-
-/* On hover, darken the color of the background */
-#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-/* Label box, darken color on hover, fitted */
-#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator label */
-
-#sk-container-id-1 div.sk-label label {
-  font-family: monospace;
-  font-weight: bold;
-  display: inline-block;
-  line-height: 1.2em;
-}
-
-#sk-container-id-1 div.sk-label-container {
-  text-align: center;
-}
-
-/* Estimator-specific */
-#sk-container-id-1 div.sk-estimator {
-  font-family: monospace;
-  border: 1px dotted var(--sklearn-color-border-box);
-  border-radius: 0.25em;
-  box-sizing: border-box;
-  margin-bottom: 0.5em;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-/* on hover */
-#sk-container-id-1 div.sk-estimator:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Specification for estimator info (e.g. "i" and "?") */
-
-/* Common style for "i" and "?" */
-
-.sk-estimator-doc-link,
-a:link.sk-estimator-doc-link,
-a:visited.sk-estimator-doc-link {
-  float: right;
-  font-size: smaller;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1em;
-  height: 1em;
-  width: 1em;
-  text-decoration: none !important;
-  margin-left: 0.5em;
-  text-align: center;
-  /* unfitted */
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-  color: var(--sklearn-color-unfitted-level-1);
-}
-
-.sk-estimator-doc-link.fitted,
-a:link.sk-estimator-doc-link.fitted,
-a:visited.sk-estimator-doc-link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-div.sk-estimator:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover,
-div.sk-label-container:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover,
-div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-/* Span, style for the box shown on hovering the info icon */
-.sk-estimator-doc-link span {
-  display: none;
-  z-index: 9999;
-  position: relative;
-  font-weight: normal;
-  right: .2ex;
-  padding: .5ex;
-  margin: .5ex;
-  width: min-content;
-  min-width: 20ex;
-  max-width: 50ex;
-  color: var(--sklearn-color-text);
-  box-shadow: 2pt 2pt 4pt #999;
-  /* unfitted */
-  background: var(--sklearn-color-unfitted-level-0);
-  border: .5pt solid var(--sklearn-color-unfitted-level-3);
-}
-
-.sk-estimator-doc-link.fitted span {
-  /* fitted */
-  background: var(--sklearn-color-fitted-level-0);
-  border: var(--sklearn-color-fitted-level-3);
-}
-
-.sk-estimator-doc-link:hover span {
-  display: block;
-}
-
-/* "?"-specific style due to the `<a>` HTML tag */
-
-#sk-container-id-1 a.estimator_doc_link {
-  float: right;
-  font-size: 1rem;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1rem;
-  height: 1rem;
-  width: 1rem;
-  text-decoration: none;
-  /* unfitted */
-  color: var(--sklearn-color-unfitted-level-1);
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-}
-
-#sk-container-id-1 a.estimator_doc_link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-#sk-container-id-1 a.estimator_doc_link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-#sk-container-id-1 a.estimator_doc_link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-}
-
-.estimator-table summary {
-    padding: .5rem;
-    font-family: monospace;
-    cursor: pointer;
-}
-
-.estimator-table details[open] {
-    padding-left: 0.1rem;
-    padding-right: 0.1rem;
-    padding-bottom: 0.3rem;
-}
-
-.estimator-table .parameters-table {
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-.estimator-table .parameters-table tr:nth-child(odd) {
-    background-color: #fff;
-}
-
-.estimator-table .parameters-table tr:nth-child(even) {
-    background-color: #f6f6f6;
-}
-
-.estimator-table .parameters-table tr:hover {
-    background-color: #e0e0e0;
-}
-
-.estimator-table table td {
-    border: 1px solid rgba(106, 105, 104, 0.232);
-}
-
-.user-set td {
-    color:rgb(255, 94, 0);
-    text-align: left;
-}
-
-.user-set td.value pre {
-    color:rgb(255, 94, 0) !important;
-    background-color: transparent !important;
-}
-
-.default td {
-    color: black;
-    text-align: left;
-}
-
-.user-set td i,
-.default td i {
-    color: black;
-}
-
-.copy-paste-icon {
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
-    background-repeat: no-repeat;
-    background-size: 14px 14px;
-    background-position: 0;
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    cursor: pointer;
-}
-</style><body><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GaussianMixture(n_components=9, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>GaussianMixture</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.mixture.GaussianMixture.html">?<span>Documentation for GaussianMixture</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
-        <div class="estimator-table">
-            <details>
-                <summary>Parameters</summary>
-                <table class="parameters-table">
-                  <tbody>
-                    
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('n_components',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">n_components&nbsp;</td>
-            <td class="value">9</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('covariance_type',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">covariance_type&nbsp;</td>
-            <td class="value">&#x27;full&#x27;</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('tol',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">tol&nbsp;</td>
-            <td class="value">0.001</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('reg_covar',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">reg_covar&nbsp;</td>
-            <td class="value">1e-06</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('max_iter',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">max_iter&nbsp;</td>
-            <td class="value">100</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('n_init',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">n_init&nbsp;</td>
-            <td class="value">1</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('init_params',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">init_params&nbsp;</td>
-            <td class="value">&#x27;kmeans&#x27;</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('weights_init',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">weights_init&nbsp;</td>
-            <td class="value">None</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('means_init',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">means_init&nbsp;</td>
-            <td class="value">None</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('precisions_init',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">precisions_init&nbsp;</td>
-            <td class="value">None</td>
-        </tr>
-    
-
-        <tr class="user-set">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('random_state',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">random_state&nbsp;</td>
-            <td class="value">42</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('warm_start',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">warm_start&nbsp;</td>
-            <td class="value">False</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('verbose',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">verbose&nbsp;</td>
-            <td class="value">0</td>
-        </tr>
-    
-
-        <tr class="default">
-            <td><i class="copy-paste-icon"
-                 onclick="copyToClipboard('verbose_interval',
-                          this.parentElement.nextElementSibling)"
-            ></i></td>
-            <td class="param">verbose_interval&nbsp;</td>
-            <td class="value">10</td>
-        </tr>
-    
-                  </tbody>
-                </table>
-            </details>
-        </div>
-    </div></div></div></div></div><script>function copyToClipboard(text, element) {
-    // Get the parameter prefix from the closest toggleable content
-    const toggleableContent = element.closest('.sk-toggleable__content');
-    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
-    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
-
-    const originalStyle = element.style;
-    const computedStyle = window.getComputedStyle(element);
-    const originalWidth = computedStyle.width;
-    const originalHTML = element.innerHTML.replace('Copied!', '');
-
-    navigator.clipboard.writeText(fullParamName)
-        .then(() => {
-            element.style.width = originalWidth;
-            element.style.color = 'green';
-            element.innerHTML = "Copied!";
-
-            setTimeout(() => {
-                element.innerHTML = originalHTML;
-                element.style = originalStyle;
-            }, 2000);
-        })
-        .catch(err => {
-            console.error('Failed to copy:', err);
-            element.style.color = 'red';
-            element.innerHTML = "Failed!";
-            setTimeout(() => {
-                element.innerHTML = originalHTML;
-                element.style = originalStyle;
-            }, 2000);
-        });
-    return false;
-}
-
-document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
-    const toggleableContent = element.closest('.sk-toggleable__content');
-    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
-    const paramName = element.parentElement.nextElementSibling.textContent.trim();
-    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
-
-    element.setAttribute('title', fullParamName);
-});
-</script></body></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1940,20 +1358,17 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/91ef017d61346d26275ee2200fa9a60c19b97d15c26de234881e46fbe149d021.png" src="_images/91ef017d61346d26275ee2200fa9a60c19b97d15c26de234881e46fbe149d021.png" />
-</div>
 </div>
 </section>
 <section id="agrupamiento-por-k-means">
-<h3>Agrupamiento por <code class="docutils literal notranslate"><span class="pre">k-means</span></code><a class="headerlink" href="#agrupamiento-por-k-means" title="Permalink to this heading">#</a></h3>
+<h3>Agrupamiento por <code class="docutils literal notranslate"><span class="pre">k-means</span></code><a class="headerlink" href="#agrupamiento-por-k-means" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Algoritmo de clustering no supervisado según similitud o distancia.</p></li>
 <li><p>Cada grupo se representa mediante un centroide.</p></li>
 <li><p>Busca minimizar la distancia entre los puntos y el centroide de su grupo.</p></li>
 </ul>
 <section id="algoritmo-basico">
-<h4>Algoritmo básico<a class="headerlink" href="#algoritmo-basico" title="Permalink to this heading">#</a></h4>
+<h4>Algoritmo básico<a class="headerlink" href="#algoritmo-basico" title="Link to this heading">#</a></h4>
 <ol class="arabic simple">
 <li><p>Inicializar (k) centroides.</p></li>
 <li><p>Asignar cada punto al centroide más cercano.</p></li>
@@ -1962,7 +1377,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </ol>
 </section>
 <section id="caracteristicas">
-<h4>Características<a class="headerlink" href="#caracteristicas" title="Permalink to this heading">#</a></h4>
+<h4>Características<a class="headerlink" href="#caracteristicas" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Simple y computacionalmente eficiente.</p></li>
 <li><p>Funciona mejor para grupos aproximadamente esféricos y bien separados.</p></li>
@@ -1970,7 +1385,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">log_semimajor_axis</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">log_mass</span><span class="p">)</span>
@@ -2058,15 +1473,12 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/3ab11448f9d90e199858e704005d930b6ca0e3dc67d2877ffc6495804c5e79a9.png" src="_images/3ab11448f9d90e199858e704005d930b6ca0e3dc67d2877ffc6495804c5e79a9.png" />
-</div>
 </div>
 </section>
 </section>
 </section>
 <section id="distribucion-de-exoplanetas-principal-component-analysis-pca">
-<h2>Distribución de Exoplanetas: Principal Component Analysis (PCA)<a class="headerlink" href="#distribucion-de-exoplanetas-principal-component-analysis-pca" title="Permalink to this heading">#</a></h2>
+<h2>Distribución de Exoplanetas: Principal Component Analysis (PCA)<a class="headerlink" href="#distribucion-de-exoplanetas-principal-component-analysis-pca" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Método de reducción de dimensionalidad basado en álgebra lineal.</p></li>
 <li><p>Busca nuevas variables llamadas componentes principales.</p></li>
@@ -2082,7 +1494,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </ul>
 <p><img alt="Project Logo" src="_images/pca.jpeg" /></p>
 <section id="problema-densidad-vs-radio">
-<h3>Problema: Densidad vs. Radio<a class="headerlink" href="#problema-densidad-vs-radio" title="Permalink to this heading">#</a></h3>
+<h3>Problema: Densidad vs. Radio<a class="headerlink" href="#problema-densidad-vs-radio" title="Link to this heading">#</a></h3>
 <p>Vamos a analizar sub-tendencias de densidad vs. radio para exoplanetas. En principio hay planetas rocosos con alta densidad y planetas gaseosos con baja densidad. Sin embargo, aprovechemos lo que ya aprendimos para encontrar sub-poblaciones sin suposiciones previas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2102,11 +1514,6 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 
 <span class="n">radius_value</span><span class="o">=</span><span class="n">table2</span><span class="p">[</span><span class="s1">&#39;pl_rade&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
 <span class="n">dens_value</span><span class="o">=</span><span class="n">table2</span><span class="p">[</span><span class="s1">&#39;pl_dens&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found 1195 exoplanets with reported radius and density.
 </pre></div>
 </div>
 </div>
@@ -2132,9 +1539,6 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/40a1a4ebad7e198ce3045beae1a0ad3c829f8b95a306239b5f29c24ab5589143.png" src="_images/40a1a4ebad7e198ce3045beae1a0ad3c829f8b95a306239b5f29c24ab5589143.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2219,13 +1623,6 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best number of components (BIC): 5
-</pre></div>
-</div>
-<img alt="_images/57ccbdf958ef803c9f6919c2cae9e5fe292f0313c7ddc5da4135886621a00efe.png" src="_images/57ccbdf958ef803c9f6919c2cae9e5fe292f0313c7ddc5da4135886621a00efe.png" />
-<img alt="_images/7e51481dca11ea67a18d2c6f4e921ba5270c79db679991c3fa2a039724b77ac3.png" src="_images/7e51481dca11ea67a18d2c6f4e921ba5270c79db679991c3fa2a039724b77ac3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2317,13 +1714,6 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best number of components (BIC): 5
-</pre></div>
-</div>
-<img alt="_images/7785a1a241a2cdcee9d4efa39cf14b0bdf4ffa68f571ebeee5f8f677e3632df1.png" src="_images/7785a1a241a2cdcee9d4efa39cf14b0bdf4ffa68f571ebeee5f8f677e3632df1.png" />
-<img alt="_images/d5ebce3507a0006d89676513db6ada430c748ad2d41cb8e60f4a9ba2d47cdeda.png" src="_images/d5ebce3507a0006d89676513db6ada430c748ad2d41cb8e60f4a9ba2d47cdeda.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2354,18 +1744,11 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/2y/t3gprvl52s75ccs56z7ml0s80000gn/T/ipykernel_24003/4255502184.py:22: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
-  plt.legend()
-</pre></div>
-</div>
-<img alt="_images/a134e745e9c32afb8c01c2b5eb4710b79adde3b582546b20f2c329d22715d324.png" src="_images/a134e745e9c32afb8c01c2b5eb4710b79adde3b582546b20f2c329d22715d324.png" />
-</div>
 </div>
 </section>
 </section>
 <section id="preprocesamiento">
-<h2>Preprocesamiento<a class="headerlink" href="#preprocesamiento" title="Permalink to this heading">#</a></h2>
+<h2>Preprocesamiento<a class="headerlink" href="#preprocesamiento" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Conjunto de transformaciones aplicadas a los datos antes del análisis o entrenamiento.</p></li>
 <li><p>Busca mejorar:</p>
@@ -2386,7 +1769,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </ul>
 </section>
 <section id="estandarizacion">
-<h2>Estandarización<a class="headerlink" href="#estandarizacion" title="Permalink to this heading">#</a></h2>
+<h2>Estandarización<a class="headerlink" href="#estandarizacion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Transformación que centra y escala las variables.</p></li>
 <li><p>Cada variable se transforma para tener promedio 0 y desviación estándar 1.</p></li>
@@ -2402,8 +1785,8 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_sub</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y_sub</span><span class="p">)</span>
@@ -2456,17 +1839,6 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Explained variance ratio:
-[0.87734087 0.12265913]
-
-Principal components:
-[[-0.70710678  0.70710678]
- [ 0.70710678  0.70710678]]
-</pre></div>
-</div>
-<img alt="_images/c4d9a9e8815b306da967085d733141b55e04518ecead21af4cb3e8e9069af467.png" src="_images/c4d9a9e8815b306da967085d733141b55e04518ecead21af4cb3e8e9069af467.png" />
-</div>
 </div>
 <p><strong>Ejercicio</strong>: Revise los demás grupos y reporte para cuáles el PCA muestra que el primer componente cubre aproximadamente el 90% de varianza. ¿Cómo se interpretaría astrofísicamente cada uno de estos casos?</p>
 <p><strong>Ejercicio</strong>: Use la columna <code class="docutils literal notranslate"><span class="pre">st_met</span></code> para buscar la relación entre la masa y la metalicidad (estrellas con más metalicidad tienen más probabilidad de tener planetas gigantes, es decir con más de 10 masas terrestres). Puede usar KDE, GMM, PCA, etc.</p>
@@ -2475,7 +1847,7 @@ Principal components:
 <p><strong>Ejemplos</strong> de algoritmos de reducción de dimensionalidad no lineales incluyendo Locally Linear Embedding: <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/manifold/plot_compare_methods.html">Enlace</a>.</p>
 </section>
 <section id="apendice-la-matematica-del-analisis-de-componentes-principales-pca">
-<h2>Apéndice: La Matemática del Análisis de Componentes Principales (PCA)<a class="headerlink" href="#apendice-la-matematica-del-analisis-de-componentes-principales-pca" title="Permalink to this heading">#</a></h2>
+<h2>Apéndice: La Matemática del Análisis de Componentes Principales (PCA)<a class="headerlink" href="#apendice-la-matematica-del-analisis-de-componentes-principales-pca" title="Link to this heading">#</a></h2>
 <p>PCA es un algoritmo basado en álgebra lineal en el que las componentes principales se identifican con los eigenvectores de la matriz de covarianza asociada a los datos.</p>
 <p>Empecemos con un conjunto de datos con $<span class="math notranslate nohighlight">\(n\)</span><span class="math notranslate nohighlight">\( observaciones y \)</span><span class="math notranslate nohighlight">\(p\)</span>$ variables, organizado en una matriz (estandarizada)</p>
 <div class="math notranslate nohighlight">
@@ -2485,7 +1857,7 @@ X \in \mathbb{R}^{n \times p}
 <p>PCA busca nuevas direcciones ortogonales en el espacio de variables a lo largo de las cuales la varianza de los datos es máxima.</p>
 <hr class="docutils" />
 <section id="matriz-de-covarianza">
-<h3>Matriz de Covarianza<a class="headerlink" href="#matriz-de-covarianza" title="Permalink to this heading">#</a></h3>
+<h3>Matriz de Covarianza<a class="headerlink" href="#matriz-de-covarianza" title="Link to this heading">#</a></h3>
 <p>La matriz de covarianza es</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2495,7 +1867,7 @@ C = \frac{1}{n-1} X^T X
 </section>
 <hr class="docutils" />
 <section id="eigenvectores-y-eigenvalores">
-<h3>Eigenvectores y Eigenvalores<a class="headerlink" href="#eigenvectores-y-eigenvalores" title="Permalink to this heading">#</a></h3>
+<h3>Eigenvectores y Eigenvalores<a class="headerlink" href="#eigenvectores-y-eigenvalores" title="Link to this heading">#</a></h3>
 <p>PCA resuelve el problema de eigenvalores</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2506,7 +1878,7 @@ C \mathbf{v} = \lambda \mathbf{v}
 </section>
 <hr class="docutils" />
 <section id="componentes-principales">
-<h3>Componentes Principales<a class="headerlink" href="#componentes-principales" title="Permalink to this heading">#</a></h3>
+<h3>Componentes Principales<a class="headerlink" href="#componentes-principales" title="Link to this heading">#</a></h3>
 <p>Los eigenvectores de la matriz de covarianza corresponden a las <strong>componentes principales</strong>.</p>
 <ul class="simple">
 <li><p>Primera componente principal:
@@ -2519,7 +1891,7 @@ dirección ortogonal a la primera con la siguiente mayor varianza.</p></li>
 </section>
 <hr class="docutils" />
 <section id="proyeccion">
-<h3>Proyección<a class="headerlink" href="#proyeccion" title="Permalink to this heading">#</a></h3>
+<h3>Proyección<a class="headerlink" href="#proyeccion" title="Link to this heading">#</a></h3>
 <p>Para reducir dimensionalidad, los datos se proyectan sobre los primeros $<span class="math notranslate nohighlight">\(k\)</span>$ eigenvectores:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2544,7 +1916,7 @@ Z \in \mathbb{R}^{n \times k}
 </section>
 <hr class="docutils" />
 <section id="interpretacion-geometrica">
-<h3>Interpretación Geométrica<a class="headerlink" href="#interpretacion-geometrica" title="Permalink to this heading">#</a></h3>
+<h3>Interpretación Geométrica<a class="headerlink" href="#interpretacion-geometrica" title="Link to this heading">#</a></h3>
 <p>PCA rota el sistema de coordenadas de manera que:</p>
 <ul class="simple">
 <li><p>el primer eje apunta en la dirección de mayor dispersión de los datos,</p></li>
@@ -2555,7 +1927,7 @@ Z \in \mathbb{R}^{n \times k}
 </section>
 <hr class="docutils" />
 <section id="varianza-explicada">
-<h3>Varianza Explicada<a class="headerlink" href="#varianza-explicada" title="Permalink to this heading">#</a></h3>
+<h3>Varianza Explicada<a class="headerlink" href="#varianza-explicada" title="Link to this heading">#</a></h3>
 <p>La fracción de varianza explicada por la componente $<span class="math notranslate nohighlight">\(i\)</span>$ es</p>
 <div class="math notranslate nohighlight">
 \[
@@ -2621,7 +1993,8 @@ Z \in \mathbb{R}^{n \times k}
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -2705,7 +2078,7 @@ By Esteban Silva Villa y Germán Chaparro Molano
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -2729,8 +2102,8 @@ By Esteban Silva Villa y Germán Chaparro Molano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

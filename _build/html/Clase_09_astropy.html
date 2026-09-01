@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Clase 9: Astropy: Unidades y Coordenadas &#8212; Minería de datos</title>
   
@@ -17,51 +16,50 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_09_astropy';</script>
@@ -71,6 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="prev" title="Clase 8: Gran Repaso de Minería de Datos Astronómicos" href="Clase_08_Rsumen.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -86,19 +85,8 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -106,7 +94,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -114,8 +101,8 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -131,7 +118,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -161,11 +149,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
-    <script>document.write(`<img src="_static/UdeA.png" class="logo__image only-dark" alt="Minería de datos - Home"/>`);</script>
+    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -189,10 +184,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_12_Aprendizaje_No_Supervisado.html">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Clase_13_Aprendizaje_Supervisado.html">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada_1.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clase_14_Clasificacion_Supervisada.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="Clase_15_Deep_Learning_1.html">Clase 15: Deep Learning 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
 
     </div>
@@ -201,9 +196,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -222,9 +222,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -347,27 +347,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -431,10 +423,10 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="clase-9-astropy-unidades-y-coordenadas">
-<h1>Clase 9: Astropy: Unidades y Coordenadas<a class="headerlink" href="#clase-9-astropy-unidades-y-coordenadas" title="Permalink to this heading">#</a></h1>
+<h1>Clase 9: Astropy: Unidades y Coordenadas<a class="headerlink" href="#clase-9-astropy-unidades-y-coordenadas" title="Link to this heading">#</a></h1>
 <p>Adaptado de http://www.astropy.org/astropy-tutorials/Coordinates.html</p>
 <section id="introduccion-a-astropy">
-<h2><strong>Introducción a Astropy</strong><a class="headerlink" href="#introduccion-a-astropy" title="Permalink to this heading">#</a></h2>
+<h2><strong>Introducción a Astropy</strong><a class="headerlink" href="#introduccion-a-astropy" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Librería de código abierto impulsado por la comunidad con herramientas diseñadas para investigación astronómica.</p></li>
 <li><p>Históricamente, el código astronómico era fragmentado, con lectores de FITS y conversores de unidades propios, lo que causaba errores y falta de reproducibilidad.</p></li>
@@ -454,7 +446,7 @@ document.write(`
 </ul>
 </section>
 <section id="constantes-fisicas-astropy-constants">
-<h2><strong>Constantes Físicas (<code class="docutils literal notranslate"><span class="pre">astropy.constants</span></code>)</strong><a class="headerlink" href="#constantes-fisicas-astropy-constants" title="Permalink to this heading">#</a></h2>
+<h2><strong>Constantes Físicas (<code class="docutils literal notranslate"><span class="pre">astropy.constants</span></code>)</strong><a class="headerlink" href="#constantes-fisicas-astropy-constants" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Valores CODATA:</strong> Basados en estándares internacionales.</p></li>
 <li><p><strong>Metadatos:</strong> Incluyen nombre, valor, incertidumbre y referencia.</p></li>
@@ -462,13 +454,13 @@ document.write(`
 </ul>
 <p><strong>Ejemplo de uso:</strong>
 $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">G</span><span class="p">,</span> <span class="n">M_sun</span><span class="p">,</span> <span class="n">c</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.constants</span> <span class="kn">import</span> <span class="n">G</span><span class="p">,</span> <span class="n">M_sun</span><span class="p">,</span> <span class="n">c</span>
 
 <span class="n">R_s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">G</span> <span class="o">*</span> <span class="n">M_sun</span><span class="p">)</span> <span class="o">/</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">R_s</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;km&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">astropy.constants</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">c</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">astropy.constants</span> <span class="k">as</span> <span class="nn">c</span>
 <span class="c1"># Es preferible usar un alias para legibilidad del código</span>
 
 <span class="n">R_s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">G</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">M_sun</span><span class="p">)</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span>
@@ -477,7 +469,7 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 </div>
 </section>
 <section id="unidades-y-cantidades-astropy-units">
-<h2><strong>Unidades y Cantidades (<code class="docutils literal notranslate"><span class="pre">astropy.units</span></code>)</strong><a class="headerlink" href="#unidades-y-cantidades-astropy-units" title="Permalink to this heading">#</a></h2>
+<h2><strong>Unidades y Cantidades (<code class="docutils literal notranslate"><span class="pre">astropy.units</span></code>)</strong><a class="headerlink" href="#unidades-y-cantidades-astropy-units" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>El tipo de objeto <code class="docutils literal notranslate"><span class="pre">Quantity</span></code> es la unión entre un valor (o array de <code class="docutils literal notranslate"><span class="pre">NumPy</span></code>) con un objeto de unidad (dimensión) física.</p></li>
 <li><p>Permite hacer conversiones y simplificaciones sin errores manuales.</p></li>
@@ -489,7 +481,7 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 </li>
 </ul>
 <p><strong>Ejemplo de código:</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
 
 <span class="n">distancia</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">pc</span>
 <span class="c1"># Conversión simple</span>
@@ -502,7 +494,7 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 </div>
 </section>
 <section id="tablas-de-astropy-astropy-table">
-<h2><strong>Tablas de Astropy (<code class="docutils literal notranslate"><span class="pre">astropy.table</span></code>)</strong><a class="headerlink" href="#tablas-de-astropy-astropy-table" title="Permalink to this heading">#</a></h2>
+<h2><strong>Tablas de Astropy (<code class="docutils literal notranslate"><span class="pre">astropy.table</span></code>)</strong><a class="headerlink" href="#tablas-de-astropy-astropy-table" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Objetos diseñados para leer/escribir archivos <strong>FITS</strong>, <strong>VOTables</strong> y <strong>CSV</strong> conservando metadatos.</p></li>
 <li><p>Una sola celda puede contener un array (ej. un espectro completo de 2000 canales), permitiendo manejar estructuras de datos embebidos que el CSV estándar no soporta.</p></li>
@@ -528,7 +520,7 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 </ul>
 </section>
 <section id="coordenadas-celestes-astropy-coordinates">
-<h2><strong>Coordenadas Celestes (<code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code>)</strong><a class="headerlink" href="#coordenadas-celestes-astropy-coordinates" title="Permalink to this heading">#</a></h2>
+<h2><strong>Coordenadas Celestes (<code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code>)</strong><a class="headerlink" href="#coordenadas-celestes-astropy-coordinates" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Objetos <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code>, que unifican posiciones, sistemas de referencia y distancias.</p></li>
 <li><p>Sistemas de referencia/coordenados: ICRS (estándar), FK5, Galáctico, AltAz (local), entre otros.</p></li>
@@ -537,8 +529,8 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 <li><p><strong>Cross-matching:</strong> Encontrar qué objetos de un catálogo A coinciden con el catálogo B dentro de un radio determinado (ej. 1 arcsec).</p></li>
 <li><p>Permite calcular la masa de aire para observaciones.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">SkyCoord</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">SkyCoord</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
 
 <span class="c1"># Definir una posición (ej. el centro de la Galaxia)</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra</span><span class="o">=</span><span class="mf">266.4168</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">dec</span><span class="o">=-</span><span class="mf">29.0078</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s1">&#39;icrs&#39;</span><span class="p">)</span>
@@ -555,11 +547,11 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 </div>
 </section>
 <section id="unidades">
-<h2>Unidades<a class="headerlink" href="#unidades" title="Permalink to this heading">#</a></h2>
+<h2>Unidades<a class="headerlink" href="#unidades" title="Link to this heading">#</a></h2>
 <p>Astropy puede hacer conversión de unidades muy eficientemente a través del método <code class="docutils literal notranslate"><span class="pre">.to()</span></code> aplicado a un objeto <code class="docutils literal notranslate"><span class="pre">Quantity</span></code>. También hay atajos como los métodos <code class="docutils literal notranslate"><span class="pre">.cgs</span></code> <code class="docutils literal notranslate"><span class="pre">.si</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
 <span class="n">measurement</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">h</span>
 <span class="n">measurement</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span>
 </pre></div>
@@ -616,7 +608,7 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
 
 <span class="n">lambda_uv</span> <span class="o">=</span> <span class="mf">91.2</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">nm</span>
 
@@ -635,7 +627,7 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 10&gt;</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">energia</span> <span class="o">=</span> <span class="n">lambda_uv</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">eV</span><span class="p">,</span> <span class="n">equivalencies</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">())</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">numero_de_onda</span> <span class="o">=</span> <span class="n">lambda_uv</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**-</span><span class="mi">1</span><span class="p">,</span> <span class="n">equivalencies</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">spectral</span><span class="p">())</span>
 <span class="ne">---&gt; </span><span class="mi">10</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longitud de onda: </span><span class="si">{</span><span class="n">lambda_verde</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -689,13 +681,13 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 </div>
 </section>
 <section id="usando-astropy-coordinates">
-<h2>Usando <code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code><a class="headerlink" href="#usando-astropy-coordinates" title="Permalink to this heading">#</a></h2>
+<h2>Usando <code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code><a class="headerlink" href="#usando-astropy-coordinates" title="Link to this heading">#</a></h2>
 <p>En esta parte exploraremos cómo el paquete <code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code> junto con la funcionalidad general de astropy puede ser usado para planear observaciones y en general obtener información que requiera el uso de catálogos astronómicos grandes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">urllib</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">IPython.display</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">IPython.display</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -703,22 +695,22 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy</span><span class="w"> </span><span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">SkyCoord</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">SkyCoord</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="determinando-lugares-en-el-cielo-con-coordinates">
-<h2>Determinando lugares en el cielo con <code class="docutils literal notranslate"><span class="pre">coordinates</span></code><a class="headerlink" href="#determinando-lugares-en-el-cielo-con-coordinates" title="Permalink to this heading">#</a></h2>
+<h2>Determinando lugares en el cielo con <code class="docutils literal notranslate"><span class="pre">coordinates</span></code><a class="headerlink" href="#determinando-lugares-en-el-cielo-con-coordinates" title="Link to this heading">#</a></h2>
 <p>Comencemos considerando un campo alrededor del pintoresco Grupo Compacto Hickson 7 (HCG7). Primero necesitamos obtener un objeto que represente las coordenadas del centro de este grupo.</p>
 <p>En Astropy, el objeto más común para trabajar coordenadas es <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code>.  Un <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> puede ser creado simplemente a partir de ángulos como se muestra más abajo. Es recomendable especificar el marco de referencia de sus coordenadas, aunque no es estrictamente necesario, ya que por defecto se usa el estándar ICRS de la IAU. Este estándar se puede entender como aproximadamente igual al sistema ecuatorial en el equinoxio de J2000, y se da en RA/DEC.</p>
 <p>https://en.wikipedia.org/wiki/International_Celestial_Reference_System</p>
@@ -837,10 +829,10 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 <p>¡Bonito!</p>
 </section>
 <section id="transformando-entre-sistemas-de-coordenadas-y-planeacion-de-observaciones">
-<h2>Transformando entre sistemas de coordenadas y planeación de observaciones<a class="headerlink" href="#transformando-entre-sistemas-de-coordenadas-y-planeacion-de-observaciones" title="Permalink to this heading">#</a></h2>
+<h2>Transformando entre sistemas de coordenadas y planeación de observaciones<a class="headerlink" href="#transformando-entre-sistemas-de-coordenadas-y-planeacion-de-observaciones" title="Link to this heading">#</a></h2>
 <p>Supongamos que usted quiere estudiar alguno de los objetos en este catálogo, y usted quiere saber cuando puede observarlo. Afortunadamente <code class="docutils literal notranslate"><span class="pre">astropy.coordinates</span></code> nos da esta información.</p>
 <section id="introduciendo-transformaciones-de-coordenadas">
-<h3>Introduciendo transformaciones de coordenadas<a class="headerlink" href="#introduciendo-transformaciones-de-coordenadas" title="Permalink to this heading">#</a></h3>
+<h3>Introduciendo transformaciones de coordenadas<a class="headerlink" href="#introduciendo-transformaciones-de-coordenadas" title="Link to this heading">#</a></h3>
 <p>Para enteder lo que viene a continuación, recomendamos leer el <a class="reference external" href="http://astropy.readthedocs.org/en/latest/coordinates/index.html#overview-of-astropy-coordinates-concepts">resumen del esquema de coordenadas de astropy</a>.  Lo importante es saber que todas las coordenadas en astropy están en “marcos de referencia” particulares, y podemos transformar el mismo objeto <code class="docutils literal notranslate"><span class="pre">SkyCoord</span></code> de un marco a otro.  Pdemos transformar nuestro centro de HCG7 de ICRS a coordenadas galácticas:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -859,7 +851,7 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 <p>Lo anterior nos permite hacer una visualización rápida del cambio de coordenadas. También es posible usar el método <code class="docutils literal notranslate"><span class="pre">transform_to()</span></code> para hacer este cambio.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">Galactic</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">Galactic</span>
 <span class="n">hcg7_center</span><span class="o">.</span><span class="n">transform_to</span><span class="p">(</span><span class="n">Galactic</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -881,12 +873,12 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 </div>
 </section>
 <section id="cambio-a-coordenadas-altaz">
-<h3>Cambio a coordenadas AltAz<a class="headerlink" href="#cambio-a-coordenadas-altaz" title="Permalink to this heading">#</a></h3>
+<h3>Cambio a coordenadas AltAz<a class="headerlink" href="#cambio-a-coordenadas-altaz" title="Link to this heading">#</a></h3>
 <p>Para hacer observaciones, necesitamos hacer un cambio de coordenadas a un sistema basado en donde está el observador. Lo más común es usar coordenadas horizontales, o “AltAz”. Necesitamos especificar desde donde queremos observar.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">EarthLocation</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.time</span><span class="w"> </span><span class="kn">import</span> <span class="n">Time</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">EarthLocation</span>
+<span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
 
 <span class="n">observing_location</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="s1">&#39;4d&#39;</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="s1">&#39;-72d&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2600</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>  <span class="c1"># Bogotá</span>
 <span class="c1"># Si se usa astropy v1.1 o más reciente, se puede reemplazar por la ubicación del observatorio:</span>
@@ -901,7 +893,7 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 <p>Ahora usamos lo anterior para crear un objeto en el marco <code class="docutils literal notranslate"><span class="pre">AltAz</span></code>. Este marco tiene información sobre la atmósfera, que puede ser usado para corregir por refracción atmosférica.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">AltAz</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">AltAz</span>
 
 <span class="n">aa</span> <span class="o">=</span> <span class="n">AltAz</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">observing_location</span><span class="p">,</span> <span class="n">obstime</span><span class="o">=</span><span class="n">observing_time</span><span class="p">)</span>
 <span class="n">aa</span>
@@ -921,9 +913,9 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 <p><strong>Masa de aire:</strong> Determinar <em>airmass</em> para programar observaciones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">AltAz</span><span class="p">,</span> <span class="n">EarthLocation</span><span class="p">,</span> <span class="n">SkyCoord</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.time</span><span class="w"> </span><span class="kn">import</span> <span class="n">Time</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">AltAz</span><span class="p">,</span> <span class="n">EarthLocation</span><span class="p">,</span> <span class="n">SkyCoord</span>
+<span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
+<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
 
 <span class="c1"># 1. Definir ubicación y tiempo</span>
 <span class="n">observatorio</span> <span class="o">=</span> <span class="n">EarthLocation</span><span class="p">(</span><span class="n">lat</span><span class="o">=-</span><span class="mf">30.16</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">lon</span><span class="o">=-</span><span class="mf">70.80</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2200</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">m</span><span class="p">)</span> <span class="c1"># CTIO</span>
@@ -944,18 +936,18 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 </section>
 </section>
 <section id="usando-coordinates-y-table-para-combinar-y-comparar-catalogos">
-<h2>Usando <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> y <code class="docutils literal notranslate"><span class="pre">table</span></code> para combinar y comparar catálogos<a class="headerlink" href="#usando-coordinates-y-table-para-combinar-y-comparar-catalogos" title="Permalink to this heading">#</a></h2>
+<h2>Usando <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> y <code class="docutils literal notranslate"><span class="pre">table</span></code> para combinar y comparar catálogos<a class="headerlink" href="#usando-coordinates-y-table-para-combinar-y-comparar-catalogos" title="Link to this heading">#</a></h2>
 <p>Vamos a hacer un análisis multi-longitud de onda para caracterizar los objetos del grupo de galaxias HCG 7 (Hickson Compact Group 7).</p>
 <p>Vamos a cruzar los datos en el óptico de SDSS con los de IR de 2MASS para:</p>
 <section id="extender-el-espectro-de-observacion-optico-ir">
-<h3>1. Extender el Espectro de Observación (Óptico + IR)<a class="headerlink" href="#extender-el-espectro-de-observacion-optico-ir" title="Permalink to this heading">#</a></h3>
+<h3>1. Extender el Espectro de Observación (Óptico + IR)<a class="headerlink" href="#extender-el-espectro-de-observacion-optico-ir" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>SDSS (Sloan Digital Sky Survey):</strong> Principalmente en el espectro visible. Rastrea luz de las estrellas jóvenes (en banda corta <span class="math notranslate nohighlight">\(g\)</span> vs. banda larga <span class="math notranslate nohighlight">\(r\)</span>) y la estructura gaseosa.</p></li>
 <li><p><strong>2MASS (Two Micron All Sky Survey):</strong> Datos en el infrarrojo cercano (bandas J, H, K). Permite ver a través del polvo interestelar y observar la luz de estrellas viejas y evolucionadas, que representan la mayor parte de la masa estelar de una galaxia.</p></li>
 </ul>
 </section>
 <section id="identificar-poblaciones-estelares">
-<h3>2. Identificar Poblaciones Estelares<a class="headerlink" href="#identificar-poblaciones-estelares" title="Permalink to this heading">#</a></h3>
+<h3>2. Identificar Poblaciones Estelares<a class="headerlink" href="#identificar-poblaciones-estelares" title="Link to this heading">#</a></h3>
 <p>Al combinar ambos catálogos, se pueden calcular colores que mezclan ambas bandas (por ejemplo, entre una magnitud óptica de SDSS y una infrarroja de 2MASS). Esto ayuda a distinguir entre:</p>
 <ul class="simple">
 <li><p><strong>Galaxias con formación estelar activa:</strong> (más brillantes en el azul/óptico).</p></li>
@@ -963,29 +955,29 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 </ul>
 </section>
 <section id="censo-de-masa-estelar">
-<h3>3. Censo de Masa Estelar<a class="headerlink" href="#censo-de-masa-estelar" title="Permalink to this heading">#</a></h3>
+<h3>3. Censo de Masa Estelar<a class="headerlink" href="#censo-de-masa-estelar" title="Link to this heading">#</a></h3>
 <p>El objetivo de buscar la contraparte en 2MASS de las galaxias detectadas por SDSS es obtener una estimación más precisa de la masa total de las galaxias del grupo HCG 7, ya que la emisión en el infrarrojo cercano está muy correlacionada con la masa estelar total.</p>
 </section>
 <section id="limpieza-del-campo-estrellas-vs-galaxias">
-<h3>4. Limpieza del campo (Estrellas vs Galaxias)<a class="headerlink" href="#limpieza-del-campo-estrellas-vs-galaxias" title="Permalink to this heading">#</a></h3>
+<h3>4. Limpieza del campo (Estrellas vs Galaxias)<a class="headerlink" href="#limpieza-del-campo-estrellas-vs-galaxias" title="Link to this heading">#</a></h3>
 <p>En campos densos, es fácil confundir una estrella de nuestra propia galaxia con una galaxia lejana. El cross-matching permite verificar si un objeto detectado como “borroso” en el óptico tiene las características de una fuente puntual o extendida en el infrarrojo, ayudando a confirmar que los miembros identificados realmente pertenecen al grupo galáctico estudiado.</p>
 </section>
 <section id="validacion-estadistica">
-<h3>5. Validación Estadística<a class="headerlink" href="#validacion-estadistica" title="Permalink to this heading">#</a></h3>
+<h3>5. Validación Estadística<a class="headerlink" href="#validacion-estadistica" title="Link to this heading">#</a></h3>
 <p>Se calcula la distancia entre los vecinos más cercanos y se compara con una distribución aleatoria para demostrar que las coincidencias entre SDSS y 2MASS no son espurias, sino que estamos observando físicamente el mismo objeto en dos longitudes de onda distintas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">urllib</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">IPython.display</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">IPython.display</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">SkyCoord</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">astropy</span><span class="w"> </span><span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Table</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.coordinates</span> <span class="kn">import</span> <span class="n">SkyCoord</span>
+<span class="kn">from</span> <span class="nn">astropy</span> <span class="kn">import</span> <span class="n">units</span> <span class="k">as</span> <span class="n">u</span>
+<span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span>
 </pre></div>
 </div>
 </div>
@@ -993,8 +985,8 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -1013,7 +1005,7 @@ $<span class="math notranslate nohighlight">\(R_s = \frac{2GM}{c^2}\)</span>$</p
 http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=description+PhotoObj+V</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.sdss</span><span class="w"> </span><span class="kn">import</span> <span class="n">SDSS</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroquery.sdss</span> <span class="kn">import</span> <span class="n">SDSS</span>
 <span class="n">sdss</span> <span class="o">=</span> <span class="n">SDSS</span><span class="o">.</span><span class="n">query_region</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="n">hcg7_center</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">40</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">arcmin</span><span class="p">,</span>
                          <span class="n">spectro</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#</span>
                          <span class="n">photoobj_fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">,</span><span class="s1">&#39;dec&#39;</span><span class="p">,</span><span class="s1">&#39;u&#39;</span><span class="p">,</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;i&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">])</span>
@@ -1179,7 +1171,7 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 </section>
 </section>
 <section id="r-vs-r-k-diagrama-color-magnitud">
-<h2>1.  <span class="math notranslate nohighlight">\(r\)</span> vs. <span class="math notranslate nohighlight">\(r-K\)</span> (Diagrama color-magnitud)<a class="headerlink" href="#r-vs-r-k-diagrama-color-magnitud" title="Permalink to this heading">#</a></h2>
+<h2>1.  <span class="math notranslate nohighlight">\(r\)</span> vs. <span class="math notranslate nohighlight">\(r-K\)</span> (Diagrama color-magnitud)<a class="headerlink" href="#r-vs-r-k-diagrama-color-magnitud" title="Link to this heading">#</a></h2>
 <p>Relación entre la masa estelar y la historia de formación estelar.</p>
 <ul class="simple">
 <li><p>Los puntos en la parte superior izquierda (más brillantes en <span class="math notranslate nohighlight">\(r\)</span>, más azules en <span class="math notranslate nohighlight">\(r-K\)</span>) representan espirales grandes como HCG 7a y 7c. Aún tienen suficiente gas para mantener poblaciones estelares más “azules” (jóvenes) y aportan la mayor cantidad de masa al grupo.</p></li>
@@ -1187,7 +1179,7 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 </ul>
 </section>
 <section id="g-r-vs-r-k-diagrama-color-color">
-<h2>2. <span class="math notranslate nohighlight">\(g-r\)</span> vs. <span class="math notranslate nohighlight">\(r-K\)</span> (Diagrama color-color)<a class="headerlink" href="#g-r-vs-r-k-diagrama-color-color" title="Permalink to this heading">#</a></h2>
+<h2>2. <span class="math notranslate nohighlight">\(g-r\)</span> vs. <span class="math notranslate nohighlight">\(r-K\)</span> (Diagrama color-color)<a class="headerlink" href="#g-r-vs-r-k-diagrama-color-color" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>A medida que las galaxias se vuelven más rojas en el óptico (<span class="math notranslate nohighlight">\(g-r\)</span>), también lo hacen en óptico–IR (<span class="math notranslate nohighlight">\(r-K\)</span>). Esto implica que ambos colores trazan las mismas tendencias</p></li>
 <li><p>Hay un “salto”: escasez relativa de puntos en la parte media del eje <span class="math notranslate nohighlight">\(g-r\)</span> (alrededor de <span class="math notranslate nohighlight">\(15.5\)</span> a <span class="math notranslate nohighlight">\(16.5\)</span>). Este es el famoso “valle verde”. Una vez que una galaxia empieza a perder su gas debido a interacciones de marea con sus vecinas, no permanece “verde” por mucho tiempo: se mueve rápidamente hacia la secuencia roja, donde experimenta <em>quenching</em> (el grupo en la parte superior derecha).</p></li>
@@ -1195,16 +1187,16 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 </ul>
 </section>
 <section id="diagnostico-de-hcg-7">
-<h2>Diagnóstico de HCG 7<a class="headerlink" href="#diagnostico-de-hcg-7" title="Permalink to this heading">#</a></h2>
+<h2>Diagnóstico de HCG 7<a class="headerlink" href="#diagnostico-de-hcg-7" title="Link to this heading">#</a></h2>
 <p>Si este fuera un grupo “joven” de galaxias que apenas se están ensamblando por primera vez, se verían muchos más puntos en la esquina inferior izquierda del diagrama color-magnitud (galaxias con formación estelar activa pero pocas estrellas viejas).</p>
 <p>La “cola” de galaxias rojas y débiles indica que el entorno está despojando eficientemente el gas de los miembros más pequeños, transformándolos en galaxias S0 pasivas, mientras que las espirales más grandes probablemente sean las siguientes candidatas para este proceso de <em>quenching</em> a medida que continúan interactuando.</p>
 </section>
 <section id="resumen">
-<h2>Resumen<a class="headerlink" href="#resumen" title="Permalink to this heading">#</a></h2>
+<h2>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h2>
 <p>Si solo se usa SDSS, se puede confundir una galaxia espiral polvorienta (joven) con una galaxia elíptica vieja. Si solo se usa 2MASS, no sería posible distinguir si una galaxia está formando estrellas activamente o si simplemente es muy masiva. Al combinarlos en el diagrama <span class="math notranslate nohighlight">\((g-r)\)</span> vs. <span class="math notranslate nohighlight">\((r-K)\)</span> se determina cuánto gas le queda a las galaxias de HCG 7 para seguir formando estrellas.</p>
 </section>
 <section id="que-aporta-sdss-g-r">
-<h2>1. Qué aporta SDSS (<span class="math notranslate nohighlight">\(g, r\)</span>)<a class="headerlink" href="#que-aporta-sdss-g-r" title="Permalink to this heading">#</a></h2>
+<h2>1. Qué aporta SDSS (<span class="math notranslate nohighlight">\(g, r\)</span>)<a class="headerlink" href="#que-aporta-sdss-g-r" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Sensibilidad a estrellas jóvenes:</strong> Las bandas <span class="math notranslate nohighlight">\(g\)</span> (“azul”) y <span class="math notranslate nohighlight">\(r\)</span> (“roja”) están dominadas por la luz de estrellas jóvenes y masivas. Si una galaxia en HCG 7 tiene incluso una pequeña cantidad de formación estelar reciente (como los brazos espirales en NGC 192), aparecerá en las bandas de SDSS.</p></li>
 <li><p><strong>Sensibilidad al polvo:</strong> Observaciones en el óptico son susceptibles a la extinción por polvo. El color <span class="math notranslate nohighlight">\(g-r\)</span> puede parecer más “rojo” no porque las estrellas sean viejas, sino porque el polvo está bloqueando la luz azul (extinción selectiva).</p></li>
@@ -1212,7 +1204,7 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 </ul>
 </section>
 <section id="que-aporta-2mass-k">
-<h2>2. Qué aporta 2MASS (<span class="math notranslate nohighlight">\(K\)</span>)<a class="headerlink" href="#que-aporta-2mass-k" title="Permalink to this heading">#</a></h2>
+<h2>2. Qué aporta 2MASS (<span class="math notranslate nohighlight">\(K\)</span>)<a class="headerlink" href="#que-aporta-2mass-k" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Trazador de masa estelar:</strong> La banda <span class="math notranslate nohighlight">\(K\)</span> (<span class="math notranslate nohighlight">\(2.2\,\mu\text{m}\)</span>) es relativamente poco afectada por el polvo y por la presencia de estrellas jóvenes (azules) de vida corta. Traza las estrellas viejas y de baja masa que constituyen la mayor parte de la masa de una galaxia.</p></li>
 <li><p><strong>El índice <span class="math notranslate nohighlight">\(r-K\)</span>:</strong> Al restar la magnitud <span class="math notranslate nohighlight">\(K\)</span> de 2MASS a la magnitud <span class="math notranslate nohighlight">\(r\)</span> de SDSS, se compara la masa total (K) con la población estelar de edad intermedia (r).</p></li>
@@ -1220,19 +1212,19 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 </ul>
 </section>
 <section id="ejercicio">
-<h2>Ejercicio<a class="headerlink" href="#ejercicio" title="Permalink to this heading">#</a></h2>
+<h2>Ejercicio<a class="headerlink" href="#ejercicio" title="Link to this heading">#</a></h2>
 <p>Encuentre los horarios de cada día durante los cuales el Centro Galáctico es visible desde Medellín durante los próximos dos meses.</p>
 </section>
 <section id="id1">
-<h2>Ejercicio<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h2>Ejercicio<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>Usando la función <code class="docutils literal notranslate"><span class="pre">astropy.coordinates.get_sun</span></code> junto con la clase <code class="docutils literal notranslate"><span class="pre">astropy.time.Time</span></code> haga un analema completo del Sol a las 3 pm visto desde Medellín.</p>
 </section>
 <section id="id2">
-<h2>Ejercicio<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h2>Ejercicio<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>Usando la función <code class="docutils literal notranslate"><span class="pre">astropy.coordinates.get_constellation</span></code> y construyendo una malla de coordenadas galácticas con <span class="math notranslate nohighlight">\(\Delta l,\Delta b=2\)</span> deg, genere una lista con las constelaciones que quedan a menos de 10 grados de latitud galáctica del plano galáctico.</p>
 </section>
 <section id="id3">
-<h2>Ejercicio<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<h2>Ejercicio<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>Calcule el valor del coeficiente de Einstein A para la transición rotacional 1 a 0 del CO (dipolo eléctrico <span class="math notranslate nohighlight">\(\mu=0.112\)</span> Debye, constante rotacional <span class="math notranslate nohighlight">\(B=1.922\)</span> cm^-1 - número de onda) y para el CS (<span class="math notranslate nohighlight">\(\mu=1.96\)</span> Debye, <span class="math notranslate nohighlight">\(B=0.817\)</span> cm^-1) usando la siguiente fórmula (use <span class="math notranslate nohighlight">\(J=0\)</span>):</p>
 <div class="math notranslate nohighlight">
 \[A = \frac{64\pi^4}{3hc^3} \mu^2 \frac{J + 1}{2J + 3} \nu^3;\quad \nu=B(J+1)\]</div>
@@ -1240,7 +1232,7 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
 <p>Compare con el resultado de un query a la Leiden Atomic and Molecular Database, aprovechando el ejemplo siguiente:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astroquery.lamda</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lamda</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroquery.lamda</span> <span class="kn">import</span> <span class="n">Lamda</span>
 
 <span class="n">collrates</span><span class="p">,</span> <span class="n">radtransitions</span><span class="p">,</span> <span class="n">enlevels</span> <span class="o">=</span> <span class="n">Lamda</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">mol</span><span class="o">=</span><span class="s1">&#39;co&#39;</span><span class="p">)</span>
 <span class="n">j1_0</span> <span class="o">=</span> <span class="n">radtransitions</span><span class="p">[</span><span class="n">radtransitions</span><span class="p">[</span><span class="s1">&#39;Upper&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># Index 2 is J=1</span>
@@ -1307,7 +1299,8 @@ http://skyserver.sdss.org/dr14/en/help/browser/browser.aspx#&amp;&amp;history=de
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1371,7 +1364,7 @@ By Esteban Silva Villa y Germán Chaparro Molano
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1395,8 +1388,8 @@ By Esteban Silva Villa y Germán Chaparro Molano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
