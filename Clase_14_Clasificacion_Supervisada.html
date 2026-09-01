@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Clase 14: Algoritmos de Clasificación Supervisada 1 &#8212; Minería de datos</title>
   
@@ -17,51 +16,50 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_14_Clasificacion_Supervisada';</script>
@@ -71,6 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="prev" title="Clase 13: Aprendizaje de Máquina (Supervisado)" href="Clase_13_Aprendizaje_Supervisado.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -86,19 +85,8 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -106,7 +94,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -114,8 +101,8 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -131,7 +118,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -161,11 +149,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
-    <script>document.write(`<img src="_static/UdeA.png" class="logo__image only-dark" alt="Minería de datos - Home"/>`);</script>
+    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -193,7 +188,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="Clase_15_Deep_Learning_1.html">Clase 15: Deep Learning 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
 
     </div>
@@ -202,9 +196,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -223,9 +222,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -348,27 +347,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -438,11 +429,11 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="clase-14-algoritmos-de-clasificacion-supervisada-1">
-<h1>Clase 14: Algoritmos de Clasificación Supervisada 1<a class="headerlink" href="#clase-14-algoritmos-de-clasificacion-supervisada-1" title="Permalink to this heading">#</a></h1>
+<h1>Clase 14: Algoritmos de Clasificación Supervisada 1<a class="headerlink" href="#clase-14-algoritmos-de-clasificacion-supervisada-1" title="Link to this heading">#</a></h1>
 <p>Recordemos que los algoritmos supervisados aprenden la relación entre variables de entrada y salidas conocidas a partir de ejemplos etiquetados. Entre los más utilizados se encuentran la regresión logística, que modela probabilidades de clasificación; las máquinas de soporte vectorial (SVM), que buscan fronteras óptimas entre clases; k-Nearest Neighbors (kNN), que clasifica según ejemplos similares; los árboles de decisión, que generan reglas jerárquicas de clasificación; y los Random Forest, que combinan múltiples árboles para obtener modelos más robustos y precisos. Aunque las redes neuronales también son parte de estos algoritmos, popularmente se consideran como pertenecientes a un subconjunto llamado Aprendizaje Profundo (<em>Deep Learning</em>).</p>
 <p><a class="reference external" href="https://narrative-flow.github.io/exploratory-study-2/">Ejemplo visual</a></p>
 <section id="regresion-logistica-logistic-regression">
-<h2>Regresión logística (Logistic Regression)<a class="headerlink" href="#regresion-logistica-logistic-regression" title="Permalink to this heading">#</a></h2>
+<h2>Regresión logística (Logistic Regression)<a class="headerlink" href="#regresion-logistica-logistic-regression" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Modela la probabilidad de pertenencia a una clase.</p></li>
 <li><p>Utiliza una combinación lineal de las variables de entrada seguida de una función logística (sigmoide - paso).</p></li>
@@ -452,7 +443,7 @@ document.write(`
 </ul>
 </section>
 <section id="support-vector-machine-svm">
-<h2>Support Vector Machine (SVM)<a class="headerlink" href="#support-vector-machine-svm" title="Permalink to this heading">#</a></h2>
+<h2>Support Vector Machine (SVM)<a class="headerlink" href="#support-vector-machine-svm" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Busca la frontera de decisión que maximiza la separación entre clases.</p></li>
 <li><p>Utiliza los puntos más cercanos a la frontera (<em>support vectors</em>).</p></li>
@@ -461,7 +452,7 @@ document.write(`
 </ul>
 </section>
 <section id="k-nearest-neighbors-knn">
-<h2>k-Nearest Neighbors (kNN)<a class="headerlink" href="#k-nearest-neighbors-knn" title="Permalink to this heading">#</a></h2>
+<h2>k-Nearest Neighbors (kNN)<a class="headerlink" href="#k-nearest-neighbors-knn" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Para clasificar un nuevo punto, identifica sus (k) vecinos más cercanos.</p></li>
 <li><p>La clase se determina mediante votación mayoritaria de los vecinos.</p></li>
@@ -470,7 +461,7 @@ document.write(`
 </ul>
 </section>
 <section id="decision-tree">
-<h2>Decision Tree<a class="headerlink" href="#decision-tree" title="Permalink to this heading">#</a></h2>
+<h2>Decision Tree<a class="headerlink" href="#decision-tree" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Divide los datos sucesivamente según reglas del tipo:
 $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math notranslate nohighlight">\(
@@ -481,7 +472,7 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 </ul>
 </section>
 <section id="random-forest">
-<h2>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this heading">#</a></h2>
+<h2>Random Forest<a class="headerlink" href="#random-forest" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Conjunto (<em>ensemble</em>) de muchos árboles de decisión.</p></li>
 <li><p>Cada árbol se entrena con una muestra bootstrap distinta de los datos.</p></li>
@@ -493,7 +484,7 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 </section>
 <hr class="docutils" />
 <section id="gradient-descent">
-<h2>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this heading">#</a></h2>
+<h2>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Link to this heading">#</a></h2>
 <p>Recordemos que la mayoría de algoritmos de ML se pueden plantear como problemas de optimización. <em>Gradient descent</em> es un algoritmo de optimización utilizado en muchos casos. Lo podemos interpretar como bajar por una montaña siguiendo la dirección de máxima pendiente hacia abajo hasta alcanzar un mínimo de la función.</p>
 <ul class="simple">
 <li><p>Parte de una estimación inicial de los parámetros y los actualiza iterativamente para reducir el valor de la función de pérdida.</p></li>
@@ -501,7 +492,7 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 <li><p>La magnitud de cada actualización está controlada por la tasa de aprendizaje (<em>learning rate</em>).</p></li>
 </ul>
 <section id="regla-de-actualizacion">
-<h3>Regla de actualización<a class="headerlink" href="#regla-de-actualizacion" title="Permalink to this heading">#</a></h3>
+<h3>Regla de actualización<a class="headerlink" href="#regla-de-actualizacion" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 \theta_{t+1} = \theta_t - \eta \nabla L(\theta_t)
@@ -516,10 +507,10 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 </section>
 </section>
 <section id="clasificacion-de-objetos-en-sdss-dr16">
-<h2>Clasificación de objetos en SDSS DR16<a class="headerlink" href="#clasificacion-de-objetos-en-sdss-dr16" title="Permalink to this heading">#</a></h2>
+<h2>Clasificación de objetos en SDSS DR16<a class="headerlink" href="#clasificacion-de-objetos-en-sdss-dr16" title="Link to this heading">#</a></h2>
 <p>Vamos a clasificar objetos en el SDSS DR16 basándonos en fotometría y redshift usando diversas técnicas. Estos objetos ya han sido previamente etiquetados como estrellas/galaxias/cuásares. <a class="reference external" href="https://www.kaggle.com/datasets/muhakabartay/sloan-digital-sky-survey-dr16">Datos originales en Kaggle</a>. Adaptado de <a class="reference external" href="https://blog.gopenai.com/building-an-astronomical-classifier-in-10-minutes-with-your-own-svm-8657e4e473ff">este tutorial</a>.</p>
 <section id="support-vector-machines">
-<h3>Support Vector Machines<a class="headerlink" href="#support-vector-machines" title="Permalink to this heading">#</a></h3>
+<h3>Support Vector Machines<a class="headerlink" href="#support-vector-machines" title="Link to this heading">#</a></h3>
 <p>El objetivo de una Máquina de Vectores de Soporte (SVM) es encontrar el hiperplano óptimo que separa los puntos de datos pertenecientes a diferentes clases. “Óptimo” significa el hiperplano con el mayor margen, es decir, la máxima distancia posible entre el hiperplano y los puntos de datos de las distintas clases. Este enfoque de maximización del margen hace que las SVM sean robustas y eficaces. Los puntos de datos más cercanos al hiperplano, que determinan la posición del margen, se denominan vectores de soporte (support vectors). <a class="reference external" href="https://scikit-learn.org/stable/modules/svm.html">Visualización</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -528,9 +519,9 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="kn">import</span>
-<span class="w">          </span><span class="o">^</span>
+          <span class="o">^</span>
 <span class="ne">SyntaxError</span>: invalid syntax
 </pre></div>
 </div>
@@ -545,8 +536,8 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
@@ -581,7 +572,7 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 <p>Las columnas son los “features” que el algoritmo usará para la clasificación. Dado que los datos tienen escalas distintas, es mejor estandarizarlos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 
 
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
@@ -628,7 +619,7 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="algoritmo-svm-support-vector-machine">
-<h1>Algoritmo: SVM (Support Vector Machine)<a class="headerlink" href="#algoritmo-svm-support-vector-machine" title="Permalink to this heading">#</a></h1>
+<h1>Algoritmo: SVM (Support Vector Machine)<a class="headerlink" href="#algoritmo-svm-support-vector-machine" title="Link to this heading">#</a></h1>
 <p>Construiremos manualmente el algoritmo de optimización para SVM, aunque más adelante simplemente usaremos las implementaciones de <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. Utilizaremos una variante del Descenso de Gradiente Estocástico (SGD).</p>
 <p>El algoritmo está basado en la condición:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="n">y_i</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
@@ -656,7 +647,7 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 <p>El algoritmo optimiza sobre los <em>w,b</em> (parámetros del hiperplano). Sus valores óptimos los usamos luego para hacer predicciones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">train_base_svm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">n_iterations</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_base_svm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">n_iterations</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">values</span>
     <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
     <span class="c1">#initialize weights and  bias</span>
@@ -674,7 +665,7 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
                 <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">y_i</span>
     <span class="k">return</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">predict_base_svm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">predict_base_svm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">values</span>
     <span class="c1"># Calculate the decision function</span>
     <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
@@ -696,12 +687,12 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 </div>
 </div>
 <section id="evaluacion-del-modelo-matriz-de-confusion">
-<h2>Evaluación del modelo - Matriz de confusión<a class="headerlink" href="#evaluacion-del-modelo-matriz-de-confusion" title="Permalink to this heading">#</a></h2>
+<h2>Evaluación del modelo - Matriz de confusión<a class="headerlink" href="#evaluacion-del-modelo-matriz-de-confusion" title="Link to this heading">#</a></h2>
 <p>Una matriz de confusión es una tabla que compara las clases predichas por un modelo con las clases reales de los datos. Cada elemento de la matriz indica cuántos ejemplos fueron clasificados en una combinación particular de clase real y clase predicha. Permite identificar aciertos, errores de clasificación y patrones de confusión entre clases, y constituye la base para calcular métricas como <em>accuracy</em>, <em>precision</em>, <em>recall</em> y <em>F1-score</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Training set Confusion Matrix</span>
 <span class="n">cm_train</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">binary_train</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">predictions_train</span><span class="p">)</span>
@@ -722,11 +713,11 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 </div>
 </section>
 <section id="falsos-verdaderos-positivos-negativos">
-<h2>Falsos/verdaderos positivos/negativos<a class="headerlink" href="#falsos-verdaderos-positivos-negativos" title="Permalink to this heading">#</a></h2>
+<h2>Falsos/verdaderos positivos/negativos<a class="headerlink" href="#falsos-verdaderos-positivos-negativos" title="Link to this heading">#</a></h2>
 <p>En un problema de clasificación binaria, las predicciones pueden clasificarse en cuatro categorías. Un <strong>verdadero positivo (TP)</strong> ocurre cuando el modelo predice correctamente la presencia de una clase positiva. Un <strong>verdadero negativo (TN)</strong> ocurre cuando predice correctamente la ausencia de dicha clase. Un <strong>falso positivo (FP)</strong> corresponde a un caso en el que el modelo predice una clase positiva cuando en realidad es negativa, mientras que un <strong>falso negativo (FN)</strong> ocurre cuando el modelo no detecta una clase positiva que sí estaba presente.</p>
 </section>
 <section id="metricas-precision-recall">
-<h2>Métricas: Precision/Recall<a class="headerlink" href="#metricas-precision-recall" title="Permalink to this heading">#</a></h2>
+<h2>Métricas: Precision/Recall<a class="headerlink" href="#metricas-precision-recall" title="Link to this heading">#</a></h2>
 <p>La <strong>precision</strong> mide qué fracción de las predicciones positivas realizadas por el modelo son correctas. Un valor alto de precision indica que hay pocos falsos positivos. El <strong>recall</strong> (o sensibilidad) mide qué fracción de los casos positivos reales es detectada correctamente por el modelo. Un valor alto de recall indica que hay pocos falsos negativos. Mientras que la precision responde a la pregunta “¿cuántas de las detecciones son correctas?”, el recall responde a “¿cuántos de los casos reales fueron detectados?”.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -738,7 +729,7 @@ $<span class="math notranslate nohighlight">\(x &lt; c\)</span><span class="math
 \]</div>
 </section>
 <section id="metricas-el-f1-score">
-<h2>Métricas: el F1-score<a class="headerlink" href="#metricas-el-f1-score" title="Permalink to this heading">#</a></h2>
+<h2>Métricas: el F1-score<a class="headerlink" href="#metricas-el-f1-score" title="Link to this heading">#</a></h2>
 <p>El <strong>F1-score</strong> es una métrica que combina <strong>precision</strong> y <strong>recall</strong> en un único valor. Corresponde a la media armónica de ambas métricas, por lo que solo toma valores altos cuando tanto la precision como el recall son elevados. Es especialmente útil cuando existe desbalance entre clases o cuando se desea un equilibrio entre falsos positivos y falsos negativos.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -751,7 +742,7 @@ F_1 =
 <p><strong>Nota:</strong> En el caso general (multi-clase) cada clase tiene asociadas métricas de precision/recall. El diagnóstico de un modelo involucra promediar sobre todas las clases, pero si las clases no están bien distribuidas (situación muy común) esto puede llevar a overfitting.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">f1_score</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
 
 <span class="n">f1_train</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">binary_train</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">predictions_train</span><span class="p">)</span>
 <span class="n">f1_test</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">binary_test</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">predictions_test</span><span class="p">)</span>
@@ -763,11 +754,11 @@ F_1 =
 </div>
 </div>
 <section id="feature-importance-importancia-de-variables">
-<h3>Feature Importance (Importancia de Variables)<a class="headerlink" href="#feature-importance-importancia-de-variables" title="Permalink to this heading">#</a></h3>
+<h3>Feature Importance (Importancia de Variables)<a class="headerlink" href="#feature-importance-importancia-de-variables" title="Link to this heading">#</a></h3>
 <p>La magnitud de la ponderación asociada a cada <em>feature</em> (variable) indica su importancia en el proceso de decisión del algoritmo a la hora de clasificar. Entre mayor sea la ponderación, es más importante para separar las clases.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
 <span class="n">feature_names</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span>
 
@@ -794,14 +785,14 @@ F_1 =
 </div>
 </section>
 <section id="receiver-operating-characteristic-roc">
-<h3>Receiver Operating Characteristic (ROC)<a class="headerlink" href="#receiver-operating-characteristic-roc" title="Permalink to this heading">#</a></h3>
+<h3>Receiver Operating Characteristic (ROC)<a class="headerlink" href="#receiver-operating-characteristic-roc" title="Link to this heading">#</a></h3>
 <p>Para evaluar más el clasificador, el analisis de Característica Operativa del Receptor nos entrega una medida de la calidad de la clasificación a través de distintos umbrales de clasificación. Graficamos el True Positive Rate (TPR) contra el False Positive Rate (FPR) para distintos umbrales. El área bajo la curva (AUC) entrega una medida escalar de la calidad del clasificador..</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
 
 <span class="c1"># Helper function to get raw decision scores</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_decision_scores</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_decision_scores</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">values</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
@@ -844,11 +835,11 @@ F_1 =
 </div>
 </section>
 <section id="analisis-de-las-curvas-de-precision-recall">
-<h3>Análisis de las curvas de Precision-Recall<a class="headerlink" href="#analisis-de-las-curvas-de-precision-recall" title="Permalink to this heading">#</a></h3>
+<h3>Análisis de las curvas de Precision-Recall<a class="headerlink" href="#analisis-de-las-curvas-de-precision-recall" title="Link to this heading">#</a></h3>
 <p>Las <strong>curvas Precision–Recall</strong> son útiles para evaluar el desempeño de clasificadores binarios, especialmente cuando las clases están desbalanceadas. Estas curvas representan la <strong>precision</strong> (la proporción de identificaciones positivas que realmente son correctas) en función del <strong>recall</strong> (la proporción de casos positivos reales que fueron identificados correctamente) para diferentes valores del umbral de decisión. El <strong>área bajo la curva Precision–Recall</strong> (<em>Average Precision</em>, AP) resume este compromiso entre precision y recall en un único valor.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">precision_recall_curve</span><span class="p">,</span> <span class="n">average_precision_score</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_recall_curve</span><span class="p">,</span> <span class="n">average_precision_score</span>
 
 <span class="c1"># Calculate Precision-Recall curve and Average Precision for training set</span>
 <span class="n">precision_train</span><span class="p">,</span> <span class="n">recall_train</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">precision_recall_curve</span><span class="p">(</span><span class="n">true_labels_train</span><span class="p">,</span> <span class="n">decision_scores_train</span><span class="p">)</span>
@@ -877,7 +868,7 @@ F_1 =
 </div>
 </section>
 <section id="clasificacion-multi-clase-con-svm-usando-sklearn-svm-svc">
-<h3>Clasificación multi.clase con SVM usando <code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVC</span></code><a class="headerlink" href="#clasificacion-multi-clase-con-svm-usando-sklearn-svm-svc" title="Permalink to this heading">#</a></h3>
+<h3>Clasificación multi.clase con SVM usando <code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVC</span></code><a class="headerlink" href="#clasificacion-multi-clase-con-svm-usando-sklearn-svm-svc" title="Link to this heading">#</a></h3>
 <p>Para clasificación multiclase, utilizaremos <code class="docutils literal notranslate"><span class="pre">SVC</span></code> (<em>Support Vector Classifier</em>) de scikit-learn, que extiende el concepto de las Máquinas de Vectores de Soporte (SVM) para manejar más de dos clases. Prepararemos los datos, entrenaremos el modelo y evaluaremos su desempeño utilizando un informe de clasificación (<em>classification report</em>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -889,8 +880,8 @@ F_1 =
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">classification_report</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
 
 <span class="n">X_train_multi</span> <span class="o">=</span> <span class="n">multi_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">y_train_multi</span> <span class="o">=</span> <span class="n">multi_train</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span>
@@ -918,13 +909,13 @@ F_1 =
 <p><strong>Ejercicio</strong>: Visualice las matrices de confusión resultantes.</p>
 </section>
 <section id="analisis-roc-para-svm-multiclase">
-<h3>Análisis ROC para SVM multiclase<a class="headerlink" href="#analisis-roc-para-svm-multiclase" title="Permalink to this heading">#</a></h3>
+<h3>Análisis ROC para SVM multiclase<a class="headerlink" href="#analisis-roc-para-svm-multiclase" title="Link to this heading">#</a></h3>
 <p>Las curvas ROC se utilizan típicamente en problemas de clasificación binaria. Sin embargo, para problemas multiclase, una estrategia común consiste en extender el análisis ROC mediante un enfoque <em>one-vs-rest</em> (OvR) o <em>one-vs-one</em> (OvO).</p>
 <p>En este caso utilizaremos un enfoque <em>one-vs-rest</em> (OvR), en el que cada clase se considera temporalmente como la clase positiva, mientras que todas las demás se agrupan como una única clase negativa. Esto permite calcular una curva ROC y un valor AUC para cada clase de manera individual.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">label_binarize</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span> <span class="c1"># Added roc_curve and auc import</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">label_binarize</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span> <span class="c1"># Added roc_curve and auc import</span>
 
 <span class="c1"># Get class labels from the trained multiclass SVM model</span>
 <span class="n">class_labels</span> <span class="o">=</span> <span class="n">multi_svm_model</span><span class="o">.</span><span class="n">classes_</span> <span class="c1"># Defined class_labels</span>
@@ -964,7 +955,7 @@ F_1 =
 </div>
 </section>
 <section id="importancia-de-variables-en-svm-multiclase">
-<h3>Importancia de variables en SVM multiclase<a class="headerlink" href="#importancia-de-variables-en-svm-multiclase" title="Permalink to this heading">#</a></h3>
+<h3>Importancia de variables en SVM multiclase<a class="headerlink" href="#importancia-de-variables-en-svm-multiclase" title="Link to this heading">#</a></h3>
 <p>Para modelos SVM lineales, la magnitud absoluta de los coeficientes (<code class="docutils literal notranslate"><span class="pre">coef_</span></code>) puede interpretarse como una medida de la importancia de las variables. Un coeficiente con mayor valor absoluto indica una mayor influencia de esa variable sobre la frontera de decisión del modelo. En problemas multiclase, se pueden sumar los valores absolutos de los coeficientes correspondientes a todas las clases para cada variable, obteniendo así una medida agregada de su importancia.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -997,12 +988,12 @@ F_1 =
 </div>
 </section>
 <section id="clasificacion-mediante-arboles-de-decision">
-<h3>Clasificación mediante árboles de decisión<a class="headerlink" href="#clasificacion-mediante-arboles-de-decision" title="Permalink to this heading">#</a></h3>
+<h3>Clasificación mediante árboles de decisión<a class="headerlink" href="#clasificacion-mediante-arboles-de-decision" title="Link to this heading">#</a></h3>
 <p>Ahora aplicaremos un clasificador basado en árboles de decisión a nuestro problema de clasificación multiclase. Los árboles de decisión son métodos supervisados no paramétricos utilizados tanto para clasificación como para regresión. Su objetivo es construir un modelo que prediga el valor de una variable objetivo mediante el aprendizaje de reglas de decisión simples inferidas a partir de las variables de entrada.</p>
 <p>Los árboles de decisión tienden a hacer overfitting sobre el conjunto de entrenamiento, por lo que los resultados con el conjunto de test no son tan buenos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 
 <span class="n">decision_tree_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
@@ -1048,11 +1039,11 @@ F_1 =
 </div>
 </section>
 <section id="clasificacion-mediante-random-forest">
-<h3>Clasificación mediante Random Forest<a class="headerlink" href="#clasificacion-mediante-random-forest" title="Permalink to this heading">#</a></h3>
+<h3>Clasificación mediante Random Forest<a class="headerlink" href="#clasificacion-mediante-random-forest" title="Link to this heading">#</a></h3>
 <p>Los <strong>Random Forests</strong> son un método de aprendizaje por conjuntos (<em>ensemble learning</em>) para clasificación (y regresión) que funciona construyendo múltiples árboles de decisión durante el entrenamiento. En problemas de clasificación, la predicción final corresponde a la clase más votada entre todos los árboles, mientras que en regresión corresponde al promedio de las predicciones individuales. Este enfoque ayuda a corregir la tendencia de los árboles de decisión a sobreajustarse a los datos de entrenamiento.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 
 <span class="c1"># n_estimators = number of trees</span>
 <span class="n">random_forest_model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
@@ -1091,12 +1082,12 @@ F_1 =
 </div>
 </section>
 <section id="clasificacion-mediante-regresion-logistica">
-<h3>Clasificación mediante regresión logística<a class="headerlink" href="#clasificacion-mediante-regresion-logistica" title="Permalink to this heading">#</a></h3>
+<h3>Clasificación mediante regresión logística<a class="headerlink" href="#clasificacion-mediante-regresion-logistica" title="Link to this heading">#</a></h3>
 <p>La <strong>regresión logística</strong> es un modelo estadístico que, en su forma básica, utiliza una función logística (similar a una función paso) para modelar una variable dependiente binaria, aunque también puede extenderse para manejar problemas multiclase. Se trata de un modelo lineal que estima la probabilidad de que una instancia pertenezca a una clase determinada.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">classification_report</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
 
 <span class="c1"># &#39;lbfgs&#39; is the selected optimization algorithm</span>
 <span class="n">logistic_regression_model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span> <span class="n">multi_class</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
@@ -1117,7 +1108,7 @@ F_1 =
 </div>
 </section>
 <section id="importancia-de-variables-en-regresion-logistica">
-<h3>Importancia de variables en regresión logística<a class="headerlink" href="#importancia-de-variables-en-regresion-logistica" title="Permalink to this heading">#</a></h3>
+<h3>Importancia de variables en regresión logística<a class="headerlink" href="#importancia-de-variables-en-regresion-logistica" title="Link to this heading">#</a></h3>
 <p>En la regresión logística, la magnitud absoluta de los coeficientes (<code class="docutils literal notranslate"><span class="pre">coef_</span></code>) puede interpretarse como una medida de la importancia de las variables (features). Un coeficiente con mayor valor absoluto indica una mayor influencia de esa variable sobre la frontera de decisión del modelo. En problemas multiclase, se pueden analizar los coeficientes correspondientes a cada clase por separado o utilizar la suma agregada de los valores absolutos de los coeficientes para obtener una medida global de importancia.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1149,14 +1140,14 @@ F_1 =
 </div>
 </section>
 <section id="visualizacion-de-la-frontera-de-decision-en-regresion-logistica">
-<h3>Visualización de la frontera de decisión en regresión logística<a class="headerlink" href="#visualizacion-de-la-frontera-de-decision-en-regresion-logistica" title="Permalink to this heading">#</a></h3>
+<h3>Visualización de la frontera de decisión en regresión logística<a class="headerlink" href="#visualizacion-de-la-frontera-de-decision-en-regresion-logistica" title="Link to this heading">#</a></h3>
 <p>Para comprender cómo el modelo de regresión logística clasifica los distintos objetos astronómicos, visualizaremos sus fronteras de decisión en un espacio bidimensional utilizando las dos variables más influyentes: <code class="docutils literal notranslate"><span class="pre">redshift</span></code> y <code class="docutils literal notranslate"><span class="pre">u</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">ListedColormap</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
 
 <span class="n">feature1</span> <span class="o">=</span> <span class="s1">&#39;redshift&#39;</span>
 <span class="n">feature2</span> <span class="o">=</span> <span class="s1">&#39;u&#39;</span>
@@ -1293,7 +1284,8 @@ F_1 =
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1363,7 +1355,7 @@ By Esteban Silva Villa y Germán Chaparro Molano
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1387,8 +1379,8 @@ By Esteban Silva Villa y Germán Chaparro Molano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

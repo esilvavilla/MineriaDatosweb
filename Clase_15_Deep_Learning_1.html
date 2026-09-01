@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Clase 15: Deep Learning 1 &#8212; Minería de datos</title>
   
@@ -17,51 +16,50 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
-  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Clase_15_Deep_Learning_1';</script>
@@ -71,6 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="prev" title="Clase 14: Algoritmos de Clasificación Supervisada 1" href="Clase_14_Clasificacion_Supervisada.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -86,19 +85,8 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -106,7 +94,6 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -114,8 +101,8 @@ const thebe_selector_output = ".output, .cell_output"
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -131,7 +118,8 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -161,11 +149,18 @@ const thebe_selector_output = ".output, .cell_output"
     
     
     <img src="_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
-    <script>document.write(`<img src="_static/UdeA.png" class="logo__image only-dark" alt="Minería de datos - Home"/>`);</script>
+    <img src="_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -193,7 +188,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Clase 15: Deep Learning 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Proyecto%202do%20mes.html">Proyecto 2do mes</a></li>
 </ul>
 
     </div>
@@ -202,9 +196,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -223,9 +222,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -348,27 +347,19 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -465,7 +456,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="clase-15-deep-learning-1">
-<h1>Clase 15: Deep Learning 1<a class="headerlink" href="#clase-15-deep-learning-1" title="Permalink to this heading">#</a></h1>
+<h1>Clase 15: Deep Learning 1<a class="headerlink" href="#clase-15-deep-learning-1" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p>Rama del machine learning basada en redes neuronales con múltiples capas.</p></li>
 <li><p>Aprende automáticamente representaciones cada vez más complejas de los datos.</p></li>
@@ -475,7 +466,7 @@ document.write(`
 <li><p>Las redes neuronales son una de las principales técnicas utilizadas en inteligencia artificial para aprender patrones y realizar tareas como clasificación, predicción, reconocimiento de imágenes/visión artificial (computer vision), lenguaje natural (LLMs) y reconocimiento de patrones en todo tipo de datos.</p></li>
 </ul>
 <section id="tipos-de-redes-neuronales">
-<h2>Tipos de redes neuronales<a class="headerlink" href="#tipos-de-redes-neuronales" title="Permalink to this heading">#</a></h2>
+<h2>Tipos de redes neuronales<a class="headerlink" href="#tipos-de-redes-neuronales" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Redes convolucionales (CNN):</strong> se usan para clasificar imágenes, espectros. Se basan en suavizar los datos para reconocer patrones a gran escala espacial.</p></li>
 <li><p><strong>Redes recurrentes (RNN):</strong> diseñadas para datos secuenciales; incorporan memoria de estados anteriores y se utilizan en series temporales, lenguaje natural y procesamiento de señales.</p></li>
@@ -487,7 +478,7 @@ document.write(`
 </section>
 <hr class="docutils" />
 <section id="neurona-artificial">
-<h2>Neurona artificial<a class="headerlink" href="#neurona-artificial" title="Permalink to this heading">#</a></h2>
+<h2>Neurona artificial<a class="headerlink" href="#neurona-artificial" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Es la unidad básica de una red neuronal.</p></li>
 <li><p>Recibe varias entradas, las combina mediante pesos ajustables y produce una salida.</p></li>
@@ -505,7 +496,7 @@ z = \sum_{i=1}^{n} w_i x_i + b
 <li><p><span class="math notranslate nohighlight">\(b\)</span> es el sesgo (<em>bias</em>).</p></li>
 </ul>
 <section id="funcion-de-activacion">
-<h3>Función de activación<a class="headerlink" href="#funcion-de-activacion" title="Permalink to this heading">#</a></h3>
+<h3>Función de activación<a class="headerlink" href="#funcion-de-activacion" title="Link to this heading">#</a></h3>
 <p>El resultado anterior se transforma mediante una función no lineal:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -519,9 +510,9 @@ z=w\cdot x+b
 <p>define un hiperplano en el espacio de variables, la función de activación permite transformar esa frontera lineal en bloques capaces de construir relaciones no lineales complejas cuando muchas neuronas se combinan en capas, generando <em>kernels</em> que parten el espacio de forma arbitrariamente selectiva.</p>
 </section>
 <section id="ejemplos-de-funciones-de-activacion">
-<h3>Ejemplos de funciones de activación<a class="headerlink" href="#ejemplos-de-funciones-de-activacion" title="Permalink to this heading">#</a></h3>
+<h3>Ejemplos de funciones de activación<a class="headerlink" href="#ejemplos-de-funciones-de-activacion" title="Link to this heading">#</a></h3>
 <section id="sigmoide-logistica">
-<h4>Sigmoide (logística)<a class="headerlink" href="#sigmoide-logistica" title="Permalink to this heading">#</a></h4>
+<h4>Sigmoide (logística)<a class="headerlink" href="#sigmoide-logistica" title="Link to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
 \[
 f(z)=\frac{1}{1+e^{-z}}
@@ -532,7 +523,7 @@ f(z)=\frac{1}{1+e^{-z}}
 </ul>
 </section>
 <section id="relu">
-<h4>ReLU<a class="headerlink" href="#relu" title="Permalink to this heading">#</a></h4>
+<h4>ReLU<a class="headerlink" href="#relu" title="Link to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
 \[
 f(z)=\max(0,z)
@@ -543,7 +534,7 @@ f(z)=\max(0,z)
 </ul>
 </section>
 <section id="tangente-hiperbolica">
-<h4>Tangente hiperbólica<a class="headerlink" href="#tangente-hiperbolica" title="Permalink to this heading">#</a></h4>
+<h4>Tangente hiperbólica<a class="headerlink" href="#tangente-hiperbolica" title="Link to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
 \[
 f(z)=\tanh(z)
@@ -553,14 +544,14 @@ f(z)=\tanh(z)
 </ul>
 </section>
 <section id="softmax">
-<h4>Softmax<a class="headerlink" href="#softmax" title="Permalink to this heading">#</a></h4>
+<h4>Softmax<a class="headerlink" href="#softmax" title="Link to this heading">#</a></h4>
 <p>Tipo especial de función de activación. Transforma las salidas de una red neuronal en probabilidades normalizadas cuya suma es igual a 1, permitiendo interpretar cada salida como la probabilidad de pertenecer a una clase determinada.</p>
 </section>
 </section>
 </section>
 <hr class="docutils" />
 <section id="redes-neuronales-neural-networks">
-<h2>Redes neuronales (neural networks)<a class="headerlink" href="#redes-neuronales-neural-networks" title="Permalink to this heading">#</a></h2>
+<h2>Redes neuronales (neural networks)<a class="headerlink" href="#redes-neuronales-neural-networks" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Modelos de machine learning compuestos por capas de neuronas artificiales interconectadas.</p></li>
 <li><p>Cada neurona realiza una combinación lineal de las entradas seguida de una transformación no lineal.</p></li>
@@ -571,7 +562,7 @@ f(z)=\tanh(z)
 </ul>
 </section>
 <section id="clasificacion-de-objetos-a-partir-de-flujos-ir">
-<h2>Clasificación de Objetos a partir de Flujos IR<a class="headerlink" href="#clasificacion-de-objetos-a-partir-de-flujos-ir" title="Permalink to this heading">#</a></h2>
+<h2>Clasificación de Objetos a partir de Flujos IR<a class="headerlink" href="#clasificacion-de-objetos-a-partir-de-flujos-ir" title="Link to this heading">#</a></h2>
 <p>Vamos a construir una red neuronal muy sencilla para generar un modelo de Deep Learning con los datos del survey RMS - <a class="reference external" href="https://academic.oup.com/mnras/article/527/3/8054/7459353">Red MSX Sources</a>. Este survey analizó y clasificó más de 2000 objetos brillantes en IR usando datos de muchas longitudes de onda de los telescopios MSX, 2MASS, y Spitzer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -580,9 +571,12 @@ f(z)=\tanh(z)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-06-10 10:35:00--  https://raw.githubusercontent.com/saint-germain/YSO-RF-classifier/refs/heads/master/rms_high_qf.csv
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.111.133, 185.199.108.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2026-09-01 08:59:33--  https://raw.githubusercontent.com/saint-germain/YSO-RF-classifier/refs/heads/master/rms_high_qf.csv
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 2606:50c0:8000::154, 2606:50c0:8001::154, 2606:50c0:8002::154, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|2606:50c0:8000::154|:443... 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>connected.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 
@@ -590,15 +584,22 @@ Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
 Length: 370141 (361K) [text/plain]
-Saving to: ‘rms_high_qf.csv’
+Saving to: &#39;rms_high_qf.csv.1&#39;
 
 
-rms_high_qf.csv       0%[                    ]       0  --.-KB/s               
+rms_high_qf.csv.1     0%[                    ]       0  --.-KB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rms_high_qf.csv     100%[===================&gt;] 361.47K  --.-KB/s    in 0.05s   
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rms_high_qf.csv.1    37%[======&gt;             ] 136.00K   675KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rms_high_qf.csv.1    73%[=============&gt;      ] 264.00K   619KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rms_high_qf.csv.1    99%[==================&gt; ] 360.00K   528KB/s               
+rms_high_qf.csv.1   100%[===================&gt;] 361.47K   530KB/s    in 0.7s    
 
-2026-06-10 10:35:01 (7.41 MB/s) - ‘rms_high_qf.csv’ saved [370141/370141]
+2026-09-01 08:59:34 (530 KB/s) - &#39;rms_high_qf.csv.1&#39; saved [370141/370141]
 </pre></div>
 </div>
 </div>
@@ -606,8 +607,8 @@ rms_high_qf.csv       0%[                    ]       0  --.-KB/s
 <p>Vamos a dejar únicamente clases sobre las que haya certeza (sin ‘?’ en Source Type) y que no sean tampoco de tipo ‘Rejected’.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Table</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">data_table</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;rms_high_qf.csv&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">)</span>
 
@@ -629,20 +630,67 @@ rms_high_qf.csv       0%[                    ]       0  --.-KB/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original table size: 3806 rows
-Table size after removing &#39;Source Type&#39; with &#39;?&#39; and &#39;Rejected&#39;: 2204 rows (removed 1602 rows)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">Input In [2],</span> in <span class="ni">&lt;cell line: 4&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">Table</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">data_table</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;rms_high_qf.csv&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original table size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data_table</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Remove rows where &#39;Source Type&#39; contains &#39;?&#39;</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/astropy/table/connect.py:62,</span> in <span class="ni">TableRead.__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span> <span class="n">units</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;units&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="n">descriptions</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;descriptions&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">62</span> <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="c1"># For some readers (e.g., ascii.ecsv), the returned `out` class is not</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span> <span class="c1"># guaranteed to be the same as the desired output `cls`.  If so,</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="c1"># try coercing to desired class without copying (io.registry.read</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span> <span class="c1"># would normally do a copy).  The normal case here is swapping</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="c1"># Table &lt;=&gt; QTable.</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">out</span><span class="o">.</span><span class="vm">__class__</span><span class="p">:</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/astropy/io/registry/core.py:199,</span> in <span class="ni">UnifiedInputRegistry.read</span><span class="nt">(self, cls, format, cache, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span>     <span class="nb">format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_valid_format</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">196</span>         <span class="s1">&#39;read&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">fileobj</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">198</span> <span class="n">reader</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_reader</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">199</span> <span class="n">data</span> <span class="o">=</span> <span class="n">reader</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">202</span>     <span class="c1"># User has read with a subclass where only the parent class is</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="c1"># registered.  This returns the parent class, so try coercing</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span>     <span class="c1"># to desired subclass.</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span>     <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/astropy/io/ascii/connect.py:18,</span> in <span class="ni">io_read</span><span class="nt">(format, filename, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="nb">format</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^ascii\.&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">format</span>
+<span class="ne">---&gt; </span><span class="mi">18</span> <span class="k">return</span> <span class="n">read</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/astropy/io/ascii/ui.py:316,</span> in <span class="ni">read</span><span class="nt">(table, guess, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span> <span class="n">encoding</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;encoding&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">316</span>     <span class="k">with</span> <span class="n">get_readable_fileobj</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span> <span class="k">as</span> <span class="n">fileobj</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span>         <span class="n">table</span> <span class="o">=</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span> <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>  <span class="c1"># unreadable or invalid binary file</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/contextlib.py:119,</span> in <span class="ni">_GeneratorContextManager.__enter__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span> <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">119</span>     <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span> <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;generator didn&#39;t yield&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.9/site-packages/astropy/utils/data.py:297,</span> in <span class="ni">get_readable_fileobj</span><span class="nt">(name_or_obj, encoding, cache, show_progress, remote_timeout, sources, http_headers)</span>
+<span class="g g-Whitespace">    </span><span class="mi">294</span>         <span class="n">fileobj</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span> <span class="c1"># Now read enough bytes to look at signature</span>
+<span class="ne">--&gt; </span><span class="mi">297</span> <span class="n">signature</span> <span class="o">=</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span> <span class="k">if</span> <span class="n">signature</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x1f\x8b\x08</span><span class="s1">&#39;</span><span class="p">:</span>  <span class="c1"># gzip</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
-<div class="output text_html"><div><i>Table length=5</i>
-<table id="table4397019248" class="table-striped table-bordered table-condensed">
-<thead><tr><th>col0</th><th>RMS ID</th><th>MSX Name</th><th>Source Type</th><th>Flux 8 (Jy)</th><th>Flux 12 (Jy)</th><th>Flux 14 (Jy)</th><th>Flux 21 (Jy)</th><th>J Mag.</th><th>H Mag.</th><th>K Mag.</th><th>VLSR (km/s)</th><th>Distance (kpc)</th><th>D type</th><th>FIR Lum.</th><th>Lum. Source</th><th>Freq. (GHz)</th><th>Int. Flux</th><th>Random?</th></tr></thead>
-<thead><tr><th>int64</th><th>int64</th><th>str17</th><th>str20</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>str10</th><th>str3</th><th>str16</th><th>str8</th><th>float64</th><th>str6</th><th>float64</th></tr></thead>
-<tr><td>1</td><td>2368</td><td>G010.0997+00.7396</td><td>PN</td><td>3.5589999999999997</td><td>5.055</td><td>17.92</td><td>35.08</td><td>11.5</td><td>11.1</td><td>10.0</td><td>--</td><td>--</td><td>--</td><td>--</td><td>MSX</td><td>15.0</td><td>446.8</td><td>--</td></tr>
-<tr><td>6</td><td>2400</td><td>G010.1615-00.3623</td><td>Diffuse HII region</td><td>29.445999999999998</td><td>103.53</td><td>146.22</td><td>692.25</td><td>--</td><td>--</td><td>--</td><td>14.0</td><td>3.5</td><td>Spe</td><td>301326</td><td>MSX</td><td>8.6</td><td>&lt;4.0</td><td>--</td></tr>
-<tr><td>12</td><td>2403</td><td>G010.1850-00.3960</td><td>Diffuse HII region</td><td>4.14</td><td>5.397</td><td>6.37</td><td>18.37</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>MSX</td><td>--</td><td>--</td><td>--</td></tr>
-<tr><td>18</td><td>2396</td><td>G010.2326-00.2963</td><td>Diffuse HII region</td><td>0.496</td><td>3.04</td><td>5.27</td><td>16.26</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>MSX</td><td>--</td><td>--</td><td>--</td></tr>
-<tr><td>20</td><td>2383</td><td>G010.3040-00.1466</td><td>Diffuse HII region</td><td>10.762</td><td>24.563000000000002</td><td>22.73</td><td>100.88</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>MSX</td><td>--</td><td>--</td><td>--</td></tr>
-</table></div></div></div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -650,21 +698,6 @@ Table size after removing &#39;Source Type&#39; with &#39;?&#39; and &#39;Reject
 
 <span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">unique_source_types</span><span class="p">,</span> <span class="n">counts</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Carbon star: 11
-Diffuse HII region: 462
-Evolved star: 293
-HII region: 556
-HII/YSO: 22
-OH/IR star: 175
-Other: 58
-PN: 158
-Proto-PN: 12
-YSO: 432
-Young/old star: 25
 </pre></div>
 </div>
 </div>
@@ -686,17 +719,11 @@ Young/old star: 25
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Source Types to be removed due to less than 50 members: [&#39;Carbon star&#39;, &#39;HII/YSO&#39;, &#39;Proto-PN&#39;, &#39;Young/old star&#39;]
-Table size after removing low-count &#39;Source Types&#39;: 2134 rows (removed 70 rows)
-</pre></div>
-</div>
-</div>
 </div>
 <p>Pasamos de labels descriptivos a numéricos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
 
 <span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
 <span class="n">encoded_labels</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_table</span><span class="p">[</span><span class="s1">&#39;Source Type&#39;</span><span class="p">])</span>
@@ -708,25 +735,13 @@ Table size after removing low-count &#39;Source Types&#39;: 2134 rows (removed 7
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mapping of original &#39;Source Type&#39; to encoded numerical labels:
-Diffuse HII region: 0
-Evolved star: 1
-HII region: 2
-OH/IR star: 3
-Other: 4
-PN: 5
-YSO: 6
-</pre></div>
-</div>
-</div>
 </div>
 <p>Ahora estandarizamos los datos y seleccionamos los features (esos flujos son las únicas columnas completas).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Identify numerical features to scale</span>
 <span class="n">feature_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Flux 8 (Jy)&#39;</span><span class="p">,</span> <span class="s1">&#39;Flux 12 (Jy)&#39;</span><span class="p">,</span> <span class="s1">&#39;Flux 14 (Jy)&#39;</span><span class="p">,</span> <span class="s1">&#39;Flux 21 (Jy)&#39;</span><span class="p">]</span>
@@ -747,19 +762,6 @@ YSO: 6
 <span class="c1"># Display the first 5 rows of scaled features</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">First 5 rows of scaled features:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of original features X: (2134, 4)
-Shape of scaled features X_scaled: (2134, 4)
-
-First 5 rows of scaled features:
-[[-0.13491248 -0.17745274 -0.03895538 -0.09841048]
- [ 1.31305223  1.7628108   1.66245457  3.10235138]
- [-0.1024148  -0.17071428 -0.19212206 -0.17979692]
- [-0.30623847 -0.21715451 -0.20670936 -0.19007373]
- [ 0.26798047  0.20691548  0.02483092  0.22206996]]
 </pre></div>
 </div>
 </div>
@@ -785,16 +787,6 @@ First 5 rows of scaled features:
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X_train: (1493, 4)
-Shape of y_train: (1493,)
-Shape of X_val: (320, 4)
-Shape of y_val: (320,)
-Shape of X_test: (321, 4)
-Shape of y_test: (321,)
-</pre></div>
-</div>
-</div>
 </div>
 <p>Vamos a crear una red neuronal mínima, donde pasamos todos los datos (capa input) a 64 neuronas y la salida de esas 64 neuronas la pasamos a la capa de predicción o output. Se puede probar a añadir una capa intermedia:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>                                   <span class="c1"># Second hidden layer</span>
@@ -803,7 +795,7 @@ Shape of y_test: (321,)
 <p>Al hacer esto el modelo debería aprender en menos “épocas”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">keras</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
     <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],)),</span>  <span class="c1"># Input layer with number of features</span>
@@ -816,24 +808,6 @@ Shape of y_test: (321,)
               <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">keras</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],)),</span>  <span class="c1"># Input layer with number of features</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">),</span>      <span class="c1"># Hidden layer with 64 neurons and ReLU activation</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)</span> <span class="c1"># Output layer with &#39;num_classes&#39; neurons and softmax activation</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="p">])</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>               <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;sparse_categorical_crossentropy&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>               <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;tensorflow&#39;
 </pre></div>
 </div>
 </div>
@@ -857,7 +831,7 @@ Shape of y_test: (321,)
 <p>Ahora evaluaremos el <em>accuracy</em> y el valor de la función de pérdida para las distintas épocas. La idea es que monitoreamos estos valores para los datos de entrenamiento y de validación, buscando la “epoch” donde se minimiza la pérdida (<em>loss</em>) de validación, evitando sobreajustar (<em>overfitting</em>). Esto se encuentra cuando el loss deja de bajar y empieza a volver a subir.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Plot training &amp; validation accuracy values</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -887,9 +861,9 @@ Shape of y_test: (321,)
 <p>Revisemos la matriz de confusión sobre los datos de <em>test</em>, que el modelo no ha visto.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Get predictions from the model on the test set</span>
 <span class="n">y_pred_probabilities</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
@@ -922,7 +896,7 @@ Shape of y_test: (321,)
 <p>El reporte de clasificación nos entrega las probabilidades de predicción del modelo. Teniendo en cuenta que hay 7 clases, el lanzamiento de un dado tendría una probabilidad de asignación de clases del orden de 1/7 –&gt; 14% aproximadamente. ¿Es el modelo mejor o peor que usar pura suerte?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">classification_report</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
 
 <span class="n">report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span>
     <span class="n">y_test</span><span class="p">,</span>
@@ -956,7 +930,7 @@ Shape of y_test: (321,)
 <p>Por medio de un inner join se dejan únicamente las fuentes que tienen todos los datos de flujo completos (8,12,14,21,70 micron). Pruebe a correr un modelo con esos datos.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">join</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.table</span> <span class="kn">import</span> <span class="n">join</span>
 <span class="n">merged_table</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">data_table</span><span class="p">,</span> <span class="n">flux_70_table</span><span class="p">,</span> <span class="n">keys_left</span><span class="o">=</span><span class="s1">&#39;MSX Name&#39;</span><span class="p">,</span> <span class="n">keys_right</span><span class="o">=</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="n">join_type</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -973,7 +947,7 @@ Shape of y_test: (321,)
 <p>Con la función <code class="docutils literal notranslate"><span class="pre">SimpleImputer</span></code> se puede rellenar los datos faltantes (en este caso con los promedios de cada columna) para correr un modelo con muchas más fuentes. En el ejemplo a continuación únicamente se añade la columna de <code class="docutils literal notranslate"><span class="pre">Flux_70</span></code>, pero se sugiere usar las demás columnas (magnitud en bandas H,J,K, otros flujos). No olvide estandarizar los datos antes de pasarlos al modelo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
 <span class="n">feature_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Flux 8 (Jy)&#39;</span><span class="p">,</span> <span class="s1">&#39;Flux 12 (Jy)&#39;</span><span class="p">,</span> <span class="s1">&#39;Flux 14 (Jy)&#39;</span><span class="p">,</span> <span class="s1">&#39;Flux 21 (Jy)&#39;</span><span class="p">,</span><span class="s1">&#39;Flux_70&#39;</span><span class="p">]</span>
 
 <span class="n">X_df</span> <span class="o">=</span> <span class="n">merged_table</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">]</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
@@ -993,7 +967,7 @@ Shape of y_test: (321,)
 <p><strong>Ejercicio</strong>: Pruebe a hacer <em>feature engineering</em>, pasándole al modelo índices de color o flux ratios en vez de los datos crudos para ver si mejora el modelo. Haga análisis de feature importance para encontrar cuál de estos features es el que más ayuda a la predicción.</p>
 </section>
 <section id="convolutional-neural-networks-cnn">
-<h2>Convolutional Neural Networks (CNN)<a class="headerlink" href="#convolutional-neural-networks-cnn" title="Permalink to this heading">#</a></h2>
+<h2>Convolutional Neural Networks (CNN)<a class="headerlink" href="#convolutional-neural-networks-cnn" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Tipo de red neuronal diseñada para procesar imágenes y datos con estructura espacial.</p></li>
 <li><p>Utiliza filtros (<em>kernels</em>) que recorren la imagen buscando patrones locales.</p></li>
@@ -1008,7 +982,7 @@ Shape of y_test: (321,)
 <li><p>Las capas profundas combinan estas características para reconocer estructuras más complejas.</p></li>
 </ul>
 <section id="componentes-principales">
-<h3>Componentes principales<a class="headerlink" href="#componentes-principales" title="Permalink to this heading">#</a></h3>
+<h3>Componentes principales<a class="headerlink" href="#componentes-principales" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Capas convolucionales (<em>convolutional layers</em>)</p></li>
 <li><p>Capas de agrupamiento (<em>pooling</em>)</p></li>
@@ -1019,7 +993,7 @@ Shape of y_test: (321,)
 </section>
 </section>
 <section id="convolucion">
-<h2>Convolución<a class="headerlink" href="#convolucion" title="Permalink to this heading">#</a></h2>
+<h2>Convolución<a class="headerlink" href="#convolucion" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Operación matemática utilizada para detectar patrones locales en una imagen.</p></li>
 <li><p>Consiste en desplazar un pequeño filtro (<em>kernel</em>) sobre la imagen y calcular una suma ponderada de los píxeles vecinos.</p></li>
@@ -1037,7 +1011,7 @@ I(i+m,j+n)\,K(m,n)
 <p>donde <span class="math notranslate nohighlight">\(S\)</span> es el mapa de características producido por la convolución.</p>
 </section>
 <section id="pooling">
-<h2>Pooling<a class="headerlink" href="#pooling" title="Permalink to this heading">#</a></h2>
+<h2>Pooling<a class="headerlink" href="#pooling" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Operación que reduce el tamaño de los mapas de características.</p></li>
 <li><p>Resume la información de pequeñas regiones vecinas.</p></li>
@@ -1045,7 +1019,7 @@ I(i+m,j+n)\,K(m,n)
 <li><p>Hace que la red sea menos sensible a pequeños desplazamientos o ruido.</p></li>
 </ul>
 <section id="max-pooling">
-<h3>Max Pooling<a class="headerlink" href="#max-pooling" title="Permalink to this heading">#</a></h3>
+<h3>Max Pooling<a class="headerlink" href="#max-pooling" title="Link to this heading">#</a></h3>
 <p>La forma más común consiste en conservar únicamente el valor máximo dentro de una ventana.</p>
 <p>Por ejemplo:</p>
 <div class="math notranslate nohighlight">
@@ -1059,12 +1033,12 @@ I(i+m,j+n)\,K(m,n)
 \end{split}\]</div>
 </section>
 <section id="average-pooling">
-<h3>Average Pooling<a class="headerlink" href="#average-pooling" title="Permalink to this heading">#</a></h3>
+<h3>Average Pooling<a class="headerlink" href="#average-pooling" title="Link to this heading">#</a></h3>
 <p>Utiliza el promedio de los valores dentro de la ventana.</p>
 </section>
 </section>
 <section id="capas-densas-fully-connected-layers">
-<h2>Capas densas (<em>Fully Connected Layers</em>)<a class="headerlink" href="#capas-densas-fully-connected-layers" title="Permalink to this heading">#</a></h2>
+<h2>Capas densas (<em>Fully Connected Layers</em>)<a class="headerlink" href="#capas-densas-fully-connected-layers" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Son capas en las que cada neurona está conectada con todas las salidas de la capa anterior.</p></li>
 <li><p>Reciben las características extraídas por las capas previas y las combinan para realizar la predicción final.</p></li>
@@ -1072,9 +1046,9 @@ I(i+m,j+n)\,K(m,n)
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">patches</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
 
 <span class="c1"># 1. Define the Input Data and Kernel</span>
 <span class="c1"># A 6x6 matrix representing an image feature (e.g., a vertical edge)</span>
@@ -1119,7 +1093,7 @@ I(i+m,j+n)\,K(m,n)
 <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;YlGnBu&quot;</span>
 
 <span class="c1"># Helper function to annotate matrix values on the plot</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">annotate_matrix</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">matrix</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">annotate_matrix</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">matrix</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
             <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
@@ -1162,7 +1136,7 @@ I(i+m,j+n)\,K(m,n)
 </div>
 </section>
 <section id="reconocimiento-de-numeros">
-<h2>Reconocimiento de números<a class="headerlink" href="#reconocimiento-de-numeros" title="Permalink to this heading">#</a></h2>
+<h2>Reconocimiento de números<a class="headerlink" href="#reconocimiento-de-numeros" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>MNIST (<em>Modified National Institute of Standards and Technology</em>) es uno de los conjuntos de datos más utilizados para aprender redes neuronales y clasificación de imágenes.</p></li>
 <li><p>Contiene imágenes de dígitos escritos a mano correspondientes a las clases:</p></li>
@@ -1176,7 +1150,7 @@ I(i+m,j+n)\,K(m,n)
 </ul>
 </section>
 <section id="tensorflow">
-<h2>TensorFlow<a class="headerlink" href="#tensorflow" title="Permalink to this heading">#</a></h2>
+<h2>TensorFlow<a class="headerlink" href="#tensorflow" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>TensorFlow</strong> es una biblioteca de código abierto desarrollada por Google para deep learning.</p></li>
 <li><p>Proporciona herramientas para definir, entrenar y desplegar modelos de aprendizaje automático de manera eficiente.</p></li>
@@ -1184,23 +1158,23 @@ I(i+m,j+n)\,K(m,n)
 </ul>
 </section>
 <section id="keras">
-<h2>Keras<a class="headerlink" href="#keras" title="Permalink to this heading">#</a></h2>
+<h2>Keras<a class="headerlink" href="#keras" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Keras</strong> es una interfaz de alto nivel integrada en TensorFlow.</p></li>
 <li><p>Permite construir redes neuronales mediante una sintaxis sencilla y modular.</p></li>
 <li><p>Oculta gran parte de la complejidad matemática e implementación de TensorFlow.</p></li>
 </ul>
 <section id="estructura-de-la-cnn">
-<h3>Estructura de la CNN<a class="headerlink" href="#estructura-de-la-cnn" title="Permalink to this heading">#</a></h3>
+<h3>Estructura de la CNN<a class="headerlink" href="#estructura-de-la-cnn" title="Link to this heading">#</a></h3>
 <p><img alt="0_HWj5PgxWxdcld_ye.webp" src="data:image/webp;base64,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" /></p>
 <p>Imagen original de este <a class="reference external" href="https://medium.com/data-science/a-simple-guide-to-convolutional-neural-networks-751789e7bd88">tutorial</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_digits</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">to_categorical</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">to_categorical</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Load the digits dataset</span>
 <span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
@@ -1264,8 +1238,8 @@ I(i+m,j+n)\,K(m,n)
 <p>Now, let’s define our Convolutional Neural Network (CNN) model using Keras. We will use a sequential model with a few convolutional layers, max-pooling layers, and then flatten the output before passing it to dense layers for classification.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequential</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">MaxPooling2D</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Dense</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">MaxPooling2D</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Dense</span>
 
 <span class="c1"># Define the CNN model</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span>
@@ -1289,7 +1263,7 @@ I(i+m,j+n)\,K(m,n)
 </section>
 </section>
 <section id="arquitectura-de-la-red">
-<h2>Arquitectura de la red<a class="headerlink" href="#arquitectura-de-la-red" title="Permalink to this heading">#</a></h2>
+<h2>Arquitectura de la red<a class="headerlink" href="#arquitectura-de-la-red" title="Link to this heading">#</a></h2>
 <p>Esta red neuronal convolucional (CNN) recibe imágenes de</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1298,7 +1272,7 @@ I(i+m,j+n)\,K(m,n)
 <p>pixeles en escala de grises y produce una clasificación entre 10 clases posibles (los dígitos del 0 al 9).</p>
 <hr class="docutils" />
 <section id="capa-convolucional-1">
-<h3>Capa convolucional 1<a class="headerlink" href="#capa-convolucional-1" title="Permalink to this heading">#</a></h3>
+<h3>Capa convolucional 1<a class="headerlink" href="#capa-convolucional-1" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1316,7 +1290,7 @@ I(i+m,j+n)\,K(m,n)
 </section>
 <hr class="docutils" />
 <section id="id1">
-<h3>Pooling<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3>Pooling<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">MaxPooling2D</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -1334,7 +1308,7 @@ I(i+m,j+n)\,K(m,n)
 </section>
 <hr class="docutils" />
 <section id="capa-convolucional-2">
-<h3>Capa convolucional 2<a class="headerlink" href="#capa-convolucional-2" title="Permalink to this heading">#</a></h3>
+<h3>Capa convolucional 2<a class="headerlink" href="#capa-convolucional-2" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1345,7 +1319,7 @@ I(i+m,j+n)\,K(m,n)
 </section>
 <hr class="docutils" />
 <section id="flatten">
-<h3>Flatten<a class="headerlink" href="#flatten" title="Permalink to this heading">#</a></h3>
+<h3>Flatten<a class="headerlink" href="#flatten" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Flatten</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1356,7 +1330,7 @@ I(i+m,j+n)\,K(m,n)
 </section>
 <hr class="docutils" />
 <section id="capa-densa-oculta">
-<h3>Capa densa oculta<a class="headerlink" href="#capa-densa-oculta" title="Permalink to this heading">#</a></h3>
+<h3>Capa densa oculta<a class="headerlink" href="#capa-densa-oculta" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1367,7 +1341,7 @@ I(i+m,j+n)\,K(m,n)
 </section>
 <hr class="docutils" />
 <section id="capa-de-salida">
-<h3>Capa de salida<a class="headerlink" href="#capa-de-salida" title="Permalink to this heading">#</a></h3>
+<h3>Capa de salida<a class="headerlink" href="#capa-de-salida" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1390,7 +1364,7 @@ I(i+m,j+n)\,K(m,n)
 </section>
 <hr class="docutils" />
 <section id="entrenamiento">
-<h2>Entrenamiento<a class="headerlink" href="#entrenamiento" title="Permalink to this heading">#</a></h2>
+<h2>Entrenamiento<a class="headerlink" href="#entrenamiento" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span>
 </pre></div>
 </div>
@@ -1412,7 +1386,7 @@ I(i+m,j+n)\,K(m,n)
 </section>
 <hr class="docutils" />
 <section id="flujo-completo">
-<h2>Flujo completo<a class="headerlink" href="#flujo-completo" title="Permalink to this heading">#</a></h2>
+<h2>Flujo completo<a class="headerlink" href="#flujo-completo" title="Link to this heading">#</a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Imagen 8×8
       ↓
 Conv2D (32 filtros)
@@ -1431,11 +1405,11 @@ Probabilidades de los dígitos
 </pre></div>
 </div>
 <section id="en-resumen">
-<h3>En resumen:<a class="headerlink" href="#en-resumen" title="Permalink to this heading">#</a></h3>
+<h3>En resumen:<a class="headerlink" href="#en-resumen" title="Link to this heading">#</a></h3>
 <p>Las capas convolucionales extraen patrones visuales de la imagen, el pooling reduce la dimensionalidad, las capas densas combinan la información extraída y la capa Softmax produce la probabilidad de pertenecer a cada uno de los diez dígitos posibles.</p>
 </section>
 <section id="en-la-practica">
-<h3>En la práctica:<a class="headerlink" href="#en-la-practica" title="Permalink to this heading">#</a></h3>
+<h3>En la práctica:<a class="headerlink" href="#en-la-practica" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Debemos monitorear que la exactitud del modelo no genere overfitting a través de las “épocas” de entrenamiento.</p></li>
 </ul>
@@ -1499,7 +1473,7 @@ Probabilidades de los dígitos
 <p>Veamos la matriz de confusión para evaluar el modelo.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span>
 
 <span class="c1"># Get predicted labels (not one-hot encoded)</span>
 <span class="n">y_pred_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1522,11 +1496,11 @@ Probabilidades de los dígitos
 </div>
 </section>
 <section id="visualizacion-de-mapas-de-caracteristicas">
-<h3>Visualización de mapas de características<a class="headerlink" href="#visualizacion-de-mapas-de-caracteristicas" title="Permalink to this heading">#</a></h3>
+<h3>Visualización de mapas de características<a class="headerlink" href="#visualizacion-de-mapas-de-caracteristicas" title="Link to this heading">#</a></h3>
 <p>Visualizar los mapas de características (<em>feature maps</em>) producidos por una capa convolucional puede proporcionar información sobre los patrones que la red está aprendiendo en diferentes niveles de profundidad. Tomemos un ejemplo del conjunto de prueba y observemos sus activaciones después de la primera capa convolucional.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
 
 <span class="c1"># Choose an example image from the test set</span>
 <span class="n">sample_image</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1570,11 +1544,11 @@ Probabilidades de los dígitos
 </div>
 </section>
 <section id="visualizacion-de-mapas-de-caracteristicas-despues-de-max-pooling">
-<h3>Visualización de mapas de características después de Max Pooling<a class="headerlink" href="#visualizacion-de-mapas-de-caracteristicas-despues-de-max-pooling" title="Permalink to this heading">#</a></h3>
+<h3>Visualización de mapas de características después de Max Pooling<a class="headerlink" href="#visualizacion-de-mapas-de-caracteristicas-despues-de-max-pooling" title="Link to this heading">#</a></h3>
 <p>Ahora visualizaremos los mapas de características después de la primera capa <code class="docutils literal notranslate"><span class="pre">MaxPooling2D</span></code>. Notará que estos mapas tienen dimensiones espaciales más pequeñas debido al proceso de reducción de resolución (<em>downsampling</em>), pero conservan las características más importantes identificadas previamente por la capa convolucional.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
 
 <span class="c1"># Choose the same example image from the test set</span>
 <span class="n">sample_image</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1618,7 +1592,7 @@ Probabilidades de los dígitos
 </div>
 </section>
 <section id="visualizing-weights-of-the-first-conv2d-layer">
-<h3>Visualizing Weights of the First Conv2D Layer<a class="headerlink" href="#visualizing-weights-of-the-first-conv2d-layer" title="Permalink to this heading">#</a></h3>
+<h3>Visualizing Weights of the First Conv2D Layer<a class="headerlink" href="#visualizing-weights-of-the-first-conv2d-layer" title="Link to this heading">#</a></h3>
 <p>To understand what features the first convolutional layer is looking for, we can visualize its weights (the filters). Each filter will highlight different patterns, such as edges or corners, in the input image.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1656,11 +1630,11 @@ Probabilidades de los dígitos
 </section>
 </section>
 <section id="ejercicio-encontrar-objetos-transneptunianos-tnos">
-<h2>Ejercicio: Encontrar objetos transneptunianos (TNOs)<a class="headerlink" href="#ejercicio-encontrar-objetos-transneptunianos-tnos" title="Permalink to this heading">#</a></h2>
+<h2>Ejercicio: Encontrar objetos transneptunianos (TNOs)<a class="headerlink" href="#ejercicio-encontrar-objetos-transneptunianos-tnos" title="Link to this heading">#</a></h2>
 <p>El proyecto busca detectar <strong>objetos transneptunianos (TNOs)</strong>, cuerpos helados que orbitan más allá de Neptuno (como Plutón o Eris). Debido a sus enormes distancias, estos objetos se desplazan muy lentamente sobre el fondo del cielo y aparecen extremadamente débiles en las imágenes obtenidas por los telescopios.</p>
 <p>Los datos que vamos a usar provienen de un sondeo de <strong>objetos cercanos a la Tierra (NEOs, <em>Near-Earth Objects</em>)</strong> realizado por <strong>Lori Allen</strong> y sus colaboradores utilizando la cámara <strong>DECam</strong> instalada en el telescopio <strong>Blanco de 4 metros</strong> en el observatorio <strong>CTIO</strong> (<em>Cerro Tololo Inter-American Observatory</em>). <a class="reference external" href="https://www.astroml.org/astroML-notebooks/chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.html">Más información.</a></p>
 <section id="apilamiento">
-<h3>Apilamiento<a class="headerlink" href="#apilamiento" title="Permalink to this heading">#</a></h3>
+<h3>Apilamiento<a class="headerlink" href="#apilamiento" title="Link to this heading">#</a></h3>
 <p>Como estos objetos son demasiado débiles para detectarse en una única exposición, los astrónomos adquieren una serie de imágenes distribuidas a lo largo de cinco noches.</p>
 <ul class="simple">
 <li><p>Se calculan posibles trayectorias orbitales que podría seguir un TNO.</p></li>
@@ -1673,10 +1647,10 @@ Probabilidades de los dígitos
 </section>
 <hr class="docutils" />
 <section id="verdaderos-positivos-y-falsos-positivos">
-<h2>Verdaderos positivos y falsos positivos<a class="headerlink" href="#verdaderos-positivos-y-falsos-positivos" title="Permalink to this heading">#</a></h2>
+<h2>Verdaderos positivos y falsos positivos<a class="headerlink" href="#verdaderos-positivos-y-falsos-positivos" title="Link to this heading">#</a></h2>
 <p>Para entrenar un algoritmo de inteligencia artificial capaz de distinguir objetos reales de ruido de fondo, los investigadores construyeron dos conjuntos de datos utilizando archivos <code class="docutils literal notranslate"><span class="pre">.npz</span></code> (arreglos de NumPy comprimidos).</p>
 <section id="stamps-sources-npz-verdaderos-positivos">
-<h3><code class="docutils literal notranslate"><span class="pre">stamps_sources.npz</span></code> (verdaderos positivos)<a class="headerlink" href="#stamps-sources-npz-verdaderos-positivos" title="Permalink to this heading">#</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">stamps_sources.npz</span></code> (verdaderos positivos)<a class="headerlink" href="#stamps-sources-npz-verdaderos-positivos" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Contiene pequeños recortes de imagen (<em>stamps</em>) que incluyen TNOs simulados.</p></li>
 <li><p>Como la posición de cada objeto simulado es conocida, estas muestras representan ejemplos de que hay un TNO real.</p></li>
@@ -1684,7 +1658,7 @@ Probabilidades de los dígitos
 </ul>
 </section>
 <section id="stamps-noise-npz-falsos-positivos">
-<h3><code class="docutils literal notranslate"><span class="pre">stamps_noise.npz</span></code> (falsos positivos)<a class="headerlink" href="#stamps-noise-npz-falsos-positivos" title="Permalink to this heading">#</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">stamps_noise.npz</span></code> (falsos positivos)<a class="headerlink" href="#stamps-noise-npz-falsos-positivos" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Contiene recortes generados al apilar imágenes siguiendo trayectorias aleatorias e incorrectas donde no existe ningún objeto.</p></li>
 <li><p>Estas imágenes contienen únicamente ruido de fondo, artefactos instrumentales o fluctuaciones estadísticas. Representan ejemplos de una no-detección de un TNO.</p></li>
@@ -1693,15 +1667,15 @@ Probabilidades de los dígitos
 </section>
 <hr class="docutils" />
 <section id="objetivo">
-<h3>Objetivo<a class="headerlink" href="#objetivo" title="Permalink to this heading">#</a></h3>
+<h3>Objetivo<a class="headerlink" href="#objetivo" title="Link to this heading">#</a></h3>
 <p>Use las imágenes en la base de datos para entrenar un modelo de Deep Learning (idealmente una CNN) para clasificar detecciones/no-detecciones de TNOs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Brute force direct downloads source and noise images to circumvent size limitations</span>
 <span class="c1"># for google drive internal virus scan. Download may take some time.</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;sources&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;stamps_noise.npy&#39;</span><span class="p">),</span> <span class="s1">&#39;1UT2BCf-IDUEpvTmcU4bq6nDcY3Ayw5vJ&#39;</span><span class="p">),</span>
          <span class="s1">&#39;noise&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;stamps_sources.npy&#39;</span><span class="p">),</span> <span class="s1">&#39;1cZaMCA0z_nPX6GB_meLGouwOidEROcwc&#39;</span><span class="p">)}</span>
@@ -1725,7 +1699,7 @@ Probabilidades de los dígitos
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">normalize_image</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize_image</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Rescale the constrast in an image based on the noise (used for displays and the CNN)&#39;&#39;&#39;</span>
     <span class="n">sigmaG_coeff</span> <span class="o">=</span>  <span class="mf">0.7413</span>
     <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="mi">21</span><span class="p">)</span>
@@ -1759,11 +1733,11 @@ Probabilidades de los dígitos
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">to_categorical</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">to_categorical</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">reshape_arrays</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">reshape_arrays</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;reshape arrays for Keras&#39;&#39;&#39;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">labels</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
@@ -1798,7 +1772,7 @@ Probabilidades de los dígitos
 </section>
 </section>
 <section id="apendice-gradient-descent-en-redes-neuronales">
-<h2>Apéndice: Gradient Descent en redes neuronales<a class="headerlink" href="#apendice-gradient-descent-en-redes-neuronales" title="Permalink to this heading">#</a></h2>
+<h2>Apéndice: Gradient Descent en redes neuronales<a class="headerlink" href="#apendice-gradient-descent-en-redes-neuronales" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>El entrenamiento consiste en ajustar los pesos de la red para minimizar una función de pérdida <span class="math notranslate nohighlight">\(L\)</span>.</p></li>
 <li><p>En cada iteración se calcula el gradiente de la pérdida con respecto a todos los parámetros de la red.</p></li>
@@ -1806,7 +1780,7 @@ Probabilidades de los dígitos
 <li><p>El algoritmo de <em>backpropagation</em> aplica la regla de la cadena para calcular de manera eficiente los gradientes de la función de pérdida con respecto a todos los parámetros de una red neuronal.</p></li>
 </ul>
 <section id="actualizacion-de-pesos">
-<h3>Actualización de pesos<a class="headerlink" href="#actualizacion-de-pesos" title="Permalink to this heading">#</a></h3>
+<h3>Actualización de pesos<a class="headerlink" href="#actualizacion-de-pesos" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 w_{t+1}
@@ -1818,7 +1792,7 @@ w_t
 \]</div>
 </section>
 <section id="importancia-computacional">
-<h3>Importancia computacional<a class="headerlink" href="#importancia-computacional" title="Permalink to this heading">#</a></h3>
+<h3>Importancia computacional<a class="headerlink" href="#importancia-computacional" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Una red neuronal puede contener millones o incluso miles de millones de parámetros.</p></li>
 <li><p>Buscar la mejor combinación de pesos mediante exploración exhaustiva sería imposible.</p></li>
@@ -1884,7 +1858,8 @@ w_t
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1981,7 +1956,7 @@ By Esteban Silva Villa y Germán Chaparro Molano
 
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -2005,8 +1980,8 @@ By Esteban Silva Villa y Germán Chaparro Molano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

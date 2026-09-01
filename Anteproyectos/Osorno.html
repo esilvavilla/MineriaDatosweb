@@ -1,0 +1,669 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Relación entre tipos estelares y tipos de exoplanetas &#8212; Minería de datos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Anteproyectos/Osorno';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/UdeA.png" class="logo__image only-light" alt="Minería de datos - Home"/>
+    <img src="../_static/UdeA.png" class="logo__image only-dark pst-js-only" alt="Minería de datos - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Minería de datos para el pregrado de Astronomía UdeA
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Clase_01_INTROyCLI.html">Clase 1: La Consola de Comandos (Bash)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_02_GIT-HUB.html">Clase 2: Introducción a herramientas de control de versiones Git y Github</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_03_PythonCientifico.html">Clase 3: Python Científico (NumPy, Pandas, Matplotlib &amp; Seaborn)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_04_SQL_Intro.html">Clase 4: Introducción a SQL y Bases de Datos Relacionales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_05_ADQL_Intro.html">Clase 5: El Observatorio Virtual y Geometría Espacial con ADQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_06_ADQL_Intro2.html">Clase 6: SQL y ADQL Avanzado - Minería de Datos y Cruces Espaciales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_07_SQLADQL_web.html">Clase 7: Exploración de Datos Astronómicos mediante Interfaces Gráficas (GUIs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_08_Rsumen.html">Clase 8: Gran Repaso de Minería de Datos Astronómicos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_09_astropy.html">Clase 9: Astropy: Unidades y Coordenadas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_10_astroquery.html">Clase 10: Bases de datos astronómicas y Astroquery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_11_fits.html">Clase 11: Manejo de archivos FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_12_Aprendizaje_No_Supervisado.html">Clase 12: Aprendizaje de Máquina (No Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_13_Aprendizaje_Supervisado.html">Clase 13: Aprendizaje de Máquina (Supervisado)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Clase_14_Clasificacion_Supervisada.html">Clase 14: Algoritmos de Clasificación Supervisada 1</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Clase_15_Deep_Learning_1.html">Clase 15: Deep Learning 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Proyecto%201er%20mes.html">Proyecto 1er mes</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAnteproyectos/Osorno.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Anteproyectos/Osorno.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Relación entre tipos estelares y tipos de exoplanetas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Relación entre tipos estelares y tipos de exoplanetas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#anteproyecto">Anteproyecto</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">1. Objetivo general</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-especificos">2. Objetivos específicos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciencia-detras-del-proyecto">3. Ciencia detrás del proyecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia">4. Metodología</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recoleccion-de-datos">4.1 Recolección de datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-estrellas">4.2 Clasificación de estrellas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">4.4 Análisis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-de-machine-learning">4.5 Aplicación de Machine Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sesgos-en-los-datos-y-resultados">4.6 Sesgos en los datos y resultados.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas">5. Herramientas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-esperados">6. Resultados esperados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="relacion-entre-tipos-estelares-y-tipos-de-exoplanetas">
+<h1>Relación entre tipos estelares y tipos de exoplanetas<a class="headerlink" href="#relacion-entre-tipos-estelares-y-tipos-de-exoplanetas" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="anteproyecto">
+<h1>Anteproyecto<a class="headerlink" href="#anteproyecto" title="Link to this heading">#</a></h1>
+<section id="objetivo-general">
+<h2>1. Objetivo general<a class="headerlink" href="#objetivo-general" title="Link to this heading">#</a></h2>
+<p>Determinar si existe una relación significativa entre las características físicas de las estrellas y los tipos de exoplanetas detectados a su alrededor.</p>
+</section>
+<section id="objetivos-especificos">
+<h2>2. Objetivos específicos<a class="headerlink" href="#objetivos-especificos" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Clasificar las estrellas según propiedades físicas como masa, temperatura efectiva, luminosidad, metalicidad, edad y tipo espectral.</p></li>
+<li><p>Clasificar los exoplanetas detectados según criterios de radio o masa planetaria.</p></li>
+<li><p>Analizar la distribución de tipos planetarios en función de las propiedades de sus estrellas anfitrionas.</p></li>
+<li><p>Evaluar correlaciones entre masa estelar, metalicidad, temperatura efectiva y tipo de planeta detectado.</p></li>
+<li><p>Construir un modelo de machine learning que permita predecir el tipo de planeta más probable para una estrella dada.</p></li>
+<li><p>Aplicar el modelo a estrellas sin planetas detectados para estimar qué tipos de planetas podrían poseer.</p></li>
+</ul>
+</section>
+<section id="ciencia-detras-del-proyecto">
+<h2>3. Ciencia detrás del proyecto<a class="headerlink" href="#ciencia-detras-del-proyecto" title="Link to this heading">#</a></h2>
+<p>La formación de planetas ocurre en discos protoplanetarios compuestos por gas y polvo alrededor de estrellas jóvenes. Según el modelo de acreción de núcleo, primero se forman pequeños granos sólidos que se agregan hasta producir planetesimales y embriones planetarios [1]. Si el núcleo alcanza suficiente masa antes de que el gas del disco se disipe, puede acumular una envoltura gaseosa y formar planetas gigantes.[1]</p>
+<p>La metalicidad estelar representa la abundancia de elementos más pesados que el hidrógeno y el helio presentes en la estrella. Una mayor metalicidad puede indicar una mayor cantidad de material sólido disponible en el disco protoplanetario, lo cual podría favorecer la formación de determinados tipos de planetas, por lo que la variabilidad en metalicidad podría indicar variabilidad en tipo de exoplaneta.</p>
+<p>El objetivo es evaluar si estas relaciones se reflejan en los datos observacionales actuales de exoplanetas.</p>
+</section>
+<section id="metodologia">
+<h2>4. Metodología<a class="headerlink" href="#metodologia" title="Link to this heading">#</a></h2>
+<section id="recoleccion-de-datos">
+<h3>4.1 Recolección de datos<a class="headerlink" href="#recoleccion-de-datos" title="Link to this heading">#</a></h3>
+<p>Los datos serán obtenidos principalmente desde:</p>
+<p>NASA Exoplanet Archive
+VizieR (Catalogue Service)</p>
+<p>Se utilizarán lod siguientes datos que contengan:</p>
+<p><strong>Datos estelares:</strong>
+Masa
+Temperatura efectiva
+Radio
+Luminosidad
+Metalicidad
+Edad</p>
+<p><strong>Datos planetarios:</strong>
+Masa
+Radio
+Período orbital
+Tipo de planeta</p>
+</section>
+<section id="clasificacion-de-estrellas">
+<h3>4.2 Clasificación de estrellas<a class="headerlink" href="#clasificacion-de-estrellas" title="Link to this heading">#</a></h3>
+<p>Las estrellas serán clasificadas según:</p>
+<p>Tipo espectral
+Masa
+Temperatura
+Metalicidad
+Presencia o ausencia de planetas detectados</p>
+<p>Luego, se agruparán para comparar las características de ambos conjuntos.</p>
+<p>### 4.3 Clasificación de exoplanetas</p>
+<p>Los exoplanetas serán clasificados según su tamaño y masa en categorías como [2][3]:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo planetario</p></th>
+<th class="head"><p>Radio aproximado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Rocosos</p></td>
+<td><p>(R &lt; 1.6 R<span class="math notranslate nohighlight">\(_{\oplus}\)</span>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Supertierras</p></td>
+<td><p>(1.6 - 2.5 R<span class="math notranslate nohighlight">\(_{\oplus}\)</span>)</p></td>
+</tr>
+<tr class="row-even"><td><p>Mini-neptunos</p></td>
+<td><p>(2.5 - 4 R<span class="math notranslate nohighlight">\(_{\oplus}\)</span>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Neptunianos</p></td>
+<td><p>(4 - 6 R<span class="math notranslate nohighlight">\(_{\oplus}\)</span>)</p></td>
+</tr>
+<tr class="row-even"><td><p>Júpiteres</p></td>
+<td><p>(R &gt; 6 R<span class="math notranslate nohighlight">\(_{\oplus}\)</span>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Esta clasificación permitirá analizar la distribución de planetas respecto al tipo de estrella anfitriona.</p>
+</section>
+<section id="analisis">
+<h3>4.4 Análisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h3>
+<p>Se realizarán análisis exploratorios y estadísticos para identificar:</p>
+<ul class="simple">
+<li><p>Frecuencia de tipos planetarios por tipo de estrella.</p></li>
+<li><p>Posibles correlaciones entre masa estelar y tipo de planeta.</p></li>
+<li><p>Relación entre metalicidad y los tipos de planetas que posee la estrella.</p></li>
+<li><p>Distribuciones predominantes o comportamientos aleatorios.</p></li>
+</ul>
+</section>
+<section id="aplicacion-de-machine-learning">
+<h3>4.5 Aplicación de Machine Learning<a class="headerlink" href="#aplicacion-de-machine-learning" title="Link to this heading">#</a></h3>
+<p>Se implementará Machine Learning con la entrada de datos de estrellas de los pasos anteriores, para que el modelo analice las estrellas que tienen planetas conocidos y luego aplicarlo con las estrellas sin planetas detectados para estimar qué tipo de planetas podrían poseer.</p>
+</section>
+<section id="sesgos-en-los-datos-y-resultados">
+<h3>4.6 Sesgos en los datos y resultados.<a class="headerlink" href="#sesgos-en-los-datos-y-resultados" title="Link to this heading">#</a></h3>
+<p>Un riesgo importante que puede tener el modelo es que puede tener sesgos de detección, es decir, que las estrellas con planetas actualmente son un sesgo de observación, ya sea por tiempos de observación, que planetas de periodos largos son más difíciles de detectar como los que tenemos en nuestro sistema solar como Urano y Neptuno que tienen periodos que no abarcan siquiera el periodo desde que se detectó el primer exoplaneta. Además de sesgos de tamaño ya que los planetas con gran tamaño son más fáciles de detectar.</p>
+<p>Además que existen también sesgos por el tipo de detección utilizada. Por ejemplo, el método de tránsito detecta mejor planetas grandes y cercanos a su estrella; el método de velocidad radial, detecta mejor planetas masivos y cercanos.</p>
+<p>Un sesgo más es que no todas las estrellas se han observado con la misma frecuencia.</p>
+</section>
+</section>
+<section id="herramientas">
+<h2>5. Herramientas<a class="headerlink" href="#herramientas" title="Link to this heading">#</a></h2>
+<p>Google Colab</p>
+<p><strong>Python:</strong>
+Librerías principales
+pandas
+numpy
+matplotlib
+seaborn
+astropy
+astroquery</p>
+<p>Herramientas de maching learning.</p>
+</section>
+<section id="resultados-esperados">
+<h2>6. Resultados esperados<a class="headerlink" href="#resultados-esperados" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Identificación de relaciones entre tipos de estrellas y tipos de exoplanetas.</p></li>
+<li><p>Determinación de posibles patrones físicos en la formación planetaria.</p></li>
+<li><p>Construcción de un modelo predictivo que pueda estimar el tipo de exoplaneta más probable alrededor de una estrella.</p></li>
+<li><p>Predicción de posibilidad de tipos de planetas en estrellas sin detección de exoplanetas actualmente.</p></li>
+</ul>
+</section>
+<section id="referencias">
+<h2>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<p>[1] Cuartas Restrepo, P. (2023). Ciencias planetarias – Parte I: Formación de los planetas (primera edición). Universidad de Antioquia.</p>
+<p>[2] Rogers, L. A. (2015). Most 1.6 Earth-radius Planets are not Rocky. The Astrophysical Journal, 801(1), 41. https://arxiv.org/pdf/1407.4457</p>
+<p>[3] PlanetMad. (2024). Presentación exoplanetas 2024 04 25 [Presentación PDF]. https://planetmad.es/wp-content/uploads/2024/04/presentacion_exoplanetas_2024_04_25.pdf</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Anteproyectos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Relación entre tipos estelares y tipos de exoplanetas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#anteproyecto">Anteproyecto</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivo-general">1. Objetivo general</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objetivos-especificos">2. Objetivos específicos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ciencia-detras-del-proyecto">3. Ciencia detrás del proyecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodologia">4. Metodología</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recoleccion-de-datos">4.1 Recolección de datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clasificacion-de-estrellas">4.2 Clasificación de estrellas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">4.4 Análisis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicacion-de-machine-learning">4.5 Aplicación de Machine Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sesgos-en-los-datos-y-resultados">4.6 Sesgos en los datos y resultados.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#herramientas">5. Herramientas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resultados-esperados">6. Resultados esperados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Esteban Silva Villa y Germán Chaparro Molano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
